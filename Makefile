@@ -7,9 +7,17 @@ PHONY   =
 PYTHON ?= python3
 PYLINT ?= pylint3
 
-# git add gh-pages && git commit -m "Initial gh-pages subtree commit"
-# git subtree push --prefix gh-pages origin gh-pages
 DOCS_DIST = gh-pages
+$(DOCS_DIST):
+	git clone https://github.com/return42/fspath.git $(DOCS_DIST)
+	cd $(DOCS_DIST);\
+		git checkout --orphan gh-pages;\
+		git rm -rf . ;\
+	        touch .nojekyll ;\
+		git add --all . ;\
+		git commit -m "gh-pages: inital" ;\
+		git push origin gh-pages ;\
+
 
 all: clean docs build pylint
 
@@ -57,7 +65,7 @@ clean: docs-clean
 	$(call cmd,clean)
 
 PHONY += docs
-docs:  sphinx-builder
+docs:  sphinx-builder $(DOCS_DIST)
 	$(call cmd,sphinx,html,docs,docs)
 	@touch $(DOCS_DIST)/.nojekyll
 

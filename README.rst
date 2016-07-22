@@ -17,19 +17,17 @@ Works as usual, e.g. use::
 
   pip install --user git+http://github.com/return42/fspath.git
 
-
 Documentation
 =============
 
-Can be found online at http://return42.github.io/fspath/ or created by ::
+Online at http://return42.github.io/fspath/ or create by::
 
-   cd doc
-   make html
+   make docs
 
 Development
 ===========
 
-Takes place on `github return42/fspath <https://github.com/return42/fspath>`_.
+`github return42/fspath <https://github.com/return42/fspath>`_
 
 The authors
 ===========
