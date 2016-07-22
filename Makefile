@@ -59,7 +59,7 @@ quiet_cmd_pylint = LINT   $@
 quiet_cmd_test   = TEST   $@
       cmd_test   = cd tests; $(PYTHON) run.py -I py35 -d -m '^[tT]est' $(TEST)
 
-quiet_cmd_doc    = LINT   $@
+quiet_cmd_pylint = LINT   $@
       cmd_pylint = $(PYLINT) --rcfile utils/pylintrc fspath
 
 PHONY += clean

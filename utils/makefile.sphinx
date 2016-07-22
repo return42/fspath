@@ -14,7 +14,7 @@ PHONY += msg-sphinx-builder sphinx-builder
 
 msg-sphinx-builder:
 	@echo "\n\
-The base documentation build system requires sphinx-doc:\n\n\
+  The base documentation build system requires sphinx-doc.:\n\n\
   Make sure you have an updated Sphinx installed, grab it from\n\
   http://sphinx-doc.org or install it from the python package\n\
   manager (pip). On debian based OS these requirements are\n\
@@ -29,6 +29,10 @@ else
 sphinx-builder:
 	@:
 endif
+
+# ------------------------------------------------------------------------------
+# commands
+# ------------------------------------------------------------------------------
 
 # $2 sphinx builder e.g. "html"
 # $3 path where configuration file (conf.py) is located
