@@ -11,13 +11,15 @@ DOCS_DIST = gh-pages
 $(DOCS_DIST):
 	git clone https://github.com/return42/fspath.git $(DOCS_DIST)
 	cd $(DOCS_DIST);\
+		git push origin :gh-pages ;\
 		git checkout --orphan gh-pages;\
-		git rm -rf . ;\
+		git rm -rf .
+	$(call cmd,sphinx,html,docs,docs)
+	cd $(DOCS_DIST);\
 	        touch .nojekyll ;\
 		git add --all . ;\
-		git commit -m "gh-pages: inital" ;\
-		git push origin gh-pages ;\
-
+		git commit -m "gh-pages: updated" ;\
+		git push origin gh-pages
 
 all: clean docs build pylint
 
@@ -65,9 +67,8 @@ clean: docs-clean
 	$(call cmd,clean)
 
 PHONY += docs
-docs:  sphinx-builder $(DOCS_DIST)
+docs:  sphinx-builder
 	$(call cmd,sphinx,html,docs,docs)
-	@touch $(DOCS_DIST)/.nojekyll
 
 PHONY += docs-clean
 docs-clean:
