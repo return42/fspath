@@ -1,15 +1,15 @@
 # -*- coding: utf-8; mode: makefile-gmake -*-
 
 include utils/makefile.include
+include utils/makefile.python
 include utils/makefile.sphinx
 
 PHONY   =
-PYTHON ?= python3
-PYLINT ?= pylint3
+GIT_URL = https://github.com/return42/fspath.git
 
 DOCS_DIST = gh-pages
 $(DOCS_DIST):
-	git clone https://github.com/return42/fspath.git $(DOCS_DIST)
+	git clone $(GIT_URL) $(DOCS_DIST)
 	cd $(DOCS_DIST);\
 		git push origin :gh-pages ;\
 		git checkout --orphan gh-pages;\
@@ -50,17 +50,6 @@ quiet_cmd_clean = CLEAN  $@
 	find . -name '*~' -exec rm -f {} +         ;\
 	find . -name '*.bak' -exec rm -f {} +      ;\
 
-quiet_cmd_build  = BUILD  $@
-      cmd_build  = $(PYTHON) setup.py build
-
-quiet_cmd_pylint = LINT   $@
-      cmd_pylint = $(PYLINT) --rcfile utils/pylintrc fspath
-
-quiet_cmd_test   = TEST   $@
-      cmd_test   = cd tests; $(PYTHON) run.py -I py35 -d -m '^[tT]est' $(TEST)
-
-quiet_cmd_pylint = LINT   $@
-      cmd_pylint = $(PYLINT) --rcfile utils/pylintrc fspath
 
 PHONY += clean
 clean: docs-clean
@@ -76,11 +65,17 @@ docs-clean:
 
 PHONY += build
 build:
-	$(call cmd,build)
+	$(call cmd,pybuild)
+
+PHONY += install uninstall
+install: pip-exe
+	$(call cmd,pyinstall,.)
+uninstall: pip-exe
+	$(call cmd,pyuninstall,fspath)
 
 PHONY += pylint
-pylint:
-	$(call cmd,pylint)
+pylint: pylint-exe
+	$(call cmd,pylint,fspath)
 
 PHONY += test
 test:
