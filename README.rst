@@ -13,7 +13,10 @@ time ``os.path.join...`` then you are right here.
 Installing
 ==========
 
-Works as usual, use ``python setup.py install``.
+Works as usual, e.g. use::
+
+  pip install --user git+http://github.com/return42/fspath.git
+
 
 Documentation
 =============

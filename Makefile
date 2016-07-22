@@ -7,6 +7,10 @@ PHONY   =
 PYTHON ?= python3
 PYLINT ?= pylint3
 
+# git add gh-pages && git commit -m "Initial gh-pages subtree commit"
+# git subtree push --prefix gh-pages origin gh-pages
+DOCS_DIST = gh-pages
+
 all: clean docs build pylint
 
 PHONY += help
@@ -54,7 +58,8 @@ clean: docs-clean
 
 PHONY += docs
 docs:  sphinx-builder
-	$(call cmd,sphinx,html,docs,docs,html)
+	$(call cmd,sphinx,html,docs,docs)
+	@touch $(DOCS_DIST)/.nojekyll
 
 PHONY += docs-clean
 docs-clean:
