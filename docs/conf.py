@@ -15,3 +15,15 @@ version   = fspath.__version__
 release   = fspath.__version__
 show_authors = True
 
+extensions = [
+    'sphinx.ext.autodoc'
+    , 'sphinx.ext.extlinks'
+    #, 'sphinx.ext.autosummary'
+    #, 'sphinx.ext.doctest'
+    , 'sphinx.ext.todo'
+    , 'sphinx.ext.coverage'
+    #, 'sphinx.ext.pngmath'
+    #, 'sphinx.ext.mathjax'
+    , 'sphinx.ext.viewcode'
+    , 'sphinx.ext.intersphinx'
+]

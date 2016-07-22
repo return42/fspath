@@ -1,12 +1,6 @@
 # -*- coding: utf-8; mode: python -*-
 u"""
-    fspath.progressbar
-    ~~~~~~~~~~~~~~~~~~
-
-    A progress bar for the console.
-
-    :copyright:  Copyright (C) 2016 Markus Heiser
-    :license:    GPL Version 2, June 1991 see linux/COPYING for details.
+A progress bar for the console.
 """
 
 import os

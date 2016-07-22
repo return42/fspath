@@ -1,12 +1,6 @@
 # -*- coding: utf-8; mode: python -*-
 u"""
-    fspath.fspath
-    ~~~~~~~~~~~~~
-
-    Handling path names and executables more comfortable.
-
-    :copyright:  Copyright (C) 2016 Markus Heiser
-    :license:    GPL Version 2, June 1991 see linux/COPYING for details.
+Handling path names and executables more comfortable.
 """
 
 # ==============================================================================

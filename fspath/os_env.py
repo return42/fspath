@@ -1,12 +1,6 @@
 #!/usr/bin/env python
 u"""
-    fspath.os_env
-    ~~~~~~~~~~~~~
-
-    Environment access more comfortable.
-
-    :copyright:  Copyright (C) 2016 Markus Heiser
-    :license:    GPL Version 2, June 1991 see linux/COPYING for details.
+Environment access more comfortable.
 """
 
 import os
