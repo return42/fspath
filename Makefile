@@ -23,21 +23,23 @@ $(DOCS_DIST):
 
 all: clean docs build pylint
 
+PHONY += help-rqmts
+help-rqmts: msg-sphinx-builder msg-pylint-exe msg-pip-exe
+
 PHONY += help
 help:
-	@echo  '  clean		- Remove most generated files'
-	@echo  '  pylint	- run pylint *linting*'
-	@echo  '  test		- run nose test'
+	@echo  '  un/install	- install/uninstall project in editable mode'
 	@echo  '  build		- build packages'
 	@echo  '  docs		- build documentation'
+	@echo  '  clean		- remove most generated files'
+	@echo  '  pylint	- run pylint *linting*'
+	@echo  '  test		- run nose test'
 	@echo  '  help-rqmts 	- info about build requirements'
 	@echo  ''
 	@echo  '  make V=0|1 [targets] 0 => quiet build (default), 1 => verbose build'
 	@echo  '  make V=2   [targets] 2 => give reason for rebuild of target'
 	@echo  '  make PYTHON=python2 use special python interpreter'
 
-PHONY += help-rqmts
-help-rqmts: msg-sphinx-builder
 
 quiet_cmd_clean = CLEAN  $@
       cmd_clean = \
@@ -50,10 +52,15 @@ quiet_cmd_clean = CLEAN  $@
 	find . -name '*~' -exec rm -f {} +         ;\
 	find . -name '*.bak' -exec rm -f {} +      ;\
 
+PHONY += install uninstall
+install: pip-exe
+	$(call cmd,pyinstall,.)
+uninstall: pip-exe
+	$(call cmd,pyuninstall,fspath)
 
-PHONY += clean
-clean: docs-clean
-	$(call cmd,clean)
+PHONY += build
+build:
+	$(call cmd,pybuild)
 
 PHONY += docs
 docs:  sphinx-builder
@@ -63,15 +70,9 @@ PHONY += docs-clean
 docs-clean:
 	$(call cmd,sphinx_clean)
 
-PHONY += build
-build:
-	$(call cmd,pybuild)
-
-PHONY += install uninstall
-install: pip-exe
-	$(call cmd,pyinstall,.)
-uninstall: pip-exe
-	$(call cmd,pyuninstall,fspath)
+PHONY += clean
+clean: docs-clean
+	$(call cmd,clean)
 
 PHONY += pylint
 pylint: pylint-exe
