@@ -10,27 +10,13 @@ time ``os.path.join...`` then you are right here.
 :copyright:  Copyright (C) 2016 Markus Heiser
 :license:    GPL Version 2, June 1991 see linux/COPYING for details.
 
+* documentation: http://return42.github.io/fspath
+* reposetory:    `github return42/fspath <https://github.com/return42/fspath>`_
+* Author e-mail: *markus.heiser*\ *@*\ *darmarIT.de*
+
 Installing
 ==========
 
 Works as usual, e.g. use::
 
-  pip install --user git+http://github.com/return42/fspath.git
-
-Documentation
-=============
-
-Online at http://return42.github.io/fspath/ or create by::
-
-   make docs
-
-Development
-===========
-
-`github return42/fspath <https://github.com/return42/fspath>`_
-
-The authors
-===========
-
-The fspath lib is maintained by **Markus Heiser**, e-mail address
-*markus.heiser*\ *@*\ *darmarIT.de*.
+  pip install [--user] fspath
