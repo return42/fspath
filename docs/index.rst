@@ -26,12 +26,9 @@ For a bleading edge installation::
 
 
 Source Code Documentation
-==========================
+=========================
 
 .. toctree::
    :maxdepth: 2
 
    fspath/fspath
-
-
-
