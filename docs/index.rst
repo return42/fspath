@@ -20,7 +20,7 @@ Works as usual, e.g. use::
 
   pip install [--user] fspath
 
-For a bleading edge installation::
+For a bleeding edge installation::
 
   pip install --user git+http://github.com/return42/fspath.git
 
