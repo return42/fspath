@@ -24,6 +24,13 @@ For a bleeding edge installation::
 
   pip install --user git+http://github.com/return42/fspath.git
 
+If you are a developer and like to contribute to the fspath lib, fork on github
+or clone and make a developer install::
+
+  git clone https://github.com/return42/fspath
+  cd fspath
+  make install
+
 
 Source Code Documentation
 =========================
