@@ -9,10 +9,6 @@ FSPath
     :undoc-members:
     :show-inheritance:
 
-* documentation: http://return42.github.io/fspath
-* reposetory:    `github return42/fspath <https://github.com/return42/fspath>`_
-* Author e-mail: *markus.heiser*\ *@*\ *darmarIT.de*
-
 Installing
 ==========
 

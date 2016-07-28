@@ -8,11 +8,10 @@ developer and tired in juggling with strings of path names and typing all the
 time ``os.path.join...`` then you are right here.
 
 :copyright:  Copyright (C) 2016 Markus Heiser
+:e-mail:     *markus.heiser*\ *@*\ *darmarIT.de*
 :license:    GPL Version 2, June 1991 see linux/COPYING for details.
-
-* documentation: http://return42.github.io/fspath
-* reposetory:    `github return42/fspath <https://github.com/return42/fspath>`_
-* Author e-mail: *markus.heiser*\ *@*\ *darmarIT.de*
+:docs:       http://return42.github.io/fspath
+:reposetory: `github return42/fspath <https://github.com/return42/fspath>`_
 
 Installing
 ==========
