@@ -4,6 +4,7 @@
 
 import re
 import fspath
+import sphinx_rtd_theme
 
 master_doc = 'index'
 templates_path = ['_templates']
@@ -27,3 +28,14 @@ extensions = [
     , 'sphinx.ext.viewcode'
     , 'sphinx.ext.intersphinx'
 ]
+
+html_theme = "sphinx_rtd_theme"
+html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
+html_static_path = ["../utils/sphinx-static"]
+html_context = {
+    'css_files': [
+        '_static/theme_overrides.css',
+    ],
+}
+
+intersphinx_mapping = {}
