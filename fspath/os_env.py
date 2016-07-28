@@ -10,7 +10,7 @@ class OS_ENV(dict):
 # ==============================================================================
 
     u"""
-    Environment object (singelton).
+    Environment object (singleton).
 
     .. code-block:: python
 

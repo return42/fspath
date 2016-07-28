@@ -6,7 +6,7 @@ developer and tired in juggling with strings of path names and typing all the
 time ``os.path.join...`` then you are right here.
 
 :copyright:  Copyright (C) 2016 Markus Heiser
-:license:    GPL Version 2, June 1991 see linux/COPYING for details.
+:license:    GPL Version 2, June 1991 see Linux/COPYING for details.
 
 """
 

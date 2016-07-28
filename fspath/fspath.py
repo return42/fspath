@@ -58,13 +58,13 @@ class FSPath(six.text_type):
     """
 
     def __new__(cls, pathname):
-        u"""Konstruktor für einen Pfadnamen.
+        u"""Constructor of a path name object.
 
         Regardless of how the encoding of the file system is, the ``pathname``
         is converted to unicode. The conversion of byte strings is based the
         default encodings.
 
-        To issue "Filesystem Encoding" See also:
+        To issue "File-system Encoding" See also:
 
         * https://docs.python.org/3.5/howto/unicode.html#unicode-filenames
         """
@@ -320,12 +320,12 @@ class FSPath(six.text_type):
     def Popen(self, *args, **kwargs):
         u"""Get a ``subprocess.Popen`` object (``proc``).
 
-        The path name of the self-object is the programm to call. The programm
+        The path name of the self-object is the programm to call. The program
         arguments are given py ``*args`` and the ``*kwargs`` are passed to the
         ``subprocess.Popen`` constructor. The ``universal_newlines=True`` is
         true by default.
 
-        siehe https://docs.python.org/3/library/subprocess.html#popen-constructor
+        see https://docs.python.org/3/library/subprocess.html#popen-constructor
 
         .. code-block:: python
 
@@ -352,7 +352,7 @@ class FSPath(six.text_type):
     def download(self, url, chunkSize=1048576, ticker=False):
         u"""Download URL into file
 
-        The default chunkSize is 1048576 Bytes, with ticker=True an progressbar
+        The default chunkSize is 1048576 Bytes, with ticker=True an progress-bar
         is prompted."""
 
         downBytes  = 0
@@ -387,7 +387,7 @@ def which(fname, findall=True):
     This *which* is not POSIX conform, it searches the fname (without extension)
     and the fname with one of the ".exe", ".cmd", ".bat" extension. If nothing
     is found, ``None` is returned if something matches, a list (``set``) is
-    returned. With option ``finadall=False`` the first match is returned or
+    returned. With option ``findall=False`` the first match is returned or
     ``None``, if nothing is found.
     """
     exe = ["", ".exe", ".cmd", ".bat"]
@@ -410,7 +410,7 @@ def callEXE(cmd, *args, **kwargs):
 # ==============================================================================
 
     u"""
-    Calls command ``cmd`` with arguments ``*args`` synchron.
+    Synchronous command call ``cmd`` with arguments ``*args`` .
 
     The ``*kwargs`` are passed to the ``subprocess.Popen`` constructor. The
     return value is a three-digit tuple ``(stdout, stderr, rc)``.

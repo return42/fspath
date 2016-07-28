@@ -11,7 +11,7 @@ def humanizeBytes(size, precision=2):
 # ==============================================================================
 
     """
-    Emittelt den *menschen lesbaren* Wert der Byteanzahl.
+    Determine the *human readable* value of bytes on 1024 base (1KB=1024B).
     """
     s = ['B ', 'KB', 'MB', 'GB', 'TB']
     x = len(s)
@@ -27,11 +27,11 @@ def progressbar(step, maxSteps, barSize=None, pipe=sys.stdout
 # ==============================================================================
 
     """
-    Anzeigen einer Progressbar.
+    Show progress-bar
 
-    * step: Schrittnummer
-    * maxSteps: maximale Anzahl an Schritten
-    * barSize: Länge der Balkenanzeige
+    * step: step number
+    * maxSteps: max. steps
+    * barSize: char length of the progress-bar
     """
 
     percent = float(100)/maxSteps*step
