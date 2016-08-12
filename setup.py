@@ -4,6 +4,9 @@
 from setuptools import setup, find_packages
 import fspath
 
+install_requires = [
+    "six" ]
+
 setup(
     name               = "fspath"
     , version          = fspath.__version__
@@ -15,6 +18,8 @@ setup(
     , license          = fspath.__license__
     , keywords         = "path-names development"
     , packages         = find_packages(exclude=['docs', 'tests'])
+    , install_requires = install_requires
+
     # See https://pypi.python.org/pypi?%3Aaction=list_classifiers
     , classifiers = [
         "Development Status :: 5 - Production/Stable"
