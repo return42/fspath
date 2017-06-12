@@ -145,7 +145,7 @@ quiet_cmd_pyclean     = CLEAN     $@
 # ------------------------------------------------------------------------------
 
 PHONY += pybuild pyclean upload-pypi
-pybuild: python-exe
+pybuild: $(PY_ENV)
 	$(call cmd,pybuild)
 
 PHONY += pytest
@@ -161,7 +161,7 @@ PHONY += pydebug
 pydebug: $(PY_ENV)
 	DEBUG=$(DEBUG) $(PY_ENV_BIN)/pytest $(DEBUG) -v $(TEST_FOLDER)/$(TEST)
 
-pyclean: python-exe
+pyclean:
 	$(call cmd,pyclean)
 
 PHONY += pylint
@@ -190,6 +190,6 @@ $(PY_ENV): virtualenv-exe python-exe
 
 # https://github.com/pypa/twine
 upload-pypi: pyclean pybuild
-	twine upload $(PYDIST)/*
+	@$(PY_ENV_BIN)/twine upload $(PYDIST)/*
 
 .PHONY: $(PHONY)

@@ -19,3 +19,4 @@ tmp/
 *.egg
 .tox/
 .coverage
+py_dist/
