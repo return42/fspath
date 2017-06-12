@@ -1,4 +1,25 @@
+# --------
+# requires
+# --------
+
+six
+
+# --------------
+# tests_requires
+# --------------
+
+pip
+tox
+pytest
+pytest-cov
+pylint
+
+# -------
+# develop
+# -------
+
 Sphinx
 sphinx_rtd_theme
-nose
-six
+twine
+wheel
+mock

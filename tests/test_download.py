@@ -12,8 +12,10 @@ from fspath import FSPath, OS_ENV
 TEST_DOWNLOAD_URL="https://git.kernel.org/cgit/linux/kernel/git/stable/linux-stable.git/plain/COPYING"
 MIN_FILESIZE=18000
 
-def test():
-    f = FSPath(OS_ENV.TEST_TEMPDIR) / "COPYING"
+import uuid
+
+def test_download():
+    f = FSPath(OS_ENV.TEST_TEMPDIR) / uuid.uuid4()
     if f.EXISTS:
         f.delete()
     assert not f.EXISTS
