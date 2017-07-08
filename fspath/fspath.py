@@ -16,6 +16,8 @@ import subprocess
 import sys
 from glob import iglob
 from contextlib import closing
+import zipfile
+import tarfile
 
 import six
 from six.moves.urllib.request import urlopen # pylint: disable=E0401
@@ -23,7 +25,7 @@ from six.moves.urllib.request import urlopen # pylint: disable=E0401
 from .progressbar import progressbar, humanizeBytes
 
 # ==============================================================================
-class FSPath(six.text_type):
+class FSPath(six.text_type):  # pylint: disable=too-many-public-methods
 # ==============================================================================
 
     u"""
@@ -87,17 +89,17 @@ class FSPath(six.text_type):
         return path.getsize(self)
 
     @property
-    def isReadable(self):
+    def READABLE(self):
         u"""True if file/path is readable"""
         return os.access(self, os.R_OK)
 
     @property
-    def isWriteable(self):
+    def WRITEABLE(self):
         u"""True if file/path is writeable"""
         return os.access(self, os.W_OK)
 
     @property
-    def isExecutable(self):
+    def EXECUTABLE(self):
         u"""True if file is executable"""
         return os.access(self, os.X_OK)
 
@@ -115,6 +117,16 @@ class FSPath(six.text_type):
     def ISLINK(self):
         u"""True if path is a symbolic link"""
         return path.islink(self)
+
+    @property
+    def ISZIP(self):
+        u"""True if path is a ZIP file"""
+        return zipfile.is_zipfile(self)
+
+    @property
+    def ISTAR(self):
+        u"""True if path is a TAR archive file"""
+        return tarfile.is_tarfile(self)
 
     @property
     def DIRNAME(self):
@@ -229,30 +241,78 @@ class FSPath(six.text_type):
         return self.__class__(six.text_type(other) + self.VALUE)
 
     def relpath(self, start):
+        u"""Return a relative version of a path"""
         return self.__class__(path.relpath(self, start))
 
     def splitpath(self):
+        u"""Split a pathname.
+
+        Return tuple (head, tail) where tail is everything after the final
+        slash.  Either part may be empty."""
         head, tail = path.split(self)
         return (self.__class__(head), self.__class__(tail))
 
     def listdir(self):
+        u"""Return a iterator which yields the names of the files in the directory."""
         for name in os.listdir(self):
             yield self.__class__(name)
 
     def glob(self, pattern):
-        for name in  iglob(self / pattern ):
+        u"""Return an iterator which yields the paths matching a pathname pattern.
+
+        The pattern may contain simple shell-style wildcards a la
+        fnmatch. However, unlike fnmatch, filenames starting with a dot are
+        special cases that are not matched by '*' and '?'  patterns.
+        """
+        for name in  iglob(self / pattern):
             yield self.__class__(name)
 
     def walk(self, topdown=True, onerror=None, followlinks=False):
+        u"""Directory tree generator.
+
+        For each directory in the directory tree rooted at top (including top
+        itself, but excluding '.' and '..'), yields a 3-tuple::
+
+            folder, dirnames, filenames
+
+        dirnames is a list of the names of the subdirectories in dirpath
+        (excluding '.' and '..').  filenames is a list of the names of the
+        non-directory files in dirpath.
+
+        Note that the names in the lists are just names, with no path components.
+        To get a full path (which begins with top) to a file or directory in
+        dirpath, do ``folder / name``.
+
+        By default, os.walk does not follow symbolic links to subdirectories on
+        systems that support them.  In order to get this functionality, set the
+        optional argument 'followlinks' to true.
+
+        Caution:  if you pass a relative pathname for top, don't change the
+        current working directory between resumptions of walk.  walk never
+        changes the current directory, and assumes that the client doesn't
+        either.
+
+        For more details see ``os.walk``"""
         for dirpath, dirnames, filenames in os.walk(self, topdown, onerror, followlinks):
             yield (self.__class__(dirpath)
                    , [self.__class__(x) for x in dirnames]
-                   , [self.__class__(x) for x in filenames]
-            )
+                   , [self.__class__(x) for x in filenames])
 
     def reMatchFind(self, name, isFile=True, isDir=True, followlinks=False):
+        u"""Returns iterator which yields matching path names
 
-        # find first e.g: next(myFolder.reMatchFind(r".*name.*"), None)
+        :param isFile:      list includes names of files
+        :param isDir:       list includes names of folders
+        :param followlinks: follow symbolic links
+
+        To find all C and header files use::
+
+            folder.reMatchFind("*\\.[ch]")
+
+        To find the first C or header file use::
+
+            next(myFolder.reMatchFind("*\\.[ch]"), None)
+        """
 
         name_re = re.compile(name)
         for folder, dirnames, filenames in self.walk(followlinks=followlinks):
@@ -264,6 +324,7 @@ class FSPath(six.text_type):
                     yield folder / f_name
 
     def suffix(self, newSuffix):
+        u"""Return path name with newSuffix"""
         return self.__class__(self.SKIPSUFFIX + newSuffix)
 
     def copyfile(self, dest, preserve=False):
@@ -303,9 +364,9 @@ class FSPath(six.text_type):
         return size
 
     def openTextFile(
-            self, mode = 'r', encoding = 'utf-8'
-            , errors = 'strict', buffering = 1
-            , newline = None):
+            self, mode='r', encoding='utf-8'
+            , errors='strict', buffering=1
+            , newline=None):
         u"""Open file as text file"""
         return io.open(
             self, mode=mode, encoding=encoding
@@ -317,7 +378,7 @@ class FSPath(six.text_type):
         with self.openTextFile(encoding=encoding, errors=errors) as f:
             return f.read()
 
-    def Popen(self, *args, **kwargs):
+    def Popen(self, *args, **kwargs):  # pylint: disable=invalid-name
         u"""Get a ``subprocess.Popen`` object (``proc``).
 
         The path name of the self-object is the programm to call. The program
@@ -353,7 +414,14 @@ class FSPath(six.text_type):
         u"""Download URL into file
 
         The default chunkSize is 1048576 Bytes, with ticker=True an progress-bar
-        is prompted."""
+        is prompted.
+
+        E.g. to download FSPath's README.rst::
+
+            url = "https://raw.githubusercontent.com/return42/fspath/master/README.rst"
+            readme = FSPath("README.rst")
+            readme.download(url)
+        """
 
         downBytes  = 0
         totalBytes = 0
@@ -431,16 +499,17 @@ def callEXE(cmd, *args, **kwargs):
         raise IOError('command "%s" not availble!' % cmd)
     proc = exe.Popen(*args, **kwargs)
     stdout, stderr = proc.communicate()
-    rc = proc.returncode
-    return (stdout, stderr, rc)
+    retVal = proc.returncode
+    return (stdout, stderr, retVal)
 
 
 # ==============================================================================
-class DevNull(object):
+class DevNull(object): # pylint: disable=too-few-public-methods
 # ==============================================================================
 
     """A dev/null file descriptor."""
     def write(self, *args, **kwargs):
+        u"""writer which writes nothing"""
         pass
 
 DevNull = DevNull()
