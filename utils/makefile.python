@@ -17,10 +17,20 @@ PYDEBUG  ?= --pdb
 TEST_FOLDER  ?= ./tests
 TEST         ?= .
 
-VIRTUALENV   = virtualenv --python=$(PYTHON)
 VTENV_OPTS   = "--no-site-packages"
 PY_ENV       = ./local/py$(PY)
 PY_ENV_BIN   = $(PY_ENV)/bin
+
+ifeq ($(OS),Windows_NT)
+  PYTHON     = python
+  PY_ENV_BIN = $(PY_ENV)/Scripts
+endif
+
+ifeq ($(PYTHON),python)
+  VIRTUALENV   = virtualenv
+else
+  VIRTUALENV   = virtualenv --python=$(PYTHON)
+endif
 
 ifeq ($(KBUILD_VERBOSE),1)
   PIP_VERBOSE =

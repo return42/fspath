@@ -3,8 +3,11 @@
 # Sphinx documentation build configuration file
 
 import re
-import fspath
+import sys
 import sphinx_rtd_theme
+
+sys.path.insert(0,'..')
+import fspath
 
 master_doc = 'index'
 templates_path = ['_templates']

@@ -6,6 +6,8 @@ include utils/makefile.sphinx
 
 GIT_URL   = https://github.com/return42/fspath.git
 PYOBJECTS = fspath
+DOC = docs
+API_DOC = $(DOC)/fstools-api
 
 all: clean pylint pytest build docs
 
@@ -31,8 +33,12 @@ PHONY += uninstall
 uninstall: pyuninstall
 
 PHONY += docs
-docs:  sphinx-doc
+docs:  sphinx-doc $(API_DOC)
 	$(call cmd,sphinx,html,docs,docs)
+
+$(API_DOC): $(PY_ENV)
+	$(PY_ENV_BIN)/sphinx-apidoc --separate --maxdepth=0 -o $(API_DOC) fspath
+	rm -f $(API_DOC)/modules.rst
 
 PHONY += clean
 clean: pyclean docs-clean

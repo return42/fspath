@@ -48,19 +48,20 @@ def progressbar(step, maxSteps, barSize=None, pipe=sys.stdout
 # ==============================================================================
 def consoleDimension():
 # ==============================================================================
-    # pylint: disable=W0703
+    u"""Returns count of (row, columns) from current console"""
 
+    # pylint: disable=broad-except
     rows, columns = 25, 80
 
     import platform
     if platform.system() == 'Windows':
         try:
-            rows, columns = _consoleDimensionsWIN()
+            rows, columns = consoleDimensionsWIN()
         except Exception:
             pass
     else:
         try:
-            rows, columns = _consoleDimensionsLinux()
+            rows, columns = consoleDimensionsLinux()
         except Exception:
             pass
     try:
@@ -75,13 +76,13 @@ def consoleDimension():
 
     return rows, columns
 
-def _consoleDimensionsLinux():
+def consoleDimensionsLinux():
+    u"""Returns count of (row, columns) from current console"""
     rows, columns = os.popen('stty size', 'r').read().split()
     return rows, columns
 
-def _consoleDimensionsWIN():
-
-    # pylint: disable=R0914
+def consoleDimensionsWIN():
+    u"""Returns count of (row, columns) from current console"""
     from ctypes import windll, create_string_buffer
 
     # stdin handle is -10

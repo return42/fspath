@@ -6,7 +6,7 @@ Environment access more comfortable.
 import os
 
 # ==============================================================================
-class OS_ENV(dict):
+class OS_ENV(dict): # pylint:disable=invalid-name
 # ==============================================================================
 
     u"""

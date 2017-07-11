@@ -34,4 +34,4 @@ Source Code Documentation
 .. toctree::
    :maxdepth: 2
 
-   fspath/fspath
+   fspath-api/fspath

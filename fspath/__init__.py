@@ -13,18 +13,23 @@ time ``os.path.join...`` then you are right here.
 
 """
 
-from .fspath import FSPath
-from .fspath import which
-from .fspath import callEXE
-from .fspath import DevNull
-from .os_env import OS_ENV
-
-from .progressbar import progressbar
-from .progressbar import consoleDimension
-
 __version__     = "20170612"
 __copyright__   = "2017 Markus Heiser"
 __url__         = "https://github.com/return42/fspath"
 __description__ = "Handling path names and executables more comfortable."
 __license__     = "GPLv2"
+
+# ==============================================================================
+# API
+# ==============================================================================
+
+from .fspath import FSPath
+from .fspath import callEXE
+from .fspath import DevNull
+
+from .cli    import CLI
+from .os_env import OS_ENV
+from ._which import which
+
+from .progressbar import progressbar
 

@@ -7,13 +7,13 @@ Handling path names and executables more comfortable.
 # imports
 # ==============================================================================
 
+import sys
 import io
 import os
 from os import path
 import re
 import shutil
 import subprocess
-import sys
 from glob import iglob
 from contextlib import closing
 import zipfile
@@ -49,13 +49,13 @@ class FSPath(six.text_type):  # pylint: disable=too-many-public-methods
        'test'
        >>> (folder / "test.txt").DIRNAME
        '/tmp'
-       >>> six.print_("topfolder" / folder)
+       >>> print("topfolder" / folder)
        topfolder/temp
-       >>> six.print_(folder + "addedstr")
+       >>> print(folder + "addedstr")
        tmpaddedstr
-       >>> six.print_((folder/"foo"/"bar.txt").splitpath())
+       >>> print((folder/"foo"/"bar.txt").splitpath())
        (u'/tmp/foo', u'bar.txt')
-       >>> six.print_(folder / "foo" / "../bar.txt")
+       >>> print(folder / "foo" / "../bar.txt")
        tmp/bar.txt
     """
 
@@ -202,10 +202,12 @@ class FSPath(six.text_type):  # pylint: disable=too-many-public-methods
     def NTPATH(self):
         u"""The path name in the Windows (NT) notation.
         """
+        retVal = None
         if os.sep == "\\":
-            return six.text_type(self)
+            retVal = six.text_type(self)
         else:
-            return six.text_type(self).replace(os.sep, "\\")
+            retVal = six.text_type(self).replace(os.sep, "\\")
+        return retVal
 
     @property
     def EXPANDVARS(self):
@@ -293,7 +295,11 @@ class FSPath(six.text_type):  # pylint: disable=too-many-public-methods
         either.
 
         For more details see ``os.walk``"""
-        for dirpath, dirnames, filenames in os.walk(self, topdown, onerror, followlinks):
+
+        # argh those fu.. idiots from python impleted fspath in 3.4 which no
+        # longer supports string-like objects (inheritance of str) in os.walk.
+        # So we have to typecast str(self).
+        for dirpath, dirnames, filenames in os.walk(str(self), topdown, onerror, followlinks):
             yield (self.__class__(dirpath)
                    , [self.__class__(x) for x in dirnames]
                    , [self.__class__(x) for x in filenames])
@@ -378,6 +384,25 @@ class FSPath(six.text_type):  # pylint: disable=too-many-public-methods
         with self.openTextFile(encoding=encoding, errors=errors) as f:
             return f.read()
 
+    def extract(self, folder=".", pwd=None):
+        u"""Extract TAR or ZIP archive to 'folder'"""
+        folder = self.__class__(folder)
+        if not folder.EXISTS:
+            folder.makedirs()
+
+        if self.ISTAR:
+            arc = tarfile.TarFile(self)
+            members = arc
+            arc.extractall(path=str(folder.ABSPATH), members=members, numeric_owner=False)
+
+        elif self.ISZIP:
+            arc = zipfile.ZipFile(self)
+            members = arc.namelist()
+            arc.extractall(str(folder.ABSPATH), members , pwd)
+
+        else:
+            raise tarfile.ExtractError("%s archive type is unknown" % self)
+
     def Popen(self, *args, **kwargs):  # pylint: disable=invalid-name
         u"""Get a ``subprocess.Popen`` object (``proc``).
 
@@ -390,14 +415,13 @@ class FSPath(six.text_type):  # pylint: disable=too-many-public-methods
 
         .. code-block:: python
 
-           import six
            from fspath import FSPath
            proc = FSPath("arp").Popen("-a",)
            stdout, stderr = proc.communicate()
            retVal = proc.returncode
-           six.print_("stdout: %s" % stdout)
-           six.print_("stderr: %s" % stderr)
-           six.print_("exit code = %d" % retVal)
+           print("stdout: %s" % stdout)
+           print("stderr: %s" % stderr)
+           print("exit code = %d" % retVal)
 
         """
 
@@ -410,17 +434,18 @@ class FSPath(six.text_type):  # pylint: disable=too-many-public-methods
         defaults.update(kwargs)
         return subprocess.Popen([self,] + list(args), **defaults)
 
-    def download(self, url, chunkSize=1048576, ticker=False):
+    def download(self, url, chunkSize=1048576, ticker=False, pipe=sys.stdout):
         u"""Download URL into file
 
         The default chunkSize is 1048576 Bytes, with ticker=True an progress-bar
         is prompted.
 
-        E.g. to download FSPath's README.rst::
+        E.g. to download FSPath's README.rst with a progressbar on stdout::
 
             url = "https://raw.githubusercontent.com/return42/fspath/master/README.rst"
+
             readme = FSPath("README.rst")
-            readme.download(url)
+            readme.download(url, ticker=True)
         """
 
         downBytes  = 0
@@ -428,10 +453,11 @@ class FSPath(six.text_type):  # pylint: disable=too-many-public-methods
 
         def __ticker():
             if ticker and totalBytes:
-                progressbar(downBytes, totalBytes, prompt = prompt)
+                progressbar(downBytes, totalBytes, prompt=prompt, pipe=pipe)
 
-        with open(self, "wb") as f:
-            with closing(urlopen(url)) as d:
+        with closing(urlopen(url)) as d:
+            with open(self, "wb") as f:
+                # pylint: disable=no-member
                 totalBytes = int(d.headers.get("Content-Length", 0))
                 if chunkSize is None:
                     chunkSize = totalBytes // 100
@@ -440,38 +466,14 @@ class FSPath(six.text_type):  # pylint: disable=too-many-public-methods
                 __ticker()
                 while 1:
                     x = d.read(chunkSize)
-                    if not len(x):
+                    if not bool(len(x)):
                         break
                     f.write(x)
                     downBytes += len(x)
                     __ticker()
+                if ticker:
+                    pipe.write('\n')
 
-# ==============================================================================
-def which(fname, findall=True):
-# ==============================================================================
-    u"""
-    Searches the fname in the enviroment ``PATH``.
-
-    This *which* is not POSIX conform, it searches the fname (without extension)
-    and the fname with one of the ".exe", ".cmd", ".bat" extension. If nothing
-    is found, ``None` is returned if something matches, a list (``set``) is
-    returned. With option ``findall=False`` the first match is returned or
-    ``None``, if nothing is found.
-    """
-    exe = ["", ".exe", ".cmd", ".bat"]
-    if sys.platform != 'win32':
-        exe = [""]
-    envpath = os.environ.get('PATH', None) or os.defpath
-
-    locations = set()
-    for folder in envpath.split(os.pathsep):
-        for ext in exe:
-            fullname = FSPath(folder + os.sep + fname + ext)
-            if fullname.ISFILE:
-                if not findall:
-                    return fullname
-                locations.add(fullname)
-    return locations or None
 
 # ==============================================================================
 def callEXE(cmd, *args, **kwargs):
@@ -485,15 +487,14 @@ def callEXE(cmd, *args, **kwargs):
 
     .. code-block:: python
 
-       import six
        from fspath import callEXE
        out, err, rc = callEXE("arp", "-a")
 
-       six.print_("stdout: %s" % out)
-       six.print_("stderr: %s" % err)
-       six.print_("exit code = %d" % rc)
+       print("stdout: %s" % out)
+       print("stderr: %s" % err)
+       print("exit code = %d" % rc)
     """
-
+    from ._which import which
     exe = which(cmd, findall=False)
     if exe is None:
         raise IOError('command "%s" not availble!' % cmd)
@@ -512,4 +513,4 @@ class DevNull(object): # pylint: disable=too-few-public-methods
         u"""writer which writes nothing"""
         pass
 
-DevNull = DevNull()
+DevNull = DevNull() # pylint: disable=invalid-name
