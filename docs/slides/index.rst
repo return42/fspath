@@ -5,13 +5,17 @@ fspath enjoy pathes
 .. revealjs:: the joy of python programming
    :data-transition: linear
 
-   ``fspath``
-
    .. rv_small::
 
       *Hit '?' to see keyboard shortcuts*
 
+   `fspath@GitHub <https://github.com/return42/fspath>`_
+
+   .. rv_small::
+
       contributed by `return42 <http://github.com/return42>`_
+
+
 
 .. revealjs:: tired in os.path?
    :title-heading: h2
