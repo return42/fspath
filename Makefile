@@ -34,7 +34,7 @@ PHONY += uninstall
 uninstall: pyuninstall
 
 PHONY += docs
-docs:  sphinx-doc $(API_DOC)
+docs:  sphinx-doc $(API_DOC) slides
 	@$(PY_ENV_BIN)/pip install $(PIP_VERBOSE) -e .
 	$(call cmd,sphinx,html,docs,docs)
 

@@ -9,6 +9,11 @@ FSPath
     :undoc-members:
     :show-inheritance:
 
+Content
+=======
+
+* `Slide-Show <slides/index.html>`_
+
 Installing
 ==========
 
