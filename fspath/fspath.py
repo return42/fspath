@@ -114,10 +114,35 @@ class FSPath(six.text_type):  # pylint: disable=too-many-public-methods
         return path.isfile(self)
 
     @property
+    def ISABSPATH(self):
+        u"""True if path is absolute"""
+        return path.isabs(self)
+
+    @property
     def ISLINK(self):
         u"""True if path is a symbolic link"""
         return path.islink(self)
 
+    @property
+    def ISMOUNT(self):
+        u"""True if path is a mountpoint"""
+        return path.ismount(self)
+
+    @property
+    def MTIME(filename):
+        """Return the last modification time, reported by os.stat()."""
+        return os.stat(self).st_mtime
+
+    @property
+    def ATIME(filename):
+        """Return the last access time, reported by os.stat()."""
+        return os.stat(self).st_atime
+
+    @property
+    def CTIME(filename):
+        """Return the metadata change time, reported by os.stat()."""
+        return os.stat(self).st_ctime
+    
     @property
     def ISZIP(self):
         u"""True if path is a ZIP file"""
