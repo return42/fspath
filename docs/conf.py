@@ -6,7 +6,6 @@ import re
 import sys
 import sphinx_rtd_theme
 
-sys.path.insert(0,'..')
 import fspath
 
 master_doc = 'index'

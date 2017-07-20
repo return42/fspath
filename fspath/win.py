@@ -25,7 +25,7 @@ def wrapScriptExe(script):
        * This is in an experimental state!
        * This makes use of undocumented pip APIs (ATM pip has no offical API)
        * Use it with care!
-       * Shebang is always ``#!python.exe"
+       * Shebang is always ``#!python.exe``
 
     """
 

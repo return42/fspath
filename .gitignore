@@ -1,7 +1,7 @@
 *.*~
 gh-pages
 
-docs/fstools-api
+docs/fspath-api
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
