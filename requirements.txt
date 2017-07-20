@@ -23,3 +23,7 @@ sphinx_rtd_theme
 twine
 wheel
 mock
+
+# sphinxjp.themes.revealjs: slide-shows with revaljs
+git+https://github.com/return42/sphinxjp.themes.revealjs@master#egg=sphinxjp.themes.revealjs
+# -e file:/share/revealjs

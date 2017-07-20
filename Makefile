@@ -8,6 +8,7 @@ GIT_URL   = https://github.com/return42/fspath.git
 PYOBJECTS = fspath
 DOC = docs
 API_DOC = $(DOC)/fspath-api
+SLIDES    = docs/slides
 
 all: clean pylint pytest build docs
 
@@ -40,6 +41,10 @@ docs:  sphinx-doc $(API_DOC)
 $(API_DOC): $(PY_ENV)
 	$(PY_ENV_BIN)/sphinx-apidoc --separate --maxdepth=1 -o $(API_DOC) fspath
 	rm -f $(API_DOC)/modules.rst
+
+PHONY += slides
+slides:  sphinx-doc
+	$(call cmd,sphinx,html,$(SLIDES),$(SLIDES),slides)
 
 PHONY += clean
 clean: pyclean docs-clean
