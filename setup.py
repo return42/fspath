@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8; mode: python -*-
 
+import platform
 from setuptools import setup, find_packages
 
 __version__     = "20170612"
@@ -26,6 +27,10 @@ time ``os.path.join...`` then you are right here.
 install_requires = [
     "six" ]
 
+_which = "which.py"
+if platform.system() == 'Windows':
+    _which = "which.py"
+
 setup(
     name               = "fspath"
     , version          = __version__
@@ -40,7 +45,7 @@ setup(
     , install_requires = install_requires
     , entry_points     = {
         'console_scripts': [
-            'which = fspath._which:main'
+            _which + ' = fspath._which:main'
             , 'fspath = fspath.main:main'
         ]}
     # See https://pypi.python.org/pypi?%3Aaction=list_classifiers
