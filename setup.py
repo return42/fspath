@@ -1,28 +1,16 @@
 #!/usr/bin/env python
 # -*- coding: utf-8; mode: python -*-
 
+import sys
+import os
 import platform
 from setuptools import setup, find_packages
 
-__version__     = "20170612"
-__copyright__   = "2017 Markus Heiser"
-__url__         = "https://github.com/return42/fspath"
-__description__ = "Handling path names and executables more comfortable."
-__license__     = "GPLv2"
+_dir = os.path.abspath(os.path.dirname(__file__))
 
-__doc__ = """
-The fspath lib simplifies the handling of pathnames and executables. In the
-fspath lib, path names are objects with handy methods. If you are a python
-developer and tired in juggling with strings of path names and typing all the
-time ``os.path.join...`` then you are right here.
+sys.path.append(_dir)
 
-:copyright:  Copyright (C) 2017 Markus Heiser
-:e-mail:     markus.heiser@darmarIT.de
-:license:    GPL Version 2, June 1991 see Linux/COPYING for details.
-:docs:       http://return42.github.io/fspath
-:repository: `github return42/fspath <https://github.com/return42/fspath>`_
-
-"""
+import fspath
 
 install_requires = [
     "six" ]
@@ -33,13 +21,13 @@ if platform.system() == 'Windows':
 
 setup(
     name               = "fspath"
-    , version          = __version__
-    , description      = __description__
-    , long_description = __doc__
-    , url              = __url__
+    , version          = fspath.__version__
+    , description      = fspath.__description__
+    , long_description = fspath.__doc__
+    , url              = fspath.__url__
     , author           = "Markus Heiser"
     , author_email     = "markus.heiser@darmarIT.de"
-    , license          = __license__
+    , license          = fspath.__license__
     , keywords         = "path-names development"
     , packages         = find_packages(exclude=['docs', 'tests'])
     , install_requires = install_requires

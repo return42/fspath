@@ -50,7 +50,7 @@ html_theme_options = {
     'overview': True,
 
     # Vertical centring of slides
-    'center': True,
+    'center': False,
 
     # Enables touch navigation on devices with touch input
     'touch': True,

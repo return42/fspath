@@ -2,21 +2,21 @@
 #
 # Sphinx documentation build configuration file
 
-import re
 import sys
 import sphinx_rtd_theme
 
 import fspath
-
-master_doc = 'index'
-templates_path = ['_templates']
-exclude_patterns = ['_build', 'slides']
 
 project   = 'FSPath'
 copyright = fspath.__copyright__
 version   = fspath.__version__
 release   = fspath.__version__
 show_authors = True
+
+master_doc = 'index'
+templates_path = ['_templates']
+exclude_patterns = ['_build', 'slides']
+
 
 extensions = [
     'sphinx.ext.autodoc'
@@ -39,5 +39,5 @@ html_context = {
         '_static/theme_overrides.css',
     ],
 }
-
+html_logo = 'darmarIT_logo_128.png'
 intersphinx_mapping = {}

@@ -1,17 +1,12 @@
 # -*- coding: utf-8; mode: python -*-
-u"""
-The fspath lib simplifies the handling of pathnames and executables. In the
-fspath lib, path names are objects with handy methods. If you are a python
-developer and tired in juggling with strings of path names and typing all the
-time ``os.path.join...`` then you are right here.
+u"""fspath: Semantic path names and much more.
 
-:copyright:  Copyright (C) 2017 Markus Heiser
-:e-mail:     markus.heiser@darmarIT.de
-:license:    GPL Version 2, June 1991 see Linux/COPYING for details.
-:docs:       http://return42.github.io/fspath
-:repository: `github return42/fspath <https://github.com/return42/fspath>`_
-
-"""
+After 10 years juggling with os.path, zipfile & Co. I thought it is time to
+bring back more *pythonic* to APIs. fspath is made with the philosophy that
+API's should be intuitive and their defaults should at least cover 80% of what a
+programmer daily needs.  Started with the semantic file system path, it grows
+continuous and includes more and more handy stuff for the daily python
+scripting."""
 
 __version__     = "20170612"
 __copyright__   = "2017 Markus Heiser"

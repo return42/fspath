@@ -14,19 +14,22 @@ Content
 
 * `Slide-Show <slides/index.html>`_
 
-Installing
-==========
+Install
+=======
 
-Works as usual, e.g. use::
+.. code-block:: sh
 
-  pip install [--user] fspath
+   pip install [--user] fspath
 
-For a bleeding edge installation::
+For a bleeding edge installation:
+
+.. code-block:: sh
 
   pip install --user git+http://github.com/return42/fspath.git
 
-If you are a developer and like to contribute to the fspath lib, fork on github
-or clone and make a developer install::
+If you are a developer fork/clone from github and run make:
+
+.. code-block:: sh
 
   git clone https://github.com/return42/fspath
   cd fspath
