@@ -38,6 +38,7 @@ enjoy in scripting
    are you tired in juggling with ...
 
    .. rv_code::
+      :class: python
 
       parent_dir = os.path.abspath(
                        os.path.join(
@@ -47,6 +48,7 @@ enjoy in scripting
    and all that blody stuff? do you think this ..
 
    .. rv_code::
+      :class: python
 
       parent_dir = FSPath(__file__).DIRNAME.ABSPATH / ".."
 
@@ -55,23 +57,77 @@ enjoy in scripting
 
 
 .. revealjs:: install
-   :title-heading: h3
+   :title-heading: h2
 
-   users: works as usual
+   from `PyPI <https://pypi.python.org/pypi/fspath/>`_
 
    .. rv_code::
 
       $ pip install [--user] fspath
 
-   ... or a bleeding edge installation:
+   or a bleeding edge installation from `GitHub <http://github.com/return42/fspath.git>`_
 
    .. rv_code::
 
       $ pip install --user git+http://github.com/return42/fspath.git
 
+
+.. revealjs:: semantic path
+   :title-heading: h4
+
+   .. rv_code::
+      :class: python
+
+      >>> from fspath import FSPath
+      >>> tmp = FSPath('~/tmp')
+      >>> tmp
+      '/home/user/tmp'
+      >>> tmp.EXISTS
+      False
+
+   no additional import / no ``os.join(...)`` / simply slash & ``foo.<method>``
    
-.. revealjs:: Verweise
-   :title-heading: h2
+   .. rv_code::
+      :class: python
+
+      >>> (tmp / 'foo').makedirs()
+      True
+      >>> (tmp / 'bar').makedirs()
+      True
+      >>> for n in tmp.listdir():
+      ...     print(tmp / n)
+      ... 
+      /home/user/tmp/foo
+      /home/user/tmp/bar
+
+
+.. revealjs:: work as expected
+   :title-heading: h4
+
+   .. rv_code::
+      :class: python
+
+      >>> import os
+      >>> os.makedirs(foo)
+      Traceback (most recent call last):
+        File "<stdin>", line 1, in <module>
+        File "/usr/lib/python3.5/os.py", line 241, in makedirs
+        mkdir(name, mode)
+        FileExistsError: [Errno 17] File exists:\
+          '/home/user/tmp/foo'
+
+   aargh, creates intermediate but raise if exists?!
+
+   .. rv_code::
+      :class: python
+
+      >>> foo.makedirs()
+      False
+
+   FSPath behaves as expected :)
+
+      
+.. revealjs::
 
    This slide show was build with the help of ..
 

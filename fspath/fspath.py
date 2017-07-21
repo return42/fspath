@@ -251,8 +251,11 @@ class FSPath(six.text_type):  # pylint: disable=too-many-public-methods
 
     def makedirs(self, mode=0o775):
         u"""Recursive directory creation, default mode is 0o775 (octal)."""
+        retVal = False
         if not self.ISDIR:
-            return os.makedirs(self, mode)
+            os.makedirs(self, mode)
+            retVal = True
+        return retVal
 
     def __div__(self, pathname):
         return self.__class__(self.VALUE + os.sep + six.text_type(pathname))
