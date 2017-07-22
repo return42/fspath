@@ -207,6 +207,9 @@ PHONY += pydebug
 pydebug: $(PY_ENV)
 	DEBUG=$(DEBUG) $(PY_ENV_BIN)/pytest $(DEBUG) -v $(TEST_FOLDER)/$(TEST)
 
+python-i: $(PY_ENV)
+	cd ./local; ../$(PY_ENV_BIN)/python -i
+
 # With 'dependency_links=' setuptools supports dependencies on packages hosted
 # on other reposetories then PyPi, see "Packages Not On PyPI" [1].  The big
 # drawback is, due to security reasons (I don't know where the security gate on

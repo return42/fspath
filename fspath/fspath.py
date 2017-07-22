@@ -249,8 +249,22 @@ class FSPath(six.text_type):  # pylint: disable=too-many-public-methods
         u"""User's home folder."""
         return cls(path.expanduser("~"))
 
+    @classmethod
+    def getCWD(cls):
+        u"""Current working directory."""
+        return cls(os.getcwd())
+
+    def chdir(self):
+        u"""change the current working directory to *self*."""
+        os.chdir(self)
+
     def makedirs(self, mode=0o775):
-        u"""Recursive directory creation, default mode is 0o775 (octal)."""
+        u"""Recursive directory creation, default mode is 0o775 (octal).
+        
+        :param int mode: file permissons 
+        :return: created (True) already exists (True), 
+        :raises Exception: in case of errors (permissons, etc.)
+        """
         retVal = False
         if not self.ISDIR:
             os.makedirs(self, mode)
@@ -335,8 +349,8 @@ class FSPath(six.text_type):  # pylint: disable=too-many-public-methods
     def reMatchFind(self, name, isFile=True, isDir=True, followlinks=False):
         u"""Returns iterator which yields matching path names
 
-        :param isFile:      list includes names of files
-        :param isDir:       list includes names of folders
+        :param isFile:      iterator includes names of files
+        :param isDir:       iterator includes names of folders
         :param followlinks: follow symbolic links
 
         To find all C and header files use::
@@ -413,11 +427,19 @@ class FSPath(six.text_type):  # pylint: disable=too-many-public-methods
             return f.read()
 
     def extract(self, folder=".", pwd=None):
-        u"""Extract TAR or ZIP archive to 'folder'"""
+        u"""Extract TAR or ZIP archive to 'folder'
+
+        Uses ``extractall`` from :py:cls:`tarfile.TarFile` and
+        :py:cls:`zipfile.Zipfile` to extract into ``folder``.
+        
+        :folder str: folder to extract into
+        :pwd str: password for crypted (only ZIP)
+        :return: members in an iterable form (list or just iterator) 
+        """
         folder = self.__class__(folder)
         if not folder.EXISTS:
             folder.makedirs()
-
+        members = None
         if self.ISTAR:
             arc = tarfile.TarFile(self)
             members = arc
@@ -430,6 +452,8 @@ class FSPath(six.text_type):  # pylint: disable=too-many-public-methods
 
         else:
             raise tarfile.ExtractError("%s archive type is unknown" % self)
+        return members
+        
 
     def Popen(self, *args, **kwargs):  # pylint: disable=invalid-name
         u"""Get a ``subprocess.Popen`` object (``proc``).
