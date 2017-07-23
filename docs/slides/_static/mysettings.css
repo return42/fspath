@@ -10,7 +10,7 @@
     font-family: monospace;
 }
 
-.reveal p {
+.reveal p, .reveal ul, .reveal ol {
     font-size: 0.8em;
 }
 

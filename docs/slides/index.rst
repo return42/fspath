@@ -196,8 +196,10 @@ enjoy in scripting
 
 
 
-.. revealjs:: Other handy methods
+.. revealjs:: more file & folder methods
    :title-heading: h3
+
+   - ``.chdir`` --  change current working dir to *self*
 
    - ``.delete`` -- delete no matter if file or folder
 
@@ -214,15 +216,128 @@ enjoy in scripting
       91502
       >>> arch.filesize(precision=3) # *human readable*
       '89.357 KB'
-       
+
+
+.. revealjs:: file & folder properties
+   :title-heading: h3
+
+   .. rv_code::
+      :class: python
+
+      >>> f = FSPath('../path/to/folder/filename.ext')
+
+   .. rv_code::
+      :class: python
+
+      >>> f.DIRNAME
+      '../path/to/folder'
+
+   .. rv_code::
+      :class: python
+
+      >>> f.BASENAME
+      'filename.ext'
+
+   .. rv_code::
+      :class: python
+
+      >>> f.FILENAME
+      'filename'
+
+   .. rv_code::
+      :class: python
+
+      >>> f.SUFFIX
+      '.ext'
+
+   .. rv_code::
+      :class: python
+
+      >>> f.SKIPSUFFIX
+      '../path/to/folder/filename'
+
+.. revealjs:: file & folder properties
+   :title-heading: h3
+
+   .. rv_code::
+      :class: python
+
+      >>> f.ABSPATH
+      '/share/fspath/local/path/to/folder/filename.ext'
+
+   .. rv_code::
+      :class: python
+
+      >>> f.REALPATH
+      '/share/fspath/path/to/folder/filename.ext'
+
+   .. rv_code::
+      :class: python
+
+      >>> f.NTPATH
+      '..\\path\\to\\folder\\filename.ext'
+
+   .. rv_code::
+      :class: python
+
+      >>> f.POSIXPATH
+      '../path/to/folder/filename.ext'
+
+   .. rv_code::
+      :class: python
+
+      >>> home = FSPath("$HOME")
+      >>> home
+      '$HOME'
+      >>> home.EXPANDVARS
+      '/home/user'
+
+
+      
+.. revealjs:: file & folder properties
+   :title-heading: h3
+
+   - ``.EXISTS``      -- True if file/pathname exist
+   - ``.SIZE``        -- Size in bytes
+   - ``.READABLE``    -- True if file/path is readable  
+   - ``.WRITEABLE``   -- True if file/path is writeable  
+   - ``.EXECUTABLE``  -- True if file is executable
+   - ``.ISDIR``       -- True if path is a folder  
+   - ``.ISFILE``      -- True if path is a file  
+   - ``.ISABSPATH``   -- True if path is absolute
+   - ``.ISLINK``      -- True if path is a symbolic link  
+   - ``.ISMOUNT``     -- True if path is a mountpoint
+
+.. revealjs:: file & folder properties
+   :title-heading: h3
+
+   - ``.MTIME``       -- last modification time
+   - ``.ATIME``       -- last access time
+   - ``.CTIME``       -- last change time
+   - ``.ISZIP``       -- True if path is a ZIP file
+   - ``.ISTAR``       -- True if path is a TAR archive file
+
+
+
+
+
+
+
+
 
 .. revealjs:: class methods
 
-   >>> FSPath.getHOME()
-   '/home/user'
+   .. rv_code::
+      :class: python
 
-   >>> FSPath.getCWD()
-   '/share/fspath/local'
+      >>> FSPath.getHOME()
+      '/home/user'
+
+   .. rv_code::
+      :class: python
+
+      >>> FSPath.getCWD()
+      '/share/fspath/local'
 
 
 
