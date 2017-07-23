@@ -138,7 +138,7 @@ enjoy in scripting
       >>> arch = foo / 'fspath.zip'
       >>> url = 'https://github.com/return42/fspath/archive/master.zip'
 
-   ``download`` -- super easy download + segmentation + nice ticker
+   ``FSPath.download`` -- super easy download + segmentation + nice ticker
 
    .. rv_code::
       :class: python
@@ -158,42 +158,75 @@ enjoy in scripting
       , 'fspath-master/MAINFEST.in', 'fspath-master/Makefile'
       , 'fspath-master/README.rst',  ... ]
 
+   .. rv_code::
+      :class: python
+
+      >>> folder = foo / 'fspath-master'
 
 .. revealjs:: find files & strip
    :title-heading: h3
-
-   ``reMatchFind`` -- search files recursive matching regular expression
-   
-   .. rv_code::
-      :class: python
-
-      py_files = foo.reMatchFind(r'.*\.py$')
-
-   ``relpath`` -- strip relative pathnames
-
-   .. rv_code::
-      :class: python
-
-      >>> [x.relpath(foo/'fspath-master') for x in py_files]
-      ['setup.py', 'tests/test_download.py', 'tests/__init__.py'
-      , 'fspath/__init__.py', 'fspath/os_env.py', 'fspath/cli.py'
-      , 'fspath/progressbar.py', ... ]
 
    ``glob`` -- shell like pattern in a single folder
 
    .. rv_code::
       :class: python
 
-      >>> globbed = (foo/'fspath-master').glob('*.py')
-      >>> [x.relpath(foo/'fspath-master' ) for x in globbed]
-      ['setup.py']
+      >>> g_iter = folder.glob('*.py')
+      >>> type(g_iter), len(list(g_iter))
+      (<class 'generator'>, 1)
 
+   ``relpath`` -- strip relative pathnames
 
-.. revealjs::
+   .. rv_code::
+      :class: python
 
-   ..
-
+      >>> folder
+      '/home/user/tmp/foo/fspath-master'
+      >>> folder.relpath(tmp)
+      'foo/fspath-master'
       
+   ``reMatchFind`` -- recursive search files, matching regular expression
+   
+   .. rv_code::
+      :class: python
+
+      >>> py_iter = folder.reMatchFind(r'.*\.py$', relpath=True)
+      >>> list(py_iter)
+      ['setup.py', 'fspath/_which.py', 'fspath/win.py', ...]
+
+
+
+.. revealjs:: Other handy methods
+   :title-heading: h3
+
+   - ``.delete`` -- delete no matter if file or folder
+
+   - ``.copyfile`` -- copy file (opt. with permission bits)
+
+   - ``.copytree`` -- recursively copy the entire tree
+
+   - ``.filesize`` -- Filesize in bytes or with precision
+
+   .. rv_code::
+      :class: python
+
+      >>> arch.filesize()            # size in bytes (int)
+      91502
+      >>> arch.filesize(precision=3) # *human readable*
+      '89.357 KB'
+       
+
+.. revealjs:: class methods
+
+   >>> FSPath.getHOME()
+   '/home/user'
+
+   >>> FSPath.getCWD()
+   '/share/fspath/local'
+
+
+
+   
 .. revealjs:: the FSPath type
 
    inheritance of ``unicode`` in Py2 and ``str`` in Py3

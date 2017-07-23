@@ -39,24 +39,54 @@ class FSPath(six.text_type):  # pylint: disable=too-many-public-methods
 
     .. code-block:: python
 
-       >>> folder = fspath.FSPath("/tmp")
-       >>> folder.EXISTS
-       True
-       >>> (folder / "subfolder").makedirs()
-       >>> list(folder.reMatchFind(".*sub"))
-       ['/tmp/subfolder']
-       >>> (folder / "test.txt").FILENAME
-       'test'
-       >>> (folder / "test.txt").DIRNAME
-       '/tmp'
-       >>> print("topfolder" / folder)
-       topfolder/temp
-       >>> print(folder + "addedstr")
-       tmpaddedstr
-       >>> print((folder/"foo"/"bar.txt").splitpath())
-       (u'/tmp/foo', u'bar.txt')
-       >>> print(folder / "foo" / "../bar.txt")
-       tmp/bar.txt
+      >>> from fspath import FSPath
+      >>> tmp = FSPath('~/tmp')
+      >>> tmp
+      '/home/user/tmp'
+      >>> tmp.EXISTS
+      False
+
+    no additional import, no juggling with ``os.join(...)``
+
+    simply slash ``/`` and ``foo.<method>`` calls
+
+    .. code-block:: python
+
+      >>> [(tmp/x).makedirs() for x in ('foo', 'bar')]
+      True, True
+      >>> for n in tmp.listdir():
+      ...     print(tmp / n)
+      ... 
+      /home/user/tmp/foo
+      /home/user/tmp/bar
+
+    downloads & archives
+
+    .. code-block:: python
+
+      >>> arch = foo / 'fspath.zip'
+      >>> url = 'https://github.com/return42/fspath/archive/master.zip'
+
+   ``download`` -- super easy download + segmentation + nice ticker
+
+    .. code-block:: python
+
+      >>> arch.download(url, chunkSize=1024, ticker=True)
+      /home/user/tmp/foo/fspath.zip: [87.9 KB][===============    ]  83%
+
+   ``FSPath.extract`` -- extract in one step, no matter ZIP or TAR 
+
+    .. code-block:: python
+
+      >>> arch.ISTAR, arch.ISZIP
+      (False, True)
+      >>> arch.extract(foo)
+      ['fspath-master/', 'fspath-master/.gitignore'
+      , 'fspath-master/MAINFEST.in', 'fspath-master/Makefile'
+      , 'fspath-master/README.rst',  ... ]
+
+    For more examples see our `slide-show <../slides/index.html>`_.
+
     """
 
     def __new__(cls, pathname):
@@ -301,7 +331,7 @@ class FSPath(six.text_type):  # pylint: disable=too-many-public-methods
         for name in os.listdir(self):
             yield self.__class__(name)
 
-    def glob(self, pattern):
+    def glob(self, pattern, relpath=False):
         u"""Return an iterator which yields the paths matching a pathname pattern.
 
         The pattern may contain simple shell-style wildcards a la
@@ -309,7 +339,10 @@ class FSPath(six.text_type):  # pylint: disable=too-many-public-methods
         special cases that are not matched by '*' and '?'  patterns.
         """
         for name in  iglob(self / pattern):
-            yield self.__class__(name)
+            obj = self.__class__(name)
+            if relpath == True:
+                obj = obj.relpath(self)
+            yield obj
 
     def walk(self, topdown=True, onerror=None, followlinks=False):
         u"""Directory tree generator.
@@ -346,7 +379,7 @@ class FSPath(six.text_type):  # pylint: disable=too-many-public-methods
                    , [self.__class__(x) for x in dirnames]
                    , [self.__class__(x) for x in filenames])
 
-    def reMatchFind(self, name, isFile=True, isDir=True, followlinks=False):
+    def reMatchFind(self, name, isFile=True, isDir=True, followlinks=False, relpath=False):
         u"""Returns iterator which yields matching path names
 
         :param isFile:      iterator includes names of files
@@ -366,10 +399,16 @@ class FSPath(six.text_type):  # pylint: disable=too-many-public-methods
         for folder, dirnames, filenames in self.walk(followlinks=followlinks):
             if isDir:
                 for d_name in [x for x in dirnames if name_re.match(x)]:
-                    yield folder / d_name
+                    obj = folder / d_name
+                    if relpath:
+                        obj = obj.relpath(self)
+                    yield obj
             if isFile:
                 for f_name in [x for x in filenames if name_re.match(x)]:
-                    yield folder / f_name
+                    obj = folder / f_name
+                    if relpath:
+                        obj = obj.relpath(self)
+                    yield obj
 
     def suffix(self, newSuffix):
         u"""Return path name with newSuffix"""
@@ -377,8 +416,9 @@ class FSPath(six.text_type):  # pylint: disable=too-many-public-methods
 
     def copyfile(self, dest, preserve=False):
         u"""Copy the file src to the file or directory dest.
-
-        Argument preserve copies permission bits.
+        
+        :dest str: The destination may be a directory
+        :preserve bool: copies permission bits
         """
         if preserve:
             shutil.copy2(self, dest)
@@ -429,8 +469,8 @@ class FSPath(six.text_type):  # pylint: disable=too-many-public-methods
     def extract(self, folder=".", pwd=None):
         u"""Extract TAR or ZIP archive to 'folder'
 
-        Uses ``extractall`` from :py:cls:`tarfile.TarFile` and
-        :py:cls:`zipfile.Zipfile` to extract into ``folder``.
+        Uses ``extractall`` from :py:class:`tarfile.TarFile` and
+        :py:class:`zipfile.Zipfile` to extract into ``folder``.
         
         :folder str: folder to extract into
         :pwd str: password for crypted (only ZIP)
