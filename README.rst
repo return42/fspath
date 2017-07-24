@@ -2,6 +2,8 @@
 fspath
 ======
 
+semantic path names and more
+
 After 10 years juggling with os.path, zipfile & Co. I thought it is time to
 bring back more *pythonic* to APIs. It is made with the philosophy that API's
 should be intuitive and their defaults should at least cover 80% of what programmer
@@ -14,9 +16,15 @@ and includes more and more handy stuff for the daily python scripting.
 :docs:       http://return42.github.io/fspath
 :repository: `github return42/fspath <https://github.com/return42/fspath>`_
 
+visit our slide-show:  https://return42.github.io/fspath/slides/index.html
+
 Installing
 ==========
 
 Works as usual, e.g. use::
 
   pip install [--user] fspath
+
+or a bleeding edge installation from GitHub::
+
+  pip install --user git+http://github.com/return42/fspath.git

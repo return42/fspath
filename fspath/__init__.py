@@ -8,7 +8,7 @@ programmer daily needs.  Started with the semantic file system path, it grows
 continuous and includes more and more handy stuff for the daily python
 scripting."""
 
-__version__     = "20170612"
+__version__     = "20170725"
 __copyright__   = "2017 Markus Heiser"
 __url__         = "https://github.com/return42/fspath"
 __description__ = "Handling path names and executables more comfortable."

@@ -1,6 +1,6 @@
 # -*- coding: utf-8; mode: python -*-
 u"""
-Handling path names and executables more comfortable.
+semantic path names and much more
 """
 
 # pylint: disable=bad-continuation
