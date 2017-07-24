@@ -3,6 +3,8 @@ u"""
 Handling path names and executables more comfortable.
 """
 
+# pylint: disable=bad-continuation
+
 # ==============================================================================
 # imports
 # ==============================================================================
@@ -11,6 +13,7 @@ import sys
 import io
 import os
 from os import path
+import platform
 import re
 import shutil
 import subprocess
@@ -23,6 +26,7 @@ import six
 from six.moves.urllib.request import urlopen # pylint: disable=E0401
 
 from .progressbar import progressbar, humanizeBytes
+from .helper import Options
 
 # ==============================================================================
 class FSPath(six.text_type):  # pylint: disable=too-many-public-methods
@@ -56,7 +60,7 @@ class FSPath(six.text_type):  # pylint: disable=too-many-public-methods
       True, True
       >>> for n in tmp.listdir():
       ...     print(tmp / n)
-      ... 
+      ...
       /home/user/tmp/foo
       /home/user/tmp/bar
 
@@ -74,7 +78,7 @@ class FSPath(six.text_type):  # pylint: disable=too-many-public-methods
       >>> arch.download(url, chunkSize=1024, ticker=True)
       /home/user/tmp/foo/fspath.zip: [87.9 KB][===============    ]  83%
 
-   ``FSPath.extract`` -- extract in one step, no matter ZIP or TAR 
+   ``FSPath.extract`` -- extract in one step, no matter ZIP or TAR
 
     .. code-block:: python
 
@@ -89,6 +93,17 @@ class FSPath(six.text_type):  # pylint: disable=too-many-public-methods
 
     """
 
+    OS = Options(
+        sep       = os.sep     # https://docs.python.org/3/library/os.html#os.sep
+        , curdir  = os.curdir  # https://docs.python.org/3/library/os.html#os.curdir
+        , altsep  = os.altsep  # https://docs.python.org/3/library/os.html#os.altsep
+        , extsep  = os.extsep  # https://docs.python.org/3/library/os.html#os.extsep
+        , pathsep = os.pathsep # https://docs.python.org/3/library/os.html#os.pathsep
+        , defpath = os.defpath # https://docs.python.org/3/library/os.html#os.defpath
+        , linesep = os.linesep # https://docs.python.org/3/library/os.html#os.linesep
+        , devnull = os.devnull # https://docs.python.org/3/library/os.html#os.devnull    
+    )
+        
     def __new__(cls, pathname):
         u"""Constructor of a path name object.
 
@@ -159,20 +174,20 @@ class FSPath(six.text_type):  # pylint: disable=too-many-public-methods
         return path.ismount(self)
 
     @property
-    def MTIME(filename):
+    def MTIME(self):
         """Return the last modification time, reported by os.stat()."""
         return os.stat(self).st_mtime
 
     @property
-    def ATIME(filename):
+    def ATIME(self):
         """Return the last access time, reported by os.stat()."""
         return os.stat(self).st_atime
 
     @property
-    def CTIME(filename):
+    def CTIME(self):
         """Return the metadata change time, reported by os.stat()."""
         return os.stat(self).st_ctime
-    
+
     @property
     def ISZIP(self):
         u"""True if path is a ZIP file"""
@@ -290,9 +305,9 @@ class FSPath(six.text_type):  # pylint: disable=too-many-public-methods
 
     def makedirs(self, mode=0o775):
         u"""Recursive directory creation, default mode is 0o775 (octal).
-        
-        :param int mode: file permissons 
-        :return: created (True) already exists (True), 
+
+        :param int mode: file permissons
+        :return: created (True) already exists (True),
         :raises Exception: in case of errors (permissons, etc.)
         """
         retVal = False
@@ -340,7 +355,7 @@ class FSPath(six.text_type):  # pylint: disable=too-many-public-methods
         """
         for name in  iglob(self / pattern):
             obj = self.__class__(name)
-            if relpath == True:
+            if relpath is True:
                 obj = obj.relpath(self)
             yield obj
 
@@ -364,10 +379,11 @@ class FSPath(six.text_type):  # pylint: disable=too-many-public-methods
         systems that support them.  In order to get this functionality, set the
         optional argument 'followlinks' to true.
 
-        Caution:  if you pass a relative pathname for top, don't change the
-        current working directory between resumptions of walk.  walk never
-        changes the current directory, and assumes that the client doesn't
-        either.
+        .. caution::
+
+           If you pass a relative pathname for top, don't change the current
+           working directory between resumptions of walk.  walk never changes
+           the current directory, and assumes that the client doesn't either.
 
         For more details see ``os.walk``"""
 
@@ -411,12 +427,12 @@ class FSPath(six.text_type):  # pylint: disable=too-many-public-methods
                     yield obj
 
     def suffix(self, newSuffix):
-        u"""Return path name with newSuffix"""
+        u"""Return path name with ``newSuffix``"""
         return self.__class__(self.SKIPSUFFIX + newSuffix)
 
     def copyfile(self, dest, preserve=False):
         u"""Copy the file src to the file or directory dest.
-        
+
         :dest str: The destination may be a directory
         :preserve bool: copies permission bits
         """
@@ -432,6 +448,7 @@ class FSPath(six.text_type):  # pylint: disable=too-many-public-methods
     def move(self, dest):
         u"""Move path to another location (dest)"""
         shutil.move(self, dest)
+        return self.__class__(dest)
 
     def delete(self):
         u"""remove file/folder"""
@@ -451,16 +468,51 @@ class FSPath(six.text_type):  # pylint: disable=too-many-public-methods
             size = humanizeBytes(size, precision)
         return size
 
-    def openTextFile(
-            self, mode='r', encoding='utf-8'
-            , errors='strict', buffering=1
-            , newline=None):
-        u"""Open file as text file"""
-        return io.open(
-            self, mode=mode, encoding=encoding
-            , errors=errors, buffering=buffering
-            , newline=newline)
+    def openTextFile(self
+                     , mode='rt', encoding='utf-8'
+                     , errors='strict', buffering=1
+                     , newline=None):
+        u"""Open file as text file.
 
+        wraps `io.open <https://docs.python.org/library/io.html#io.open>`_:
+
+        * except argument ``closefd`` (meaningless when using filenames)
+        * ``encoding='utf-8'`` is default
+        * ``mode='rt'`` is default
+        * ``buffering=1`` is default (selects line buffering)
+        """
+        return io.open(self
+                       , mode=mode, encoding=encoding
+                       , errors=errors, buffering=buffering
+                       , newline=newline)
+
+    def openBinaryFile(self, mode='rb', errors='strict', buffering=None):
+        u"""Open file as binary file.
+
+        wraps `io.open <https://docs.python.org/library/io.html#io.open>`_:
+
+        * except argument ``closefd`` (meaningless when using filenames)
+        * except argument ``encoding`` (meaningless since *binary*)
+        * except argument ``newline`` (meaningless since *binary*)
+        * ``mode='rb'`` is default
+        """
+        return io.open(self, mode=mode, errors=errors, buffering=buffering)
+
+    def startFile(self):
+        """Start a file with its associated application."""
+        system  = platform.system()
+        if system == 'Windows':
+            os.startfile(self)
+            return
+        cmd = 'xdg-open'
+        if system in ('FreeBSD', 'Darwin'):
+            cmd = 'open'
+
+        from ._which import which
+        cmd = which(cmd, findall=False)
+        if cmd:
+            os.system(cmd + " " + self)
+        
     def readFile(self, encoding='utf-8', errors='strict'):
         u"""read entire file"""
         with self.openTextFile(encoding=encoding, errors=errors) as f:
@@ -471,21 +523,23 @@ class FSPath(six.text_type):  # pylint: disable=too-many-public-methods
 
         Uses ``extractall`` from :py:class:`tarfile.TarFile` and
         :py:class:`zipfile.Zipfile` to extract into ``folder``.
-        
+
         :folder str: folder to extract into
         :pwd str: password for crypted (only ZIP)
-        :return: members in an iterable form (list or just iterator) 
+        :return: members in an iterable form (list or just iterator)
         """
         folder = self.__class__(folder)
         if not folder.EXISTS:
             folder.makedirs()
         members = None
         if self.ISTAR:
+            # pylint: disable=redefined-variable-type
             arc = tarfile.TarFile(self)
             members = arc
-            arc.extractall(path=str(folder.ABSPATH), members=members, numeric_owner=False)
+            arc.extractall(path=str(folder.ABSPATH), members=members)
 
         elif self.ISZIP:
+            # pylint: disable=redefined-variable-type
             arc = zipfile.ZipFile(self)
             members = arc.namelist()
             arc.extractall(str(folder.ABSPATH), members , pwd)
@@ -493,7 +547,7 @@ class FSPath(six.text_type):  # pylint: disable=too-many-public-methods
         else:
             raise tarfile.ExtractError("%s archive type is unknown" % self)
         return members
-        
+
 
     def Popen(self, *args, **kwargs):  # pylint: disable=invalid-name
         u"""Get a ``subprocess.Popen`` object (``proc``).

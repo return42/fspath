@@ -13,6 +13,8 @@ Content
 =======
 
 * `Slide-Show <slides/index.html>`_
+* `return42/fspath@GitHub <https://github.com/return42/fspath>`_
+
 
 Install
 =======

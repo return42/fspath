@@ -16,7 +16,7 @@ class OS_ENV(dict): # pylint:disable=invalid-name
 
        >>> if OS_ENV.get("SHELL") is None:
                OS_ENV.SHELL = "/bin/bash"
-       >>> OS_ENV.MY_NAME
+       >>> OS_ENV.SHELL
        '/bin/bash'
     """
     @property
