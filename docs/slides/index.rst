@@ -74,9 +74,20 @@ fspath package
 
       $ pip install --user git+http://github.com/return42/fspath.git
 
+.. revealjs:: Content
+   :title-heading: h2
+
+   - `semantic path <#/4>`_
+   - `be expressive in daily use cases <#/7>`_ 
+   - `file name suffix explained <#/15>`_ 
+   - `the FSPath type <#/20>`_
+   - `OS_ENV <#/22>`_
+   - `Command Line Interface <#/24>`_
+   - `versioning scheme <#/31>`_
 
 .. revealjs:: semantic path
    :title-heading: h3
+
 
    .. rv_code::
       :class: python
@@ -758,6 +769,18 @@ fspath package
       [      4 KB] home
       ...
 
+.. revealjs:: versioning scheme
+   :title-heading: h3
+
+   As long as every new release is fully downward compatible a `serial
+   versioning
+   <https://packaging.python.org/tutorials/distributing-packages/#serial-versioning>`_
+   is enough.
+
+   Version numbers follow scheme
+
+   ``YYYYMMDD``
+
 
 .. revealjs:: to be continued
    :title-heading: h3
@@ -765,6 +788,7 @@ fspath package
    there is much more to show .. in the meantime take a look at the
 
    `API docs <https://return42.github.io/fspath/fspath-api/fspath.html>`_
+
 
 .. revealjs::
 
