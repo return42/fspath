@@ -628,7 +628,7 @@ fspath package
       from fspath import CLI
 
       def main():
-          cli = CLI(description=main.__doc__)
+          cli = CLI(description=__doc__)
           # define CLI
           ...
           # run CLI

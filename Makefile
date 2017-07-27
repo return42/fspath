@@ -18,14 +18,17 @@ help:
 	@echo  '  clean	- remove most generated files'
 	@echo  '  rqmts	- info about build requirements'
 	@echo  ''
+	@echo  '  test  - run *tox* test'
 	@echo  '  install   - developer install'
 	@echo  '  uninstall - developer uninstall'
-	@echo  ''
 	@$(MAKE) -s -f utils/makefile.include make-help
 	@echo  ''
 	@$(MAKE) -s -f utils/makefile.python python-help
 	@echo  ''
 	@$(MAKE) -s -f utils/makefile.sphinx docs-help
+
+PHONY += test
+test: pytest
 
 PHONY += install
 install: pyinstall
