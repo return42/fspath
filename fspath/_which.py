@@ -5,7 +5,7 @@ which - locate a command
 
 import sys
 import os
-from .fspath import FSPath  # pylint: disable=cyclic-import
+import fspath
 from .cli import CLI
 
 
@@ -25,20 +25,20 @@ def which(cmd, findall=True):
     """
     envpath = os.environ.get('PATH', None) or os.defpath
     hits = list()
-    cmd  = FSPath(cmd)
+    cmd  = fspath.FSPath(cmd)
 
     if sys.platform == 'win32':
         exe = [x.lower() for x in os.environ.get("PATHEXT", [""]).split(";")]
         for folder in envpath.split(os.pathsep):
             for ext in exe:
-                fullname = FSPath(folder) / cmd + ext
+                fullname = fspath.FSPath(folder) / cmd + ext
                 if fullname.ISFILE:
                     if not findall:
                         return fullname
                     hits.append(fullname)
     else:
         for folder in envpath.split(os.pathsep):
-            fullname = FSPath(folder) / cmd
+            fullname = fspath.FSPath(folder) / cmd
             if fullname.EXECUTABLE:
                 if not findall:
                     return fullname
@@ -71,7 +71,7 @@ def main():
     cli.add_argument(
         "cmd"
         , nargs = "+"
-        , type = FSPath
+        , type = fspath.FSPath
         , help = "searches CMD in PATH")
 
     cli.add_argument(
