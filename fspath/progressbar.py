@@ -2,6 +2,7 @@
 u"""
 A progress bar for the console.
 """
+# pylint: disable=invalid-name
 
 import os
 import sys
@@ -83,6 +84,7 @@ def consoleDimensionsLinux():
 
 def consoleDimensionsWIN():
     u"""Returns count of (row, columns) from current console"""
+    # pylint: disable=too-many-locals
     from ctypes import windll, create_string_buffer
 
     # stdin handle is -10

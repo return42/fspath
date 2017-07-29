@@ -2,6 +2,7 @@
 u"""
 Windows stuff
 """
+# pylint: disable=invalid-name
 
 import os
 import io

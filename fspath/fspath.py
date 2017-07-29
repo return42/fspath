@@ -3,7 +3,7 @@ u"""
 semantic path names and much more
 """
 
-# pylint: disable=bad-continuation
+# pylint: disable=invalid-name, bad-continuation
 
 # ==============================================================================
 # imports
@@ -101,9 +101,9 @@ class FSPath(six.text_type):  # pylint: disable=too-many-public-methods
         , pathsep = os.pathsep # https://docs.python.org/3/library/os.html#os.pathsep
         , defpath = os.defpath # https://docs.python.org/3/library/os.html#os.defpath
         , linesep = os.linesep # https://docs.python.org/3/library/os.html#os.linesep
-        , devnull = os.devnull # https://docs.python.org/3/library/os.html#os.devnull    
+        , devnull = os.devnull # https://docs.python.org/3/library/os.html#os.devnull
     )
-        
+
     def __new__(cls, pathname):
         u"""Constructor of a path name object.
 
@@ -502,7 +502,7 @@ class FSPath(six.text_type):  # pylint: disable=too-many-public-methods
         """Start a file with its associated application."""
         system  = platform.system()
         if system == 'Windows':
-            os.startfile(self)
+            os.startfile(self) # pylint: disable=no-member
             return
         cmd = 'xdg-open'
         if system in ('FreeBSD', 'Darwin'):
@@ -512,7 +512,7 @@ class FSPath(six.text_type):  # pylint: disable=too-many-public-methods
         cmd = which(cmd, findall=False)
         if cmd:
             os.system(cmd + " " + self)
-        
+
     def readFile(self, encoding='utf-8', errors='strict'):
         u"""read entire file"""
         with self.openTextFile(encoding=encoding, errors=errors) as f:
@@ -533,13 +533,11 @@ class FSPath(six.text_type):  # pylint: disable=too-many-public-methods
             folder.makedirs()
         members = None
         if self.ISTAR:
-            # pylint: disable=redefined-variable-type
             arc = tarfile.TarFile(self)
             members = arc
             arc.extractall(path=str(folder.ABSPATH), members=members)
 
         elif self.ISZIP:
-            # pylint: disable=redefined-variable-type
             arc = zipfile.ZipFile(self)
             members = arc.namelist()
             arc.extractall(str(folder.ABSPATH), members , pwd)

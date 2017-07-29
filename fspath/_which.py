@@ -2,6 +2,7 @@
 u"""
 which - locate a command
 """
+# pylint: disable=invalid-name
 
 import sys
 import os
