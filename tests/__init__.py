@@ -10,12 +10,12 @@ try:
 except ImportError:
     pass
 
-build_dir = os.path.abspath(
+_build_dir = os.path.abspath(
     os.path.join(
         os.path.dirname(__file__)
         , os.path.pardir)) + os.sep + 'build'
 
-os.environ["TEST_TEMPDIR"] = build_dir + os.sep + 'tmp'
+os.environ["TEST_TEMPDIR"] = _build_dir + os.sep + 'tmp'
 
 if not os.path.isdir(os.environ["TEST_TEMPDIR"]):
-    os.mkdir(os.environ["TEST_TEMPDIR"])
+    os.makedirs(os.environ["TEST_TEMPDIR"], mode=0o775)

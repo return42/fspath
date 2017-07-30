@@ -1,51 +1,44 @@
 #!/usr/bin/env python
 # -*- coding: utf-8; mode: python -*-
+# pylint: disable=invalid-name
 
-import sys
 import os
-import platform
+from os.path import join as ospj
+import io
+import imp
 from setuptools import setup, find_packages
 
 _dir = os.path.abspath(os.path.dirname(__file__))
 
-sys.path.append(_dir)
+#sys.path.append(_dir)
 
-import fspath
+SRC    = ospj(_dir, 'fspath')
+README = ospj(_dir, 'README.rst')
+DOCS   = ospj(_dir, 'docs')
+TESTS  = ospj(_dir, 'tests')
 
-install_requires = [
-    "six" ]
+# import pkginfo without importing 'fspath/__init__.py' which imports
+# third-party dependencies that need to be installed first (e.g. 'six').
 
-_which = "which.py"
-if platform.system() == 'Windows':
-    _which = "which.py"
+PKG = imp.load_source('__pkginfo__', ospj(SRC, '__pkginfo__.py'))
+
+def readFile(fname, m='rt', enc='utf-8', nl=None):
+    with io.open(fname, mode=m, encoding=enc, newline=nl) as f:
+        return f.read()
 
 setup(
-    name               = "fspath"
-    , version          = fspath.__version__
-    , description      = fspath.__description__
-    , long_description = fspath.__doc__
-    , url              = fspath.__url__
-    , author           = "Markus Heiser"
-    , author_email     = "markus.heiser@darmarIT.de"
-    , license          = fspath.__license__
-    , keywords         = "path-names development"
+    name               = PKG.package
+    , version          = PKG.version
+    , description      = PKG.description
+    , long_description = readFile(README)
+    , url              = PKG.url
+    , author           = PKG.authors[0]
+    , author_email     = PKG.emails[0]
+    , license          = PKG.license
+    , keywords         = PKG.keywords
     , packages         = find_packages(exclude=['docs', 'tests'])
-    , install_requires = install_requires
-    , entry_points     = {
-        'console_scripts': [
-            _which + ' = fspath._which:main'
-            , 'fspath = fspath.main:main'
-        ]}
+    , install_requires = PKG.install_requires
+    , entry_points     = PKG.get_entry_points()
     # See https://pypi.python.org/pypi?%3Aaction=list_classifiers
-    , classifiers = [
-        "Development Status :: 5 - Production/Stable"
-        , "Intended Audience :: Developers"
-        , "License :: OSI Approved :: GNU General Public License v2 (GPLv2)"
-        , "Operating System :: OS Independent"
-        , "Programming Language :: Python"
-        , "Programming Language :: Python :: 2"
-        , "Programming Language :: Python :: 3"
-        , "Topic :: Utilities"
-        , "Topic :: Software Development :: Libraries"
-        , "Topic :: System :: Filesystems" ]
+    , classifiers      = PKG.classifiers
 )
