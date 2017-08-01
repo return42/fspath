@@ -18,6 +18,7 @@ import inspect
 import code
 import linecache
 
+from . import compat
 from .os_env import OS_ENV
 
 VERBOSE = False
@@ -46,7 +47,7 @@ class HelpFormatter(argparse.HelpFormatter):
                 lines[0] = '    ' + first
 
         text = textwrap.dedent("\n".join(lines))
-        text = textwrap.indent(text, indent)
+        text = compat.indent(text, indent)
         #text = textwrap.fill(text, width = width)
         return text
 
