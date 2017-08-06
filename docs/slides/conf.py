@@ -20,7 +20,7 @@ html_use_index = False
 
 html_theme_options = {
     # Set the lang attribute of the html tag. Defaults to "ja"
-    'lang': 'en',
+    'lang': 'de',
 
     # The "normal" size of the presentation, aspect ratio will be preserved
     # when the presentation is scaled to fit different resolutions
@@ -89,10 +89,10 @@ html_theme_options = {
 
     # Transition style for full page slide backgrounds
     # (default(=convex)/none/fade/slide/concave/zoom)
-    'background_transition': 'fade',
+    'background_transition': 'slide',
 
     # Display the page number of the current slide
-    'slide_number': False,
+    'slide_number': True,
 
     # Flags if the presentation is running in an embedded mode,
     # i.e. contained within a limited portion of the screen
