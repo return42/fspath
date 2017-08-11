@@ -354,6 +354,10 @@ fspath package
 
    - ``.delete`` -- delete! .. no matter if file or folder
 
+   - ``.rmtree`` -- remove entire folder
+
+   - ``.rmfile`` -- remove single file
+
    - ``.copyfile`` -- copy file (opt. with permission bits)
 
    - ``.copytree`` -- recursively copy the entire tree

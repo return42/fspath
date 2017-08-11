@@ -455,11 +455,15 @@ class FSPath(six.text_type):  # pylint: disable=too-many-public-methods
         if self.ISDIR:
             self.rmtree()
         else:
-            os.remove(self)
+            self.rmfile()
 
     def rmtree(self, ignore_errors=False, onerror=None):
         u"""remove tree"""
         shutil.rmtree(self, ignore_errors, onerror)
+
+    def rmfile(self):
+        u"""remove file"""
+        os.remove(self)
 
     def filesize(self, precision=None):
         u"""Filesize in bytes or with precision"""
