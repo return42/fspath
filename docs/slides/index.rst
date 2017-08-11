@@ -47,14 +47,14 @@ fspath package
                            os.path.dirname(__file__)
                            , os.path.pardir))
 
-   and all that blody stuff? do you think this ..
+   and all that bloody stuff? do you think this ..
 
    .. rv_code::
       :class: python
 
       parent_dir = FSPath(__file__).DIRNAME.ABSPATH / '..'
 
-   is much readable .. than continue.
+   is much more readable .. than continue.
 
 
 .. revealjs:: install
@@ -242,7 +242,7 @@ fspath package
       :class: python
 
       >>> arch.download(url, chunkSize=1024, ticker=True)
-      /home/user/tmp/foo/fspath.zip: [87.9 KB][===============    ]  83%
+      /home/user/tmp/foo/fspath.zip: [87.9 KB][==============    ]  83%
 
    ``.extract`` -- extract in one step, no matter ZIP or TAR
 
@@ -310,8 +310,10 @@ fspath package
 
       >>> arch.filesize()            # size in bytes (int)
       91502
-      >>> arch.filesize(precision=3) # human readable
+      >>> arch.filesize(precision=3) # switch to human readable output
       '89.357 KB'
+      >>> foo.filesize(precision=0)  # switch to human readable output
+      '12 MB'
 
 
 .. revealjs:: be expressive in daily use cases
@@ -680,7 +682,7 @@ fspath package
 .. revealjs:: CLI's subcommands
    :title-heading: h3
 
-   `CLI <https://github.com/return42/fspath/blob/master/fspath/cli.py>`__ is a
+   `CLI <https://github.com/return42/fspath/blob/master/fspath/cli.py>`__ is an
    `argparse <https://docs.python.org/3.5/library/argparse.html>`_
    implementation.
 
@@ -796,7 +798,7 @@ fspath package
 
    .. rv_small::
 
-      - `sphinxjp.themes.revealjs <https://github.com/tell-k/sphinxjp.themes.revealjs>`_
+      - `sphinxjp.themes.revealjs <https://github.com/return42/sphinxjp.themes.revealjs>`_
       - `REVEAL.JS <http://lab.hakim.se/reveal-js>`_
       - `Sphinx-doc <http://www.sphinx-doc.org>`_
       - `reST <http://www.sphinx-doc.org/en/stable/rest.html>`_
