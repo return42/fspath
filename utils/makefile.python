@@ -207,7 +207,8 @@ PHONY += pydebug
 pydebug: $(PY_ENV)
 	DEBUG=$(DEBUG) $(PY_ENV_BIN)/pytest $(DEBUG) -v $(TEST_FOLDER)/$(TEST)
 
-python-i: $(PY_ENV)
+# runs python interpreter from ./local/py<N>/bin/python
+python-local: $(PY_ENV)
 	cd ./local; ../$(PY_ENV_BIN)/python -i
 
 # With 'dependency_links=' setuptools supports dependencies on packages hosted
