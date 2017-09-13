@@ -4,8 +4,9 @@ A progress bar for the console.
 """
 # pylint: disable=invalid-name
 
-import os
 import sys
+
+from .sui import consoleDimension
 
 # ==============================================================================
 def humanizeBytes(size, precision=2):
@@ -46,61 +47,3 @@ def progressbar(step, maxSteps, barSize=None, pipe=sys.stdout
     pipe.write((prompt +  "[%s] %3d%%") % (p_bar.ljust(barSize, restchar), int(percent)))
     pipe.flush()
 
-# ==============================================================================
-def consoleDimension():
-# ==============================================================================
-    u"""Returns count of (row, columns) from current console"""
-
-    # pylint: disable=broad-except
-    rows, columns = 25, 80
-
-    import platform
-    if platform.system() == 'Windows':
-        try:
-            rows, columns = consoleDimensionsWIN()
-        except Exception:
-            pass
-    else:
-        try:
-            rows, columns = consoleDimensionsLinux()
-        except Exception:
-            pass
-    try:
-        rows = int(rows)
-    except Exception:
-        pass
-
-    try:
-        columns = int(columns)
-    except Exception:
-        pass
-
-    return rows, columns
-
-def consoleDimensionsLinux():
-    u"""Returns count of (row, columns) from current console"""
-    rows, columns = os.popen('stty size', 'r').read().split()
-    return rows, columns
-
-def consoleDimensionsWIN():
-    u"""Returns count of (row, columns) from current console"""
-    # pylint: disable=too-many-locals
-    from ctypes import windll, create_string_buffer
-
-    # stdin handle is -10
-    # stdout handle is -11
-    # stderr handle is -12
-
-    h = windll.kernel32.GetStdHandle(-12)
-    csbi = create_string_buffer(22)
-    res = windll.kernel32.GetConsoleScreenBufferInfo(h, csbi)
-
-    columns, rows = 80, 25
-    if res:
-        import struct
-        (_bufx, _bufy, _curx, _cury, _wattr,
-         left, top, right, bottom, _maxx, _maxy) = struct.unpack("hhhhHhhhhhh", csbi.raw)
-        columns = right - left + 1
-        rows    = bottom - top + 1
-
-    return rows, columns
