@@ -20,10 +20,12 @@ TEST         ?= .
 VTENV_OPTS   = "--no-site-packages"
 PY_ENV       = ./local/py$(PY)
 PY_ENV_BIN   = $(PY_ENV)/bin
+PY_ENV_ACT   = source $(PY_ENV_BIN)/activate
 
 ifeq ($(OS),Windows_NT)
   PYTHON     = python
   PY_ENV_BIN = $(PY_ENV)/Scripts
+  PY_ENV_ACT = $(PY_ENV_BIN)/activate
 endif
 
 ifeq ($(PYTHON),python)
@@ -133,7 +135,7 @@ quiet_cmd_virtualenv  = PYENV     $@
 	if [ ! -d "./$(PY_ENV)" ];then                                  \
 		$(VIRTUALENV) $(VIRTUALENV_VERBOSE) $(VTENV_OPTS) $2;   \
 	else                                                            \
-		echo "using virtualenv from $2";                        \
+		echo "  PYENV     using virtualenv from $2";            \
         fi
 
 # $2 path to lint
@@ -207,8 +209,16 @@ PHONY += pydebug
 pydebug: $(PY_ENV)
 	DEBUG=$(DEBUG) $(PY_ENV_BIN)/pytest $(DEBUG) -v $(TEST_FOLDER)/$(TEST)
 
+# install / uninstall python objects into virtualenv (PYENV)
+pyenv-install: $(PY_ENV)
+	@$(PY_ENV_BIN)/pip $(PIP_VERBOSE) install -e .
+	@echo "  ACTIVATE  $(PY_ENV_ACT)"
+
+pyenv-uninstall: $(PY_ENV)
+	@$(PY_ENV_BIN)/pip $(PIP_VERBOSE) uninstall --yes .
+
 # runs python interpreter from ./local/py<N>/bin/python
-python-local: $(PY_ENV)
+pyenv-python: pyenv-install
 	cd ./local; ../$(PY_ENV_BIN)/python -i
 
 # With 'dependency_links=' setuptools supports dependencies on packages hosted
