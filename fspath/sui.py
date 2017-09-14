@@ -127,11 +127,11 @@ class SimpleUserInterface(object):
 
 
     @classmethod
-    def get_input(cls, count, echo=True, valid_chars=r'.'):
+    def get_input(cls, count=None, echo=True, valid_chars=r'.', stop_char=u'\r'):
         u"""read input from UI"""
         ret_val = u""
         c = 0
-        while count > c:
+        while count is None or count > c:
             is_valid = False
             while not is_valid:
                 ch = cls.getchr()
@@ -140,7 +140,7 @@ class SimpleUserInterface(object):
                 else:
                     is_valid = bool(re.compile(valid_chars).match(ch))
             c += 1
-            if ch == u'\r':
+            if ch == stop_char:
                 break
             ret_val += ch
             if echo:
@@ -169,7 +169,7 @@ class SimpleUserInterface(object):
         while i is None:
             cls.write("%s [%s] " % (msg, default+1))
             c = len(choices)
-            u = cls.get_input(len(str(c)), valid_chars=r'\d')
+            u = cls.get_input(count=len(str(c)), valid_chars=r'\d')
             if u == u'':
                 i = default
             try:
@@ -179,5 +179,33 @@ class SimpleUserInterface(object):
             except ValueError:
                 pass
         return choices[i]
+
+    @classmethod
+    def ask(cls, msg, default=None, count=None, echo=True, valid_chars=r'.', stop_char='\r'):
+        u"""Ask via UI"""
+        cls.write("%s " % msg)
+        if default is not None:
+            cls.write("[%s] " % default)
+        answer = cls.get_input(count=count, echo=echo, valid_chars=valid_chars,
+                               stop_char=stop_char)
+        if not answer:
+            answer = default
+        return answer
+
+    YES = 'y'
+    NO  = 'n'
+
+    @classmethod
+    def ask_yes_no(cls, msg, default='y'):
+        u"""Ask Yes/No [YN] via UI"""
+        if default not in 'yn':
+            raise ValueError('unknown value for default, use "n" or "y"')
+        cls.write('%s %s ' % (msg, {'y':'[Y/n]', 'n':'[y/N]'}[default]))
+        answer = cls.get_input(count=1, echo=True,  valid_chars=r'[YNyn]')
+        if not answer:
+            answer = default
+        else:
+            answer = answer.lower()
+        return {'y' : cls.YES, 'n' : cls.NO}[answer]
 
 SUI = SimpleUserInterface()
