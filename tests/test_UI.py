@@ -15,11 +15,12 @@ def interactive():
          , 'July', 'August', 'September', 'October', 'November', 'December']
     ret = SUI.ask_choice('select a month from the list.', l)
     print ('\n-->%s<--' % ret)
+    SUI.write('----|')
+    SUI.wait_key()
     ret = SUI.ask('how old are you?', default=20, count=3, echo=True, valid_chars=r'\d')
     print ('\n-->%s<--' % ret)
     ret = SUI.ask_yes_no('do you like coffee?')
     print('\n-->%s<--' % {SUI.YES:'yes', SUI.NO:'no'}[ret])
-    
 
 if __name__ == '__main__':
     interactive()

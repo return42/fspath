@@ -13,6 +13,7 @@ This module is in a very early stage, don't use it!
 import os
 import sys
 import re
+import time
 
 CONSOLE_TYPE = None
 
@@ -29,6 +30,11 @@ elif sys.platform in ('win32', 'cygwin'):
 else:
     raise NotImplementedError(
         'The platform %s is not supported yet' % sys.platform)
+
+CTRL_C    = '\x03'
+BS  = '\x08'
+DEL = '\x7f'
+CR  = '\r'
 
 
 # ==============================================================================
@@ -108,6 +114,8 @@ class SimpleUserInterface(object):
                 tty.setraw(f)
                 #ch = codecs.getreader(cls.ui_in.encoding)(cls.ui_in).read(1)
                 ch = cls.ui_in.read(1)
+                if ch == CTRL_C:
+                    raise KeyboardInterrupt
             finally:
                 termios.tcsetattr(f, termios.TCSADRAIN, m)
             return ch
@@ -123,11 +131,13 @@ class SimpleUserInterface(object):
             if ch in u'\x00\xe0':
                 # arrow or function key pressed
                 ch = msvcrt.getwch()
+            if ch == CTRL_C:
+                raise KeyboardInterrupt
             return ch
 
 
     @classmethod
-    def get_input(cls, count=None, echo=True, valid_chars=r'.', stop_char=u'\r'):
+    def get_input(cls, count=None, echo=True, valid_chars=r'.', stop_char=CR):
         u"""read input from UI"""
         ret_val = u""
         c = 0
@@ -135,7 +145,7 @@ class SimpleUserInterface(object):
             is_valid = False
             while not is_valid:
                 ch = cls.getchr()
-                if ch == u'\r' or valid_chars is None:
+                if ch == CR or valid_chars is None:
                     is_valid = True
                 else:
                     is_valid = bool(re.compile(valid_chars).match(ch))
@@ -160,6 +170,25 @@ class SimpleUserInterface(object):
         cls.write(msg + '\n')
 
     @classmethod
+    def fill_line(cls, fill_char=' '):
+        u"""console, fill line with ``fill_char`` (default ' ')"""
+        line_size = consoleDimension()[1]
+        cls.write(CR)
+        cls.write(fill_char[0] * line_size)
+        cls.write(CR)
+
+    @classmethod
+    def wait_key(cls):
+        u"""wait until key pressed"""
+        msg = '** press any [KEY] to continue **'
+        _len = len(msg)
+        cls.write(msg)
+        i = cls.get_input(count=1, echo=False)
+        cls.write(BS * _len)
+        cls.write(' ' * _len)
+        cls.write(BS * _len)
+        
+    @classmethod
     def ask_choice(cls, msg, choices, default=0):
         u"""Take a choice from a list via UI"""
 
@@ -172,16 +201,21 @@ class SimpleUserInterface(object):
             u = cls.get_input(count=len(str(c)), valid_chars=r'\d')
             if u == u'':
                 i = default
+                cls.write(str(i+1))
             try:
                 i = int(u) - 1
                 if i < 0 or i > c:
                     i = None
+                    cls.write(' <-- ')
+                    cls.write('ERROR: invalid choice.')
+                    time.sleep(1)
+                    cls.fill_line()
             except ValueError:
                 pass
         return choices[i]
 
     @classmethod
-    def ask(cls, msg, default=None, count=None, echo=True, valid_chars=r'.', stop_char='\r'):
+    def ask(cls, msg, default=None, count=None, echo=True, valid_chars=r'.', stop_char=CR):
         u"""Ask via UI"""
         cls.write("%s " % msg)
         if default is not None:
@@ -190,6 +224,7 @@ class SimpleUserInterface(object):
                                stop_char=stop_char)
         if not answer:
             answer = default
+            cls.write(str(default))
         return answer
 
     YES = 'y'
@@ -204,6 +239,7 @@ class SimpleUserInterface(object):
         answer = cls.get_input(count=1, echo=True,  valid_chars=r'[YNyn]')
         if not answer:
             answer = default
+            cls.write(str(default))
         else:
             answer = answer.lower()
         return {'y' : cls.YES, 'n' : cls.NO}[answer]
