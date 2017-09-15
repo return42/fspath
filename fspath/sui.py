@@ -40,7 +40,14 @@ CR  = '\r'
 # ==============================================================================
 def consoleDimension():
 # ==============================================================================
-    u"""Returns count of (row, columns) from current console"""
+    u"""Returns count of (row, columns) from current console
+
+    .. hint:
+
+       Since Win-CMD adds a newline if the last column is filled with a
+       character it is recomended to use one column less.
+
+    """
 
     # pylint: disable=broad-except
     rows, columns = 25, 80
@@ -170,9 +177,18 @@ class SimpleUserInterface(object):
         cls.write(msg + '\n')
 
     @classmethod
+    def _get_usable_line_size(cls):
+        l = consoleDimension()[1]
+        if CONSOLE_TYPE == 'cmd':
+            # Since Win-CMD adds a newline if the last column is filled with a
+            # character it is recomended to use one column less.
+            l -= 1
+        return l
+
+    @classmethod
     def fill_line(cls, fill_char=' '):
         u"""console, fill line with ``fill_char`` (default ' ')"""
-        line_size = consoleDimension()[1]
+        line_size = cls._get_usable_line_size()
         cls.write(CR)
         cls.write(fill_char[0] * line_size)
         cls.write(CR)
@@ -187,7 +203,7 @@ class SimpleUserInterface(object):
         cls.write(BS * _len)
         cls.write(' ' * _len)
         cls.write(BS * _len)
-        
+
     @classmethod
     def ask_choice(cls, msg, choices, default=0):
         u"""Take a choice from a list via UI"""
