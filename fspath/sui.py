@@ -199,7 +199,7 @@ class SimpleUserInterface(object):
         msg = '** press any [KEY] to continue **'
         _len = len(msg)
         cls.write(msg)
-        i = cls.get_input(count=1, echo=False)
+        _i = cls.get_input(count=1, echo=False)
         cls.write(BS * _len)
         cls.write(' ' * _len)
         cls.write(BS * _len)
@@ -261,3 +261,145 @@ class SimpleUserInterface(object):
         return {'y' : cls.YES, 'n' : cls.NO}[answer]
 
 SUI = SimpleUserInterface()
+
+# ==============================================================================
+class ASCIITableFormatter(object):
+# ==============================================================================
+
+    """Simple ASCII table formatter
+
+    .. code-block:: python
+
+       rows = [  {'foo': 'foo row 1', 'bar': 'bar row 1'}
+                 , {'foo': 'foo row 2', 'bar': 'bar row 2'} ]
+
+       table = ASCIITableFormatter(
+           # <col-title>, <format sting>, <attribute name>
+           ("Foo",   "%-12s", "foo")
+           , ("Bar", "%-30s",  "bar"))
+       SUI.echo(table(rows))
+
+    .. code-block:: rst
+
+       ============ ==============================
+       Foo          Bar
+       ============ ==============================
+       foo row 1    bar row 1
+       foo row 2    bar row 2
+       ============ ==============================
+    """
+
+    table_start,     table_end    = "",   ""
+    head_start,      head_end     = "\n", ""
+    col_head_start,  col_head_end = "",   " "
+    row_start,       row_end      = "\n", ""
+    col_start,       col_end      = "",   " "
+    sep_start,       sep_end      = "",   " "
+    sep_line = "="
+
+    def __init__(self, *cols):
+        self.coldef = cols
+
+    def get_value(self, attr, row, default='?'):  # pylint: disable=no-self-use
+        u"""get value from col (attr) and row"""
+        val = default
+        if hasattr(row, "__getitem__"):
+            val = row.get(attr, default)
+        else:
+            val = getattr(row, attr, None)
+        return val
+
+    def escape(self, value): # pylint: disable=no-self-use
+        u"""escape value"""
+        return value
+
+    def __call__(self, rows):
+        out = u""
+        out += self.table_start
+
+        sep = u''
+        if self.sep_line:
+            sep += self.head_start
+            for headline, fmt, attr in self.coldef:
+                sep += self.sep_start
+                sep += self.sep_line * len(fmt % 1)
+                sep += self.sep_end
+            sep += self.head_end
+
+        # head-top separator line
+        out += sep
+
+        # headline
+        out += self.head_start
+        for headline, fmt, attr in self.coldef:
+            out += self.col_head_start
+            out += headline.ljust(len(fmt % 1))
+            out += self.col_head_end
+        out += self.head_end
+
+        # head-bottom separator line
+        out += sep
+
+        # render rows
+        for row in rows:
+            out += self.row_start
+            for headline, fmt, attr in self.coldef:
+                out += self.col_start
+                val = self.get_value(attr, row)
+                val = self.escape(val)
+                out += fmt % val
+                out += self.col_end
+            out += self.row_end
+
+        # bottom separator
+        out += sep
+
+        out += self.table_end
+        return out
+
+# ==============================================================================
+class HTMLTableFormatter(ASCIITableFormatter):
+# ==============================================================================
+
+    """Simple HTML table formatter
+
+    .. code-block:: python
+
+       rows = [  {'foo': 'foo <row 1>', 'bar': 'bar <row 1>'}
+                 , {'foo': 'foo <row 2>', 'bar': 'bar <row 2>'} ]
+
+       table = HTMLTableFormatter(("Foo",   "%s", "foo")
+                                , ("Bar", "%s", "bar"))
+       SUI.echo(table(rows))
+
+    .. code-block:: html
+
+       <table>
+         <tr class='heading'>
+           <th>Foo</th>
+           <th>Bar</th>
+         </tr>
+         <tr>
+           <td>foo &lt;row 1&gt;</td>
+           <td>bar &lt;row 1&gt;</td>
+         </tr>
+         <tr>
+           <td>foo &lt;row 2&gt;</td>
+           <td>bar &lt;row 2&gt;</td>
+         </tr>
+       </table>
+    """
+
+    table_start, table_end        = "\n<table>",                "\n</table>"
+    head_start,  head_end         = "\n  <tr class='heading'>", "\n  </tr>"
+    col_head_start,  col_head_end = "\n    <th>",               "</th>"
+    row_start,   row_end          = "\n  <tr>",                 "\n  </tr>"
+    col_start,   col_end          = "\n    <td>", "</td>"
+    sep_line = None
+    ESCAPE = "<!--(set_escape)-->HTML<!--(end)-->\n#!"
+
+    def escape(self, value):
+        value = value.replace("&", "&amp;") # Must be done first!
+        value = value.replace("<", "&lt;")
+        value = value.replace(">", "&gt;")
+        return value

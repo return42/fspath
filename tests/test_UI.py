@@ -4,6 +4,7 @@
 import time
 
 from fspath.sui import SUI, CONSOLE_TYPE
+from fspath.sui import ASCIITableFormatter, HTMLTableFormatter
 
 #TMP = FSPath(OS_ENV.TEST_TEMPDIR)
 
@@ -40,7 +41,26 @@ def _test_fill_line():
         time.sleep(1)
         SUI.fill_line()
 
+def _test_ascii_table_formatter():
+    rows = [  {'foo': 'foo row 1', 'bar': 'bar row 1'}
+              , {'foo': 'foo row 2', 'bar': 'bar row 2'} ]
+
+    table = ASCIITableFormatter(("Foo",   "%-12s", "foo")
+                                , ("Bar", "%-30s",  "bar"))
+    SUI.echo(table(rows))
+
+def _test_html_table_formatter():
+    rows = [  {'foo': 'foo <row 1>', 'bar': 'bar <row 1>'}
+              , {'foo': 'foo <row 2>', 'bar': 'bar <row 2>'} ]
+
+    table = HTMLTableFormatter(("Foo",   "%s", "foo")
+                               , ("Bar", "%s", "bar"))
+    SUI.echo(table(rows))
+
 def interactive():
+    _test_ascii_table_formatter()
+    _test_html_table_formatter()
+
     _test_choice()
     _test_wait_key()
     _test_ask()
