@@ -296,6 +296,7 @@ class SimpleUserInterface(object):
                     cls.fill_line()
             except ValueError:
                 pass
+        cls.echo('')
         return choices[i]
 
     @classmethod
@@ -309,6 +310,7 @@ class SimpleUserInterface(object):
         if not answer:
             answer = default
             cls.write(str(default))
+        cls.echo('')
         return answer
 
     YES = True
@@ -329,6 +331,7 @@ class SimpleUserInterface(object):
             cls.write(str(default))
         else:
             answer = answer.lower()
+        cls.echo('')
         return {'y' : cls.YES, 'n' : cls.NO}[answer]
 
 

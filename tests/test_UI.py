@@ -21,7 +21,7 @@ def _test_choice():
     l = ['January', 'February', 'March', 'April', 'May', 'June'
          , 'July', 'August', 'September', 'October', 'November', 'December']
     ret = SUI.ask_choice('select a month from the list.', l)
-    SUI.echo('\n-->%s<--' % ret)
+    SUI.echo('-->%s<--' % ret)
 
 def _test_wait_key():
     SUI.write('----|')
@@ -31,11 +31,11 @@ def _test_wait_key():
 
 def _test_ask():
     ret = SUI.ask('how old are you?', default=20, count=3, echo=True, valid_chars=r'\d')
-    SUI.echo('\n-->%s<--' % ret)
+    SUI.echo('-->%s<--' % ret)
 
 def _test_ask_yes_no():
     ret = SUI.ask_yes_no('do you like coffee?')
-    print('\n-->%s<--' % {SUI.YES:'yes', SUI.NO:'no'}[ret])
+    SUI.echo('-->%s<--' % {SUI.YES:'yes', SUI.NO:'no'}[ret])
 
 def _test_fill_line():
     line_size = SUI._get_usable_line_size()
