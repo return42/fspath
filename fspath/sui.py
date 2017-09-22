@@ -209,8 +209,7 @@ class SimpleUserInterface(object):
 
         :param int level: indentaion level
         """
-
-        text = re.sub('\s+', ' ', text).strip()
+        text = re.sub(r'\s+', ' ', text).strip()
         p = fill(text
                  , width                = cls._get_usable_line_size()
                  , initial_indent       = cls.rst_indent * level
@@ -219,7 +218,7 @@ class SimpleUserInterface(object):
         cls.write(p.strip() + u'\n\n')
 
     @classmethod
-    def rst_table(cls, rows, *fmt, level=0):
+    def rst_table(cls, rows, *fmt, **kwargs):
         u"""write reST formated table to UI
 
         Uses :py:class:`ASCIITableFormatter` for output. The argument ``*fmt``
@@ -237,6 +236,7 @@ class SimpleUserInterface(object):
                , ("Bar",      "%-30s",        "bar"))
 
         """
+        level = kwargs.get('level', 0) # tribute to py2 keyword-arguments
         table = ASCIITableFormatter(*fmt)
         for line in table(rows).strip().split('\n'):
             if line:
