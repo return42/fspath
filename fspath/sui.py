@@ -15,6 +15,8 @@ import sys
 import re
 import time
 
+from textwrap import fill
+
 CONSOLE_TYPE = None
 
 if (sys.platform.startswith('linux')
@@ -111,6 +113,14 @@ class SimpleUserInterface(object):
     ui_out = sys.stdout
     ui_in  = sys.stdin
 
+    rst_indent = '    '
+    rst_levels = {'part' : '=', 'chapter' : '=', 'section' : '-', 'subsection' : '~'}
+
+    def __init__(self, cli=None):
+        if cli is not None:
+            self.cli    = cli
+            self.ui_out = cli.OUT
+
     if CONSOLE_TYPE == 'tty':
         @classmethod
         def getchr(cls):
@@ -175,6 +185,64 @@ class SimpleUserInterface(object):
     def echo(cls, msg):
         u"""write line to UI"""
         cls.write(msg + '\n')
+
+    @classmethod
+    def rst_title(cls, title, level='chapter'):
+        u"""write reST formated title to UI
+
+        :param str title: section's title
+        :param str level: section's structural level [part,chapter,section,subsection]
+        """
+        markup = cls.rst_levels.get(level, None)
+        if markup is None:
+            raise ValueError("unknown section level '%s'" % level)
+        title  = title.strip()
+        markup = markup * len(title)
+        if level == 'part':
+            cls.write(u'\n' + markup)
+        cls.write(u'\n' + title)
+        cls.write(u'\n' + markup + u'\n\n')
+
+    @classmethod
+    def rst_p(cls, text, level=0):
+        u"""write reST formated paragraph to UI
+
+        :param int level: indentaion level
+        """
+
+        text = re.sub('\s+', ' ', text).strip()
+        p = fill(text
+                 , width                = cls._get_usable_line_size()
+                 , initial_indent       = cls.rst_indent * level
+                 , subsequent_indent    = cls.rst_indent * level
+                 , fix_sentence_endings = True )
+        cls.write(p.strip() + u'\n\n')
+
+    @classmethod
+    def rst_table(cls, rows, *fmt, level=0):
+        u"""write reST formated table to UI
+
+        Uses :py:class:`ASCIITableFormatter` for output. The argument ``*fmt``
+        is a list of tuple.
+
+        :param list rows: iterable type of dictionaries with the col/value
+        :param list *fmt: iterable type of tuples to format the table
+        :param int level: indentaion level
+
+        .. code-block:: python
+           SUI.rst_table(
+               test_rows
+               # <col-title>, <format sting>, <attribute name>
+               , ("Foo",      "%-12s",        "foo")
+               , ("Bar",      "%-30s",        "bar"))
+
+        """
+        table = ASCIITableFormatter(*fmt)
+        for line in table(rows).strip().split('\n'):
+            if line:
+                cls.write('    ' * level)
+            cls.write(line + '\n')
+        cls.write('\n\n')
 
     @classmethod
     def _get_usable_line_size(cls):
@@ -243,12 +311,15 @@ class SimpleUserInterface(object):
             cls.write(str(default))
         return answer
 
-    YES = 'y'
-    NO  = 'n'
+    YES = True
+    NO  = False
 
     @classmethod
     def ask_yes_no(cls, msg, default='y'):
-        u"""Ask Yes/No [YN] via UI"""
+        u"""Ask Yes/No [YN] via UI
+
+        Returns ``True`` for *Yes* and ``False`` for *No*
+        """
         if default not in 'yn':
             raise ValueError('unknown value for default, use "n" or "y"')
         cls.write('%s %s ' % (msg, {'y':'[Y/n]', 'n':'[y/N]'}[default]))
@@ -259,6 +330,7 @@ class SimpleUserInterface(object):
         else:
             answer = answer.lower()
         return {'y' : cls.YES, 'n' : cls.NO}[answer]
+
 
 SUI = SimpleUserInterface()
 
@@ -276,7 +348,7 @@ class ASCIITableFormatter(object):
        table = ASCIITableFormatter(
            # <col-title>, <format sting>, <attribute name>
            ("Foo",   "%-12s", "foo")
-           , ("Bar", "%-30s",  "bar"))
+           , ("Bar", "%-30s", "bar"))
        SUI.echo(table(rows))
 
     .. code-block:: rst
@@ -368,7 +440,7 @@ class HTMLTableFormatter(ASCIITableFormatter):
        rows = [  {'foo': 'foo <row 1>', 'bar': 'bar <row 1>'}
                  , {'foo': 'foo <row 2>', 'bar': 'bar <row 2>'} ]
 
-       table = HTMLTableFormatter(("Foo",   "%s", "foo")
+       table = HTMLTableFormatter(("Foo", "%s", "foo")
                                 , ("Bar", "%s", "bar"))
        SUI.echo(table(rows))
 

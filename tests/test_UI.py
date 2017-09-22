@@ -8,6 +8,9 @@ from fspath.sui import ASCIITableFormatter, HTMLTableFormatter
 
 #TMP = FSPath(OS_ENV.TEST_TEMPDIR)
 
+test_rows = [  {'foo': 'foo <row 1>', 'bar': 'bar <row 1>'}
+          , {'foo': 'foo <row 2>', 'bar': 'bar <row 2>'} ]
+
 def test_ask_choice():
     # within tox, stdin is redirected pseudofile and has no fileno()
     # How can we test SimpleUserInterface?
@@ -42,30 +45,48 @@ def _test_fill_line():
         SUI.fill_line()
 
 def _test_ascii_table_formatter():
-    rows = [  {'foo': 'foo row 1', 'bar': 'bar row 1'}
-              , {'foo': 'foo row 2', 'bar': 'bar row 2'} ]
-
     table = ASCIITableFormatter(("Foo",   "%-12s", "foo")
-                                , ("Bar", "%-30s",  "bar"))
-    SUI.echo(table(rows))
+                                , ("Bar", "%-30s", "bar"))
+    SUI.echo(table(test_rows))
 
 def _test_html_table_formatter():
-    rows = [  {'foo': 'foo <row 1>', 'bar': 'bar <row 1>'}
-              , {'foo': 'foo <row 2>', 'bar': 'bar <row 2>'} ]
-
     table = HTMLTableFormatter(("Foo",   "%s", "foo")
                                , ("Bar", "%s", "bar"))
-    SUI.echo(table(rows))
+    SUI.echo(table(test_rows))
+
+def _test_rst():
+    SUI.rst_title("part's title", level='part')
+    SUI.rst_p("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do"
+              " eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut"
+              " enim ad minim veniam quis nostrud exercitation ullamco laboris"
+              " nisi ut aliquip ex ea commodo consequat.")
+    SUI.rst_title("chapter's title")
+    SUI.rst_p("""
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+
+commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+
+  Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+""")
+    SUI.rst_title("sections's title", level='section')
+    SUI.rst_table(
+        test_rows
+        , ("Foo", "%-12s", "foo")
+        , ("Bar", "%-30s", "bar"))
+    time.sleep(1)
+
+
 
 def interactive():
-    _test_ascii_table_formatter()
-    _test_html_table_formatter()
-
     _test_choice()
     _test_wait_key()
     _test_ask()
     _test_ask_yes_no
     _test_fill_line()
+    _test_ascii_table_formatter()
+    _test_html_table_formatter()
+    _test_rst()
 
 if __name__ == '__main__':
     interactive()
