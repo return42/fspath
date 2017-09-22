@@ -215,7 +215,7 @@ class SimpleUserInterface(object):
                  , initial_indent       = cls.rst_indent * level
                  , subsequent_indent    = cls.rst_indent * level
                  , fix_sentence_endings = True )
-        cls.write(p.strip() + u'\n\n')
+        cls.write(cls.rst_indent * level + p.strip() + u'\n\n')
 
     @classmethod
     def rst_table(cls, rows, *fmt, **kwargs):
