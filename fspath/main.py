@@ -56,6 +56,11 @@ def main():
         "script"
         , type = FSPath
         , help = "pathname of the script to wrap")
+    py2exe.add_argument(
+        "--shebang"
+        , type = str
+        , default = "#!python.exe"
+        , help = "shebang line")
 
     download = cli.addCMDParser(_cli_download_url, cmdName='download')
     download.add_argument(
