@@ -51,10 +51,16 @@ def wrapScriptExe(script):
 
     stream = io.BytesIO()
     with ZipFile(stream, 'w') as _f:
-        _f.writestr('__main__.py', script)
+        if six.PY2:
+            _f.writestr('__main__.py', str(script))
+        else:
+            _f.writestr('__main__.py', script)
 
     zip_data = stream.getvalue()
-    script = launcher + shebang + linesep + zip_data
+    if six.PY2:
+        script = launcher + str(shebang + linesep) + zip_data
+    else:
+        script = launcher + shebang + linesep + zip_data
 
     with open(exec_out, "wb") as out:
         out.write(script)
