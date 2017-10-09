@@ -2,6 +2,7 @@
 u"""
 nothing special here, just some small helper
 """
+# pylint: disable=too-many-instance-attributes
 
 # ==============================================================================
 class Options(dict):

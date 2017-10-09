@@ -102,65 +102,67 @@ def consoleDimensionsWIN():
     return rows, columns
 
 
-KEY = Options()
+# pylint: disable-msg=C0103
+KEY = Options(
+    # common
+    LF      = '\x0d'
+    , CR    = '\x0a'
+    , ENTER = '\x0d'
+    , SPACE = '\x20'
+    , ESC   = '\x1b'
+    , TAB   = '\x09'
 
-# common
-KEY.LF    = '\x0d'
-KEY.CR    = '\x0a'
-KEY.ENTER = '\x0d'
-KEY.SPACE = '\x20'
-KEY.ESC   = '\x1b'
-KEY.TAB   = '\x09'
+    # CTRL
+    , CTRL_A = '\x01'
+    , CTRL_B = '\x02'
+    , CTRL_C = '\x03'
+    , CTRL_D = '\x04'
+    , CTRL_E = '\x05'
+    , CTRL_F = '\x06'
+    , CTRL_Z = '\x1a'
 
-# CTRL
-KEY.CTRL_A = '\x01'
-KEY.CTRL_B = '\x02'
-KEY.CTRL_C = '\x03'
-KEY.CTRL_D = '\x04'
-KEY.CTRL_E = '\x05'
-KEY.CTRL_F = '\x06'
-KEY.CTRL_Z = '\x1a'
+    # ALT
+    , ALT_A = '\x1b\x61'
 
-# ALT
-KEY.ALT_A = '\x1b\x61'
+    # CTRL + ALT
+    , CTRL_ALT_A = '\x1b\x01'
 
-# CTRL + ALT
-KEY.CTRL_ALT_A = '\x1b\x01'
+    # cursors
+    , UP    = '\x1b\x5b\x41'
+    , DOWN  = '\x1b\x5b\x42'
+    , LEFT  = '\x1b\x5b\x44'
+    , RIGHT = '\x1b\x5b\x43'
 
-# cursors
-KEY.UP    = '\x1b\x5b\x41'
-KEY.DOWN  = '\x1b\x5b\x42'
-KEY.LEFT  = '\x1b\x5b\x44'
-KEY.RIGHT = '\x1b\x5b\x43'
+    # other
+    , F1  = '\x1b\x4f\x50'
+    , F2  = '\x1b\x4f\x51'
+    , F3  = '\x1b\x4f\x52'
+    , F4  = '\x1b\x4f\x53'
+    , F5  = '\x1b\x4f\x31\x35\x7e'
+    , F6  = '\x1b\x4f\x31\x37\x7e'
+    , F7  = '\x1b\x4f\x31\x38\x7e'
+    , F8  = '\x1b\x4f\x31\x39\x7e'
+    , F9  = '\x1b\x4f\x32\x30\x7e'
+    , F10 = '\x1b\x4f\x32\x31\x7e'
+    , F11 = '\x1b\x4f\x32\x33\x7e'
+    , F12 = '\x1b\x4f\x32\x34\x7e'
 
-# other
-KEY.F1  = '\x1b\x4f\x50'
-KEY.F2  = '\x1b\x4f\x51'
-KEY.F3  = '\x1b\x4f\x52'
-KEY.F4  = '\x1b\x4f\x53'
-KEY.F5  = '\x1b\x4f\x31\x35\x7e'
-KEY.F6  = '\x1b\x4f\x31\x37\x7e'
-KEY.F7  = '\x1b\x4f\x31\x38\x7e'
-KEY.F8  = '\x1b\x4f\x31\x39\x7e'
-KEY.F9  = '\x1b\x4f\x32\x30\x7e'
-KEY.F10 = '\x1b\x4f\x32\x31\x7e'
-KEY.F11 = '\x1b\x4f\x32\x33\x7e'
-KEY.F12 = '\x1b\x4f\x32\x34\x7e'
+    , PAGE_UP   = '\x1b\x5b\x35\x7e'
+    , PAGE_DOWN = '\x1b\x5b\x36\x7e'
 
-KEY.PAGE_UP   = '\x1b\x5b\x35\x7e'
-KEY.PAGE_DOWN = '\x1b\x5b\x36\x7e'
+    , HOME    = '\x1b\x5b\x48'
+    , END     = '\x1b\x5b\x46'
+    , BACKTAB = '\x1b\x5b\x5a'
 
-KEY.HOME    = '\x1b\x5b\x48'
-KEY.END     = '\x1b\x5b\x46'
-KEY.BACKTAB = '\x1b\x5b\x5a'
+    , BACKSPACE = '\x7f'
 
-KEY.BACKSPACE = '\x7f'
-
-KEY.INSERT = '\x1b\x5b\x32\x7e'
-KEY.DELETE = '\x1b\x5b\x33\x7e'
+    , INSERT = '\x1b\x5b\x32\x7e'
+    , DELETE = '\x1b\x5b\x33\x7e'
+    )
 
 
 if CONSOLE_TYPE == 'cmd':
+    # pylint: disable=invalid-name
 
     # ALT
     KEY.ALT_A = None
