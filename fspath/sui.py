@@ -33,11 +33,6 @@ else:
     raise NotImplementedError(
         'The platform %s is not supported yet' % sys.platform)
 
-CTRL_C    = '\x03'
-BS  = '\x08'
-DEL = '\x7f'
-CR  = '\r'
-
 
 # ==============================================================================
 def consoleDimension():
@@ -104,6 +99,91 @@ def consoleDimensionsWIN():
 
     return rows, columns
 
+class KEY(object):  # pylint: disable=too-few-public-methods
+    u"""common keystroke codes"""
+    # common
+    LF = '\x0d'
+    CR = '\x0a'
+    ENTER = '\x0d'
+    BACKSPACE = '\x7f'
+    SUPR = ''
+    SPACE = '\x20'
+    ESC = '\x1b'
+
+    # shortcuts for output:
+    WRITE_DELETE = '\x08 \x08'
+
+    # CTRL
+    CTRL_A = '\x01'
+    CTRL_B = '\x02'
+    CTRL_C = '\x03'
+    CTRL_D = '\x04'
+    CTRL_E = '\x05'
+    CTRL_F = '\x06'
+    CTRL_Z = '\x1a'
+
+    # ALT
+    ALT_A = '\x1b\x61'
+
+    # CTRL + ALT
+    CTRL_ALT_A = '\x1b\x01'
+
+    # cursors
+    UP = '\x1b\x5b\x41'
+    DOWN = '\x1b\x5b\x42'
+    LEFT = '\x1b\x5b\x44'
+    RIGHT = '\x1b\x5b\x43'
+
+    CTRL_ALT_SUPR = '\x1b\x5b\x33\x5e'
+
+    # other
+    F1 = '\x1b\x4f\x50'
+    F2 = '\x1b\x4f\x51'
+    F3 = '\x1b\x4f\x52'
+    F4 = '\x1b\x4f\x53'
+    F5 = '\x1b\x4f\x31\x35\x7e'
+    F6 = '\x1b\x4f\x31\x37\x7e'
+    F7 = '\x1b\x4f\x31\x38\x7e'
+    F8 = '\x1b\x4f\x31\x39\x7e'
+    F9 = '\x1b\x4f\x32\x30\x7e'
+    F10 = '\x1b\x4f\x32\x31\x7e'
+    F11 = '\x1b\x4f\x32\x33\x7e'
+    F12 = '\x1b\x4f\x32\x34\x7e'
+
+    PAGE_UP = '\x1b\x5b\x35\x7e'
+    PAGE_DOWN = '\x1b\x5b\x36\x7e'
+    HOME = '\x1b\x5b\x48'
+    END = '\x1b\x5b\x46'
+
+    INSERT = '\x1b\x5b\x32\x7e'
+    SUPR = '\x1b\x5b\x33\x7e'
+
+    ESCAPE_SEQUENCES = (
+        ESC,
+        ESC + '\x5b',
+        ESC + '\x5b' + '\x31',
+        ESC + '\x5b' + '\x32',
+        ESC + '\x5b' + '\x33',
+        ESC + '\x5b' + '\x35',
+        ESC + '\x5b' + '\x36',
+        ESC + '\x5b' + '\x31' + '\x35',
+        ESC + '\x5b' + '\x31' + '\x36',
+        ESC + '\x5b' + '\x31' + '\x37',
+        ESC + '\x5b' + '\x31' + '\x38',
+        ESC + '\x5b' + '\x31' + '\x39',
+        ESC + '\x5b' + '\x32' + '\x30',
+        ESC + '\x5b' + '\x32' + '\x31',
+        ESC + '\x5b' + '\x32' + '\x32',
+        ESC + '\x5b' + '\x32' + '\x33',
+        ESC + '\x5b' + '\x32' + '\x34',
+        ESC + '\x4f',
+        ESC + ESC,
+        ESC + ESC + '\x5b',
+        ESC + ESC + '\x5b' + '\x32',
+        ESC + ESC + '\x5b' + '\x33',
+    )
+
+
 # ==============================================================================
 class SimpleUserInterface(object):
 # ==============================================================================
@@ -131,7 +211,7 @@ class SimpleUserInterface(object):
                 tty.setraw(f)
                 #ch = codecs.getreader(cls.ui_in.encoding)(cls.ui_in).read(1)
                 ch = cls.ui_in.read(1)
-                if ch == CTRL_C:
+                if ch == KEY.CTRL_C:
                     raise KeyboardInterrupt
             finally:
                 termios.tcsetattr(f, termios.TCSADRAIN, m)
@@ -148,27 +228,55 @@ class SimpleUserInterface(object):
             if ch in u'\x00\xe0':
                 # arrow or function key pressed
                 ch = msvcrt.getwch()
-            if ch == CTRL_C:
+            if ch == KEY.CTRL_C:
                 raise KeyboardInterrupt
             return ch
 
+    @classmethod
+    def readkey(cls):
+        u"""read keystroke"""
+        c1 = cls.getchr()
+        if ord(c1) != 0x1b:
+            return c1
+        c2 = cls.getchr()
+        if ord(c2) != 0x5b:
+            return c1 + c2
+        c3 = cls.getchr()
+        if ord(c3) != 0x33:
+            return c1 + c2 + c3
+        c4 = cls.getchr()
+        return c1 + c2 + c3 + c4
 
     @classmethod
-    def get_input(cls, count=None, echo=True, valid_chars=r'.', stop_char=CR):
+    def get_input(cls, count=None, echo=True, valid_chars=r'.', stop_char=KEY.LF):
         u"""read input from UI"""
+        valid_chars = re.compile(valid_chars)
         ret_val = u""
         c = 0
         while count is None or count > c:
             is_valid = False
             while not is_valid:
-                ch = cls.getchr()
-                if ch == CR or valid_chars is None:
+                ch = cls.readkey()
+                if ch == KEY.BACKSPACE:
                     is_valid = True
-                else:
-                    is_valid = bool(re.compile(valid_chars).match(ch))
-            c += 1
+                elif ch == stop_char:
+                    is_valid = True
+                elif valid_chars is None:
+                    is_valid = True
+                    c += 1
+                elif bool(valid_chars.match(ch)):
+                    is_valid = True
+                    c += 1
+
             if ch == stop_char:
                 break
+            if ch == KEY.BACKSPACE:
+                if c:
+                    c -= 1
+                    ret_val = ret_val[:-1]
+                    if echo:
+                        cls.write(KEY.WRITE_DELETE)
+                continue
             ret_val += ch
             if echo:
                 cls.write(ch)
@@ -257,9 +365,9 @@ class SimpleUserInterface(object):
     def fill_line(cls, fill_char=' '):
         u"""console, fill line with ``fill_char`` (default ' ')"""
         line_size = cls._get_usable_line_size()
-        cls.write(CR)
+        cls.write(KEY.LF)
         cls.write(fill_char[0] * line_size)
-        cls.write(CR)
+        cls.write(KEY.LF)
 
     @classmethod
     def wait_key(cls):
@@ -268,9 +376,7 @@ class SimpleUserInterface(object):
         _len = len(msg)
         cls.write(msg)
         _i = cls.get_input(count=1, echo=False)
-        cls.write(BS * _len)
-        cls.write(' ' * _len)
-        cls.write(BS * _len)
+        cls.write(KEY.WRITE_DELETE * _len)
 
     @classmethod
     def ask_choice(cls, msg, choices, default=0):
@@ -288,7 +394,7 @@ class SimpleUserInterface(object):
                 cls.write(str(i+1))
             try:
                 i = int(u) - 1
-                if i < 0 or i > c:
+                if i < 0 or i >= c:
                     i = None
                     cls.write(' <-- ')
                     cls.write('ERROR: invalid choice.')
@@ -300,7 +406,7 @@ class SimpleUserInterface(object):
         return choices[i]
 
     @classmethod
-    def ask(cls, msg, default=None, count=None, echo=True, valid_chars=r'.', stop_char=CR):
+    def ask(cls, msg, default=None, count=None, echo=True, valid_chars=r'.', stop_char=KEY.LF):
         u"""Ask via UI"""
         cls.write("%s " % msg)
         if default is not None:
