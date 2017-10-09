@@ -10,7 +10,7 @@ import six
 from .fspath import FSPath
 
 # ==============================================================================
-def wrapScriptExe(script):
+def wrapScriptExe(script, shebang = u"#!python.exe"):
 # ==============================================================================
     u"""Wraps a single script into a MS-Win ``.exe``.
 
@@ -35,7 +35,7 @@ def wrapScriptExe(script):
 
     origin   = FSPath(script)
     exec_out = origin.suffix('.exe')
-    shebang  = six.b(u"#!python.exe\r\n")
+    shebang  = six.b(shebang + u"\r\n")
     linesep  = os.linesep.encode('utf-8')
 
     script   = origin.readFile()
@@ -51,10 +51,16 @@ def wrapScriptExe(script):
 
     stream = io.BytesIO()
     with ZipFile(stream, 'w') as _f:
-        _f.writestr('__main__.py', script)
+        if six.PY2:
+            _f.writestr('__main__.py', str(script))
+        else:
+            _f.writestr('__main__.py', script)
 
     zip_data = stream.getvalue()
-    script = launcher + shebang + linesep + zip_data
+    if six.PY2:
+        script = launcher + str(shebang + linesep) + zip_data
+    else:
+        script = launcher + shebang + linesep + zip_data
 
     with open(exec_out, "wb") as out:
         out.write(script)
@@ -75,6 +81,6 @@ def wrapScriptExe(script):
     # set_executable_mode(exec_out)
 
 def _cli_py2exe(cli):
-    print("created %s" % wrapScriptExe(cli.script))
+    print("created %s" % wrapScriptExe(cli.script, cli.shebang))
 
 _cli_py2exe.__doc__ = wrapScriptExe.__doc__
