@@ -17,6 +17,8 @@ import time
 
 from textwrap import fill
 
+from .helper import Options
+
 CONSOLE_TYPE = None
 
 if (sys.platform.startswith('linux')
@@ -99,90 +101,108 @@ def consoleDimensionsWIN():
 
     return rows, columns
 
-class KEY(object):  # pylint: disable=too-few-public-methods
-    u"""common keystroke codes"""
-    # common
-    LF = '\x0d'
-    CR = '\x0a'
-    ENTER = '\x0d'
-    BACKSPACE = '\x7f'
-    SUPR = ''
-    SPACE = '\x20'
-    ESC = '\x1b'
 
-    # shortcuts for output:
-    WRITE_DELETE = '\x08 \x08'
+KEY = Options()
 
-    # CTRL
-    CTRL_A = '\x01'
-    CTRL_B = '\x02'
-    CTRL_C = '\x03'
-    CTRL_D = '\x04'
-    CTRL_E = '\x05'
-    CTRL_F = '\x06'
-    CTRL_Z = '\x1a'
+# common
+KEY.LF    = '\x0d'
+KEY.CR    = '\x0a'
+KEY.ENTER = '\x0d'
+KEY.SPACE = '\x20'
+KEY.ESC   = '\x1b'
+KEY.TAB   = '\x09'
+
+# CTRL
+KEY.CTRL_A = '\x01'
+KEY.CTRL_B = '\x02'
+KEY.CTRL_C = '\x03'
+KEY.CTRL_D = '\x04'
+KEY.CTRL_E = '\x05'
+KEY.CTRL_F = '\x06'
+KEY.CTRL_Z = '\x1a'
+
+# ALT
+KEY.ALT_A = '\x1b\x61'
+
+# CTRL + ALT
+KEY.CTRL_ALT_A = '\x1b\x01'
+
+# cursors
+KEY.UP    = '\x1b\x5b\x41'
+KEY.DOWN  = '\x1b\x5b\x42'
+KEY.LEFT  = '\x1b\x5b\x44'
+KEY.RIGHT = '\x1b\x5b\x43'
+
+# other
+KEY.F1  = '\x1b\x4f\x50'
+KEY.F2  = '\x1b\x4f\x51'
+KEY.F3  = '\x1b\x4f\x52'
+KEY.F4  = '\x1b\x4f\x53'
+KEY.F5  = '\x1b\x4f\x31\x35\x7e'
+KEY.F6  = '\x1b\x4f\x31\x37\x7e'
+KEY.F7  = '\x1b\x4f\x31\x38\x7e'
+KEY.F8  = '\x1b\x4f\x31\x39\x7e'
+KEY.F9  = '\x1b\x4f\x32\x30\x7e'
+KEY.F10 = '\x1b\x4f\x32\x31\x7e'
+KEY.F11 = '\x1b\x4f\x32\x33\x7e'
+KEY.F12 = '\x1b\x4f\x32\x34\x7e'
+
+KEY.PAGE_UP   = '\x1b\x5b\x35\x7e'
+KEY.PAGE_DOWN = '\x1b\x5b\x36\x7e'
+
+KEY.HOME    = '\x1b\x5b\x48'
+KEY.END     = '\x1b\x5b\x46'
+KEY.BACKTAB = '\x1b\x5b\x5a'
+
+KEY.BACKSPACE = '\x7f'
+
+KEY.INSERT = '\x1b\x5b\x32\x7e'
+KEY.DELETE = '\x1b\x5b\x33\x7e'
+
+
+if CONSOLE_TYPE == 'cmd':
 
     # ALT
-    ALT_A = '\x1b\x61'
+    KEY.ALT_A = None
 
     # CTRL + ALT
-    CTRL_ALT_A = '\x1b\x01'
+    KEY.CTRL_ALT_A = '\x00\x1e'
 
     # cursors
-    UP = '\x1b\x5b\x41'
-    DOWN = '\x1b\x5b\x42'
-    LEFT = '\x1b\x5b\x44'
-    RIGHT = '\x1b\x5b\x43'
-
-    CTRL_ALT_SUPR = '\x1b\x5b\x33\x5e'
+    KEY.UP    = '\xe0\x49'
+    KEY.DOWN  = '\xe0\x50'
+    KEY.LEFT  = '\xe0\x4b'
+    KEY.RIGHT = '\xe0\x4d'
 
     # other
-    F1 = '\x1b\x4f\x50'
-    F2 = '\x1b\x4f\x51'
-    F3 = '\x1b\x4f\x52'
-    F4 = '\x1b\x4f\x53'
-    F5 = '\x1b\x4f\x31\x35\x7e'
-    F6 = '\x1b\x4f\x31\x37\x7e'
-    F7 = '\x1b\x4f\x31\x38\x7e'
-    F8 = '\x1b\x4f\x31\x39\x7e'
-    F9 = '\x1b\x4f\x32\x30\x7e'
-    F10 = '\x1b\x4f\x32\x31\x7e'
-    F11 = '\x1b\x4f\x32\x33\x7e'
-    F12 = '\x1b\x4f\x32\x34\x7e'
+    KEY.F1  = '\x00\x3b'
+    KEY.F2  = '\x00\x3c'
+    KEY.F3  = '\x00\x3d'
+    KEY.F4  = '\x00\x3e'
+    KEY.F5  = '\x00\x3f'
+    KEY.F6  = '\x00\x40'
+    KEY.F7  = '\x00\x41'
+    KEY.F8  = '\x00\x42'
+    KEY.F9  = '\x00\x43'
+    KEY.F10 = '\x00\x44'
+    KEY.F11 = '\x00\x85'
+    KEY.F12 = '\x00\x86'
 
-    PAGE_UP = '\x1b\x5b\x35\x7e'
-    PAGE_DOWN = '\x1b\x5b\x36\x7e'
-    HOME = '\x1b\x5b\x48'
-    END = '\x1b\x5b\x46'
+    KEY.PAGE_UP   = '\xe0\x49'
+    KEY.PAGE_DOWN = '\xe0\x51'
 
-    INSERT = '\x1b\x5b\x32\x7e'
-    SUPR = '\x1b\x5b\x33\x7e'
+    KEY.HOME    = '\xe0\x47'
+    KEY.END     = '\xe0\x4f'
+    KEY.BACKTAB = None
 
-    ESCAPE_SEQUENCES = (
-        ESC,
-        ESC + '\x5b',
-        ESC + '\x5b' + '\x31',
-        ESC + '\x5b' + '\x32',
-        ESC + '\x5b' + '\x33',
-        ESC + '\x5b' + '\x35',
-        ESC + '\x5b' + '\x36',
-        ESC + '\x5b' + '\x31' + '\x35',
-        ESC + '\x5b' + '\x31' + '\x36',
-        ESC + '\x5b' + '\x31' + '\x37',
-        ESC + '\x5b' + '\x31' + '\x38',
-        ESC + '\x5b' + '\x31' + '\x39',
-        ESC + '\x5b' + '\x32' + '\x30',
-        ESC + '\x5b' + '\x32' + '\x31',
-        ESC + '\x5b' + '\x32' + '\x32',
-        ESC + '\x5b' + '\x32' + '\x33',
-        ESC + '\x5b' + '\x32' + '\x34',
-        ESC + '\x4f',
-        ESC + ESC,
-        ESC + ESC + '\x5b',
-        ESC + ESC + '\x5b' + '\x32',
-        ESC + ESC + '\x5b' + '\x33',
-    )
+    KEY.BACKSPACE = '\x08'
 
+    KEY.INSERT = '\xe0\x52'
+    KEY.DELETE = '\xe0\x53'
+
+
+# shortcuts for output:
+WRITE_DELETE = '\x08 \x08'
 
 # ==============================================================================
 class SimpleUserInterface(object):
@@ -217,35 +237,41 @@ class SimpleUserInterface(object):
                 termios.tcsetattr(f, termios.TCSADRAIN, m)
             return ch
 
+        @classmethod
+        def readkey(cls):
+            u"""read keystroke"""
+            c1 = cls.getchr()
+            if ord(c1) != 0x1b:
+                return c1
+            c2 = cls.getchr()
+            if ord(c2) != 0x5b:
+                return c1 + c2
+            c3 = cls.getchr()
+            if ord(c3) != 0x33:
+                return c1 + c2 + c3
+            c4 = cls.getchr()
+            return c1 + c2 + c3 + c4
+
+
     elif CONSOLE_TYPE == 'cmd':
         @classmethod
         def getchr(cls):
             "Get a single unicode character on Windows."
-            while msvcrt.kbhit():
-                # clear keyboard buffer
-                msvcrt.getwch()
             ch = msvcrt.getwch()
-            if ch in u'\x00\xe0':
-                # arrow or function key pressed
-                ch = msvcrt.getwch()
             if ch == KEY.CTRL_C:
                 raise KeyboardInterrupt
             return ch
 
-    @classmethod
-    def readkey(cls):
-        u"""read keystroke"""
-        c1 = cls.getchr()
-        if ord(c1) != 0x1b:
-            return c1
-        c2 = cls.getchr()
-        if ord(c2) != 0x5b:
+        @classmethod
+        def readkey(cls):
+            u"""read keystroke"""
+            c1 = cls.getchr()
+            if c1 not in u'\x00\xe0':
+                print(hex(ord(c1)))
+                return c1
+            c2 = cls.getchr()
+            print(hex(ord(c1)) + hex(ord(c1)))
             return c1 + c2
-        c3 = cls.getchr()
-        if ord(c3) != 0x33:
-            return c1 + c2 + c3
-        c4 = cls.getchr()
-        return c1 + c2 + c3 + c4
 
     @classmethod
     def get_input(cls, count=None, echo=True, valid_chars=r'.', stop_char=KEY.LF):
@@ -275,7 +301,7 @@ class SimpleUserInterface(object):
                     c -= 1
                     ret_val = ret_val[:-1]
                     if echo:
-                        cls.write(KEY.WRITE_DELETE)
+                        cls.write(WRITE_DELETE)
                 continue
             ret_val += ch
             if echo:
@@ -376,7 +402,7 @@ class SimpleUserInterface(object):
         _len = len(msg)
         cls.write(msg)
         _i = cls.get_input(count=1, echo=False)
-        cls.write(KEY.WRITE_DELETE * _len)
+        cls.write(WRITE_DELETE * _len)
 
     @classmethod
     def ask_choice(cls, msg, choices, default=0):
