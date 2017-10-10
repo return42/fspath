@@ -76,9 +76,13 @@ commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit ess
         , ("Bar", "%-30s", "bar"))
     time.sleep(1)
 
+def _test_ask_fspath():
+    ret = SUI.ask_fspath("enter path name / use [TAB] for complettion\npath: ")
+    SUI.echo('-->%s<--' % ret)
 
 
 def interactive():
+    _test_ask_fspath()
     _test_choice()
     _test_wait_key()
     _test_ask()

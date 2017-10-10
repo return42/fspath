@@ -15,196 +15,22 @@ import sys
 import re
 import time
 
+from glob import glob
 from textwrap import fill
 
-from .helper import Options
+from .fspath import FSPath
+from .console import CONSOLE_TYPE, consoleDimension, KEY
 
-CONSOLE_TYPE = None
-
-if (sys.platform.startswith('linux')
-    or sys.platform.startswith('darwin')
-    or sys.platform.startswith('freebsd')):
+if CONSOLE_TYPE == 'tty':
     import tty     # pylint: disable=E0401
     import termios # pylint: disable=E0401
-    CONSOLE_TYPE = 'tty'
-
-elif sys.platform in ('win32', 'cygwin'):
-    import msvcrt   # pylint: disable=E0401
-    CONSOLE_TYPE = 'cmd'
-else:
-    raise NotImplementedError(
-        'The platform %s is not supported yet' % sys.platform)
-
-
-# ==============================================================================
-def consoleDimension():
-# ==============================================================================
-    u"""Returns count of (row, columns) from current console
-
-    .. hint:
-
-       Since Win-CMD adds a newline if the last column is filled with a
-       character it is recomended to use one column less.
-
-    """
-
-    # pylint: disable=broad-except
-    rows, columns = 25, 80
-
-    if CONSOLE_TYPE == 'cmd':
-        try:
-            rows, columns = consoleDimensionsWIN()
-        except Exception:
-            pass
-    else:
-        try:
-            rows, columns = consoleDimensionsLinux()
-        except Exception:
-            pass
-    try:
-        rows = int(rows)
-    except Exception:
-        pass
-
-    try:
-        columns = int(columns)
-    except Exception:
-        pass
-
-    return rows, columns
-
-def consoleDimensionsLinux():
-    u"""Returns count of (row, columns) from current console"""
-    rows, columns = os.popen('stty size', 'r').read().split()
-    return rows, columns
-
-def consoleDimensionsWIN():
-    u"""Returns count of (row, columns) from current console"""
-    # pylint: disable=too-many-locals
-    from ctypes import windll, create_string_buffer
-
-    # stdin handle is -10
-    # stdout handle is -11
-    # stderr handle is -12
-
-    h = windll.kernel32.GetStdHandle(-12)
-    csbi = create_string_buffer(22)
-    res = windll.kernel32.GetConsoleScreenBufferInfo(h, csbi)
-
-    columns, rows = 80, 25
-    if res:
-        import struct
-        (_bufx, _bufy, _curx, _cury, _wattr,
-         left, top, right, bottom, _maxx, _maxy) = struct.unpack("hhhhHhhhhhh", csbi.raw)
-        columns = right - left + 1
-        rows    = bottom - top + 1
-
-    return rows, columns
-
-
-# pylint: disable-msg=C0103
-KEY = Options(
-    # common
-    LF      = '\x0d'
-    , CR    = '\x0a'
-    , ENTER = '\x0d'
-    , SPACE = '\x20'
-    , ESC   = '\x1b'
-    , TAB   = '\x09'
-
-    # CTRL
-    , CTRL_A = '\x01'
-    , CTRL_B = '\x02'
-    , CTRL_C = '\x03'
-    , CTRL_D = '\x04'
-    , CTRL_E = '\x05'
-    , CTRL_F = '\x06'
-    , CTRL_Z = '\x1a'
-
-    # ALT
-    , ALT_A = '\x1b\x61'
-
-    # CTRL + ALT
-    , CTRL_ALT_A = '\x1b\x01'
-
-    # cursors
-    , UP    = '\x1b\x5b\x41'
-    , DOWN  = '\x1b\x5b\x42'
-    , LEFT  = '\x1b\x5b\x44'
-    , RIGHT = '\x1b\x5b\x43'
-
-    # other
-    , F1  = '\x1b\x4f\x50'
-    , F2  = '\x1b\x4f\x51'
-    , F3  = '\x1b\x4f\x52'
-    , F4  = '\x1b\x4f\x53'
-    , F5  = '\x1b\x4f\x31\x35\x7e'
-    , F6  = '\x1b\x4f\x31\x37\x7e'
-    , F7  = '\x1b\x4f\x31\x38\x7e'
-    , F8  = '\x1b\x4f\x31\x39\x7e'
-    , F9  = '\x1b\x4f\x32\x30\x7e'
-    , F10 = '\x1b\x4f\x32\x31\x7e'
-    , F11 = '\x1b\x4f\x32\x33\x7e'
-    , F12 = '\x1b\x4f\x32\x34\x7e'
-
-    , PAGE_UP   = '\x1b\x5b\x35\x7e'
-    , PAGE_DOWN = '\x1b\x5b\x36\x7e'
-
-    , HOME    = '\x1b\x5b\x48'
-    , END     = '\x1b\x5b\x46'
-    , BACKTAB = '\x1b\x5b\x5a'
-
-    , BACKSPACE = '\x7f'
-
-    , INSERT = '\x1b\x5b\x32\x7e'
-    , DELETE = '\x1b\x5b\x33\x7e'
-    )
-
 
 if CONSOLE_TYPE == 'cmd':
-    # pylint: disable=invalid-name
-
-    # ALT
-    KEY.ALT_A = None
-
-    # CTRL + ALT
-    KEY.CTRL_ALT_A = '\x00\x1e'
-
-    # cursors
-    KEY.UP    = '\xe0\x49'
-    KEY.DOWN  = '\xe0\x50'
-    KEY.LEFT  = '\xe0\x4b'
-    KEY.RIGHT = '\xe0\x4d'
-
-    # other
-    KEY.F1  = '\x00\x3b'
-    KEY.F2  = '\x00\x3c'
-    KEY.F3  = '\x00\x3d'
-    KEY.F4  = '\x00\x3e'
-    KEY.F5  = '\x00\x3f'
-    KEY.F6  = '\x00\x40'
-    KEY.F7  = '\x00\x41'
-    KEY.F8  = '\x00\x42'
-    KEY.F9  = '\x00\x43'
-    KEY.F10 = '\x00\x44'
-    KEY.F11 = '\x00\x85'
-    KEY.F12 = '\x00\x86'
-
-    KEY.PAGE_UP   = '\xe0\x49'
-    KEY.PAGE_DOWN = '\xe0\x51'
-
-    KEY.HOME    = '\xe0\x47'
-    KEY.END     = '\xe0\x4f'
-    KEY.BACKTAB = None
-
-    KEY.BACKSPACE = '\x08'
-
-    KEY.INSERT = '\xe0\x52'
-    KEY.DELETE = '\xe0\x53'
-
+    import msvcrt  # pylint: disable=E0401
 
 # shortcuts for output:
-WRITE_DELETE = '\x08 \x08'
+WRITE_DELETE    = '\x08 \x08'
+WRITE_BACKSPACE = '\x08'
 
 # ==============================================================================
 class SimpleUserInterface(object):
@@ -224,6 +50,8 @@ class SimpleUserInterface(object):
             self.ui_out = cli.OUT
 
     if CONSOLE_TYPE == 'tty':
+        import tty     # pylint: disable=E0401
+        import termios # pylint: disable=E0401
         @classmethod
         def getchr(cls):
             "Get a single unicode character on Linux & Unix."
@@ -256,6 +84,7 @@ class SimpleUserInterface(object):
 
 
     elif CONSOLE_TYPE == 'cmd':
+        import msvcrt   # pylint: disable=E0401
         @classmethod
         def getchr(cls):
             "Get a single unicode character on Windows."
@@ -434,6 +263,58 @@ class SimpleUserInterface(object):
         return choices[i]
 
     @classmethod
+    def ask_fspath(cls, msg="enter path name: ", default=None):
+        u"""Ask for path name with [TAB] completion"""
+        # pylint: disable=too-many-branches
+        if default is None:
+            default = FSPath.getCWD().VALUE
+        in_fspath = default
+        stop_char = KEY.LF
+
+        prompt = _PathMinibuffer(msg, cls)
+        prompt(default)
+
+        while 1:
+            ch = cls.readkey()
+            if ch == stop_char:
+                break
+            elif ch == KEY.BACKSPACE:
+                if in_fspath:
+                    in_fspath = in_fspath[:-1]
+                    prompt(in_fspath)
+
+            elif ch == KEY.TAB:
+                compl = [re.sub(r"^" + in_fspath, '', p, count=1)
+                         for p in glob(in_fspath + '.*') + glob(in_fspath + '*')]
+                if not compl:
+                    pass
+                if len(compl) == 1:
+                    new = in_fspath + compl[0]
+                    if os.path.isdir(new) and new[-1] != os.sep:
+                        new += os.sep
+                    in_fspath = new
+                    prompt(in_fspath)
+                else:
+                    new = os.path.commonprefix(compl)
+                    if new:
+                        in_fspath += new
+                        prompt(in_fspath)
+                    else:
+                        info = set()
+                        for p in compl:
+                            info.add(p[0])
+                        if info:
+                            info = list(info)
+                            info.sort(key=str.lower)
+                            info = "  [" + "|".join(info) + "]"
+                            prompt(in_fspath, info)
+
+            elif ch not in KEY.values() and len(ch) == 1:
+                in_fspath += ch
+                prompt(in_fspath)
+        return FSPath(in_fspath).ABSPATH
+
+    @classmethod
     def ask(cls, msg, default=None, count=None, echo=True, valid_chars=r'.', stop_char=KEY.LF):
         u"""Ask via UI"""
         cls.write("%s " % msg)
@@ -470,6 +351,30 @@ class SimpleUserInterface(object):
 
 
 SUI = SimpleUserInterface()
+
+class _PathMinibuffer(object):
+    # pylint: disable=too-few-public-methods
+
+    def __init__(self, msg, sui):
+        self.sui = sui
+        self.init_flag = False
+        if msg[-1] == "\n":
+            self.prefix = ""
+        else:
+            msg = msg.splitlines()
+            self.msg = "\n".join(msg[:-1]) + "\n"
+            self.prefix = msg[-1]
+
+    def __call__(self, new_path, info=""):
+        if info:
+            info = " %s" % info
+        if not self.init_flag:
+            self.sui.write(self.msg)
+            self.init_flag = True
+
+        self.sui.fill_line(" ")
+        self.sui.write(self.prefix + new_path + info)
+        self.sui.write(WRITE_BACKSPACE * len(info))
 
 # ==============================================================================
 class ASCIITableFormatter(object):

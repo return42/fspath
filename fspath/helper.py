@@ -54,5 +54,3 @@ class OptionsWithDefault(Options):
 
     def __getattr__(self, attr):
         return self.get(attr, self["__default"])
-
-

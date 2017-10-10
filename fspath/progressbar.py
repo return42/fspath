@@ -6,7 +6,7 @@ A progress bar for the console.
 
 import sys
 
-from .sui import consoleDimension
+from .console import consoleDimension
 
 # ==============================================================================
 def humanizeBytes(size, precision=2):
