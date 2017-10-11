@@ -98,7 +98,6 @@ class SimpleUserInterface(object):
             u"""read keystroke"""
             c1 = cls.getchr()
             if c1 not in u'\x00\xe0':
-                print(hex(ord(c1)))
                 return c1
             c2 = cls.getchr()
             print(hex(ord(c1)) + hex(ord(c1)))
@@ -284,7 +283,7 @@ class SimpleUserInterface(object):
                     prompt(in_fspath)
 
             elif ch == KEY.TAB:
-                compl = [re.sub(r"^" + in_fspath, '', p, count=1)
+                compl = [re.sub(r"^" + re.escape(in_fspath), '', p, count=1)
                          for p in glob(in_fspath + '.*') + glob(in_fspath + '*')]
                 if not compl:
                     pass
