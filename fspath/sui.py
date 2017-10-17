@@ -10,6 +10,7 @@ This module is in a very early stage, don't use it!
 # imports
 # ==============================================================================
 
+import six
 import os
 import sys
 import re
@@ -301,14 +302,17 @@ class SimpleUserInterface(object):
                     else:
                         info = set()
                         for p in compl:
-                            info.add(p[0])
+                            if p:
+                                info.add(p[0])
                         if info:
                             info = list(info)
-                            info.sort(key=str.lower)
+                            info.sort(key=six.text_type.lower)
                             info = "  [" + "|".join(info) + "]"
                             prompt(in_fspath, info)
 
-            elif ch not in KEY.values() and len(ch) == 1:
+            elif (len(ch) == 1
+                  and (ch == KEY.SPACE
+                       or ch not in KEY.values())):
                 in_fspath += ch
                 prompt(in_fspath)
         return FSPath(in_fspath).ABSPATH
