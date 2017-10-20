@@ -10,7 +10,6 @@ This module is in a very early stage, don't use it!
 # imports
 # ==============================================================================
 
-import six
 import os
 import sys
 import re
@@ -18,6 +17,8 @@ import time
 
 from glob import glob
 from textwrap import fill
+
+import six
 
 from .fspath import FSPath
 from .console import CONSOLE_TYPE, consoleDimension, KEY
