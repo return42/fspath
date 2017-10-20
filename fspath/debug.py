@@ -15,10 +15,11 @@ import socket
 import pdb
 import inspect
 import linecache
+import time
 
 from code   import InteractiveConsole
 from codeop import CommandCompiler
-
+from telnetlib import Telnet
 import six
 
 __all__ = ['Console', 'RemoteConsole', 'RemotePdb', 'rtrace', 'trace']
@@ -311,6 +312,22 @@ def rtrace(port=4444, frame=None):
     """
     frame = frame or inspect.currentframe().f_back
     RemotePdb(port).set_trace(frame=frame)
+
+# ==============================================================================
+def rtrace_client(host=socket.gethostname(), port=4444, polltime=None):
+# ==============================================================================
+
+    ERROR("open telnet session to host '%s' port '%s'" % (host,port))
+    while True:
+        try:
+            t = Telnet(host, port)
+            t.interact()
+            t.close()
+        except Exception:
+            pass
+        if polltime is None:
+            break
+        time.sleep(polltime)
 
 
 # def _test():
