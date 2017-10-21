@@ -144,8 +144,7 @@ class RemoteConsole(Console):
 
     EOF = 'EOF'
 
-    def interact(self, port, banner=None):
-        addr = socket.gethostname()
+    def interact(self, port, addr="127.0.0.1", banner=None):
 
         old_stdout = sys.stdout
         old_stderr = sys.stderr
@@ -159,7 +158,7 @@ class RemoteConsole(Console):
         (conn, remote) = skt.accept()
         ERROR("got connection from %s:%s" % remote)
         rwStream = conn.makefile('rw', 0)
-        #ERROR("redirect")
+        ERROR("redirect")
         sys.stderr = sys.stdout = sys.stdin = rwStream
 
         try:
@@ -246,9 +245,8 @@ run an interactive console in the current frame.
 class RemotePdb(Pdb): # pylint: disable=R0904
 # ==============================================================================
 
-    def __init__(self, port):
+    def __init__(self, port, addr="127.0.0.1"):
         """Initialize the socket and initialize pdb."""
-        addr = socket.gethostname()
 
         self.old_stdout = sys.stdout
         self.old_stderr = sys.stderr
@@ -278,7 +276,6 @@ class RemotePdb(Pdb): # pylint: disable=R0904
         except Exception as exc: # pylint: disable=W0703
             ERROR("error on closing socket: " + str(exc))
 
-
         ERROR("re-redirect")
         sys.stdout = self.old_stdout
         sys.stderr = self.old_stderr
@@ -305,22 +302,21 @@ def trace(frame=None):
     Pdb().set_trace(frame=frame)
 
 # ==============================================================================
-def rtrace(port=4444, frame=None):
+def rtrace(port=4444, addr="127.0.0.1", frame=None):
 # ==============================================================================
 
     u"""A breakpoint, starting a ``RemotePdb`` session. Default port ist 4444
     """
     frame = frame or inspect.currentframe().f_back
-    RemotePdb(port).set_trace(frame=frame)
+    RemotePdb(port, addr).set_trace(frame=frame)
 
 # ==============================================================================
-def rtrace_client(host=socket.gethostname(), port=4444, polltime=None):
+def rtrace_client(port=4444, addr="127.0.0.1", polltime=None):
 # ==============================================================================
 
-    ERROR("open telnet session to host '%s' port '%s'" % (host,port))
     while True:
         try:
-            t = Telnet(host, port)
+            t = Telnet(addr, port)
             t.interact()
             t.close()
         except Exception:
