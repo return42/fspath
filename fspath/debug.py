@@ -310,13 +310,38 @@ def rtrace(port=4444, addr="127.0.0.1", frame=None):
     frame = frame or inspect.currentframe().f_back
     RemotePdb(port, addr).set_trace(frame=frame)
 
+
+# ==============================================================================
+class DumpTelnet(Telnet):
+# ==============================================================================
+
+    u"""Inheritance fixing ``telnetlib.Telnet`` where it fails.
+    """
+    def listener(self):
+        """Helper for mt_interact() -- this executes in the other thread."""
+        while 1:
+            try:
+                data = self.read_eager()
+            except EOFError:
+                six.print_('*** Connection closed by remote host ***')
+                return
+            if data:
+                if six.PY3:
+                    sys.stdout.write(data.decode('ascii'))
+                else:
+                    sys.stdout.write(data)
+            else:
+                sys.stdout.flush()
+            # without sleep cpu usage is 100%
+            time.sleep(0.01)
+
 # ==============================================================================
 def rtrace_client(port=4444, addr="127.0.0.1", polltime=None):
 # ==============================================================================
 
     while True:
         try:
-            t = Telnet(addr, port)
+            t = DumpTelnet(addr, port)
             t.interact()
             t.close()
         except Exception:
