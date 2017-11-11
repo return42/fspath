@@ -75,7 +75,7 @@ class FSPath(six.text_type):  # pylint: disable=too-many-public-methods
 
     .. code-block:: python
 
-      >>> arch.download(url, chunkSize=1024, ticker=True)
+      >>> arch.download(url, chunksize=1024, ticker=True)
       /home/user/tmp/foo/fspath.zip: [87.9 KB][===============    ]  83%
 
    ``FSPath.extract`` -- extract in one step, no matter ZIP or TAR
@@ -395,11 +395,11 @@ class FSPath(six.text_type):  # pylint: disable=too-many-public-methods
                    , [self.__class__(x) for x in dirnames]
                    , [self.__class__(x) for x in filenames])
 
-    def reMatchFind(self, name, isFile=True, isDir=True, followlinks=False, relpath=False):
+    def reMatchFind(self, name, use_files=True, use_dirs=True, followlinks=False, relpath=False):
         u"""Returns iterator which yields matching path names
 
-        :param isFile:      iterator includes names of files
-        :param isDir:       iterator includes names of folders
+        :param use_files:   iterator includes names of files
+        :param use_dirs:    iterator includes names of folders
         :param followlinks: follow symbolic links
 
         To find all C and header files use::
@@ -413,22 +413,22 @@ class FSPath(six.text_type):  # pylint: disable=too-many-public-methods
 
         name_re = re.compile(name)
         for folder, dirnames, filenames in self.walk(followlinks=followlinks):
-            if isDir:
+            if use_dirs:
                 for d_name in [x for x in dirnames if name_re.match(x)]:
                     obj = folder / d_name
                     if relpath:
                         obj = obj.relpath(self)
                     yield obj
-            if isFile:
+            if use_files:
                 for f_name in [x for x in filenames if name_re.match(x)]:
                     obj = folder / f_name
                     if relpath:
                         obj = obj.relpath(self)
                     yield obj
 
-    def suffix(self, newSuffix):
-        u"""Return path name with ``newSuffix``"""
-        return self.__class__(self.SKIPSUFFIX + newSuffix)
+    def suffix(self, new_suffix):
+        u"""Return path name with ``new_suffix``"""
+        return self.__class__(self.SKIPSUFFIX + new_suffix)
 
     def copyfile(self, dest, preserve=False):
         u"""Copy the file src to the file or directory dest.
@@ -522,7 +522,7 @@ class FSPath(six.text_type):  # pylint: disable=too-many-public-methods
         with self.openTextFile(encoding=encoding, errors=errors) as f:
             return f.read()
 
-    def extract(self, folder=".", pwd=None):
+    def extract(self, folder=".", pwd=None, ticker=False, pipe=sys.stdout):
         u"""Extract TAR or ZIP archive to 'folder'
 
         Uses ``extractall`` from :py:class:`tarfile.TarFile` and
@@ -532,22 +532,67 @@ class FSPath(six.text_type):  # pylint: disable=too-many-public-methods
         :pwd str: password for crypted (only ZIP)
         :return: members in an iterable form (list or just iterator)
         """
+
+        class ArchiveMember(object): # pylint: disable=missing-docstring, too-few-public-methods
+            u"""wrapper for an archive member (tar or zip members)"""
+            def __init__(self, member, archive):
+                self.ISTAR       = isinstance(archive, tarfile.TarFile)
+                self.ISZIP       = isinstance(archive, zipfile.ZipFile)
+                self.archive     = archive
+                if self.ISTAR:
+                    self.member  = member
+                    self.name    = FSPath(member.name)
+                    self.size    = member.size
+                elif self.ISZIP:
+                    self.member  = self.archive.getinfo(member)
+                    self.name    = FSPath(self.member.filename)
+                    self.size    = self.member.file_size
+
+            def extract(self, folder="", pwd=None):
+                u"""wrapped extract member function"""
+                if self.ISTAR:
+                    self.archive.extract(self.member, folder or "")
+                elif self.ISZIP:
+                    self.archive.extract(self.member, folder or None, pwd)
+                else:
+                    raise tarfile.ExtractError("%s archive type is unknown" % self.member)
+
+        if self.ISTAR:
+            arc = tarfile.open(self, 'r:*')
+            am  = list(arc.getmembers())
+            mx  = len(am)
+        elif self.ISZIP:
+            arc = zipfile.ZipFile(self)
+            am  = list(arc.namelist())
+            mx  = len(am)
+        else:
+            raise tarfile.ExtractError("%s archive type is unknown" % self)
+
+        if ticker and not isinstance(ticker, bool):
+            tick_func = ticker
+        else:
+            def tick_func(member, counter, max_count):
+                u"""extract's default ticker"""
+                n = member.name.BASENAME
+                progressbar(counter, max_count
+                            , prompt = "extract: %-20s" % (n if len(n) < 20 else n + "..")
+                            , pipe   = pipe)
+
         folder = self.__class__(folder)
         if not folder.EXISTS:
             folder.makedirs()
-        members = None
-        if self.ISTAR:
-            arc = tarfile.TarFile(self)
-            members = arc
-            arc.extractall(path=str(folder.ABSPATH), members=members)
 
-        elif self.ISZIP:
-            arc = zipfile.ZipFile(self)
-            members = arc.namelist()
-            arc.extractall(str(folder.ABSPATH), members , pwd)
+        members = []
+        for c, m in enumerate(am, start=1):
+            m = ArchiveMember(m, arc)
+            members.append(m)
+            if ticker:
+                tick_func(m, c, mx)
+            m.extract(folder, pwd)
 
-        else:
-            raise tarfile.ExtractError("%s archive type is unknown" % self)
+        if ticker and isinstance(ticker, bool):
+            pipe.write('\n')
+
         return members
 
 
@@ -582,10 +627,10 @@ class FSPath(six.text_type):  # pylint: disable=too-many-public-methods
         defaults.update(kwargs)
         return subprocess.Popen([self,] + list(args), **defaults)
 
-    def download(self, url, chunkSize=1048576, ticker=False, pipe=sys.stdout):
+    def download(self, url, chunksize=1048576, ticker=False, pipe=sys.stdout):
         u"""Download URL into file
 
-        The default chunkSize is 1048576 Bytes, with ticker=True an progress-bar
+        The default chunksize is 1048576 Bytes, with ticker=True an progress-bar
         is prompted.
 
         E.g. to download FSPath's README.rst with a progressbar on stdout::
@@ -596,29 +641,30 @@ class FSPath(six.text_type):  # pylint: disable=too-many-public-methods
             readme.download(url, ticker=True)
         """
 
-        downBytes  = 0
-        totalBytes = 0
-
-        def __ticker():
-            if ticker and totalBytes:
-                progressbar(downBytes, totalBytes, prompt=prompt, pipe=pipe)
+        if ticker and not isinstance(ticker, bool):
+            tick_func = ticker
+        else:
+            def tick_func(fname, down_bytes, max_bytes):
+                u"""download's default ticker"""
+                progressbar(down_bytes, max_bytes
+                            , prompt = "download: %s[%s]" % (fname.BASENAME, humanizeBytes(max_bytes, 1))
+                            , pipe   = pipe)
 
         with closing(urlopen(url)) as d:
             with open(self, "wb") as f:
                 # pylint: disable=no-member
-                totalBytes = int(d.headers.get("Content-Length", 0))
-                if chunkSize is None:
-                    chunkSize = totalBytes // 100
-                prompt = "%s: [%s]" % (
-                    self, humanizeBytes(totalBytes, 1))
-                __ticker()
+                max_bytes  = int(d.headers.get("Content-Length", 0))
+                down_bytes = 0
+                if chunksize is None:
+                    chunksize = max_bytes // 100
                 while 1:
-                    x = d.read(chunkSize)
+                    x = d.read(chunksize)
                     if not bool(len(x)):
                         break
                     f.write(x)
-                    downBytes += len(x)
-                    __ticker()
+                    down_bytes += len(x)
+                    if ticker:
+                        tick_func(self, down_bytes, max_bytes)
                 if ticker:
                     pipe.write('\n')
 

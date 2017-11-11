@@ -21,7 +21,7 @@ def _cli_download_url(cli):
     if cli.fname.EXISTS:
         raise cli.Error(42, "file %s already exists" % cli.fname)
 
-    cli.fname.download(cli.url, ticker=verbose, pipe=cli.OUT)
+    cli.fname.download(cli.url, chunksize=cli.chunksize, ticker=verbose, pipe=cli.OUT)
     if verbose:
         cli.OUT.write("download of '%s' succeed\n" % cli.fname)
 
@@ -33,13 +33,18 @@ def _cli_find_file(cli):
         fspath find ".*\\.py$"  .
     """
     for match in cli.folder.reMatchFind(
-            cli.regexpr, isDir=(not cli.nodirs), isFile=(not cli.nofiles)):
+            cli.regexpr, use_dirs=(not cli.nodirs), use_files=(not cli.nofiles)):
         cli.OUT.write(match + "\n")
 
 def _cli_extract(cli):
     u"""extract TAR or ZIP file"""
-
-    cli.archive.extract(cli.folder)
+    verbose = False
+    try:
+        verbose = cli.OUT.isatty()
+    except AttributeError:
+        pass
+    verbose = (verbose and not cli.quiet)
+    cli.archive.extract(cli.folder, ticker=verbose)
 
 # ==============================================================================
 def main():
@@ -71,6 +76,12 @@ def main():
         "url"
         , type = str
         , help = "url of the content to download")
+
+    download.add_argument(
+        "--chunksize"
+        , type  = int
+        , default = 1048576
+        , help = "download chunk size")
 
     download.add_argument(
         "-q", "--quiet"
