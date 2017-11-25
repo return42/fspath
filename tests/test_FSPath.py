@@ -17,7 +17,8 @@ def test_download():
         arch.delete()
     assert not arch.EXISTS
 
-    arch.download(url, chunkSize=1024, ticker=True)
+    arch.download(url,
+                  chunksize=1024, ticker=True)
     assert arch.EXISTS
     assert arch.SIZE > MIN_FILESIZE
 

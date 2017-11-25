@@ -241,7 +241,7 @@ fspath package
    .. rv_code::
       :class: python
 
-      >>> arch.download(url, chunkSize=1024, ticker=True)
+      >>> arch.download(url, chunksize=1024, ticker=True)
       /home/user/tmp/foo/fspath.zip: [87.9 KB][==============    ]  83%
 
    ``.extract`` -- extract in one step, no matter ZIP or TAR
