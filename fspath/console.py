@@ -147,7 +147,6 @@ KEY = Options(
 
 
 if CONSOLE_TYPE == 'cmd':
-    # pylint: disable=invalid-name
 
     # ALT
     KEY.ALT_A = None

@@ -275,7 +275,7 @@ class SimpleUserInterface(object):
         prompt = _PathMinibuffer(msg, cls)
         prompt(default)
 
-        while 1:
+        while 1: # pylint: disable=too-many-nested-blocks
             ch = cls.readkey()
             if ch == stop_char:
                 break

@@ -27,14 +27,14 @@ __all__ = ['Console', 'RemoteConsole', 'RemotePdb', 'rtrace', 'trace']
 # ==============================================================================
 def ERROR(msg): # pylint: disable=C0103
 # ==============================================================================
-
+    u"""error message"""
     sys.__stderr__.write(msg + "\n")
     sys.__stderr__.flush()
 
 # ==============================================================================
 def descrFrame(frame, arround=3):
 # ==============================================================================
-
+    u"""get description of the code frame"""
     fName  = frame.f_code.co_filename
     lineNo = frame.f_lineno
     lines = []
@@ -65,6 +65,7 @@ class Console(InteractiveConsole):
 
     EOF = None
 
+    # pylint: disable=super-init-not-called
     def __init__(self, local_ns=None, global_ns=None, filename="<console>"):
         if local_ns is None:
             local_ns = {"__name__": "__console__", "__doc__": None}
@@ -144,7 +145,7 @@ class RemoteConsole(Console):
 
     EOF = 'EOF'
 
-    def interact(self, port, addr="127.0.0.1", banner=None):
+    def interact(self, port, addr="127.0.0.1", banner=None): # pylint: disable=arguments-differ
 
         old_stdout = sys.stdout
         old_stderr = sys.stderr
@@ -184,7 +185,7 @@ class RemoteConsole(Console):
         ERROR("connection %s:%s closed" % remote)
 
     @classmethod
-    def run(cls, port, local_ns=None, global_ns=None
+    def run(cls, port, local_ns=None, global_ns=None  # pylint: disable=arguments-differ
             , banner=None, filename="<console>"
             , frame=None, EOF=None):
         u"""Starts a remote console
@@ -222,6 +223,8 @@ class RemoteConsole(Console):
 class Pdb(pdb.Pdb):  # pylint: disable=R0904
 # ==============================================================================
 
+    # pylint: disable=no-self-use, missing-docstring
+    u"""Abstraction Layer for PDB"""
     def do_src(self, arg):
         if not arg:
             arg = 3
@@ -244,7 +247,10 @@ run an interactive console in the current frame.
 # ==============================================================================
 class RemotePdb(Pdb): # pylint: disable=R0904
 # ==============================================================================
+    u"""Simple remote PDB"""
 
+    # pylint: disable=no-self-use, missing-docstring
+    # pylint: disable=super-init-not-called
     def __init__(self, port, addr="127.0.0.1"):
         """Initialize the socket and initialize pdb."""
 
@@ -261,11 +267,11 @@ class RemotePdb(Pdb): # pylint: disable=R0904
         ERROR("got connection from %s:%s" % self.remote)
         self.rwStream = conn.makefile('rw', 0)
         sys.stderr = sys.stdout = sys.stdin = self.rwStream
-        pdb.Pdb.__init__(self, completekey='tab')
+        Pdb.__init__(self, completekey='tab')
         ERROR("pdb inited")
 
     def shutdown(self):
-
+        u"""shutdown PDB's' REPL"""
         try:
             self.rwStream.close()
         except Exception as exc: # pylint: disable=W0703
@@ -338,13 +344,13 @@ class DumpTelnet(Telnet):
 # ==============================================================================
 def rtrace_client(port=4444, addr="127.0.0.1", polltime=None):
 # ==============================================================================
-
+    u"""Set breakpoint for remote debugging"""
     while True:
         try:
             t = DumpTelnet(addr, port)
             t.interact()
             t.close()
-        except Exception:
+        except Exception: # pylint: disable=broad-except
             pass
         if polltime is None:
             break
