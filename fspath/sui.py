@@ -1,6 +1,6 @@
 # -*- mode: python; coding: utf-8 -*-
 """
-Simple user interface via terminal (win & *nix)
+Simple user interface via terminal (win & \*nix)
 
 This module is in a very early stage, don't use it!
 """
@@ -38,7 +38,7 @@ WRITE_BACKSPACE = '\x08'
 class SimpleUserInterface(object):
 # ==============================================================================
 
-    """Simple console based user interface (win & *nix)"""
+    """Simple console based user interface (win & \*nix)"""
 
     ui_out = sys.stdout
     ui_in  = sys.stdin
@@ -191,10 +191,11 @@ class SimpleUserInterface(object):
         is a list of tuple.
 
         :param list rows: iterable type of dictionaries with the col/value
-        :param list *fmt: iterable type of tuples to format the table
+        :param list \*fmt: iterable type of tuples to format the table
         :param int level: indentaion level
 
         .. code-block:: python
+
            SUI.rst_table(
                test_rows
                # <col-title>, <format sting>, <attribute name>
