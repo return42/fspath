@@ -308,6 +308,11 @@ err_msg() {
     echo -e "${BRed}ERROR:${_color_Off} $*" >&2
 }
 # ----------------------------------------------------------------------------
+warn_msg() {
+# ----------------------------------------------------------------------------
+    echo -e "${BBlue}WARN:${_color_Off} $*" >&2
+}
+# ----------------------------------------------------------------------------
 info_msg() {
 # ----------------------------------------------------------------------------
     echo -e "${BYellow}INFO:${_color_Off} $*"
@@ -739,23 +744,47 @@ merge3FilesWithEmacs(){
     emacs -nw --no-desktop --eval "\
 (progn \
   (setq ediff-quit-hook 'kill-emacs)   \
-  (ediff-merge-files-with-ancestor \"$1\" \"$2\" \"$3\" nil \"$4\"))  \
-"
-    #emacsclient -nw --eval "(ediff-merge-files-with-ancestor \"$1\" \"$2\" \"$3\" nil \"$4\")"
+  (ediff-merge-files-with-ancestor \"$1\" \"$2\" \"$3\" nil \"$4\"))"
 }
 
 # ----------------------------------------------------------------------------
 merge2FilesWithEmacs(){
 # ----------------------------------------------------------------------------
-    #set -x
+
+    # usage:
+    #
+    #    merge2FilesWithEmacs file-A file-B merge-buffer-file
+
     emacs -nw --no-desktop --eval "\
 (progn \
   (setq ediff-quit-hook 'kill-emacs)   \
-  (ediff-merge-files \"$1\" \"$2\" nil \"$3\"))  \
-"
-    #emacsclient -nw --eval "(ediff-merge-files \"$1\" \"$2\" nil \"$3\")"
-    #set +x
+  (ediff-merge-files \"$1\" \"$2\" nil \"$3\"))"
 }
+
+# ----------------------------------------------------------------------------
+merge3FilesWithMeld(){
+# ----------------------------------------------------------------------------
+
+    # usage:
+    #
+    #    merge3FilesWithMeld {mine} {yours} {ancestor} {merged}
+
+    # meld "$LOCAL" "$BASE" "$REMOTE" --output "$MERGED"
+    meld "$1" "$3" "$2" --output "$4"
+
+}
+
+# ----------------------------------------------------------------------------
+merge2FilesWithMeld(){
+# ----------------------------------------------------------------------------
+
+    # usage:
+    #
+    #    merge2FilesWithMeld {my-file} {your-file} {merged-file}
+
+    meld "$1" "$2" --output "$3"
+}
+
 
 # ----------------------------------------------------------------------------
 cmp3Files() {
@@ -1420,18 +1449,26 @@ TEMPLATES_InstallOrMerge() {
     # Installiert die angegebene Datei aus dem ${TEMPLATES} Ordner, sofern diese
     # am Zielort nicht bereits existiert. Im Falle, dass die Datei im Ziel
     # bereits existiert oder es eine Sicherung im ${CONFIG}-Ordner gibt, wird
-    # ein Merge durchgeführt.
+    # ein Merge durchgeführt. Mit dem Schalter --eval wird die Template Datei
+    # vorher noch evaluiert (``echo "$(cat ${TEMPLATES}${dst})"``)
     #
     # usage:
     #
-    #     TEMPLATES_InstallOrMerge {file} [{owner} [{group} [{chmod}]]]
+    #     TEMPLATES_InstallOrMerge [--eval] {file} [{owner} [{group} [{chmod}]]]
     #
     #     TEMPLATES_InstallOrMerge /etc/updatedb.conf root root 644
 
+    local do_eval=0
+    if [[ "$1" == "--eval" ]]; then
+        do_eval=1; shift
+    fi
     local dst="${1}"
     local owner=${2-$(id -un)}
     local group=${3-$(id -gn)}
     local chmod=${4-755}
+    local parent_folder=$(dirname "${1}")
+
+    info_msg "install: ${dst}"
 
     if [[ ! -f "${CONFIG}${dst}" && ! -f "${TEMPLATES}${dst}" ]] ; then
         err_msg "none of this (source) files exists"
@@ -1441,14 +1478,28 @@ TEMPLATES_InstallOrMerge() {
         waitKEY
         return 42
     fi
-    echo
-    info_msg "install: ${dst}"
-    if [[ -f "${dst}" ]] ; then
-        info_msg "file allready exists on this host"
-    fi
-    info_msg "determine template file(s)"
 
-    if [[ -f "${dst}" && -f "${CONFIG}${dst}" && -f "${TEMPLATES}${dst}" ]] ; then
+    local template_file="${TEMPLATES}${dst}"
+    if [[ "$do_eval" == "1" ]]; then
+        info_msg "BUILD template ${BRed}${template_file}${_color_Off}"
+        if [[ -f "${TEMPLATES}${dst}" ]] ; then
+            template_file="${CACHE}${dst}"
+            mkdir -p $(dirname "${template_file}")
+            eval "echo \"$(cat ${TEMPLATES}${dst})\"" > "${template_file}"
+        else
+            err_msg "  FAILED ${template_file}"
+            return 42
+        fi
+    fi
+
+    if [[ -f "${dst}" ]] ; then
+        info_msg "file ${dst} allready exists on this host"
+    fi
+    info_msg "examine <prefix>${dst} file(s)"
+
+    mkdir -pv "$parent_folder"
+
+    if [[ -f "${dst}" && -f "${CONFIG}${dst}" && -f "${template_file}" ]] ; then
 
         # Es existieren alle drei Dateien (Ziel, TEMPLATES u. CONFIG).  Es wird
         # ein Merge aller drei Dateien durchgeführt. Als "gemeinsammer Vorfahre"
@@ -1469,7 +1520,7 @@ TEMPLATES_InstallOrMerge() {
 
         while true; do
 
-            merge3Files "${dst}" "${TEMPLATES}${dst}" "${CONFIG}${dst}"
+            merge3Files "${dst}" "${template_file}" "${CONFIG}${dst}"
             exitCode=$?
 
             if [[ $exitCode == 0 ]]; then
@@ -1488,7 +1539,7 @@ TEMPLATES_InstallOrMerge() {
             fi
         done
 
-    elif [[ -f "${dst}" && -f "${TEMPLATES}${dst}" ]] ; then
+    elif [[ -f "${dst}" && -f "${template_file}" ]] ; then
 
         # Die Zieldatei existiert, es gibt ein TEMPLATE aber es gibt keine
         # Sicherung
@@ -1498,7 +1549,7 @@ TEMPLATES_InstallOrMerge() {
 
         while true; do
 
-            merge2Files "${dst}" "${TEMPLATES}${dst}"
+            merge2Files "${dst}" "${template_file}"
             exitCode=$?
 
             if [[ $exitCode == 0 ]]; then
@@ -1546,7 +1597,7 @@ TEMPLATES_InstallOrMerge() {
             fi
         done
 
-    elif [[ ! -f "${dst}" && -f "${CONFIG}${dst}" && -f "${TEMPLATES}${dst}"  ]] ; then
+    elif [[ ! -f "${dst}" && -f "${CONFIG}${dst}" && -f "${template_file}"  ]] ; then
 
         # Die Zieldatei existiert NICHT, aber es gibt eine CONFIG-Sicherung und
         # die TEMPLATES Datei. Es wird ein Merge von TEMPLATES nach CONFIG
@@ -1557,7 +1608,7 @@ TEMPLATES_InstallOrMerge() {
 
         while true; do
 
-            merge2Files "${TEMPLATES}${dst}" "${CONFIG}${dst}" "${dst}"
+            merge2Files "${template_file}" "${CONFIG}${dst}" "${dst}"
             exitCode=$?
 
             if [[ $exitCode == 0 ]]; then
@@ -1575,11 +1626,11 @@ TEMPLATES_InstallOrMerge() {
         sudo install -v -o "${owner}" -g "${group}" -m "${chmod}" "${CONFIG}${dst}" "${dst}"
 
 
-    elif [[ ! -f "${dst}" && -f "${TEMPLATES}${dst}" ]] ; then
+    elif [[ ! -f "${dst}" && -f "${template_file}" ]] ; then
         # Die Zieldatei existiert NICHT, es gibt ein TEMPLATE aber es gibt KEINE
         # Sicherung
         echo
-        sudo install -v -o "${owner}" -g "${group}" -m "${chmod}" "${TEMPLATES}${dst}" "${dst}"
+        sudo install -v -o "${owner}" -g "${group}" -m "${chmod}" "${template_file}" "${dst}"
 
     elif [[ ! -f "${dst}" && -f "${CONFIG}${dst}" ]] ; then
         # Die Zieldatei existiert NICHT, es gibt KEIN TEMPLATE aber es gibt eine
@@ -1639,7 +1690,7 @@ CONFIG_Backup() {
 
     for ITEM in "$@"  ; do
         if [[ ! -e "${ITEM}" ]]; then
-            err_msg "path \"${ITEM}\" does not exists / skip backup"
+            warn_msg "path \"${ITEM}\" does not exists / skip backup"
             continue
         fi
         if [[ -d "${ITEM}" ]]
@@ -1673,7 +1724,7 @@ CONFIG_cryptedBackup(){
     for ITEM in "$@"; do
 
         if [[ ! -e "${ITEM}" ]]; then
-            err_msg "path \"${ITEM}\" does not exists / skip backup"
+            warn_msg "path \"${ITEM}\" does not exists / skip backup"
             continue
         fi
 
@@ -1683,11 +1734,11 @@ CONFIG_cryptedBackup(){
         then
             echo "backup folder : ${ITEM} --> ${ITEM}.tar.gpg"
             rm -f "${CONFIG}${ITEM}.tar.gpg"
-            tar -cf - "${ITEM}" | gpg --no-options --openpgp --passphrase "${passphrase}"  --set-filename "${ITEM}" --symmetric --output "${CONFIG}${ITEM}.tar.gpg"
+            tar -cf - "${ITEM}" | gpg --batch --no-options --openpgp --passphrase "${passphrase}"  --set-filename "${ITEM}" --symmetric --output "${CONFIG}${ITEM}.tar.gpg"
         else
             echo "backup file : ${ITEM} --> ${ITEM}.gpg"
             rm -f "${CONFIG}${ITEM}.gpg"
-            gpg --no-options --passphrase "${passphrase}" --set-filename "${ITEM}" --symmetric --output "${CONFIG}${ITEM}.gpg" "${ITEM}"
+            gpg --batch --no-options --passphrase "${passphrase}" --set-filename "${ITEM}" --symmetric --output "${CONFIG}${ITEM}.gpg" "${ITEM}"
         fi
     done
 
@@ -1704,6 +1755,10 @@ fi
 # Debian's Apache Setup
 # =====================
 
+if [[ -z "$APACHE_SERVER_NAME" ]]; then
+    APACHE_SERVER_NAME="$(uname -n)"
+fi
+
 if [[ -z "$APACHE_SETUP" ]]; then
     APACHE_SETUP="/etc/apache2"
 fi
@@ -1718,7 +1773,7 @@ if [[ -z "${APACHE_MODS_AVAILABE}" ]]; then
 fi
 if [[ -z "${APACHE_CONF_AVAILABE}" ]]; then
     APACHE_CONF_AVAILABE="${APACHE_SETUP}/conf-available"
-   # APACHE_CONF_ENABLED="${APACHE_SETUP}/conf-enabled"
+    # APACHE_CONF_ENABLED="${APACHE_SETUP}/conf-enabled"
 fi
 
 # ----------------------------------------------------------------------------
@@ -1732,14 +1787,19 @@ APACHE_install_site() {
     #
     # usage:
     #
-    #   APACHE_install_site <apache-sites.conf-filename>
+    #   APACHE_install_site [--eval] <apache-sites.conf-filename>
     #
     #   APACHE_install_site phpvirtualbox
+
+    local do_eval=""
+    if [[ "$1" == "--eval" ]]; then
+        do_eval=$1; shift
+    fi
 
     local CONF
     for CONF in $*; do
         CONF=${CONF%.conf}.conf
-        TEMPLATES_InstallOrMerge "${APACHE_SITES_AVAILABE}/${CONF}" root root 644
+        TEMPLATES_InstallOrMerge $do_eval "${APACHE_SITES_AVAILABE}/${CONF}" root root 644
     done
     sudo a2ensite -q "$@"
     APACHE_reload
@@ -1855,26 +1915,22 @@ FFOX_globalAddOn() {
     #
     #   FFOX_globalAddOn install ${CACHE}/firefox_addon-627512-latest.xpi
 
-    # get extension UID from install.rdf
-    UID_ADDON=$(unzip -p $2 install.rdf \
-        | grep "<em:id>" \
-        | head -n 1 \
-        | sed 's/^.*>\(.*\)<.*$/\1/g' \
-             )
     echo
+
+    # get extension UID from manifest.json or alternative from META-INF/mozilla.rsa
+
+    UID_ADDON=$(unzip -p $2 manifest.json \
+        | python -c  'import json,sys;print(json.load(sys.stdin)["applications"]["gecko"]["id"])' 2>/dev/null)
+
     if [[ -z ${UID_ADDON} ]] ; then
-        # Scheinbar gibt es Plugins bei denen der Namensraum (em) nicht
-        # expliziet angegeben ist, diese verwenden dann das <id> Tag.
-        UID_ADDON=$(unzip -p $2 install.rdf \
-                           | grep "<id>" \
-                           | head -n 1 \
-                           | sed 's/^.*>\(.*\)<.*$/\1/g' \
-                 )
+        UID_ADDON=$(unzip -p $2 META-INF/mozilla.rsa \
+	    | openssl asn1parse -inform DER |  grep -A1 ':commonName$' | grep -o '{.*}' 2>/dev/null)
     fi
 
     if [[ -z ${UID_ADDON} ]] ; then
-        err_msg "can't read tag '<em:id>' from: $2"
+        err_msg "can't read 'id' from: $2"
     else
+        info_msg "using 'id' $UID_ADDON"
         case $1 in
             install)
                 info_msg "installing: ${UID_ADDON}.xpi --> ${FFOX_GLOBAL_EXTENSIONS}"
