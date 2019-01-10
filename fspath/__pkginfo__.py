@@ -6,10 +6,10 @@ python package meta informations
 import platform
 
 package      = 'fspath'
-version      = '20171125'
+version      = '20190110'
 authors      = ['Markus Heiser', ]
 emails       = ['markus.heiser@darmarIT.de', ]
-copyright    = '2017 Markus Heiser'
+copyright    = '2019 Markus Heiser'
 url          = 'https://github.com/return42/fspath'
 description  = 'semantic path names and more'
 license      = 'GPLv2'

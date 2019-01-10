@@ -6,7 +6,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 project = u'sphinx theme for reveal.js'
-copyright = u'2017, return42'
+copyright = u'2019, return42'
 
 version = '1.0.0'
 
