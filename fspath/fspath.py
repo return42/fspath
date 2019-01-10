@@ -390,10 +390,18 @@ class FSPath(six.text_type):  # pylint: disable=too-many-public-methods
         # argh those fu.. idiots from python impleted fspath in 3.4 which no
         # longer supports string-like objects (inheritance of str) in os.walk.
         # So we have to typecast str(self).
+
         for dirpath, dirnames, filenames in os.walk(str(self), topdown, onerror, followlinks):
+            dirs = [self.__class__(x) for x in dirnames]
+
             yield (self.__class__(dirpath)
-                   , [self.__class__(x) for x in dirnames]
+                   , dirs
                    , [self.__class__(x) for x in filenames])
+
+            for name in list(dirnames):
+                if name not in dirs:
+                    dirnames.remove(name)
+
 
     def reMatchFind(self, name, use_files=True, use_dirs=True, followlinks=False, relpath=False):
         u"""Returns iterator which yields matching path names
