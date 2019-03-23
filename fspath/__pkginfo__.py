@@ -6,7 +6,7 @@ python package meta informations
 import platform
 
 package      = 'fspath'
-version      = '20190110'
+version      = '20190323'
 authors      = ['Markus Heiser', ]
 emails       = ['markus.heiser@darmarIT.de', ]
 copyright    = '2019 Markus Heiser'
