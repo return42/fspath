@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8; mode: python -*-
-# pylint: disable=invalid-name
+# pylint: disable=invalid-name, logging-not-lazy
 
 """
 Small collection for debugging and introspection purpose.
@@ -82,14 +82,13 @@ class Console(InteractiveConsole):
     def raw_input(self, prompt=""):
         if self.EOF is None:
             return six.moves.input(prompt)
-        else:
-            sys.stdout.write(prompt)
-            sys.stdout.flush()
-            line = sys.stdin.readline()
-            ERROR(repr(line))
-            if line.strip() == self.EOF:
-                raise EOFError
-            return line
+        sys.stdout.write(prompt)
+        sys.stdout.flush()
+        line = sys.stdin.readline()
+        ERROR(repr(line))
+        if line.strip() == self.EOF:
+            raise EOFError
+        return line
 
     def write(self, data):
         sys.stdout.write(data)
@@ -98,7 +97,7 @@ class Console(InteractiveConsole):
     def runcode(self, code):
         try:
             exec(code, self.global_ns, self.local_ns) # pylint: disable=W0122
-        except SystemExit:
+        except SystemExit:   # pylint: disable=try-except-raise
             raise
         except Exception:    # pylint: disable=W0703
             self.showtraceback()
