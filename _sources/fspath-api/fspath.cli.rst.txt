@@ -1,0 +1,7 @@
+fspath.cli module
+=================
+
+.. automodule:: fspath.cli
+    :members:
+    :undoc-members:
+    :show-inheritance:

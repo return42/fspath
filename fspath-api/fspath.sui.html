@@ -1,0 +1,604 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>fspath.sui module &mdash; FSPath 20190323 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="fspath.win module" href="fspath.win.html" />
+    <link rel="prev" title="fspath.progressbar module" href="fspath.progressbar.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> FSPath
+          
+
+          
+            
+            <img src="../_static/darmarIT_logo_128.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                20190323
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="fspath.html">fspath package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="fspath.html#submodules">Submodules</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="fspath.cli.html">fspath.cli module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fspath.compat.html">fspath.compat module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fspath.console.html">fspath.console module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fspath.debug.html">fspath.debug module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fspath.fspath.html">fspath.fspath module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fspath.helper.html">fspath.helper module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fspath.main.html">fspath.main module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fspath.os_env.html">fspath.os_env module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fspath.progressbar.html">fspath.progressbar module</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">fspath.sui module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fspath.win.html">fspath.win module</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="fspath.html#module-fspath">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">FSPath</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="fspath.html">fspath package</a> &raquo;</li>
+        
+      <li>fspath.sui module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/fspath-api/fspath.sui.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-fspath.sui">
+<span id="fspath-sui-module"></span><h1>fspath.sui module<a class="headerlink" href="#module-fspath.sui" title="Permalink to this headline">¶</a></h1>
+<p>Simple user interface via terminal (win &amp; *nix)</p>
+<p>This module is in a very early stage, don’t use it!</p>
+<dl class="class">
+<dt id="fspath.sui.ASCIITableFormatter">
+<em class="property">class </em><code class="descclassname">fspath.sui.</code><code class="descname">ASCIITableFormatter</code><span class="sig-paren">(</span><em>*cols</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fspath/sui.html#ASCIITableFormatter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fspath.sui.ASCIITableFormatter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Simple ASCII table formatter</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">rows</span> <span class="o">=</span> <span class="p">[</span>  <span class="p">{</span><span class="s1">&#39;foo&#39;</span><span class="p">:</span> <span class="s1">&#39;foo row 1&#39;</span><span class="p">,</span> <span class="s1">&#39;bar&#39;</span><span class="p">:</span> <span class="s1">&#39;bar row 1&#39;</span><span class="p">}</span>
+          <span class="p">,</span> <span class="p">{</span><span class="s1">&#39;foo&#39;</span><span class="p">:</span> <span class="s1">&#39;foo row 2&#39;</span><span class="p">,</span> <span class="s1">&#39;bar&#39;</span><span class="p">:</span> <span class="s1">&#39;bar row 2&#39;</span><span class="p">}</span> <span class="p">]</span>
+
+<span class="n">table</span> <span class="o">=</span> <span class="n">ASCIITableFormatter</span><span class="p">(</span>
+    <span class="c1"># &lt;col-title&gt;, &lt;format sting&gt;, &lt;attribute name&gt;</span>
+    <span class="p">(</span><span class="s2">&quot;Foo&quot;</span><span class="p">,</span>   <span class="s2">&quot;</span><span class="si">%-12s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;foo&quot;</span><span class="p">)</span>
+    <span class="p">,</span> <span class="p">(</span><span class="s2">&quot;Bar&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="si">%-30s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;bar&quot;</span><span class="p">))</span>
+<span class="n">SUI</span><span class="o">.</span><span class="n">echo</span><span class="p">(</span><span class="n">table</span><span class="p">(</span><span class="n">rows</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span>============ ==============================
+Foo          Bar
+============ ==============================
+foo row 1    bar row 1
+foo row 2    bar row 2
+============ ==============================
+</pre></div>
+</div>
+<dl class="attribute">
+<dt id="fspath.sui.ASCIITableFormatter.col_end">
+<code class="descname">col_end</code><em class="property"> = ' '</em><a class="headerlink" href="#fspath.sui.ASCIITableFormatter.col_end" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="fspath.sui.ASCIITableFormatter.col_head_end">
+<code class="descname">col_head_end</code><em class="property"> = ' '</em><a class="headerlink" href="#fspath.sui.ASCIITableFormatter.col_head_end" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="fspath.sui.ASCIITableFormatter.col_head_start">
+<code class="descname">col_head_start</code><em class="property"> = ''</em><a class="headerlink" href="#fspath.sui.ASCIITableFormatter.col_head_start" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="fspath.sui.ASCIITableFormatter.col_start">
+<code class="descname">col_start</code><em class="property"> = ''</em><a class="headerlink" href="#fspath.sui.ASCIITableFormatter.col_start" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="fspath.sui.ASCIITableFormatter.escape">
+<code class="descname">escape</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fspath/sui.html#ASCIITableFormatter.escape"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fspath.sui.ASCIITableFormatter.escape" title="Permalink to this definition">¶</a></dt>
+<dd><p>escape value</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="fspath.sui.ASCIITableFormatter.get_value">
+<code class="descname">get_value</code><span class="sig-paren">(</span><em>attr</em>, <em>row</em>, <em>default='?'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fspath/sui.html#ASCIITableFormatter.get_value"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fspath.sui.ASCIITableFormatter.get_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>get value from col (attr) and row</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="fspath.sui.ASCIITableFormatter.head_end">
+<code class="descname">head_end</code><em class="property"> = ''</em><a class="headerlink" href="#fspath.sui.ASCIITableFormatter.head_end" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="fspath.sui.ASCIITableFormatter.head_start">
+<code class="descname">head_start</code><em class="property"> = '\n'</em><a class="headerlink" href="#fspath.sui.ASCIITableFormatter.head_start" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="fspath.sui.ASCIITableFormatter.row_end">
+<code class="descname">row_end</code><em class="property"> = ''</em><a class="headerlink" href="#fspath.sui.ASCIITableFormatter.row_end" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="fspath.sui.ASCIITableFormatter.row_start">
+<code class="descname">row_start</code><em class="property"> = '\n'</em><a class="headerlink" href="#fspath.sui.ASCIITableFormatter.row_start" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="fspath.sui.ASCIITableFormatter.sep_end">
+<code class="descname">sep_end</code><em class="property"> = ' '</em><a class="headerlink" href="#fspath.sui.ASCIITableFormatter.sep_end" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="fspath.sui.ASCIITableFormatter.sep_line">
+<code class="descname">sep_line</code><em class="property"> = '='</em><a class="headerlink" href="#fspath.sui.ASCIITableFormatter.sep_line" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="fspath.sui.ASCIITableFormatter.sep_start">
+<code class="descname">sep_start</code><em class="property"> = ''</em><a class="headerlink" href="#fspath.sui.ASCIITableFormatter.sep_start" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="fspath.sui.ASCIITableFormatter.table_end">
+<code class="descname">table_end</code><em class="property"> = ''</em><a class="headerlink" href="#fspath.sui.ASCIITableFormatter.table_end" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="fspath.sui.ASCIITableFormatter.table_start">
+<code class="descname">table_start</code><em class="property"> = ''</em><a class="headerlink" href="#fspath.sui.ASCIITableFormatter.table_start" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="fspath.sui.HTMLTableFormatter">
+<em class="property">class </em><code class="descclassname">fspath.sui.</code><code class="descname">HTMLTableFormatter</code><span class="sig-paren">(</span><em>*cols</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fspath/sui.html#HTMLTableFormatter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fspath.sui.HTMLTableFormatter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#fspath.sui.ASCIITableFormatter" title="fspath.sui.ASCIITableFormatter"><code class="xref py py-class docutils literal notranslate"><span class="pre">fspath.sui.ASCIITableFormatter</span></code></a></p>
+<p>Simple HTML table formatter</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">rows</span> <span class="o">=</span> <span class="p">[</span>  <span class="p">{</span><span class="s1">&#39;foo&#39;</span><span class="p">:</span> <span class="s1">&#39;foo &lt;row 1&gt;&#39;</span><span class="p">,</span> <span class="s1">&#39;bar&#39;</span><span class="p">:</span> <span class="s1">&#39;bar &lt;row 1&gt;&#39;</span><span class="p">}</span>
+          <span class="p">,</span> <span class="p">{</span><span class="s1">&#39;foo&#39;</span><span class="p">:</span> <span class="s1">&#39;foo &lt;row 2&gt;&#39;</span><span class="p">,</span> <span class="s1">&#39;bar&#39;</span><span class="p">:</span> <span class="s1">&#39;bar &lt;row 2&gt;&#39;</span><span class="p">}</span> <span class="p">]</span>
+
+<span class="n">table</span> <span class="o">=</span> <span class="n">HTMLTableFormatter</span><span class="p">((</span><span class="s2">&quot;Foo&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;foo&quot;</span><span class="p">)</span>
+                         <span class="p">,</span> <span class="p">(</span><span class="s2">&quot;Bar&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;bar&quot;</span><span class="p">))</span>
+<span class="n">SUI</span><span class="o">.</span><span class="n">echo</span><span class="p">(</span><span class="n">table</span><span class="p">(</span><span class="n">rows</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">table</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">tr</span> <span class="na">class</span><span class="o">=</span><span class="s">&#39;heading&#39;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">th</span><span class="p">&gt;</span>Foo<span class="p">&lt;/</span><span class="nt">th</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">th</span><span class="p">&gt;</span>Bar<span class="p">&lt;/</span><span class="nt">th</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>foo <span class="ni">&amp;lt;</span>row 1<span class="ni">&amp;gt;</span><span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>bar <span class="ni">&amp;lt;</span>row 1<span class="ni">&amp;gt;</span><span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>foo <span class="ni">&amp;lt;</span>row 2<span class="ni">&amp;gt;</span><span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>bar <span class="ni">&amp;lt;</span>row 2<span class="ni">&amp;gt;</span><span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">table</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<dl class="attribute">
+<dt id="fspath.sui.HTMLTableFormatter.ESCAPE">
+<code class="descname">ESCAPE</code><em class="property"> = '&lt;!--(set_escape)--&gt;HTML&lt;!--(end)--&gt;\n#!'</em><a class="headerlink" href="#fspath.sui.HTMLTableFormatter.ESCAPE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="fspath.sui.HTMLTableFormatter.col_end">
+<code class="descname">col_end</code><em class="property"> = '&lt;/td&gt;'</em><a class="headerlink" href="#fspath.sui.HTMLTableFormatter.col_end" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="fspath.sui.HTMLTableFormatter.col_head_end">
+<code class="descname">col_head_end</code><em class="property"> = '&lt;/th&gt;'</em><a class="headerlink" href="#fspath.sui.HTMLTableFormatter.col_head_end" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="fspath.sui.HTMLTableFormatter.col_head_start">
+<code class="descname">col_head_start</code><em class="property"> = '\n    &lt;th&gt;'</em><a class="headerlink" href="#fspath.sui.HTMLTableFormatter.col_head_start" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="fspath.sui.HTMLTableFormatter.col_start">
+<code class="descname">col_start</code><em class="property"> = '\n    &lt;td&gt;'</em><a class="headerlink" href="#fspath.sui.HTMLTableFormatter.col_start" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="fspath.sui.HTMLTableFormatter.escape">
+<code class="descname">escape</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fspath/sui.html#HTMLTableFormatter.escape"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fspath.sui.HTMLTableFormatter.escape" title="Permalink to this definition">¶</a></dt>
+<dd><p>escape value</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="fspath.sui.HTMLTableFormatter.head_end">
+<code class="descname">head_end</code><em class="property"> = '\n  &lt;/tr&gt;'</em><a class="headerlink" href="#fspath.sui.HTMLTableFormatter.head_end" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="fspath.sui.HTMLTableFormatter.head_start">
+<code class="descname">head_start</code><em class="property"> = &quot;\n  &lt;tr class='heading'&gt;&quot;</em><a class="headerlink" href="#fspath.sui.HTMLTableFormatter.head_start" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="fspath.sui.HTMLTableFormatter.row_end">
+<code class="descname">row_end</code><em class="property"> = '\n  &lt;/tr&gt;'</em><a class="headerlink" href="#fspath.sui.HTMLTableFormatter.row_end" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="fspath.sui.HTMLTableFormatter.row_start">
+<code class="descname">row_start</code><em class="property"> = '\n  &lt;tr&gt;'</em><a class="headerlink" href="#fspath.sui.HTMLTableFormatter.row_start" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="fspath.sui.HTMLTableFormatter.sep_line">
+<code class="descname">sep_line</code><em class="property"> = None</em><a class="headerlink" href="#fspath.sui.HTMLTableFormatter.sep_line" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="fspath.sui.HTMLTableFormatter.table_end">
+<code class="descname">table_end</code><em class="property"> = '\n&lt;/table&gt;'</em><a class="headerlink" href="#fspath.sui.HTMLTableFormatter.table_end" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="fspath.sui.HTMLTableFormatter.table_start">
+<code class="descname">table_start</code><em class="property"> = '\n&lt;table&gt;'</em><a class="headerlink" href="#fspath.sui.HTMLTableFormatter.table_start" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="fspath.sui.SimpleUserInterface">
+<em class="property">class </em><code class="descclassname">fspath.sui.</code><code class="descname">SimpleUserInterface</code><span class="sig-paren">(</span><em>cli=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fspath/sui.html#SimpleUserInterface"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fspath.sui.SimpleUserInterface" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Simple console based user interface (win &amp; *nix)</p>
+<dl class="attribute">
+<dt id="fspath.sui.SimpleUserInterface.NO">
+<code class="descname">NO</code><em class="property"> = False</em><a class="headerlink" href="#fspath.sui.SimpleUserInterface.NO" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="fspath.sui.SimpleUserInterface.YES">
+<code class="descname">YES</code><em class="property"> = True</em><a class="headerlink" href="#fspath.sui.SimpleUserInterface.YES" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="classmethod">
+<dt id="fspath.sui.SimpleUserInterface.ask">
+<em class="property">classmethod </em><code class="descname">ask</code><span class="sig-paren">(</span><em>msg</em>, <em>default=None</em>, <em>count=None</em>, <em>echo=True</em>, <em>valid_chars='.'</em>, <em>stop_char='\r'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fspath/sui.html#SimpleUserInterface.ask"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fspath.sui.SimpleUserInterface.ask" title="Permalink to this definition">¶</a></dt>
+<dd><p>Ask via UI</p>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="fspath.sui.SimpleUserInterface.ask_choice">
+<em class="property">classmethod </em><code class="descname">ask_choice</code><span class="sig-paren">(</span><em>msg</em>, <em>choices</em>, <em>default=0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fspath/sui.html#SimpleUserInterface.ask_choice"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fspath.sui.SimpleUserInterface.ask_choice" title="Permalink to this definition">¶</a></dt>
+<dd><p>Take a choice from a list via UI</p>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="fspath.sui.SimpleUserInterface.ask_fspath">
+<em class="property">classmethod </em><code class="descname">ask_fspath</code><span class="sig-paren">(</span><em>msg='enter path name: '</em>, <em>default=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fspath/sui.html#SimpleUserInterface.ask_fspath"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fspath.sui.SimpleUserInterface.ask_fspath" title="Permalink to this definition">¶</a></dt>
+<dd><p>Ask for path name with [TAB] completion</p>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="fspath.sui.SimpleUserInterface.ask_yes_no">
+<em class="property">classmethod </em><code class="descname">ask_yes_no</code><span class="sig-paren">(</span><em>msg</em>, <em>default='y'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fspath/sui.html#SimpleUserInterface.ask_yes_no"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fspath.sui.SimpleUserInterface.ask_yes_no" title="Permalink to this definition">¶</a></dt>
+<dd><p>Ask Yes/No [YN] via UI</p>
+<p>Returns <code class="docutils literal notranslate"><span class="pre">True</span></code> for <em>Yes</em> and <code class="docutils literal notranslate"><span class="pre">False</span></code> for <em>No</em></p>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="fspath.sui.SimpleUserInterface.echo">
+<em class="property">classmethod </em><code class="descname">echo</code><span class="sig-paren">(</span><em>msg</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fspath/sui.html#SimpleUserInterface.echo"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fspath.sui.SimpleUserInterface.echo" title="Permalink to this definition">¶</a></dt>
+<dd><p>write line to UI</p>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="fspath.sui.SimpleUserInterface.fill_line">
+<em class="property">classmethod </em><code class="descname">fill_line</code><span class="sig-paren">(</span><em>fill_char=' '</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fspath/sui.html#SimpleUserInterface.fill_line"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fspath.sui.SimpleUserInterface.fill_line" title="Permalink to this definition">¶</a></dt>
+<dd><p>console, fill line with <code class="docutils literal notranslate"><span class="pre">fill_char</span></code> (default ‘ ‘)</p>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="fspath.sui.SimpleUserInterface.get_input">
+<em class="property">classmethod </em><code class="descname">get_input</code><span class="sig-paren">(</span><em>count=None</em>, <em>echo=True</em>, <em>valid_chars='.'</em>, <em>stop_char='\r'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fspath/sui.html#SimpleUserInterface.get_input"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fspath.sui.SimpleUserInterface.get_input" title="Permalink to this definition">¶</a></dt>
+<dd><p>read input from UI</p>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="fspath.sui.SimpleUserInterface.getchr">
+<em class="property">classmethod </em><code class="descname">getchr</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fspath/sui.html#SimpleUserInterface.getchr"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fspath.sui.SimpleUserInterface.getchr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a single unicode character on Linux &amp; Unix.</p>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="fspath.sui.SimpleUserInterface.readkey">
+<em class="property">classmethod </em><code class="descname">readkey</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fspath/sui.html#SimpleUserInterface.readkey"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fspath.sui.SimpleUserInterface.readkey" title="Permalink to this definition">¶</a></dt>
+<dd><p>read keystroke</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="fspath.sui.SimpleUserInterface.rst_indent">
+<code class="descname">rst_indent</code><em class="property"> = '    '</em><a class="headerlink" href="#fspath.sui.SimpleUserInterface.rst_indent" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="fspath.sui.SimpleUserInterface.rst_levels">
+<code class="descname">rst_levels</code><em class="property"> = {'chapter': '=', 'part': '=', 'section': '-', 'subsection': '~'}</em><a class="headerlink" href="#fspath.sui.SimpleUserInterface.rst_levels" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="classmethod">
+<dt id="fspath.sui.SimpleUserInterface.rst_p">
+<em class="property">classmethod </em><code class="descname">rst_p</code><span class="sig-paren">(</span><em>text</em>, <em>level=0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fspath/sui.html#SimpleUserInterface.rst_p"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fspath.sui.SimpleUserInterface.rst_p" title="Permalink to this definition">¶</a></dt>
+<dd><p>write reST formated paragraph to UI</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>level</strong> (<em>int</em>) – indentaion level</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="fspath.sui.SimpleUserInterface.rst_table">
+<em class="property">classmethod </em><code class="descname">rst_table</code><span class="sig-paren">(</span><em>rows</em>, <em>*fmt</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fspath/sui.html#SimpleUserInterface.rst_table"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fspath.sui.SimpleUserInterface.rst_table" title="Permalink to this definition">¶</a></dt>
+<dd><p>write reST formated table to UI</p>
+<p>Uses <a class="reference internal" href="#fspath.sui.ASCIITableFormatter" title="fspath.sui.ASCIITableFormatter"><code class="xref py py-class docutils literal notranslate"><span class="pre">ASCIITableFormatter</span></code></a> for output. The argument <code class="docutils literal notranslate"><span class="pre">*fmt</span></code>
+is a list of tuple.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>rows</strong> (<em>list</em>) – iterable type of dictionaries with the col/value</li>
+<li><strong>*fmt</strong> (<em>list</em>) – iterable type of tuples to format the table</li>
+<li><strong>level</strong> (<em>int</em>) – indentaion level</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">SUI</span><span class="o">.</span><span class="n">rst_table</span><span class="p">(</span>
+    <span class="n">test_rows</span>
+    <span class="c1"># &lt;col-title&gt;, &lt;format sting&gt;, &lt;attribute name&gt;</span>
+    <span class="p">,</span> <span class="p">(</span><span class="s2">&quot;Foo&quot;</span><span class="p">,</span>      <span class="s2">&quot;</span><span class="si">%-12s</span><span class="s2">&quot;</span><span class="p">,</span>        <span class="s2">&quot;foo&quot;</span><span class="p">)</span>
+    <span class="p">,</span> <span class="p">(</span><span class="s2">&quot;Bar&quot;</span><span class="p">,</span>      <span class="s2">&quot;</span><span class="si">%-30s</span><span class="s2">&quot;</span><span class="p">,</span>        <span class="s2">&quot;bar&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="fspath.sui.SimpleUserInterface.rst_title">
+<em class="property">classmethod </em><code class="descname">rst_title</code><span class="sig-paren">(</span><em>title</em>, <em>level='chapter'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fspath/sui.html#SimpleUserInterface.rst_title"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fspath.sui.SimpleUserInterface.rst_title" title="Permalink to this definition">¶</a></dt>
+<dd><p>write reST formated title to UI</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>title</strong> (<em>str</em>) – section’s title</li>
+<li><strong>level</strong> (<em>str</em>) – section’s structural level [part,chapter,section,subsection]</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="fspath.sui.SimpleUserInterface.termios">
+<code class="descname">termios</code><em class="property"> = &lt;module 'termios' from '/x/share/fspath/local/py3/lib/python3.6/lib-dynload/termios.cpython-36m-x86_64-linux-gnu.so'&gt;</em><a class="headerlink" href="#fspath.sui.SimpleUserInterface.termios" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="fspath.sui.SimpleUserInterface.tty">
+<code class="descname">tty</code><em class="property"> = &lt;module 'tty' from '/usr/lib/python3.6/tty.py'&gt;</em><a class="headerlink" href="#fspath.sui.SimpleUserInterface.tty" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="fspath.sui.SimpleUserInterface.ui_in">
+<code class="descname">ui_in</code><em class="property"> = &lt;_io.TextIOWrapper name='&lt;stdin&gt;' mode='r' encoding='UTF-8'&gt;</em><a class="headerlink" href="#fspath.sui.SimpleUserInterface.ui_in" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="fspath.sui.SimpleUserInterface.ui_out">
+<code class="descname">ui_out</code><em class="property"> = &lt;_io.TextIOWrapper name='&lt;stdout&gt;' mode='w' encoding='UTF-8'&gt;</em><a class="headerlink" href="#fspath.sui.SimpleUserInterface.ui_out" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="classmethod">
+<dt id="fspath.sui.SimpleUserInterface.wait_key">
+<em class="property">classmethod </em><code class="descname">wait_key</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fspath/sui.html#SimpleUserInterface.wait_key"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fspath.sui.SimpleUserInterface.wait_key" title="Permalink to this definition">¶</a></dt>
+<dd><p>wait until key pressed</p>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="fspath.sui.SimpleUserInterface.write">
+<em class="property">classmethod </em><code class="descname">write</code><span class="sig-paren">(</span><em>msg</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fspath/sui.html#SimpleUserInterface.write"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fspath.sui.SimpleUserInterface.write" title="Permalink to this definition">¶</a></dt>
+<dd><p>write to UI</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="fspath.win.html" class="btn btn-neutral float-right" title="fspath.win module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="fspath.progressbar.html" class="btn btn-neutral float-left" title="fspath.progressbar module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019 Markus Heiser
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

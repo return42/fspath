@@ -1,0 +1,281 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>fspath.win &mdash; FSPath 20190323 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> FSPath
+          
+
+          
+            
+            <img src="../../_static/darmarIT_logo_128.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                20190323
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../fspath-api/fspath.html">fspath package</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">FSPath</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+      <li>fspath.win</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for fspath.win</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8; mode: python -*-</span>
+<span class="sa">u</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Windows stuff</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="c1"># pylint: disable=invalid-name</span>
+
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">io</span>
+<span class="kn">import</span> <span class="nn">six</span>
+<span class="kn">from</span> <span class="nn">.fspath</span> <span class="k">import</span> <span class="n">FSPath</span>
+
+<span class="c1"># ==============================================================================</span>
+<div class="viewcode-block" id="wrapScriptExe"><a class="viewcode-back" href="../../fspath-api/fspath.win.html#fspath.win.wrapScriptExe">[docs]</a><span class="k">def</span> <span class="nf">wrapScriptExe</span><span class="p">(</span><span class="n">script</span><span class="p">,</span> <span class="n">shebang</span> <span class="o">=</span> <span class="sa">u</span><span class="s2">&quot;#!python.exe&quot;</span><span class="p">):</span>
+<span class="c1"># ==============================================================================</span>
+    <span class="sa">u</span><span class="sd">&quot;&quot;&quot;Wraps a single script into a MS-Win ``.exe``.</span>
+
+<span class="sd">    Only the ``script`` file contents is wraped into the ``.exe``, not the whole</span>
+<span class="sd">    python environment!</span>
+
+<span class="sd">    This is usefull to create ``.exe`` console scripts for python entry points,</span>
+<span class="sd">    which can be called directly (``myscript.exe`` instead ``python</span>
+<span class="sd">    myscript.py``).</span>
+
+<span class="sd">    .. caution::</span>
+
+<span class="sd">       * This is in an experimental state!</span>
+<span class="sd">       * This makes use of undocumented pip APIs (ATM pip has no offical API)</span>
+<span class="sd">       * Use it with care!</span>
+<span class="sd">       * Shebang is always ``#!python.exe``</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="kn">from</span> <span class="nn">pip._vendor.distlib.scripts</span> <span class="k">import</span> <span class="n">ScriptMaker</span>
+    <span class="kn">from</span> <span class="nn">pip._vendor.distlib.compat</span> <span class="k">import</span> <span class="n">ZipFile</span>
+
+    <span class="n">origin</span>   <span class="o">=</span> <span class="n">FSPath</span><span class="p">(</span><span class="n">script</span><span class="p">)</span>
+    <span class="n">exec_out</span> <span class="o">=</span> <span class="n">origin</span><span class="o">.</span><span class="n">suffix</span><span class="p">(</span><span class="s1">&#39;.exe&#39;</span><span class="p">)</span>
+    <span class="n">shebang</span>  <span class="o">=</span> <span class="n">six</span><span class="o">.</span><span class="n">b</span><span class="p">(</span><span class="n">shebang</span> <span class="o">+</span> <span class="sa">u</span><span class="s2">&quot;</span><span class="se">\r\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">linesep</span>  <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">linesep</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+
+    <span class="n">script</span>   <span class="o">=</span> <span class="n">origin</span><span class="o">.</span><span class="n">readFile</span><span class="p">()</span>
+    <span class="n">script</span>   <span class="o">=</span> <span class="n">six</span><span class="o">.</span><span class="n">b</span><span class="p">(</span><span class="n">script</span><span class="p">)</span>
+
+    <span class="n">maker</span>    <span class="o">=</span> <span class="n">ScriptMaker</span><span class="p">(</span><span class="n">source_dir</span>    <span class="o">=</span> <span class="n">origin</span><span class="o">.</span><span class="n">DIRNAME</span>
+                           <span class="p">,</span> <span class="n">target_dir</span>  <span class="o">=</span> <span class="n">origin</span><span class="o">.</span><span class="n">DIRNAME</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">origin</span><span class="o">.</span><span class="n">SUFFIX</span> <span class="o">==</span> <span class="s1">&#39;.py&#39;</span><span class="p">:</span>
+        <span class="n">launcher</span> <span class="o">=</span> <span class="n">maker</span><span class="o">.</span><span class="n">_get_launcher</span><span class="p">(</span><span class="s1">&#39;t&#39;</span><span class="p">)</span> <span class="c1"># pylint: disable=protected-access</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">launcher</span> <span class="o">=</span> <span class="n">maker</span><span class="o">.</span><span class="n">_get_launcher</span><span class="p">(</span><span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="c1"># pylint: disable=protected-access</span>
+
+    <span class="n">stream</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">BytesIO</span><span class="p">()</span>
+    <span class="k">with</span> <span class="n">ZipFile</span><span class="p">(</span><span class="n">stream</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">_f</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">six</span><span class="o">.</span><span class="n">PY2</span><span class="p">:</span>
+            <span class="n">_f</span><span class="o">.</span><span class="n">writestr</span><span class="p">(</span><span class="s1">&#39;__main__.py&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">script</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">_f</span><span class="o">.</span><span class="n">writestr</span><span class="p">(</span><span class="s1">&#39;__main__.py&#39;</span><span class="p">,</span> <span class="n">script</span><span class="p">)</span>
+
+    <span class="n">zip_data</span> <span class="o">=</span> <span class="n">stream</span><span class="o">.</span><span class="n">getvalue</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">six</span><span class="o">.</span><span class="n">PY2</span><span class="p">:</span>
+        <span class="n">script</span> <span class="o">=</span> <span class="n">launcher</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">shebang</span> <span class="o">+</span> <span class="n">linesep</span><span class="p">)</span> <span class="o">+</span> <span class="n">zip_data</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">script</span> <span class="o">=</span> <span class="n">launcher</span> <span class="o">+</span> <span class="n">shebang</span> <span class="o">+</span> <span class="n">linesep</span> <span class="o">+</span> <span class="n">zip_data</span>
+
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">exec_out</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">out</span><span class="p">:</span>
+        <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">script</span><span class="p">)</span>
+
+    <span class="c1">#print(&quot;created %s&quot; % exec_out)</span>
+    <span class="k">return</span> <span class="n">exec_out</span></div>
+
+    <span class="c1"># On Windows, we have no exec bit</span>
+    <span class="c1">#</span>
+    <span class="c1"># def set_mode(bits, mask, filename):</span>
+    <span class="c1">#     if os.name == &#39;posix&#39; or (os.name == &#39;java&#39; and os._name == &#39;posix&#39;):</span>
+    <span class="c1">#         # Set the executable bits (owner, group, and world) on</span>
+    <span class="c1">#         # all the files specified.</span>
+    <span class="c1">#         mode = (os.stat(filename).st_mode | bits) &amp; mask</span>
+    <span class="c1">#         os.chmod(f, mode)</span>
+    <span class="c1">#</span>
+    <span class="c1"># set_executable_mode = lambda f: set_mode(0o555, 0o7777, f)</span>
+    <span class="c1"># set_executable_mode(exec_out)</span>
+
+<span class="k">def</span> <span class="nf">_cli_py2exe</span><span class="p">(</span><span class="n">cli</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;created </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">wrapScriptExe</span><span class="p">(</span><span class="n">cli</span><span class="o">.</span><span class="n">script</span><span class="p">,</span> <span class="n">cli</span><span class="o">.</span><span class="n">shebang</span><span class="p">))</span>
+
+<span class="n">_cli_py2exe</span><span class="o">.</span><span class="vm">__doc__</span> <span class="o">=</span> <span class="n">wrapScriptExe</span><span class="o">.</span><span class="vm">__doc__</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019 Markus Heiser
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

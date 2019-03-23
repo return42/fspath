@@ -1,0 +1,7 @@
+fspath.debug module
+===================
+
+.. automodule:: fspath.debug
+    :members:
+    :undoc-members:
+    :show-inheritance:

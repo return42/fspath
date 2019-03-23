@@ -1,0 +1,382 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>fspath.console &mdash; FSPath 20190323 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> FSPath
+          
+
+          
+            
+            <img src="../../_static/darmarIT_logo_128.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                20190323
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../fspath-api/fspath.html">fspath package</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">FSPath</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+      <li>fspath.console</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for fspath.console</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- mode: python; coding: utf-8 -*-</span>
+<span class="c1"># pylint: disable=invalid-name, bad-continuation</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Some *console* stuff</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="kn">from</span> <span class="nn">.helper</span> <span class="k">import</span> <span class="n">Options</span>
+
+<span class="n">CONSOLE_TYPE</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">platform</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;linux&#39;</span><span class="p">)</span>
+    <span class="ow">or</span> <span class="n">sys</span><span class="o">.</span><span class="n">platform</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;darwin&#39;</span><span class="p">)</span>
+    <span class="ow">or</span> <span class="n">sys</span><span class="o">.</span><span class="n">platform</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;freebsd&#39;</span><span class="p">)):</span>
+    <span class="n">CONSOLE_TYPE</span> <span class="o">=</span> <span class="s1">&#39;tty&#39;</span>
+
+<span class="k">elif</span> <span class="n">sys</span><span class="o">.</span><span class="n">platform</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;win32&#39;</span><span class="p">,</span> <span class="s1">&#39;cygwin&#39;</span><span class="p">):</span>
+    <span class="n">CONSOLE_TYPE</span> <span class="o">=</span> <span class="s1">&#39;cmd&#39;</span>
+<span class="c1"># else:</span>
+<span class="c1">#     raise NotImplementedError(</span>
+<span class="c1">#         &#39;The platform %s is not supported yet&#39; % sys.platform)</span>
+
+<span class="c1"># ==============================================================================</span>
+<div class="viewcode-block" id="consoleDimension"><a class="viewcode-back" href="../../fspath-api/fspath.console.html#fspath.console.consoleDimension">[docs]</a><span class="k">def</span> <span class="nf">consoleDimension</span><span class="p">():</span>
+<span class="c1"># ==============================================================================</span>
+    <span class="sa">u</span><span class="sd">&quot;&quot;&quot;Returns count of (row, columns) from current console</span>
+
+<span class="sd">    .. hint:</span>
+
+<span class="sd">       Since Win-CMD adds a newline if the last column is filled with a</span>
+<span class="sd">       character it is recomended to use one column less.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># pylint: disable=broad-except</span>
+    <span class="n">rows</span><span class="p">,</span> <span class="n">columns</span> <span class="o">=</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">80</span>
+
+    <span class="k">if</span> <span class="n">CONSOLE_TYPE</span> <span class="o">==</span> <span class="s1">&#39;cmd&#39;</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">rows</span><span class="p">,</span> <span class="n">columns</span> <span class="o">=</span> <span class="n">consoleDimensionsWIN</span><span class="p">()</span>
+        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+            <span class="k">pass</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">rows</span><span class="p">,</span> <span class="n">columns</span> <span class="o">=</span> <span class="n">consoleDimensionsLinux</span><span class="p">()</span>
+        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+            <span class="k">pass</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">rows</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">rows</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+        <span class="k">pass</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">columns</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">columns</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+        <span class="k">pass</span>
+
+    <span class="k">return</span> <span class="n">rows</span><span class="p">,</span> <span class="n">columns</span></div>
+
+<div class="viewcode-block" id="consoleDimensionsLinux"><a class="viewcode-back" href="../../fspath-api/fspath.console.html#fspath.console.consoleDimensionsLinux">[docs]</a><span class="k">def</span> <span class="nf">consoleDimensionsLinux</span><span class="p">():</span>
+    <span class="sa">u</span><span class="sd">&quot;&quot;&quot;Returns count of (row, columns) from current console&quot;&quot;&quot;</span>
+    <span class="n">rows</span><span class="p">,</span> <span class="n">columns</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">popen</span><span class="p">(</span><span class="s1">&#39;stty size&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">rows</span><span class="p">,</span> <span class="n">columns</span></div>
+
+<div class="viewcode-block" id="consoleDimensionsWIN"><a class="viewcode-back" href="../../fspath-api/fspath.console.html#fspath.console.consoleDimensionsWIN">[docs]</a><span class="k">def</span> <span class="nf">consoleDimensionsWIN</span><span class="p">():</span>
+    <span class="sa">u</span><span class="sd">&quot;&quot;&quot;Returns count of (row, columns) from current console&quot;&quot;&quot;</span>
+    <span class="c1"># pylint: disable=too-many-locals</span>
+    <span class="kn">from</span> <span class="nn">ctypes</span> <span class="k">import</span> <span class="n">windll</span><span class="p">,</span> <span class="n">create_string_buffer</span>
+
+    <span class="c1"># stdin handle is -10</span>
+    <span class="c1"># stdout handle is -11</span>
+    <span class="c1"># stderr handle is -12</span>
+
+    <span class="n">h</span> <span class="o">=</span> <span class="n">windll</span><span class="o">.</span><span class="n">kernel32</span><span class="o">.</span><span class="n">GetStdHandle</span><span class="p">(</span><span class="o">-</span><span class="mi">12</span><span class="p">)</span>
+    <span class="n">csbi</span> <span class="o">=</span> <span class="n">create_string_buffer</span><span class="p">(</span><span class="mi">22</span><span class="p">)</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">windll</span><span class="o">.</span><span class="n">kernel32</span><span class="o">.</span><span class="n">GetConsoleScreenBufferInfo</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">csbi</span><span class="p">)</span>
+
+    <span class="n">columns</span><span class="p">,</span> <span class="n">rows</span> <span class="o">=</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">25</span>
+    <span class="k">if</span> <span class="n">res</span><span class="p">:</span>
+        <span class="kn">import</span> <span class="nn">struct</span>
+        <span class="p">(</span><span class="n">_bufx</span><span class="p">,</span> <span class="n">_bufy</span><span class="p">,</span> <span class="n">_curx</span><span class="p">,</span> <span class="n">_cury</span><span class="p">,</span> <span class="n">_wattr</span><span class="p">,</span>
+         <span class="n">left</span><span class="p">,</span> <span class="n">top</span><span class="p">,</span> <span class="n">right</span><span class="p">,</span> <span class="n">bottom</span><span class="p">,</span> <span class="n">_maxx</span><span class="p">,</span> <span class="n">_maxy</span><span class="p">)</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="s2">&quot;hhhhHhhhhhh&quot;</span><span class="p">,</span> <span class="n">csbi</span><span class="o">.</span><span class="n">raw</span><span class="p">)</span>
+        <span class="n">columns</span> <span class="o">=</span> <span class="n">right</span> <span class="o">-</span> <span class="n">left</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="n">rows</span>    <span class="o">=</span> <span class="n">bottom</span> <span class="o">-</span> <span class="n">top</span> <span class="o">+</span> <span class="mi">1</span>
+
+    <span class="k">return</span> <span class="n">rows</span><span class="p">,</span> <span class="n">columns</span></div>
+
+
+<span class="c1"># pylint: disable-msg=C0103</span>
+<span class="n">KEY</span> <span class="o">=</span> <span class="n">Options</span><span class="p">(</span>
+    <span class="c1"># common</span>
+    <span class="n">LF</span>      <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\x0d</span><span class="s1">&#39;</span>
+    <span class="p">,</span> <span class="n">CR</span>    <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\x0a</span><span class="s1">&#39;</span>
+    <span class="p">,</span> <span class="n">ENTER</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\x0d</span><span class="s1">&#39;</span>
+    <span class="p">,</span> <span class="n">SPACE</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\x20</span><span class="s1">&#39;</span>
+    <span class="p">,</span> <span class="n">ESC</span>   <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\x1b</span><span class="s1">&#39;</span>
+    <span class="p">,</span> <span class="n">TAB</span>   <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\x09</span><span class="s1">&#39;</span>
+
+    <span class="c1"># CTRL</span>
+    <span class="p">,</span> <span class="n">CTRL_A</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\x01</span><span class="s1">&#39;</span>
+    <span class="p">,</span> <span class="n">CTRL_B</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\x02</span><span class="s1">&#39;</span>
+    <span class="p">,</span> <span class="n">CTRL_C</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\x03</span><span class="s1">&#39;</span>
+    <span class="p">,</span> <span class="n">CTRL_D</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\x04</span><span class="s1">&#39;</span>
+    <span class="p">,</span> <span class="n">CTRL_E</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\x05</span><span class="s1">&#39;</span>
+    <span class="p">,</span> <span class="n">CTRL_F</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\x06</span><span class="s1">&#39;</span>
+    <span class="p">,</span> <span class="n">CTRL_Z</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\x1a</span><span class="s1">&#39;</span>
+
+    <span class="c1"># ALT</span>
+    <span class="p">,</span> <span class="n">ALT_A</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\x1b\x61</span><span class="s1">&#39;</span>
+
+    <span class="c1"># CTRL + ALT</span>
+    <span class="p">,</span> <span class="n">CTRL_ALT_A</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\x1b\x01</span><span class="s1">&#39;</span>
+
+    <span class="c1"># cursors</span>
+    <span class="p">,</span> <span class="n">UP</span>    <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\x1b\x5b\x41</span><span class="s1">&#39;</span>
+    <span class="p">,</span> <span class="n">DOWN</span>  <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\x1b\x5b\x42</span><span class="s1">&#39;</span>
+    <span class="p">,</span> <span class="n">LEFT</span>  <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\x1b\x5b\x44</span><span class="s1">&#39;</span>
+    <span class="p">,</span> <span class="n">RIGHT</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\x1b\x5b\x43</span><span class="s1">&#39;</span>
+
+    <span class="c1"># other</span>
+    <span class="p">,</span> <span class="n">F1</span>  <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\x1b\x4f\x50</span><span class="s1">&#39;</span>
+    <span class="p">,</span> <span class="n">F2</span>  <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\x1b\x4f\x51</span><span class="s1">&#39;</span>
+    <span class="p">,</span> <span class="n">F3</span>  <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\x1b\x4f\x52</span><span class="s1">&#39;</span>
+    <span class="p">,</span> <span class="n">F4</span>  <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\x1b\x4f\x53</span><span class="s1">&#39;</span>
+    <span class="p">,</span> <span class="n">F5</span>  <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\x1b\x4f\x31\x35\x7e</span><span class="s1">&#39;</span>
+    <span class="p">,</span> <span class="n">F6</span>  <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\x1b\x4f\x31\x37\x7e</span><span class="s1">&#39;</span>
+    <span class="p">,</span> <span class="n">F7</span>  <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\x1b\x4f\x31\x38\x7e</span><span class="s1">&#39;</span>
+    <span class="p">,</span> <span class="n">F8</span>  <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\x1b\x4f\x31\x39\x7e</span><span class="s1">&#39;</span>
+    <span class="p">,</span> <span class="n">F9</span>  <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\x1b\x4f\x32\x30\x7e</span><span class="s1">&#39;</span>
+    <span class="p">,</span> <span class="n">F10</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\x1b\x4f\x32\x31\x7e</span><span class="s1">&#39;</span>
+    <span class="p">,</span> <span class="n">F11</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\x1b\x4f\x32\x33\x7e</span><span class="s1">&#39;</span>
+    <span class="p">,</span> <span class="n">F12</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\x1b\x4f\x32\x34\x7e</span><span class="s1">&#39;</span>
+
+    <span class="p">,</span> <span class="n">PAGE_UP</span>   <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\x1b\x5b\x35\x7e</span><span class="s1">&#39;</span>
+    <span class="p">,</span> <span class="n">PAGE_DOWN</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\x1b\x5b\x36\x7e</span><span class="s1">&#39;</span>
+
+    <span class="p">,</span> <span class="n">HOME</span>    <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\x1b\x5b\x48</span><span class="s1">&#39;</span>
+    <span class="p">,</span> <span class="n">END</span>     <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\x1b\x5b\x46</span><span class="s1">&#39;</span>
+    <span class="p">,</span> <span class="n">BACKTAB</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\x1b\x5b\x5a</span><span class="s1">&#39;</span>
+
+    <span class="p">,</span> <span class="n">BACKSPACE</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\x7f</span><span class="s1">&#39;</span>
+
+    <span class="p">,</span> <span class="n">INSERT</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\x1b\x5b\x32\x7e</span><span class="s1">&#39;</span>
+    <span class="p">,</span> <span class="n">DELETE</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\x1b\x5b\x33\x7e</span><span class="s1">&#39;</span>
+    <span class="p">)</span>
+
+
+<span class="k">if</span> <span class="n">CONSOLE_TYPE</span> <span class="o">==</span> <span class="s1">&#39;cmd&#39;</span><span class="p">:</span>
+
+    <span class="c1"># ALT</span>
+    <span class="n">KEY</span><span class="o">.</span><span class="n">ALT_A</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="c1"># CTRL + ALT</span>
+    <span class="n">KEY</span><span class="o">.</span><span class="n">CTRL_ALT_A</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\x00\x1e</span><span class="s1">&#39;</span>
+
+    <span class="c1"># cursors</span>
+    <span class="n">KEY</span><span class="o">.</span><span class="n">UP</span>    <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\xe0\x49</span><span class="s1">&#39;</span>
+    <span class="n">KEY</span><span class="o">.</span><span class="n">DOWN</span>  <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\xe0\x50</span><span class="s1">&#39;</span>
+    <span class="n">KEY</span><span class="o">.</span><span class="n">LEFT</span>  <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\xe0\x4b</span><span class="s1">&#39;</span>
+    <span class="n">KEY</span><span class="o">.</span><span class="n">RIGHT</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\xe0\x4d</span><span class="s1">&#39;</span>
+
+    <span class="c1"># other</span>
+    <span class="n">KEY</span><span class="o">.</span><span class="n">F1</span>  <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\x00\x3b</span><span class="s1">&#39;</span>
+    <span class="n">KEY</span><span class="o">.</span><span class="n">F2</span>  <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\x00\x3c</span><span class="s1">&#39;</span>
+    <span class="n">KEY</span><span class="o">.</span><span class="n">F3</span>  <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\x00\x3d</span><span class="s1">&#39;</span>
+    <span class="n">KEY</span><span class="o">.</span><span class="n">F4</span>  <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\x00\x3e</span><span class="s1">&#39;</span>
+    <span class="n">KEY</span><span class="o">.</span><span class="n">F5</span>  <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\x00\x3f</span><span class="s1">&#39;</span>
+    <span class="n">KEY</span><span class="o">.</span><span class="n">F6</span>  <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\x00\x40</span><span class="s1">&#39;</span>
+    <span class="n">KEY</span><span class="o">.</span><span class="n">F7</span>  <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\x00\x41</span><span class="s1">&#39;</span>
+    <span class="n">KEY</span><span class="o">.</span><span class="n">F8</span>  <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\x00\x42</span><span class="s1">&#39;</span>
+    <span class="n">KEY</span><span class="o">.</span><span class="n">F9</span>  <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\x00\x43</span><span class="s1">&#39;</span>
+    <span class="n">KEY</span><span class="o">.</span><span class="n">F10</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\x00\x44</span><span class="s1">&#39;</span>
+    <span class="n">KEY</span><span class="o">.</span><span class="n">F11</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\x00\x85</span><span class="s1">&#39;</span>
+    <span class="n">KEY</span><span class="o">.</span><span class="n">F12</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\x00\x86</span><span class="s1">&#39;</span>
+
+    <span class="n">KEY</span><span class="o">.</span><span class="n">PAGE_UP</span>   <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\xe0\x49</span><span class="s1">&#39;</span>
+    <span class="n">KEY</span><span class="o">.</span><span class="n">PAGE_DOWN</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\xe0\x51</span><span class="s1">&#39;</span>
+
+    <span class="n">KEY</span><span class="o">.</span><span class="n">HOME</span>    <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\xe0\x47</span><span class="s1">&#39;</span>
+    <span class="n">KEY</span><span class="o">.</span><span class="n">END</span>     <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\xe0\x4f</span><span class="s1">&#39;</span>
+    <span class="n">KEY</span><span class="o">.</span><span class="n">BACKTAB</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="n">KEY</span><span class="o">.</span><span class="n">BACKSPACE</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\x08</span><span class="s1">&#39;</span>
+
+    <span class="n">KEY</span><span class="o">.</span><span class="n">INSERT</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\xe0\x52</span><span class="s1">&#39;</span>
+    <span class="n">KEY</span><span class="o">.</span><span class="n">DELETE</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\xe0\x53</span><span class="s1">&#39;</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019 Markus Heiser
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

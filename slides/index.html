@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+
+
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>fspath package</title>
+
+    
+
+    
+<link rel="stylesheet" href="_static/css/reveal.css">
+<link rel="stylesheet" href="_static/css/theme/league.css" id="theme">
+<link rel="stylesheet" href="_static/lib/css/zenburn.css">
+<link rel="stylesheet" href="_static/revealjs.css" type="text/css" />
+
+<link rel="stylesheet" href="_static/mysettings.css" type="text/css" />
+
+
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+        if(window.location.search.match(/print-pdf/gi)) {
+            var link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = '_static/css/print/pdf.css';
+            document.getElementsByTagName('head')[0].appendChild(link);
+        }
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="_static/lib/js/html5shiv.js"></script>
+    <![endif]-->
+      <script type="text/javascript" src="_static/language_data.js"></script>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        
+  <div class="section" id="fspath-package">
+<h1>fspath package<a class="headerlink" href="#fspath-package" title="Permalink to this headline">¶</a></h1>
+ <aside id="logo" style="height:8vh; width:8vw; position:absolute; bottom:2vh; left:2vw; ">
+  <a href="http://www.darmarit.de">
+    <img src="_static/darmarIT_logo_512.png">
+  </a>
+</aside><section data-transition="linear">
+<h2>fspath package</h2>
+<h4>enjoy in scripting</h4>
+<p class="first">semantic path names and much more</p>
+<p><a class="reference external" href="https://github.com/return42/fspath">return42/fspath&#64;GitHub</a></p>
+<small>
+contributed by <a class="reference external" href="http://github.com/return42">return42</a></small>
+<aside class="last notes">
+After 10 years juggling with os.path, zipfile &amp; Co. I thought it is time
+to bring back more <em>pythonic</em> to APIs. It is made with the philosophy that
+API’s should be intuitive and their defaults should at least cover 80% of
+what programmer daily needs.  Started with the semantic file system
+pathes, it grows continuous and includes more and more handy stuff for the
+daily python scripting.</aside>
+</section>
+<section>
+<h2>tired in os.path?</h2>
+<p class="first">are you tired in juggling with …</p>
+<pre class="python">
+<code data-trim contenteditable>parent_dir = os.path.abspath(
+                 os.path.join(
+                     os.path.dirname(__file__)
+                     , os.path.pardir))</code></pre>
+<p>and all that bloody stuff? do you think this ..</p>
+<pre class="python">
+<code data-trim contenteditable>parent_dir = FSPath(__file__).DIRNAME.ABSPATH / &#x27;..&#x27;</code></pre>
+<p class="last">is much more readable .. than continue.</p>
+</section>
+<section>
+<h2>install</h2>
+<p class="first">from <a class="reference external" href="https://pypi.python.org/pypi/fspath/">PyPI</a></p>
+<pre class="shell">
+<code data-trim contenteditable>$ pip install [--user] fspath</code></pre>
+<p>or a bleeding edge installation from <a class="reference external" href="http://github.com/return42/fspath.git">GitHub</a></p>
+<pre class="shell last">
+<code data-trim contenteditable>$ pip install --user git+http://github.com/return42/fspath.git</code></pre>
+</section>
+<section>
+<h2>Content</h2>
+<ul class="first last simple">
+<li><a class="reference external" href="#/4">semantic path</a></li>
+<li><a class="reference external" href="#/7">be expressive in daily use cases</a></li>
+<li><a class="reference external" href="#/15">file name suffix explained</a></li>
+<li><a class="reference external" href="#/20">the FSPath type</a></li>
+<li><a class="reference external" href="#/22">OS_ENV</a></li>
+<li><a class="reference external" href="#/24">Command Line Interface</a></li>
+<li><a class="reference external" href="#/31">versioning scheme</a></li>
+</ul>
+</section>
+<section>
+<h3>semantic path</h3>
+<pre class="python first">
+<code data-trim contenteditable>&gt;&gt;&gt; from fspath import FSPath
+&gt;&gt;&gt; tmp = FSPath(&#x27;~/tmp&#x27;)
+&gt;&gt;&gt; tmp
+&#x27;/home/user/tmp&#x27;
+&gt;&gt;&gt; tmp.EXISTS
+False</code></pre>
+<p>no additional import, no juggling with <code class="docutils literal notranslate"><span class="pre">os.join(...)</span></code></p>
+<p>simply slash <code class="docutils literal notranslate"><span class="pre">/</span></code> and <code class="docutils literal notranslate"><span class="pre">foo.&lt;method&gt;</span></code> calls</p>
+<pre class="python last">
+<code data-trim contenteditable>&gt;&gt;&gt; [(tmp/x).makedirs() for x in (&#x27;foo&#x27;, &#x27;bar&#x27;)]
+True, True
+&gt;&gt;&gt; for n in tmp.listdir():
+...     print(tmp / n)
+...
+/home/user/tmp/foo
+/home/user/tmp/bar</code></pre>
+</section>
+<section>
+<h3>behaves as expected</h3>
+<p class="first">confused by <code class="docutils literal notranslate"><span class="pre">makedirs</span></code> <a class="reference external" href="https://docs.python.org/3.5/library/os.html#os.makedirs">‘Changed in ..’</a>?</p>
+<pre class="python">
+<code data-trim contenteditable>&gt;&gt;&gt; foo = tmp / &#x27;foo&#x27;
+&gt;&gt;&gt; import os
+&gt;&gt;&gt; os.makedirs(foo) &amp;&amp;
+Traceback (most recent call last):
+  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
+  File &quot;/usr/lib/python3.5/os.py&quot;, line 241, in makedirs
+  mkdir(name, mode)
+  FileExistsError: [Errno 17] File exists:&#x27;/home/user/tmp/foo&#x27;</code></pre>
+<p>aargh, creates intermediate but raise if exists?!</p>
+<pre class="python">
+<code data-trim contenteditable>&gt;&gt;&gt; foo.makedirs()
+False</code></pre>
+<p class="last">FSPath behaves as expected :)</p>
+</section>
+<section>
+<h3>return of dispersed operations</h3>
+<p class="first">tired in meaningless <code class="docutils literal notranslate"><span class="pre">foo</span></code>, <code class="docutils literal notranslate"><span class="pre">foo2</span></code> and <code class="docutils literal notranslate"><span class="pre">fooN</span></code> functions?</p>
+<pre class="python">
+<code data-trim contenteditable>def copyfile(self, dest, preserve=False):
+   if preserve:
+      shutil.copy2(self, dest)
+   else:
+      shutil.copy(self, dest)</code></pre>
+<p>you think <em>delete</em> means <strong>delete!</strong></p>
+<pre class="python last">
+<code data-trim contenteditable>def delete(self):
+    if self.ISDIR:
+        self.rmtree()
+    else:
+        os.remove(self)</code></pre>
+</section>
+<section>
+<h3>be expressive in daily use cases</h3>
+<p class="first">just read my entire text file</p>
+<pre class="python">
+<code data-trim contenteditable>readme = FSPath(&#x27;README.txt&#x27;).readFile()</code></pre>
+<p>open a path name with its associated desktop application</p>
+<pre class="python">
+<code data-trim contenteditable>&gt;&gt;&gt; FSPath(&#x27;index.html&#x27;).startFile() # opens HTML-browser showing
+&gt;&gt;&gt;</code></pre>
+<pre class="python">
+<code data-trim contenteditable>&gt;&gt;&gt; FSPath(&#x27;.&#x27;).startFile()          # opens file-explorer at CWD</code></pre>
+<small class="last">
+M$-Win has nativ support in Python. On Darwin and FreeBSD the <a class="reference external" href="https://www.freebsd.org/cgi/man.cgi?open">open</a> command is used. On other OS
+(e.g. Linux) the <a class="reference external" href="https://portland.freedesktop.org/doc/xdg-open.html">xdg-open</a> is used.</small>
+</section>
+<section>
+<h3>be expressive in daily use cases</h3>
+<p class="first"><code class="docutils literal notranslate"><span class="pre">FSPath</span></code> gives us prototypes with meaningful defaults</p>
+<pre class="python">
+<code data-trim contenteditable>def openTextFile(self
+                 , mode=&#x27;rt&#x27;, encoding=&#x27;utf-8&#x27;
+                 , errors=&#x27;strict&#x27;, buffering=1
+                 , newline=None):</code></pre>
+<p>and without meaningless arguments</p>
+<pre class="python">
+<code data-trim contenteditable>def openBinaryFile(self
+                   , mode=&#x27;rb&#x27;, errors=&#x27;strict&#x27;
+                   , buffering=None):</code></pre>
+<p class="last">if you have time, compare this with <a class="reference external" href="https://docs.python.org/3.5/library/functions.html#open">open</a></p>
+</section>
+<section>
+<h3>be expressive in daily use cases</h3>
+<p class="first">just download and extract</p>
+<pre class="python">
+<code data-trim contenteditable>&gt;&gt;&gt; arch = foo / &#x27;fspath.zip&#x27;
+&gt;&gt;&gt; url = &#x27;https://github.com/return42/fspath/archive/master.zip&#x27;</code></pre>
+<p><code class="docutils literal notranslate"><span class="pre">.download</span></code> – super easy download + segmentation + ticker</p>
+<pre class="python">
+<code data-trim contenteditable>&gt;&gt;&gt; arch.download(url, chunksize=1024, ticker=True)
+/home/user/tmp/foo/fspath.zip: [87.9 KB][==============    ]  83%</code></pre>
+<p><code class="docutils literal notranslate"><span class="pre">.extract</span></code> – extract in one step, no matter ZIP or TAR</p>
+<pre class="python last">
+<code data-trim contenteditable>&gt;&gt;&gt; arch.ISTAR, arch.ISZIP
+(False, True)
+&gt;&gt;&gt; arch.extract(foo)
+[&#x27;fspath-master/&#x27;, &#x27;fspath-master/.gitignore&#x27; ...</code></pre>
+</section>
+<section>
+<h3>be expressive in daily use cases</h3>
+<p class="first"><code class="docutils literal notranslate"><span class="pre">.glob</span></code> – shell like pattern in a single folder</p>
+<pre class="python">
+<code data-trim contenteditable>&gt;&gt;&gt; folder = foo / &#x27;fspath-master&#x27;
+&gt;&gt;&gt; g_iter = folder.glob(&#x27;*.py&#x27;)
+&gt;&gt;&gt; type(g_iter), len(list(g_iter))
+(&lt;class &#x27;generator&#x27;&gt;, 1)</code></pre>
+<p><code class="docutils literal notranslate"><span class="pre">.reMatchFind</span></code> – search files recursively by <a class="reference external" href="https://docs.python.org/library/re.html">regexp</a></p>
+<pre class="python">
+<code data-trim contenteditable>&gt;&gt;&gt; rst_files = folder.reMatchFind(r&#x27;.*\.rst$&#x27;)</code></pre>
+<p>example: change suffix of all ‘.rst’ files in your tree</p>
+<pre class="python last">
+<code data-trim contenteditable>&gt;&gt;&gt; moved_files = [f.move(f.suffix(&#x27;.txt&#x27;)) for f in rst_files]</code></pre>
+</section>
+<section>
+<h3>be expressive in daily use cases</h3>
+<p class="first"><code class="docutils literal notranslate"><span class="pre">.relpath</span></code> – strip relative pathnames</p>
+<pre class="python">
+<code data-trim contenteditable>&gt;&gt;&gt; folder
+&#x27;/home/user/tmp/foo/fspath-master&#x27;
+&gt;&gt;&gt; folder.relpath(tmp)
+&#x27;foo/fspath-master&#x27;</code></pre>
+<pre class="python">
+<code data-trim contenteditable>&gt;&gt;&gt; py_iter = folder.reMatchFind(r&#x27;.*\.py$&#x27;, relpath=True)
+&gt;&gt;&gt; list(py_iter)
+[&#x27;setup.py&#x27;, &#x27;fspath/_which.py&#x27;, &#x27;fspath/win.py&#x27;, ...]</code></pre>
+<p><code class="docutils literal notranslate"><span class="pre">.filesize</span></code> – (human) readable file size</p>
+<pre class="python last">
+<code data-trim contenteditable>&gt;&gt;&gt; arch.filesize()            # size in bytes (int)
+91502
+&gt;&gt;&gt; arch.filesize(precision=3) # switch to human readable output
+&#x27;89.357 KB&#x27;
+&gt;&gt;&gt; foo.filesize(precision=0)  # switch to human readable output
+&#x27;12 MB&#x27;</code></pre>
+</section>
+<section>
+<h3>be expressive in daily use cases</h3>
+<p class="first">run executable without any rocket since</p>
+<pre class="python">
+<code data-trim contenteditable>&gt;&gt;&gt; proc = FSPath(&#x27;arp&#x27;).Popen(&#x27;-a&#x27;,)
+&gt;&gt;&gt; stdout, stderr = proc.communicate()
+&gt;&gt;&gt; retVal = proc.returncode</code></pre>
+<p><code class="docutils literal notranslate"><span class="pre">callEXE</span></code> – synchronous call and capture all in one</p>
+<pre class="python">
+<code data-trim contenteditable>&gt;&gt;&gt; from fspath import callEXE
+&gt;&gt;&gt; out, err, rc = callEXE(&#x27;arp&#x27;, &#x27;-a&#x27;, &#x27;192.168.1.120&#x27;)
+&gt;&gt;&gt; print(&quot;out:&#x27;%s...&#x27; | err=&#x27;%s&#x27; | exit code=%d&quot;
+          % (out[:24], err, rc))
+out:&#x27;storage (192.168.1.120) ...&#x27; | err=&#x27;&#x27; | exit code=0</code></pre>
+<pre class="python last">
+<code data-trim contenteditable>&gt;&gt;&gt; callEXE(&#x27;arp&#x27;, &#x27;-a&#x27;, &#x27;xyz&#x27;)
+(&#x27;&#x27;, &#x27;xyz: Unknown host\n&#x27;, 255)</code></pre>
+</section>
+<section>
+<h3>more file & folder methods</h3>
+<ul class="first last simple">
+<li><code class="docutils literal notranslate"><span class="pre">.chdir</span></code> –  change current working dir to <em>self</em></li>
+<li><code class="docutils literal notranslate"><span class="pre">.walk</span></code> – generate filenames of tree (see <a class="reference external" href="https://docs.python.org/3/library/os.html#os.walk">os.walk</a>)</li>
+<li><code class="docutils literal notranslate"><span class="pre">.delete</span></code> – delete! .. no matter if file or folder</li>
+<li><code class="docutils literal notranslate"><span class="pre">.rmtree</span></code> – remove entire folder</li>
+<li><code class="docutils literal notranslate"><span class="pre">.rmfile</span></code> – remove single file</li>
+<li><code class="docutils literal notranslate"><span class="pre">.copyfile</span></code> – copy file (opt. with permission bits)</li>
+<li><code class="docutils literal notranslate"><span class="pre">.copytree</span></code> – recursively copy the entire tree</li>
+<li><code class="docutils literal notranslate"><span class="pre">.filesize</span></code> – Filesize in bytes or with precision</li>
+<li><code class="docutils literal notranslate"><span class="pre">.suffix</span></code> – return path name with <em>new</em> suffix</li>
+</ul>
+</section>
+<section>
+<h2>common class members</h2>
+<p class="first">To be complete with path names.</p>
+<pre class="python">
+<code data-trim contenteditable>&gt;&gt;&gt; FSPath.getHOME()
+&#x27;/home/user&#x27;</code></pre>
+<pre class="python">
+<code data-trim contenteditable>&gt;&gt;&gt; FSPath.getCWD()
+&#x27;/share/fspath/local&#x27;</code></pre>
+<p><code class="docutils literal notranslate"><span class="pre">FSPath.OS</span></code> – shortcut to common OS properties</p>
+<pre class="python last">
+<code data-trim contenteditable>&gt;&gt;&gt; pprint(FSPath.OS)
+{&#x27;altsep&#x27;   : None       ,  &#x27;curdir&#x27;   : &#x27;.&#x27;  ,
+ &#x27;extsep&#x27;   : &#x27;.&#x27;        ,  &#x27;linesep&#x27;  : &#x27;\n&#x27; ,
+ &#x27;pathsep&#x27;  : &#x27;:&#x27;        ,  &#x27;sep&#x27;      : &#x27;/&#x27;  ,
+ &#x27;devnull&#x27;  : &#x27;/dev/null&#x27;,  &#x27;defpath&#x27;  : &#x27;:/bin:/usr/bin&#x27;
+ }</code></pre>
+</section>
+<section>
+<h3>file name suffix explained</h3>
+<pre class="python first">
+<code data-trim contenteditable>&gt;&gt;&gt; filename = FSPath(&#x27;../path/to/folder/filename.ext&#x27;)</code></pre>
+<p><em>dot</em> is a part of the <em>suffix</em></p>
+<pre class="python">
+<code data-trim contenteditable>&gt;&gt;&gt; filename.SUFFIX
+&#x27;.ext&#x27;</code></pre>
+<p>change suffix <em>in place</em></p>
+<pre class="python">
+<code data-trim contenteditable>&gt;&gt;&gt; filename.suffix(&#x27;.rst&#x27;)
+&#x27;../path/to/folder/filename.rst&#x27;</code></pre>
+<p>or even throw it away</p>
+<pre class="python last">
+<code data-trim contenteditable>&gt;&gt;&gt; filename.SKIPSUFFIX
+&#x27;../path/to/folder/filename&#x27;</code></pre>
+</section>
+<section>
+<h3>more file & folder properties</h3>
+<pre class="python first">
+<code data-trim contenteditable>&gt;&gt;&gt; filename.DIRNAME
+&#x27;../path/to/folder&#x27;</code></pre>
+<pre class="python">
+<code data-trim contenteditable>&gt;&gt;&gt; filename.BASENAME
+&#x27;filename.ext&#x27;</code></pre>
+<pre class="python">
+<code data-trim contenteditable>&gt;&gt;&gt; filename.FILENAME
+&#x27;filename&#x27;</code></pre>
+<pre class="python">
+<code data-trim contenteditable>&gt;&gt;&gt; filename.ABSPATH
+&#x27;/share/fspath/local/path/to/folder/filename.ext&#x27;</code></pre>
+<pre class="python last">
+<code data-trim contenteditable>&gt;&gt;&gt; filename.REALPATH
+&#x27;/share/fspath/path/to/folder/filename.ext&#x27;</code></pre>
+</section>
+<section>
+<h3>more file & folder properties</h3>
+<pre class="python first">
+<code data-trim contenteditable>&gt;&gt;&gt; filename.NTPATH
+&#x27;..\\path\\to\\folder\\filename.ext&#x27;</code></pre>
+<pre class="python">
+<code data-trim contenteditable>&gt;&gt;&gt; filename.POSIXPATH
+&#x27;../path/to/folder/filename.ext&#x27;</code></pre>
+<p>known from shell</p>
+<pre class="python">
+<code data-trim contenteditable>&gt;&gt;&gt; home = FSPath(&quot;$HOME&quot;)
+&gt;&gt;&gt; home
+&#x27;$HOME&#x27;
+&gt;&gt;&gt; home.EXPANDVARS
+&#x27;/home/user&#x27;</code></pre>
+<pre class="python last">
+<code data-trim contenteditable>&gt;&gt;&gt; home = FSPath(&quot;~/tmp&quot;)
+&gt;&gt;&gt; home.EXPANDUSERS
+&#x27;/home/user&#x27;</code></pre>
+</section>
+<section>
+<h3>more file & folder properties</h3>
+<ul class="first last simple">
+<li><code class="docutils literal notranslate"><span class="pre">.EXISTS</span></code>      – True if file/path name exist</li>
+<li><code class="docutils literal notranslate"><span class="pre">.SIZE</span></code>        – Size in bytes</li>
+<li><code class="docutils literal notranslate"><span class="pre">.READABLE</span></code>    – True if file/path is readable</li>
+<li><code class="docutils literal notranslate"><span class="pre">.WRITEABLE</span></code>   – True if file/path is writeable</li>
+<li><code class="docutils literal notranslate"><span class="pre">.EXECUTABLE</span></code>  – True if file is executable</li>
+<li><code class="docutils literal notranslate"><span class="pre">.ISDIR</span></code>       – True if path is a folder</li>
+<li><code class="docutils literal notranslate"><span class="pre">.ISFILE</span></code>      – True if path is a file</li>
+<li><code class="docutils literal notranslate"><span class="pre">.ISABSPATH</span></code>   – True if path is absolute</li>
+<li><code class="docutils literal notranslate"><span class="pre">.ISLINK</span></code>      – True if path is a symbolic link</li>
+<li><code class="docutils literal notranslate"><span class="pre">.ISMOUNT</span></code>     – True if path is a mountpoint</li>
+</ul>
+</section>
+<section>
+<h3>more file & folder properties</h3>
+<ul class="first last simple">
+<li><code class="docutils literal notranslate"><span class="pre">.MTIME</span></code>       – last modification time</li>
+<li><code class="docutils literal notranslate"><span class="pre">.ATIME</span></code>       – last access time</li>
+<li><code class="docutils literal notranslate"><span class="pre">.CTIME</span></code>       – last change time</li>
+<li><code class="docutils literal notranslate"><span class="pre">.ISZIP</span></code>       – True if path is a ZIP file</li>
+<li><code class="docutils literal notranslate"><span class="pre">.ISTAR</span></code>       – True if path is a TAR archive file</li>
+</ul>
+</section>
+<section>
+<h2>the FSPath type</h2>
+<p class="first">inheritance of <code class="docutils literal notranslate"><span class="pre">unicode</span></code> in Py2 and <code class="docutils literal notranslate"><span class="pre">str</span></code> in Py3</p>
+<pre class="python">
+<code data-trim contenteditable>class FSPath(six.text_type):
+     ...</code></pre>
+<p>constructor normalize without asking</p>
+<pre class="python">
+<code data-trim contenteditable>&gt;&gt;&gt; FSPath(&#x27;goes/up/../and/../down&#x27;)
+&#x27;goes/down&#x27;</code></pre>
+<p>works with anyone who accept strings</p>
+<pre class="python last">
+<code data-trim contenteditable>&gt;&gt;&gt; os.stat(FSPath.getHOME())
+os.stat_result(st_mode=16877, st_ino=1966082, ...</code></pre>
+</section>
+<section>
+<h3>the FSPath type</h3>
+<h4>Take in mind, its a string type!</h4>
+<p class="first"><code class="docutils literal notranslate"><span class="pre">FSPath</span></code> member call returns FSPath instances</p>
+<pre class="python">
+<code data-trim contenteditable>&gt;&gt;&gt; type(folder.splitpath()[-1])
+&lt;class &#x27;fspath.fspath.FSPath&#x27;&gt;</code></pre>
+<p>call of inherited string member returns string types</p>
+<pre class="python last">
+<code data-trim contenteditable>&gt;&gt;&gt; type(folder.split(home.OS.sep)[-1])
+&lt;class &#x27;str&#x27;&gt;</code></pre>
+</section>
+<section>
+<h3>OS_ENV</h3>
+<h4>a singleton for the environment</h4>
+<p class="first">environment variables are attributes</p>
+<pre class="python">
+<code data-trim contenteditable>&gt;&gt;&gt; from fspath import OS_ENV
+&gt;&gt;&gt; OS_ENV.SHELL
+&#x27;/bin/bash&#x27;</code></pre>
+<p>you can get or set</p>
+<pre class="python last">
+<code data-trim contenteditable>&gt;&gt;&gt; OS_ENV.TMP = &#x27;/tmp/xyz&#x27;
+&gt;&gt;&gt; FSPath(&#x27;$TMP&#x27;).EXPANDVARS
+&#x27;/tmp/xyz&#x27;</code></pre>
+</section>
+<section>
+<h3>OS_ENV</h3>
+<p class="first">unknown environment request raises <code class="docutils literal notranslate"><span class="pre">KeyError</span></code></p>
+<pre class="python">
+<code data-trim contenteditable>&gt;&gt;&gt; OS_ENV.XYZ
+Traceback (most recent call last):
+...
+KeyError: &#x27;XYZ&#x27;</code></pre>
+<p>use <code class="docutils literal notranslate"><span class="pre">.get</span></code> to avoid exceptions</p>
+<pre class="python last">
+<code data-trim contenteditable>&gt;&gt;&gt; OS_ENV.get(&#x27;XYZ&#x27;, &#x27;not defined&#x27;)
+&#x27;not defined&#x27;
+&gt;&gt;&gt; OS_ENV.get(&#x27;XYZ&#x27;)
+&gt;&gt;&gt;</code></pre>
+</section>
+<section>
+<h3>Command Line Interface</h3>
+<h4>a CLI with a pinch of sugar</h4>
+<pre class="python first last">
+<code data-trim contenteditable># -*- coding: utf-8; mode: python -*-
+# file: foobar/main.py
+
+&quot;&quot;&quot;foobar CLI&quot;&quot;&quot;
+
+import sys
+from fspath import CLI
+
+def main():
+    cli = CLI(description=__doc__)
+    # define CLI
+    ...
+    # run CLI
+    cli()</code></pre>
+</section>
+<section>
+<h3>CLI & setup</h3>
+<p class="first">in projects <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> add entry point for <code class="docutils literal notranslate"><span class="pre">main()</span></code></p>
+<pre class="python last">
+<code data-trim contenteditable>setup(name = &quot;foobar&quot;
+      ...
+      , entry_points = {
+          &#x27;console_scripts&#x27;: [
+              &#x27;foobar = foobar.main:main&#x27; ]}
+      ...
+      )</code></pre>
+</section>
+<section>
+<h3>CLI's subcommands</h3>
+<p class="first">implement a <code class="docutils literal notranslate"><span class="pre">cli</span></code> wrapper for each subcommand</p>
+<pre class="python">
+<code data-trim contenteditable>def cli_hello(cliArgs):
+    &quot;&quot;&quot;another &#x27;hello world&#x27;&quot;&quot;&quot;
+    print(&#x27;hello world&#x27;)</code></pre>
+<p><code class="docutils literal notranslate"><span class="pre">cliArgs.folder</span></code> we will be of type <code class="docutils literal notranslate"><span class="pre">FSPath</span></code></p>
+<pre class="python last">
+<code data-trim contenteditable>def cli_listdir(cliArgs):
+    &quot;&quot;&quot;list directory&quot;&quot;&quot;
+    for f in cliArgs.folder.listdir():
+        l = f.upper() if cliArgs.upper else f
+        f = cliArgs.folder / f
+        if cliArgs.verbose:
+            l = &#x27;[%10s] &#x27; % (f.filesize(precision=0)) + l
+        print(l, end = (&#x27;\n&#x27; if cliArgs.verbose else &#x27;, &#x27;))</code></pre>
+</section>
+<section>
+<h3>CLI's subcommands</h3>
+<p class="first"><a class="reference external" href="https://github.com/return42/fspath/blob/master/fspath/cli.py">CLI</a> is an
+<a class="reference external" href="https://docs.python.org/3.5/library/argparse.html">argparse</a>
+implementation.</p>
+<pre class="python">
+<code data-trim contenteditable>def main():
+    ...
+    # define CLI
+    hello   = cli.addCMDParser(cli_hello, cmdName=&#x27;hello&#x27;)
+    listdir = cli.addCMDParser(cli_listdir, cmdName=&#x27;dir&#x27;)
+    listdir.add_argument(&quot;folder&quot;, type = FSPath
+                         , nargs = &quot;?&quot;, default = FSPath(&quot;.&quot;)
+                         , help = &quot;path of the folder&quot;)
+    listdir.add_argument(&quot;--upper&quot;, action = &#x27;store_true&#x27;
+                         , help = &quot;convert to upper letters&quot;)</code></pre>
+<p class="last">using <code class="docutils literal notranslate"><span class="pre">type=FSPath</span></code> for file and path name arguments gives us the power of
+<code class="docutils literal notranslate"><span class="pre">FSPath</span></code> (see <code class="docutils literal notranslate"><span class="pre">cli_listdir(...)</span></code>)</p>
+</section>
+<section>
+<h3>CLI usage</h3>
+<p class="first">the <em>over all</em> help</p>
+<pre class="shell last">
+<code data-trim contenteditable>$ foobar --help
+usage: foobar [-h] [--debug] [--verbose] [--quiet] \
+              {hello, dir} ...
+
+optional arguments:
+  -h, --help  show this help message and exit
+  --debug     run in debug mode (default: False)
+  --verbose   run in verbose mode (default: False)
+  --quiet     run in quiet mode (default: False)
+
+commands:
+  {hello,dir}
+    hello      another &#x27;hello world&#x27;
+    dir        list directory</code></pre>
+</section>
+<section>
+<h3>CLI subcommands usage</h3>
+<p class="first">the <em>subcommand</em> <code class="docutils literal notranslate"><span class="pre">--help</span></code></p>
+<pre class="shell last">
+<code data-trim contenteditable>$ foobar dir --help
+
+usage: foobar dir [-h] [--upper] [folder]
+
+positional arguments:
+  folder      path of the folder (default: .)
+
+optional arguments:
+  -h, --help  show this help message and exit
+  --upper     convert to upper letters (default: False)
+
+list directory</code></pre>
+</section>
+<section>
+<h3>show how it works</h3>
+<p class="first">run subcommand <code class="docutils literal notranslate"><span class="pre">dir</span></code></p>
+<pre class="shell">
+<code data-trim contenteditable>$ foobar dir /
+initrd.img.old, initrd.img, var, vmlinuz, home ...</code></pre>
+<p>and with global option <code class="docutils literal notranslate"><span class="pre">verbose</span></code></p>
+<pre class="shell last">
+<code data-trim contenteditable>$ foobar.py --verbose dir /
+[     40 MB] initrd.img.old
+[     40 MB] initrd.img
+[      4 KB] var
+[      7 MB] vmlinuz
+[      4 KB] home
+...</code></pre>
+</section>
+<section>
+<h3>versioning scheme</h3>
+<p class="first">As long as every new release is fully downward compatible a <a class="reference external" href="https://packaging.python.org/tutorials/distributing-packages/#serial-versioning">serial
+versioning</a>
+is enough.</p>
+<p>Version numbers follow scheme</p>
+<p class="last"><code class="docutils literal notranslate"><span class="pre">YYYYMMDD</span></code></p>
+</section>
+<section>
+<h3>to be continued</h3>
+<p class="first">there is much more to show .. in the meantime take a look at the</p>
+<p class="last"><a class="reference external" href="https://return42.github.io/fspath/fspath-api/fspath.html">API docs</a></p>
+</section>
+<section>
+<p class="first">This slide show was build with the help of ..</p>
+<small class="last">
+<ul class="first last simple">
+<li><a class="reference external" href="https://github.com/return42/sphinxjp.themes.revealjs">sphinxjp.themes.revealjs</a></li>
+<li><a class="reference external" href="http://lab.hakim.se/reveal-js">REVEAL.JS</a></li>
+<li><a class="reference external" href="http://www.sphinx-doc.org">Sphinx-doc</a></li>
+<li><a class="reference external" href="http://www.sphinx-doc.org/en/stable/rest.html">reST</a></li>
+<li><a class="reference external" href="http://docutils.sourceforge.net/rst.html">docutils</a></li>
+</ul>
+</small>
+</section>
+</div>
+
+
+      </div>
+    </div>
+    
+<script src="_static/js/jquery.min.js"></script>
+<script src="_static/lib/js/head.min.js"></script>
+<script src="_static/js/reveal.js"></script>
+    <script>
+
+      // change DOM for reveal.js
+      $("div.section h1").remove();
+      var content = $("div.section").html();
+      $("div.section").remove();
+      $("div.slides").html(content);
+
+      Reveal.initialize({
+        width: 960,
+        height: 700,
+
+        margin: 0.1,
+
+        minScale: 0.2,
+        maxScale: 1.0,
+
+        controls: true,
+        progress: true,
+        history: true,
+        center: false,
+
+        keyboard : true,
+        overview: true,
+        touch: true,
+        loop: false,
+        rtl: false,
+        fragments: true,
+
+        autoSlide: 0,
+        mouseWheel: false,
+        rollingLinks: true,
+        previewLinks: false,
+
+        transitionSpeed: "default",
+        backgroundTransition: "slide",
+
+        slideNumber: true,
+        embedded: false,
+        autoSlideStoppable: true,
+        hideAddressBar: true,
+
+        parallaxBackgroundImage: "",
+        parallaxBackgroundSize: "",
+
+        focusBodyOnPageVisiblityChange: true,
+
+        viewDistance: 3,
+
+        transition: Reveal.getQueryHash().transition || "slide",
+
+        
+
+        dependencies: [
+           { src: '_static/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+           { src: '_static/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+           { src: '_static/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+           { src: '_static/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+           { src: '_static/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+           { src: '_static/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+        ]
+      });
+    </script>
+    <script src="_static/mysettings.js"></script>
+    
+  </body>
+</html>

@@ -1,0 +1,7 @@
+fspath.helper module
+====================
+
+.. automodule:: fspath.helper
+    :members:
+    :undoc-members:
+    :show-inheritance:

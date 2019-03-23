@@ -1,0 +1,391 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>fspath.debug module &mdash; FSPath 20190323 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="fspath.fspath module" href="fspath.fspath.html" />
+    <link rel="prev" title="fspath.console module" href="fspath.console.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> FSPath
+          
+
+          
+            
+            <img src="../_static/darmarIT_logo_128.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                20190323
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="fspath.html">fspath package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="fspath.html#submodules">Submodules</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="fspath.cli.html">fspath.cli module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fspath.compat.html">fspath.compat module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fspath.console.html">fspath.console module</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">fspath.debug module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fspath.fspath.html">fspath.fspath module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fspath.helper.html">fspath.helper module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fspath.main.html">fspath.main module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fspath.os_env.html">fspath.os_env module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fspath.progressbar.html">fspath.progressbar module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fspath.sui.html">fspath.sui module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fspath.win.html">fspath.win module</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="fspath.html#module-fspath">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">FSPath</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="fspath.html">fspath package</a> &raquo;</li>
+        
+      <li>fspath.debug module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/fspath-api/fspath.debug.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-fspath.debug">
+<span id="fspath-debug-module"></span><h1>fspath.debug module<a class="headerlink" href="#module-fspath.debug" title="Permalink to this headline">¶</a></h1>
+<p>Small collection for debugging and introspection purpose.</p>
+<dl class="class">
+<dt id="fspath.debug.Console">
+<em class="property">class </em><code class="descclassname">fspath.debug.</code><code class="descname">Console</code><span class="sig-paren">(</span><em>local_ns=None</em>, <em>global_ns=None</em>, <em>filename='&lt;console&gt;'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fspath/debug.html#Console"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fspath.debug.Console" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">code.InteractiveConsole</span></code></p>
+<p>A simple interactive console.</p>
+<dl class="attribute">
+<dt id="fspath.debug.Console.EOF">
+<code class="descname">EOF</code><em class="property"> = None</em><a class="headerlink" href="#fspath.debug.Console.EOF" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="fspath.debug.Console.raw_input">
+<code class="descname">raw_input</code><span class="sig-paren">(</span><em>prompt=''</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fspath/debug.html#Console.raw_input"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fspath.debug.Console.raw_input" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write a prompt and read a line.</p>
+<p>The returned line does not include the trailing newline.
+When the user enters the EOF key sequence, EOFError is raised.</p>
+<p>The base implementation uses the built-in function
+input(); a subclass may replace this with a different
+implementation.</p>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="fspath.debug.Console.run">
+<em class="property">classmethod </em><code class="descname">run</code><span class="sig-paren">(</span><em>local_ns=None</em>, <em>global_ns=None</em>, <em>banner=None</em>, <em>filename='&lt;console&gt;'</em>, <em>frame=None</em>, <em>EOF=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fspath/debug.html#Console.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fspath.debug.Console.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>Start console</p>
+<p>Without setting explicit namespaces (<code class="docutils literal notranslate"><span class="pre">local_ns</span></code>, <code class="docutils literal notranslate"><span class="pre">global_ns</span></code>),
+the namespaces from the current code-frame are uused.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">arg1</span><span class="p">):</span>
+    <span class="o">...</span>
+    <span class="n">Console</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="fspath.debug.Console.runcode">
+<code class="descname">runcode</code><span class="sig-paren">(</span><em>code</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fspath/debug.html#Console.runcode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fspath.debug.Console.runcode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Execute a code object.</p>
+<p>When an exception occurs, self.showtraceback() is called to
+display a traceback.  All exceptions are caught except
+SystemExit, which is reraised.</p>
+<p>A note about KeyboardInterrupt: this exception may occur
+elsewhere in this code, and may not always be caught.  The
+caller should be prepared to deal with it.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="fspath.debug.Console.write">
+<code class="descname">write</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fspath/debug.html#Console.write"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fspath.debug.Console.write" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write a string.</p>
+<p>The base implementation writes to sys.stderr; a subclass may
+replace this with a different implementation.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="fspath.debug.RemoteConsole">
+<em class="property">class </em><code class="descclassname">fspath.debug.</code><code class="descname">RemoteConsole</code><span class="sig-paren">(</span><em>local_ns=None</em>, <em>global_ns=None</em>, <em>filename='&lt;console&gt;'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fspath/debug.html#RemoteConsole"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fspath.debug.RemoteConsole" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#fspath.debug.Console" title="fspath.debug.Console"><code class="xref py py-class docutils literal notranslate"><span class="pre">fspath.debug.Console</span></code></a></p>
+<p>A simple remote console.</p>
+<p>Works just like the <code class="docutils literal notranslate"><span class="pre">Console</span></code> except the console can be reached from a
+remote (terminal session).</p>
+<dl class="attribute">
+<dt id="fspath.debug.RemoteConsole.EOF">
+<code class="descname">EOF</code><em class="property"> = 'EOF'</em><a class="headerlink" href="#fspath.debug.RemoteConsole.EOF" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="fspath.debug.RemoteConsole.interact">
+<code class="descname">interact</code><span class="sig-paren">(</span><em>port</em>, <em>addr='127.0.0.1'</em>, <em>banner=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fspath/debug.html#RemoteConsole.interact"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fspath.debug.RemoteConsole.interact" title="Permalink to this definition">¶</a></dt>
+<dd><p>Closely emulate the interactive Python console.</p>
+<p>The optional banner argument specifies the banner to print
+before the first interaction; by default it prints a banner
+similar to the one printed by the real Python interpreter,
+followed by the current class name in parentheses (so as not
+to confuse this with the real interpreter – since it’s so
+close!).</p>
+<p>The optional exitmsg argument specifies the exit message
+printed when exiting. Pass the empty string to suppress
+printing an exit message. If exitmsg is not given or None,
+a default message is printed.</p>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="fspath.debug.RemoteConsole.run">
+<em class="property">classmethod </em><code class="descname">run</code><span class="sig-paren">(</span><em>port</em>, <em>local_ns=None</em>, <em>global_ns=None</em>, <em>banner=None</em>, <em>filename='&lt;console&gt;'</em>, <em>frame=None</em>, <em>EOF=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fspath/debug.html#RemoteConsole.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fspath.debug.RemoteConsole.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>Starts a remote console</p>
+<p>The first argument is needed, it is the port number for the remote
+connection.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">arg1</span><span class="p">):</span>
+    <span class="o">...</span>
+    <span class="n">RemoteConsole</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="mi">4444</span><span class="p">)</span> <span class="c1"># terminal on port 4444</span>
+</pre></div>
+</div>
+<p>The string ‘EOF’ ends the remote session.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="fspath.debug.RemotePdb">
+<em class="property">class </em><code class="descclassname">fspath.debug.</code><code class="descname">RemotePdb</code><span class="sig-paren">(</span><em>port</em>, <em>addr='127.0.0.1'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fspath/debug.html#RemotePdb"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fspath.debug.RemotePdb" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">fspath.debug.Pdb</span></code></p>
+<p>Simple remote PDB</p>
+<dl class="method">
+<dt id="fspath.debug.RemotePdb.do_EOF">
+<code class="descname">do_EOF</code><span class="sig-paren">(</span><em>arg</em><span class="sig-paren">)</span><a class="headerlink" href="#fspath.debug.RemotePdb.do_EOF" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stop all operation on <code class="docutils literal notranslate"><span class="pre">continue</span></code>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="fspath.debug.RemotePdb.do_c">
+<code class="descname">do_c</code><span class="sig-paren">(</span><em>arg</em><span class="sig-paren">)</span><a class="headerlink" href="#fspath.debug.RemotePdb.do_c" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stop all operation on <code class="docutils literal notranslate"><span class="pre">continue</span></code>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="fspath.debug.RemotePdb.do_cont">
+<code class="descname">do_cont</code><span class="sig-paren">(</span><em>arg</em><span class="sig-paren">)</span><a class="headerlink" href="#fspath.debug.RemotePdb.do_cont" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stop all operation on <code class="docutils literal notranslate"><span class="pre">continue</span></code>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="fspath.debug.RemotePdb.do_continue">
+<code class="descname">do_continue</code><span class="sig-paren">(</span><em>arg</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fspath/debug.html#RemotePdb.do_continue"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fspath.debug.RemotePdb.do_continue" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stop all operation on <code class="docutils literal notranslate"><span class="pre">continue</span></code>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="fspath.debug.RemotePdb.do_exit">
+<code class="descname">do_exit</code><span class="sig-paren">(</span><em>arg</em><span class="sig-paren">)</span><a class="headerlink" href="#fspath.debug.RemotePdb.do_exit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stop all operation on <code class="docutils literal notranslate"><span class="pre">continue</span></code>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="fspath.debug.RemotePdb.do_quit">
+<code class="descname">do_quit</code><span class="sig-paren">(</span><em>arg</em><span class="sig-paren">)</span><a class="headerlink" href="#fspath.debug.RemotePdb.do_quit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stop all operation on <code class="docutils literal notranslate"><span class="pre">continue</span></code>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="fspath.debug.RemotePdb.shutdown">
+<code class="descname">shutdown</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fspath/debug.html#RemotePdb.shutdown"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fspath.debug.RemotePdb.shutdown" title="Permalink to this definition">¶</a></dt>
+<dd><p>shutdown PDB’s‘ REPL</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="fspath.debug.rtrace">
+<code class="descclassname">fspath.debug.</code><code class="descname">rtrace</code><span class="sig-paren">(</span><em>port=4444</em>, <em>addr='127.0.0.1'</em>, <em>frame=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fspath/debug.html#rtrace"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fspath.debug.rtrace" title="Permalink to this definition">¶</a></dt>
+<dd><p>A breakpoint, starting a <code class="docutils literal notranslate"><span class="pre">RemotePdb</span></code> session. Default port ist 4444</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="fspath.debug.trace">
+<code class="descclassname">fspath.debug.</code><code class="descname">trace</code><span class="sig-paren">(</span><em>frame=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fspath/debug.html#trace"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fspath.debug.trace" title="Permalink to this definition">¶</a></dt>
+<dd><p>A breakpoint starting a <code class="docutils literal notranslate"><span class="pre">Pdb</span></code> session.</p>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="fspath.fspath.html" class="btn btn-neutral float-right" title="fspath.fspath module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="fspath.console.html" class="btn btn-neutral float-left" title="fspath.console module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019 Markus Heiser
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

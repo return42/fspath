@@ -1,0 +1,27 @@
+fspath package
+==============
+
+Submodules
+----------
+
+.. toctree::
+
+   fspath.cli
+   fspath.compat
+   fspath.console
+   fspath.debug
+   fspath.fspath
+   fspath.helper
+   fspath.main
+   fspath.os_env
+   fspath.progressbar
+   fspath.sui
+   fspath.win
+
+Module contents
+---------------
+
+.. automodule:: fspath
+    :members:
+    :undoc-members:
+    :show-inheritance:

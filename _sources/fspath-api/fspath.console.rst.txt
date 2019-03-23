@@ -1,0 +1,7 @@
+fspath.console module
+=====================
+
+.. automodule:: fspath.console
+    :members:
+    :undoc-members:
+    :show-inheritance:
