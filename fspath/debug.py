@@ -16,6 +16,7 @@ import pdb
 import inspect
 import linecache
 import time
+import logging
 
 from code   import InteractiveConsole
 from codeop import CommandCompiler
@@ -24,12 +25,8 @@ import six
 
 __all__ = ['Console', 'RemoteConsole', 'RemotePdb', 'rtrace', 'trace']
 
-# ==============================================================================
-def ERROR(msg): # pylint: disable=C0103
-# ==============================================================================
-    u"""error message"""
-    sys.__stderr__.write(msg + "\n")
-    sys.__stderr__.flush()
+logger = logging.getLogger('fspath.debug')
+ERROR  = logger.error
 
 # ==============================================================================
 def descrFrame(frame, arround=3):
