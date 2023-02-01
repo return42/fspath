@@ -35,7 +35,7 @@ install_requires = [
 classifiers = [
     "Development Status :: 5 - Production/Stable"
     , "Intended Audience :: Developers"
-    , "License :: OSI Approved :: GNU General Public License v2 (GPLv2)"
+    , "License :: OSI Approved :: GNU Affero General Public License"
     , "Operating System :: OS Independent"
     , "Programming Language :: Python"
     , "Programming Language :: Python :: 2"
