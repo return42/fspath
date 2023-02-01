@@ -11,9 +11,9 @@ scripting.
 
 visit our slide-show at https://return42.github.io/fspath/slides/index.html
 
-:copyright:  Copyright (C) 2019 Markus Heiser
+:copyright:  Copyright (C) 2023 Markus Heiser
 :e-mail:     markus.heiser@darmarIT.de
-:license:    GPL Version 2, June 1991 see Linux/COPYING for details.
+:license:    GNU Affero General Public License v3 or later (AGPLv3+)
 :docs:       http://return42.github.io/fspath
 :repository: `github return42/fspath <https://github.com/return42/fspath>`_
 
