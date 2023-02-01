@@ -12,6 +12,12 @@ if [[ -z "${ORGANIZATION}" ]]; then
     ORGANIZATION="myorg"
 fi
 
+ADMIN_NAME="${ADMIN_NAME:-$(git config user.name)}"
+ADMIN_NAME="${ADMIN_NAME:-$USER}"
+
+ADMIN_EMAIL="${ADMIN_EMAIL:-$(git config user.email)}"
+ADMIN_EMAIL="${ADMIN_EMAIL:-$USER@$HOSTNAME}"
+
 if [[ -z "${REPO_ROOT}" ]]; then
     REPO_ROOT="$(dirname ${BASH_SOURCE[0]})"
     while([ -h "${REPO_ROOT}" ]) do REPO_ROOT=`readlink "${REPO_ROOT}"`; done
@@ -526,6 +532,51 @@ askPassphrase(){
 }
 
 # ----------------------------------------------------------------------------
+askIPv4Netmask(){
+# ----------------------------------------------------------------------------
+
+    # Fragt den Anwender nach einer IP und der Netzwerkmaske (class A, B oder
+    # C).  Die Auswahl wird in der Umgebungsvariablen <name> HINTERLEGT.
+
+    # usage:
+    #
+    #     askIPv4Netmask <name>
+    #     echo $<name>
+
+    if [[ -z $1 ]] ; then
+        err_msg "askIPv4Netmask() - missing argument"
+        exit
+    fi
+
+    local env_name=$1
+    local REPLY
+    local ipv4class
+    local menu=$(hostname -I)
+    local ipv4
+
+    if (( $(echo $menu | wc -w  ) > 1 )) ; then
+        chooseOneMenu ipv4 "Bitte die IP wählen" ${menu}
+    else
+        ipv4="$menu"
+    fi
+    chooseOneMenu ipv4class \
+                  "Welche Netzwerkmaske wird im Subnetz verwendet?"\
+                  "Class-C /24" \
+                  "Class-B /16" \
+                  "Class-A /8"
+
+    case $ipv4class in
+        "Class-C /24")
+            REPLY=$(echo $ipv4 | awk -F '.' '{print $1 "." $2 "." $3 ".0/24"}');;
+        "Class-B /16")
+            REPLY=$(echo $ipv4 | awk -F '.' '{print $1 "." $2 ".0.0/16"}');;
+        "Class-A /8")
+            REPLY=$(echo $ipv4 | awk -F '.' '{print $1 ".0.0.0/8"}');;
+    esac
+    eval "$env_name='${REPLY}'"
+}
+
+# ----------------------------------------------------------------------------
 ask_rm(){
 # ----------------------------------------------------------------------------
 
@@ -564,6 +615,22 @@ EOF
     fi
 }
 
+# ----------------------------------------------------------------------------
+print_URL_status () {
+# ----------------------------------------------------------------------------
+
+    # usage:
+    #
+    #   $ echo $(print_URL_status 'https://www.google.de') -- $?
+    #   200 -- 0
+    #
+    #   $ echo $(print_URL_status 'https://www.url-gibt-es-nicht.xy') -- $?
+    #   000 -- 6
+
+    curl -H 'Cache-Control: no-cache' -o /dev/null \
+	 --silent --head --write-out '%{http_code}' \
+	 --insecure "${1?missing URL argumen}"
+}
 
 # ----------------------------------------------------------------------------
 TEE_stderr () {
@@ -577,7 +644,7 @@ TEE_stderr () {
 
     # Beispiel::
     #
-    #     TEE_stderr 3 <<EOF | python -i 2>&1 | prefix_stdout "OUT: "
+    #     TEE_stderr 3 <<EOF | python3 -i 2>&1 | prefix_stdout "OUT: "
     #     a=5+2
     #     b=a+3
     #     print "hello"
@@ -648,7 +715,7 @@ askReboot() {
 
     rstHeading "== Es wird ein Reboot des Hosts $HOSTNAME empfohlen ==" part
     if askYesNo "Soll **$HOSTNAME** neu gebootet werden?" ${1:-Ny} $2; then
-        sudo reboot
+        sudo -H reboot
     fi
 }
 
@@ -705,7 +772,7 @@ cloneGitRepository() {
     fi
 
     if [[ ! -z ${SUDO_USER} ]]; then
-        sudo -u ${SUDO_USER} mkdir -p ${CACHE}
+        sudo -H -u ${SUDO_USER} mkdir -p ${CACHE}
     else
         mkdir -p ${CACHE}
     fi
@@ -715,7 +782,7 @@ cloneGitRepository() {
         info_msg "  -->${Green} ${target_folder} ${_color_Off}"
 	pushd "${target_folder}" > /dev/null
         if [[ ! -z ${SUDO_USER} ]]; then
-            sudo -u ${SUDO_USER} git pull --all
+            sudo -H -u ${SUDO_USER} git pull --all
         else
             git pull --all
         fi
@@ -725,7 +792,7 @@ cloneGitRepository() {
         info_msg "  -->${Green} ${target_folder} ${_color_Off}"
 	pushd "$(dirname ${target_folder})" > /dev/null
         if [[ ! -z ${SUDO_USER} ]]; then
-            sudo -u ${SUDO_USER} git clone "$1" "$2"
+            sudo -H -u ${SUDO_USER} git clone "$1" "$2"
         else
             git clone "$1" "$2"
         fi
@@ -1235,6 +1302,10 @@ aptRepositoryExist() {
 aptAddRepositoryURL(){
 # ----------------------------------------------------------------------------
 
+    # usage:
+    #
+    #     aptAddRepositoryURL <apt-reposetory-url> [apt-reposetory-name [comp [src]]]
+    #
     # Dem add-apt-repository fehlt (immernoch) die Option --sources-list-file,
     # mit dem man den Eintrag in eine separate Datei in sources.list.d eintragen
     # könnte (so wie bei ppa's). Deswegen mache ich das hier manuell. Typischer
@@ -1261,10 +1332,6 @@ aptAddRepositoryURL(){
     # public-keys::
     #
     #   aptRemoveRepository "$APT_SOURCE_NAME"
-    #
-    # usage:
-    #
-    #     addAptRepositoryURL <apt-reposetory-url> [apt-reposetory-name [comp [src]]]
 
     local URL="${1}"
     local FNAME="$(stripHostnameFromUrl ${1})".list
@@ -1321,7 +1388,7 @@ aptAddPkeyFromURL(){
     echo -e "to:  ${Yellow}${FNAME}${_color_Off}"
 
     TEE_stderr <<EOF | bash | prefix_stdout
-    wget -q "$URL" -O- | sudo apt-key --keyring "$FNAME" add -
+    wget -q "$URL" -O- | sudo -H apt-key --keyring "$FNAME" add -
 EOF
 }
 
@@ -1623,20 +1690,20 @@ TEMPLATES_InstallOrMerge() {
             fi
 
         done
-        sudo install -v -o "${owner}" -g "${group}" -m "${chmod}" "${CONFIG}${dst}" "${dst}"
+        sudo -H install -v -o "${owner}" -g "${group}" -m "${chmod}" "${CONFIG}${dst}" "${dst}"
 
 
     elif [[ ! -f "${dst}" && -f "${template_file}" ]] ; then
         # Die Zieldatei existiert NICHT, es gibt ein TEMPLATE aber es gibt KEINE
         # Sicherung
         echo
-        sudo install -v -o "${owner}" -g "${group}" -m "${chmod}" "${template_file}" "${dst}"
+        sudo -H install -v -o "${owner}" -g "${group}" -m "${chmod}" "${template_file}" "${dst}"
 
     elif [[ ! -f "${dst}" && -f "${CONFIG}${dst}" ]] ; then
         # Die Zieldatei existiert NICHT, es gibt KEIN TEMPLATE aber es gibt eine
         # Sicherung
         echo
-        sudo install -v -o "${owner}" -g "${group}" -m "${chmod}" "${CONFIG}${dst}" "${dst}"
+        sudo -H install -v -o "${owner}" -g "${group}" -m "${chmod}" "${CONFIG}${dst}" "${dst}"
 
     else
         err_msg "Dieser Fall ist nicht kausal / nicht implementiert :-o"
@@ -1801,7 +1868,7 @@ APACHE_install_site() {
         CONF=${CONF%.conf}.conf
         TEMPLATES_InstallOrMerge $do_eval "${APACHE_SITES_AVAILABE}/${CONF}" root root 644
     done
-    sudo a2ensite -q "$@"
+    sudo -H a2ensite -q "$@"
     APACHE_reload
 }
 
@@ -1825,7 +1892,7 @@ APACHE_install_conf(){
         CONF=${CONF%.conf}.conf
         TEMPLATES_InstallOrMerge "${APACHE_CONF_AVAILABE}/${CONF}" root root 644
     done
-    sudo a2enconf -q "$@"
+    sudo -H a2enconf -q "$@"
     APACHE_reload
 }
 
@@ -1869,8 +1936,8 @@ APACHE_reload() {
 # ----------------------------------------------------------------------------
     rstBlock "${BGreen}Reload der Apache Konfiguration ...${_color_Off}"
     echo
-    sudo apachectl configtest
-    sudo service apache2 force-reload
+    sudo -H apachectl configtest
+    sudo -H service apache2 force-reload
 }
 
 # ----------------------------------------------------------------------------
@@ -1888,8 +1955,102 @@ APACHE_dissable_site() {
     #
     #   APACHE_disable_site fxSyncServer
 
-    sudo a2dissite -q "$@"
-    sudo service apache2 force-reload
+    sudo -H a2dissite -q "$@"
+    sudo -H service apache2 force-reload
+}
+
+
+# uWSGI Setup
+# ===========
+
+if [[ -z "$uWSGI_SETUP" ]]; then
+    uWSGI_SETUP="/etc/uwsgi"
+fi
+
+#  ----------------------------------------------------------------------------
+uWSGI_restart() {
+# ----------------------------------------------------------------------------
+
+    # usage:  uWSGI_restart()
+
+    info_msg "restart uWSGI service"
+    sudo -H systemctl restart uwsgi
+}
+
+# ----------------------------------------------------------------------------
+uWSGI_install_app() {
+# ----------------------------------------------------------------------------
+
+    # usage:  uWSGI_install_app [--eval] searx.ini ...
+
+    # Installiert eine uWSGI-App aus den ``${TEMPLATES}`` Ordner.  Nach dem
+    # Installieren (apps-available) wird die App noch aktiviert (apps-enabled)
+    # und es wird der uWSGI Dienst neu gestartet, so das die uWSGI-App gleich
+    # aktiv ist.
+
+    local do_eval=""
+    if [[ "$1" == "--eval" ]]; then
+        do_eval=$1; shift
+    fi
+
+    local CONF
+    for CONF in $*; do
+        TEMPLATES_InstallOrMerge \
+	    $do_eval "${uWSGI_SETUP}/apps-available/${CONF}" root root 644
+	uWSGI_enable_app ${CONF}
+    done
+    uWSGI_restart
+}
+
+# ----------------------------------------------------------------------------
+uWSGI_remove_app() {
+# ----------------------------------------------------------------------------
+
+    # usage:  uWSGI_remove_app searx.ini ...
+
+    # De-Installiert eine uWSGI-App und es wird der uWSGI Dienst neu gestartet.
+
+    local CONF
+    for CONF in $*; do
+	uWSGI_disable_app ${CONF}
+	rm -f ${uWSGI_SETUP}/apps-available/$CONF
+	info_msg "removed uWSGI app: $CONF"
+    done
+    uWSGI_restart
+}
+
+# ----------------------------------------------------------------------------
+uWSGI_enable_app() {
+# ----------------------------------------------------------------------------
+
+    # usage:   uWSGI_enable_app searx.ini
+
+    if [[ -z $1 ]]; then
+        err_msg "uWSGI_enable_app argument mit uWSGI App fehlt. "
+        return 42
+    fi
+
+    local CONF=$1
+    pushd ${uWSGI_SETUP}/apps-enabled >/dev/null
+    sudo -H ln -s ../apps-available/$CONF
+    info_msg "enabled uWSGI app: $CONF (restart uWSGI required)"
+    popd >/dev/null
+}
+
+# ----------------------------------------------------------------------------
+uWSGI_disable_app() {
+# ----------------------------------------------------------------------------
+
+    # usage:   uWSGI_disable_app searx.ini
+
+    if [[ -z $1 ]]; then
+        err_msg "uWSGI_disable_app argument mit uWSGI App fehlt. "
+        return 42
+    fi
+
+    local CONF=$1
+    rm -f ${uWSGI_SETUP}/apps-enabled/$CONF
+    info_msg "disabled uWSGI app: $CONF (restart uWSGI required)"
 }
 
 # Firefox
@@ -1920,7 +2081,12 @@ FFOX_globalAddOn() {
     # get extension UID from manifest.json or alternative from META-INF/mozilla.rsa
 
     UID_ADDON=$(unzip -p $2 manifest.json \
-        | python -c  'import json,sys;print(json.load(sys.stdin)["applications"]["gecko"]["id"])' 2>/dev/null)
+        | python3 -c  'import json,sys;print(json.load(sys.stdin)["applications"]["gecko"]["id"])' 2>/dev/null)
+
+    if [[ -z ${UID_ADDON} ]] ; then
+	UID_ADDON=$(unzip -p $2 manifest.json \
+            | python3 -c  'import json,sys;print(json.load(sys.stdin)["browser_specific_settings"]["gecko"]["id"])' 2>/dev/null)
+    fi
 
     if [[ -z ${UID_ADDON} ]] ; then
         UID_ADDON=$(unzip -p $2 META-INF/mozilla.rsa \
@@ -1934,12 +2100,12 @@ FFOX_globalAddOn() {
         case $1 in
             install)
                 info_msg "installing: ${UID_ADDON}.xpi --> ${FFOX_GLOBAL_EXTENSIONS}"
-                sudo cp $2 "${FFOX_GLOBAL_EXTENSIONS}/${UID_ADDON}.xpi"
+                sudo -H cp $2 "${FFOX_GLOBAL_EXTENSIONS}/${UID_ADDON}.xpi"
                 ;;
             deinstall)
                 if [[ -f "${FFOX_GLOBAL_EXTENSIONS}/${UID_ADDON}.xpi" ]] ; then
                    rstBlock "remove AddOn ${BGreen}${UID_ADDON}.xpi${_color_Off} from ${FFOX_GLOBAL_EXTENSIONS}"
-                   sudo rm -v "${FFOX_GLOBAL_EXTENSIONS}/${UID_ADDON}.xpi"
+                   sudo -H rm -v "${FFOX_GLOBAL_EXTENSIONS}/${UID_ADDON}.xpi"
                 else
                    rstBlock "AddOn ${BGreen}${UID_ADDON}.xpi${_color_Off} does not exists in ${FFOX_GLOBAL_EXTENSIONS}"
                 fi
@@ -1969,7 +2135,7 @@ GNOME_SHELL_installLauncher () {
 
     echo
     echo "$1 --> $GNOME_APPL_FOLDER"
-    echo "$2" | sudo tee "$GNOME_APPL_FOLDER/$1" > /dev/null
+    echo "$2" | sudo -H tee "$GNOME_APPL_FOLDER/$1" > /dev/null
 }
 
 # ----------------------------------------------------------------------------

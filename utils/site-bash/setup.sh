@@ -51,6 +51,8 @@ setupInfo () {
     echo "
 CONFIG        : ${CONFIG}
 ORGANIZATION  : ${ORGANIZATION}
+ADMIN_NAME    : ${ADMIN_NAME}
+ADMIN_EMAIL   : ${ADMIN_EMAIL}
 
 REPO_ROOT     : ${REPO_ROOT}
 SCRIPT_FOLDER : ${SCRIPT_FOLDER}
@@ -87,7 +89,10 @@ LSB (Linux Standard Base) and Distribution information.
   DISTRIB_CODENAME    : ${DISTRIB_CODENAME}
   DISTRIB_DESCRIPTION : ${DISTRIB_DESCRIPTION}
 
+Tools:
+
+  MERGE_CMD           : ${MERGE_CMD}
+  THREE_WAY_MERGE_CMD : ${THREE_WAY_MERGE_CMD}
+
 CWD : $(pwd -P)"
 }
-
-

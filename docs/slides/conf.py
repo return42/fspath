@@ -6,7 +6,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 project = u'sphinx theme for reveal.js'
-copyright = u'2019, return42'
+copyright = u'2023, return42'
 
 version = '1.0.0'
 
@@ -155,7 +155,7 @@ html_theme_options = {
     "customjs": "mysettings.js",
 
     # loading custom css
-    "customcss": "mysettings.css",
+    # "customcss": "mysettings.css",
 }
 
 html_static_path = ['_static']

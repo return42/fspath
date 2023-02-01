@@ -18,11 +18,13 @@ pylint
 # develop
 # -------
 
-Sphinx
-sphinx_rtd_theme
 twine
-wheel
-mock
+Sphinx
+pallets-sphinx-themes
+sphinx-autobuild
+sphinx-issues
+sphinx-jinja
+sphinx-tabs
 
 # sphinxjp.themes.revealjs: slide-shows with revaljs
 git+https://github.com/return42/sphinxjp.themes.revealjs@master#egg=sphinxjp.themes.revealjs

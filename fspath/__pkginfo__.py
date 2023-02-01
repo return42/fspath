@@ -9,10 +9,10 @@ package      = 'fspath'
 version      = '20190323'
 authors      = ['Markus Heiser', ]
 emails       = ['markus.heiser@darmarIT.de', ]
-copyright    = '2019 Markus Heiser'
+copyright    = '2023 Markus Heiser'
 url          = 'https://github.com/return42/fspath'
 description  = 'semantic path names and more'
-license      = 'GPLv2'
+license      = 'AGPLv3'
 keywords     = "path-names development"
 
 def get_entry_points():
