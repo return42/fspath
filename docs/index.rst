@@ -5,9 +5,7 @@ FSPath
 ======
 
 .. automodule:: fspath
-    :members:
-    :undoc-members:
-    :show-inheritance:
+    :noindex:
 
 Content
 =======
