@@ -15,6 +15,7 @@ version = '1.0.0'
 extensions = ['sphinxjp.themes.revealjs']
 html_theme = 'revealjs'
 html_use_index = False
+html_title = 'fspath'
 
 # -- HTML theme options for `revealjs` style ---------------------
 
@@ -79,7 +80,7 @@ html_theme_options = {
     'preview_links': False,
 
     # Theme (black/white/league/beige/sky/night/serif/simple/solarized)
-    'theme': 'league',
+    'theme': 'dejavu',
 
     # Transition style (default(=convex)/none/fade/slide/concave/zoom)
     'transition': 'slide',
