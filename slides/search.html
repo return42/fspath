@@ -1,75 +1,82 @@
 <!DOCTYPE html>
 
-
 <html lang="de">
   <head>
-    <meta charset="UTF-8" />
+    <meta charset="utf-8" />
+    <title>fspath</title>
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Search</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     
 
     
-<link rel="stylesheet" href="_static/css/reveal.css">
-<link rel="stylesheet" href="_static/css/theme/league.css" id="theme">
+<link rel="stylesheet" href="_static/css/reset.css">
+<link rel="stylesheet" href="_static/css/reveal.min.css">
+<link rel="stylesheet" href="_static/css/theme/dejavu.css" id="theme">
+<!-- Theme used for syntax highlighting of code -->
 <link rel="stylesheet" href="_static/lib/css/zenburn.css">
+
+
+<link rel="stylesheet" href="_static/pygments.css" type="text/css" />
 <link rel="stylesheet" href="_static/revealjs.css" type="text/css" />
 
-<link rel="stylesheet" href="_static/mysettings.css" type="text/css" />
-
-
-    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <!-- Printing and PDF exports -->
     <script>
-        if(window.location.search.match(/print-pdf/gi)) {
-            var link = document.createElement('link');
-            link.rel = 'stylesheet';
-            link.type = 'text/css';
-            link.href = '_static/css/print/pdf.css';
-            document.getElementsByTagName('head')[0].appendChild(link);
-        }
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? '_static/css/print/pdf.css' : '_static/css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
     </script>
+
 
     <!--[if lt IE 9]>
     <script src="_static/lib/js/html5shiv.js"></script>
     <![endif]-->
-      <script type="text/javascript" src="_static/language_data.js"></script>
+      <script type="text/javascript" src="_static/documentation_options.js"></script>
+      <script type="text/javascript" src="_static/sphinx_highlight.js"></script>
   </head>
   <body>
     <div class="reveal">
       <div class="slides">
         
   <h1 id="search-documentation">Search</h1>
-  <div id="fallback" class="admonition warning">
-  <script type="text/javascript">$('#fallback').hide();</script>
+  
+  <noscript>
+  <div class="admonition warning">
   <p>
     Please activate JavaScript to enable the search
     functionality.
   </p>
   </div>
+  </noscript>
+  
+  
   <p>
-    From here you can search these documents. Enter your search
-    words into the box below and click "search". Note that the search
-    function will automatically search for all of the words. Pages
-    containing fewer words won't appear in the result list.
+    Searching for multiple words only shows matches that contain
+    all words.
   </p>
+  
+  
   <form action="" method="get">
-    <input type="text" name="q" value="" />
+    <input type="text" name="q" aria-labelledby="search-documentation" value="" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
     <input type="submit" value="search" />
     <span id="search-progress" style="padding-left: 10px"></span>
   </form>
   
+  
+  
   <div id="search-results">
   
   </div>
+  
 
       </div>
     </div>
     
-<script src="_static/js/jquery.min.js"></script>
-<script src="_static/lib/js/head.min.js"></script>
-<script src="_static/js/reveal.js"></script>
+<script src="_static/js/jquery.js"></script>
+<script src="_static/js/reveal.min.js"></script>
     <script>
 
       // change DOM for reveal.js
@@ -124,12 +131,12 @@
         
 
         dependencies: [
-           { src: '_static/lib/js/classList.js', condition: function() { return !document.body.classList; } },
-           { src: '_static/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-           { src: '_static/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-           { src: '_static/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
-           { src: '_static/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
-           { src: '_static/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+          { src: '_static/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: '_static/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: '_static/plugin/highlight/highlight.js', async: true },
+          { src: '_static/plugin/search/search.js', async: true },
+          { src: '_static/plugin/zoom-js/zoom.js', async: true },
+          { src: '_static/plugin/notes/notes.js', async: true},
         ]
       });
     </script>

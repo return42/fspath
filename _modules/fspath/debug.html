@@ -1,556 +1,449 @@
 
-
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
-<head>
-  <meta charset="utf-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <title>fspath.debug &mdash; FSPath 20190323 documentation</title>
-  
 
-  
-  
-  
-  
-
-  
-  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
-  
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../../_static/jquery.js"></script>
-        <script type="text/javascript" src="../../_static/underscore.js"></script>
-        <script type="text/javascript" src="../../_static/doctools.js"></script>
-        <script type="text/javascript" src="../../_static/language_data.js"></script>
-    
-    <script type="text/javascript" src="../../_static/js/theme.js"></script>
-
-    
-
-  
-  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/theme_overrides.css" type="text/css" />
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>fspath.debug &#8212; FSPath 20190323 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
-</head>
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">FSPath 20190323 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">fspath.debug</a></li> 
+      </ul>
+    </div>  
 
-<body class="wy-body-for-nav">
-
-   
-  <div class="wy-grid-for-nav">
-    
-    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
-      <div class="wy-side-scroll">
-        <div class="wy-side-nav-search" >
-          
-
-          
-            <a href="../../index.html" class="icon icon-home"> FSPath
-          
-
-          
-            
-            <img src="../../_static/darmarIT_logo_128.png" class="logo" alt="Logo"/>
-          
-          </a>
-
-          
-            
-            
-              <div class="version">
-                20190323
-              </div>
-            
-          
-
-          
-<div role="search">
-  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
-    <input type="hidden" name="check_keywords" value="yes" />
-    <input type="hidden" name="area" value="default" />
-  </form>
-</div>
-
-          
-        </div>
-
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
-              <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../fspath-api/fspath.html">fspath package</a></li>
-</ul>
-
-            
-          
-        </div>
-      </div>
-    </nav>
-
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
-          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../index.html">FSPath</a>
-        
-      </nav>
-
-
-      <div class="wy-nav-content">
-        
-        <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
-  <ul class="wy-breadcrumbs">
-    
-      <li><a href="../../index.html">Docs</a> &raquo;</li>
-        
-          <li><a href="../index.html">Module code</a> &raquo;</li>
-        
-      <li>fspath.debug</li>
-    
-    
-      <li class="wy-breadcrumbs-aside">
-        
-      </li>
-    
-  </ul>
-
-  
-  <hr/>
-</div>
-          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
-           <div itemprop="articleBody">
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
             
   <h1>Source code for fspath.debug</h1><div class="highlight"><pre>
-<span></span><span class="ch">#!/usr/bin/env python</span>
-<span class="c1"># -*- coding: utf-8; mode: python -*-</span>
-<span class="c1"># pylint: disable=invalid-name, logging-not-lazy</span>
-
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Small collection for debugging and introspection purpose.</span>
-<span class="sd">&quot;&quot;&quot;</span>
-
-<span class="c1"># ==============================================================================</span>
-<span class="c1">#  imports ...</span>
-<span class="c1"># ==============================================================================</span>
-
-<span class="kn">import</span> <span class="nn">sys</span>
-<span class="kn">import</span> <span class="nn">socket</span>
-<span class="kn">import</span> <span class="nn">pdb</span>
-<span class="kn">import</span> <span class="nn">inspect</span>
-<span class="kn">import</span> <span class="nn">linecache</span>
-<span class="kn">import</span> <span class="nn">time</span>
-<span class="kn">import</span> <span class="nn">logging</span>
-
-<span class="kn">from</span> <span class="nn">code</span>   <span class="k">import</span> <span class="n">InteractiveConsole</span>
-<span class="kn">from</span> <span class="nn">codeop</span> <span class="k">import</span> <span class="n">CommandCompiler</span>
-<span class="kn">from</span> <span class="nn">telnetlib</span> <span class="k">import</span> <span class="n">Telnet</span>
-<span class="kn">import</span> <span class="nn">six</span>
-
-<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Console&#39;</span><span class="p">,</span> <span class="s1">&#39;RemoteConsole&#39;</span><span class="p">,</span> <span class="s1">&#39;RemotePdb&#39;</span><span class="p">,</span> <span class="s1">&#39;rtrace&#39;</span><span class="p">,</span> <span class="s1">&#39;trace&#39;</span><span class="p">]</span>
-
-<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s1">&#39;fspath.debug&#39;</span><span class="p">)</span>
-<span class="n">ERROR</span>  <span class="o">=</span> <span class="n">logger</span><span class="o">.</span><span class="n">error</span>
-
-<span class="c1"># ==============================================================================</span>
-<span class="k">def</span> <span class="nf">descrFrame</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">arround</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
-<span class="c1"># ==============================================================================</span>
-    <span class="sa">u</span><span class="sd">&quot;&quot;&quot;get description of the code frame&quot;&quot;&quot;</span>
-    <span class="n">fName</span>  <span class="o">=</span> <span class="n">frame</span><span class="o">.</span><span class="n">f_code</span><span class="o">.</span><span class="n">co_filename</span>
-    <span class="n">lineNo</span> <span class="o">=</span> <span class="n">frame</span><span class="o">.</span><span class="n">f_lineno</span>
-    <span class="n">lines</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">lineNo</span> <span class="o">-</span> <span class="n">arround</span><span class="p">,</span> <span class="n">lineNo</span> <span class="o">+</span> <span class="n">arround</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">c</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="n">prefix</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">%-04s</span><span class="s2">|&quot;</span> <span class="o">%</span> <span class="n">c</span>
-            <span class="k">if</span> <span class="n">c</span> <span class="o">==</span> <span class="n">lineNo</span><span class="p">:</span>
-                <span class="n">prefix</span> <span class="o">=</span> <span class="s2">&quot;----&gt;&quot;</span>
-            <span class="n">line</span> <span class="o">=</span> <span class="n">linecache</span><span class="o">.</span><span class="n">getline</span><span class="p">(</span><span class="n">fName</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">frame</span><span class="o">.</span><span class="n">f_globals</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">line</span> <span class="o">!=</span> <span class="s1">&#39;&#39;</span><span class="p">:</span>
-                <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">prefix</span> <span class="o">+</span> <span class="n">line</span><span class="p">)</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="k">if</span> <span class="n">lines</span><span class="p">:</span>
-                    <span class="n">lines</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">lines</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;&lt;EOF&gt;</span><span class="se">\n</span><span class="s2">&quot;</span>
-                <span class="k">break</span>
-    <span class="n">retVal</span> <span class="o">=</span> <span class="p">(</span>
-        <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span>
-        <span class="o">+</span> <span class="s2">&quot;file: </span><span class="si">%s</span><span class="s2">:</span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">fName</span><span class="p">,</span> <span class="n">lineNo</span><span class="p">)</span>
-        <span class="p">)</span>
-    <span class="k">return</span> <span class="n">retVal</span>
-
-<span class="c1"># ==============================================================================</span>
-<div class="viewcode-block" id="Console"><a class="viewcode-back" href="../../fspath-api/fspath.debug.html#fspath.debug.Console">[docs]</a><span class="k">class</span> <span class="nc">Console</span><span class="p">(</span><span class="n">InteractiveConsole</span><span class="p">):</span>
-<span class="c1"># ==============================================================================</span>
-
-    <span class="sa">u</span><span class="sd">&quot;&quot;&quot;A simple interactive console.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-
-    <span class="n">EOF</span> <span class="o">=</span> <span class="kc">None</span>
-
-    <span class="c1"># pylint: disable=super-init-not-called</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">local_ns</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">global_ns</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="s2">&quot;&lt;console&gt;&quot;</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">local_ns</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">local_ns</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;__name__&quot;</span><span class="p">:</span> <span class="s2">&quot;__console__&quot;</span><span class="p">,</span> <span class="s2">&quot;__doc__&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">}</span>
-
-        <span class="k">if</span> <span class="n">global_ns</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">global_ns</span> <span class="o">=</span> <span class="p">{}</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">local_ns</span>  <span class="o">=</span> <span class="n">local_ns</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">global_ns</span> <span class="o">=</span> <span class="n">global_ns</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">compile</span>   <span class="o">=</span> <span class="n">CommandCompiler</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">filename</span> <span class="o">=</span> <span class="n">filename</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">resetbuffer</span><span class="p">()</span>
-
-<div class="viewcode-block" id="Console.raw_input"><a class="viewcode-back" href="../../fspath-api/fspath.debug.html#fspath.debug.Console.raw_input">[docs]</a>    <span class="k">def</span> <span class="nf">raw_input</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prompt</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">EOF</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">six</span><span class="o">.</span><span class="n">moves</span><span class="o">.</span><span class="n">input</span><span class="p">(</span><span class="n">prompt</span><span class="p">)</span>
-        <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">prompt</span><span class="p">)</span>
-        <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
-        <span class="n">line</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">stdin</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
-        <span class="n">ERROR</span><span class="p">(</span><span class="nb">repr</span><span class="p">(</span><span class="n">line</span><span class="p">))</span>
-        <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">EOF</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">EOFError</span>
-        <span class="k">return</span> <span class="n">line</span></div>
-
-<div class="viewcode-block" id="Console.write"><a class="viewcode-back" href="../../fspath-api/fspath.debug.html#fspath.debug.Console.write">[docs]</a>    <span class="k">def</span> <span class="nf">write</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
-        <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-        <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span></div>
-
-<div class="viewcode-block" id="Console.runcode"><a class="viewcode-back" href="../../fspath-api/fspath.debug.html#fspath.debug.Console.runcode">[docs]</a>    <span class="k">def</span> <span class="nf">runcode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">code</span><span class="p">):</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="n">exec</span><span class="p">(</span><span class="n">code</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">global_ns</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">local_ns</span><span class="p">)</span> <span class="c1"># pylint: disable=W0122</span>
-        <span class="k">except</span> <span class="ne">SystemExit</span><span class="p">:</span>   <span class="c1"># pylint: disable=try-except-raise</span>
-            <span class="k">raise</span>
-        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>    <span class="c1"># pylint: disable=W0703</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">showtraceback</span><span class="p">()</span></div>
-
-<div class="viewcode-block" id="Console.run"><a class="viewcode-back" href="../../fspath-api/fspath.debug.html#fspath.debug.Console.run">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">local_ns</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">global_ns</span><span class="o">=</span><span class="kc">None</span>
-            <span class="p">,</span> <span class="n">banner</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="s2">&quot;&lt;console&gt;&quot;</span>
-            <span class="p">,</span> <span class="n">frame</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">EOF</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span> <span class="c1"># pylint: disable=C0103</span>
-        <span class="sa">u</span><span class="sd">&quot;&quot;&quot;Start console</span>
-
-<span class="sd">        Without setting explicit namespaces (``local_ns``, ``global_ns``),</span>
-<span class="sd">        the namespaces from the current code-frame are uused.</span>
-
-<span class="sd">        .. code-block:: python</span>
-
-<span class="sd">          def foo(arg1):</span>
-<span class="sd">              ...</span>
-<span class="sd">              Console.run()</span>
-
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">frame</span> <span class="o">=</span> <span class="n">frame</span> <span class="ow">or</span> <span class="n">inspect</span><span class="o">.</span><span class="n">currentframe</span><span class="p">()</span><span class="o">.</span><span class="n">f_back</span>
-        <span class="k">if</span> <span class="n">banner</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">banner</span> <span class="o">=</span> <span class="s2">&quot;console ...</span><span class="se">\n</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">descrFrame</span><span class="p">(</span><span class="n">frame</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">local_ns</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">local_ns</span> <span class="o">=</span> <span class="n">frame</span><span class="o">.</span><span class="n">f_locals</span>
-        <span class="k">if</span> <span class="n">global_ns</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">global_ns</span> <span class="o">=</span> <span class="n">frame</span><span class="o">.</span><span class="n">f_globals</span>
-        <span class="c1">#inspect.currentframe().f_back</span>
-        <span class="n">console</span> <span class="o">=</span> <span class="bp">cls</span><span class="p">(</span><span class="n">local_ns</span><span class="p">,</span> <span class="n">global_ns</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">EOF</span><span class="p">:</span>
-            <span class="n">banner</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Exit console with </span><span class="si">%r</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">EOF</span>
-            <span class="n">console</span><span class="o">.</span><span class="n">EOF</span> <span class="o">=</span> <span class="n">EOF</span> <span class="c1"># pylint: disable=C0103</span>
-        <span class="n">console</span><span class="o">.</span><span class="n">interact</span><span class="p">(</span><span class="n">banner</span><span class="o">=</span><span class="n">banner</span><span class="p">)</span></div></div>
-
-<span class="c1"># ==============================================================================</span>
-<div class="viewcode-block" id="RemoteConsole"><a class="viewcode-back" href="../../fspath-api/fspath.debug.html#fspath.debug.RemoteConsole">[docs]</a><span class="k">class</span> <span class="nc">RemoteConsole</span><span class="p">(</span><span class="n">Console</span><span class="p">):</span>
-<span class="c1"># ==============================================================================</span>
-
-    <span class="sa">u</span><span class="sd">&quot;&quot;&quot;A simple remote console.</span>
-
-<span class="sd">    Works just like the ``Console`` except the console can be reached from a</span>
-<span class="sd">    remote (terminal session).</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-
-    <span class="n">EOF</span> <span class="o">=</span> <span class="s1">&#39;EOF&#39;</span>
-
-<div class="viewcode-block" id="RemoteConsole.interact"><a class="viewcode-back" href="../../fspath-api/fspath.debug.html#fspath.debug.RemoteConsole.interact">[docs]</a>    <span class="k">def</span> <span class="nf">interact</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">port</span><span class="p">,</span> <span class="n">addr</span><span class="o">=</span><span class="s2">&quot;127.0.0.1&quot;</span><span class="p">,</span> <span class="n">banner</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span> <span class="c1"># pylint: disable=arguments-differ</span>
-
-        <span class="n">old_stdout</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span>
-        <span class="n">old_stderr</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span>
-        <span class="n">old_stdin</span>  <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">stdin</span>
-
-        <span class="n">skt</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">socket</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">SOCK_STREAM</span><span class="p">)</span>
-        <span class="n">skt</span><span class="o">.</span><span class="n">setsockopt</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">SOL_SOCKET</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">SO_REUSEADDR</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
-        <span class="n">skt</span><span class="o">.</span><span class="n">bind</span><span class="p">((</span><span class="n">addr</span><span class="p">,</span> <span class="n">port</span><span class="p">))</span>
-        <span class="n">skt</span><span class="o">.</span><span class="n">listen</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-        <span class="n">ERROR</span><span class="p">(</span><span class="s2">&quot;accept connection </span><span class="si">%s</span><span class="s2">:</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">addr</span><span class="p">,</span> <span class="n">port</span><span class="p">))</span>
-        <span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">remote</span><span class="p">)</span> <span class="o">=</span> <span class="n">skt</span><span class="o">.</span><span class="n">accept</span><span class="p">()</span>
-        <span class="n">ERROR</span><span class="p">(</span><span class="s2">&quot;got connection from </span><span class="si">%s</span><span class="s2">:</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">remote</span><span class="p">)</span>
-        <span class="n">rwStream</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">makefile</span><span class="p">(</span><span class="s1">&#39;rw&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-        <span class="n">ERROR</span><span class="p">(</span><span class="s2">&quot;redirect&quot;</span><span class="p">)</span>
-        <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">stdin</span> <span class="o">=</span> <span class="n">rwStream</span>
-
-        <span class="k">try</span><span class="p">:</span>
-            <span class="n">Console</span><span class="o">.</span><span class="n">interact</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">banner</span><span class="p">)</span>
-        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>  <span class="c1"># pylint: disable=W0703</span>
-            <span class="n">ERROR</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">exc</span><span class="p">))</span>
-
-        <span class="k">try</span><span class="p">:</span>
-            <span class="n">rwStream</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>  <span class="c1"># pylint: disable=W0703</span>
-            <span class="n">ERROR</span><span class="p">(</span><span class="s2">&quot;error on closing stream: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">exc</span><span class="p">))</span>
-
-        <span class="k">try</span><span class="p">:</span>
-            <span class="n">skt</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>  <span class="c1"># pylint: disable=W0703</span>
-            <span class="n">ERROR</span><span class="p">(</span><span class="s2">&quot;error on closing socket: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">exc</span><span class="p">))</span>
-
-        <span class="c1">#ERROR(&quot;re-redirect&quot;)</span>
-        <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span> <span class="o">=</span> <span class="n">old_stdout</span>
-        <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span> <span class="o">=</span> <span class="n">old_stderr</span>
-        <span class="n">sys</span><span class="o">.</span><span class="n">stdin</span>  <span class="o">=</span> <span class="n">old_stdin</span>
-        <span class="n">ERROR</span><span class="p">(</span><span class="s2">&quot;close connection ...&quot;</span><span class="p">)</span>
-        <span class="n">ERROR</span><span class="p">(</span><span class="s2">&quot;connection </span><span class="si">%s</span><span class="s2">:</span><span class="si">%s</span><span class="s2"> closed&quot;</span> <span class="o">%</span> <span class="n">remote</span><span class="p">)</span></div>
-
-<div class="viewcode-block" id="RemoteConsole.run"><a class="viewcode-back" href="../../fspath-api/fspath.debug.html#fspath.debug.RemoteConsole.run">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">port</span><span class="p">,</span> <span class="n">local_ns</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">global_ns</span><span class="o">=</span><span class="kc">None</span>  <span class="c1"># pylint: disable=arguments-differ</span>
-            <span class="p">,</span> <span class="n">banner</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="s2">&quot;&lt;console&gt;&quot;</span>
-            <span class="p">,</span> <span class="n">frame</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">EOF</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sa">u</span><span class="sd">&quot;&quot;&quot;Starts a remote console</span>
-
-<span class="sd">        The first argument is needed, it is the port number for the remote</span>
-<span class="sd">        connection.</span>
-
-<span class="sd">        .. code-block:: python</span>
-
-<span class="sd">          def foo(arg1):</span>
-<span class="sd">              ...</span>
-<span class="sd">              RemoteConsole.run(4444) # terminal on port 4444</span>
-
-<span class="sd">        The string &#39;EOF&#39; ends the remote session.</span>
-
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">frame</span> <span class="o">=</span> <span class="n">frame</span> <span class="ow">or</span> <span class="n">inspect</span><span class="o">.</span><span class="n">currentframe</span><span class="p">()</span><span class="o">.</span><span class="n">f_back</span>
-        <span class="k">if</span> <span class="n">banner</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">banner</span> <span class="o">=</span> <span class="s2">&quot;console ...</span><span class="se">\n</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">descrFrame</span><span class="p">(</span><span class="n">frame</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">EOF</span><span class="p">:</span>
-            <span class="n">banner</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Exit console with </span><span class="si">%r</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">EOF</span>
-        <span class="k">if</span> <span class="n">local_ns</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">local_ns</span> <span class="o">=</span> <span class="n">frame</span><span class="o">.</span><span class="n">f_locals</span>
-        <span class="k">if</span> <span class="n">global_ns</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">global_ns</span> <span class="o">=</span> <span class="n">frame</span><span class="o">.</span><span class="n">f_globals</span>
-        <span class="c1">#inspect.currentframe().f_back</span>
-        <span class="n">console</span> <span class="o">=</span> <span class="bp">cls</span><span class="p">(</span><span class="n">local_ns</span><span class="p">,</span> <span class="n">global_ns</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">EOF</span><span class="p">:</span>
-            <span class="n">banner</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Exit console with </span><span class="si">%r</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">EOF</span>
-            <span class="n">console</span><span class="o">.</span><span class="n">EOF</span> <span class="o">=</span> <span class="n">EOF</span>
-        <span class="n">console</span><span class="o">.</span><span class="n">interact</span><span class="p">(</span><span class="n">port</span><span class="p">,</span> <span class="n">banner</span><span class="o">=</span><span class="n">banner</span><span class="p">)</span></div></div>
-
-
-<span class="c1"># ==============================================================================</span>
-<span class="k">class</span> <span class="nc">Pdb</span><span class="p">(</span><span class="n">pdb</span><span class="o">.</span><span class="n">Pdb</span><span class="p">):</span>  <span class="c1"># pylint: disable=R0904</span>
-<span class="c1"># ==============================================================================</span>
-
-    <span class="c1"># pylint: disable=no-self-use, missing-docstring</span>
-    <span class="sa">u</span><span class="sd">&quot;&quot;&quot;Abstraction Layer for PDB&quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="nf">do_src</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">arg</span><span class="p">):</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">arg</span><span class="p">:</span>
-            <span class="n">arg</span> <span class="o">=</span> <span class="mi">3</span>
-        <span class="n">six</span><span class="o">.</span><span class="n">print_</span><span class="p">(</span><span class="n">descrFrame</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">curframe</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">arg</span><span class="p">)))</span>
-
-    <span class="k">def</span> <span class="nf">help_src</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">six</span><span class="o">.</span><span class="n">print_</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;show</span>
-<span class="s2">Show source around current command (frame)</span>
-<span class="s2">&quot;&quot;&quot;</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">do_console</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">arg</span><span class="p">):</span>  <span class="c1"># pylint: disable=W0613</span>
-        <span class="n">Console</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">frame</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">curframe</span><span class="p">,</span> <span class="n">EOF</span><span class="o">=</span><span class="s1">&#39;EOF&#39;</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">help_console</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">six</span><span class="o">.</span><span class="n">print_</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;console</span>
-<span class="s2">run an interactive console in the current frame.</span>
-<span class="s2">&quot;&quot;&quot;</span><span class="p">)</span>
-
-
-<span class="c1"># ==============================================================================</span>
-<div class="viewcode-block" id="RemotePdb"><a class="viewcode-back" href="../../fspath-api/fspath.debug.html#fspath.debug.RemotePdb">[docs]</a><span class="k">class</span> <span class="nc">RemotePdb</span><span class="p">(</span><span class="n">Pdb</span><span class="p">):</span> <span class="c1"># pylint: disable=R0904</span>
-<span class="c1"># ==============================================================================</span>
-    <span class="sa">u</span><span class="sd">&quot;&quot;&quot;Simple remote PDB&quot;&quot;&quot;</span>
-
-    <span class="c1"># pylint: disable=no-self-use, missing-docstring</span>
-    <span class="c1"># pylint: disable=super-init-not-called</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">port</span><span class="p">,</span> <span class="n">addr</span><span class="o">=</span><span class="s2">&quot;127.0.0.1&quot;</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Initialize the socket and initialize pdb.&quot;&quot;&quot;</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">old_stdout</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">old_stderr</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">old_stdin</span>  <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">stdin</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">skt</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">socket</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">SOCK_STREAM</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">skt</span><span class="o">.</span><span class="n">setsockopt</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">SOL_SOCKET</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">SO_REUSEADDR</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">skt</span><span class="o">.</span><span class="n">bind</span><span class="p">((</span><span class="n">addr</span><span class="p">,</span> <span class="n">port</span><span class="p">))</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">skt</span><span class="o">.</span><span class="n">listen</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-        <span class="n">ERROR</span><span class="p">(</span><span class="s2">&quot;accept connection </span><span class="si">%s</span><span class="s2">:</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">addr</span><span class="p">,</span> <span class="n">port</span><span class="p">))</span>
-        <span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">remote</span><span class="p">)</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">skt</span><span class="o">.</span><span class="n">accept</span><span class="p">()</span>
-        <span class="n">ERROR</span><span class="p">(</span><span class="s2">&quot;got connection from </span><span class="si">%s</span><span class="s2">:</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">remote</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">rwStream</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">makefile</span><span class="p">(</span><span class="s1">&#39;rw&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-        <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">stdin</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rwStream</span>
-        <span class="n">Pdb</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">completekey</span><span class="o">=</span><span class="s1">&#39;tab&#39;</span><span class="p">)</span>
-        <span class="n">ERROR</span><span class="p">(</span><span class="s2">&quot;pdb inited&quot;</span><span class="p">)</span>
-
-<div class="viewcode-block" id="RemotePdb.shutdown"><a class="viewcode-back" href="../../fspath-api/fspath.debug.html#fspath.debug.RemotePdb.shutdown">[docs]</a>    <span class="k">def</span> <span class="nf">shutdown</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sa">u</span><span class="sd">&quot;&quot;&quot;shutdown PDB&#39;s&#39; REPL&quot;&quot;&quot;</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">rwStream</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span> <span class="c1"># pylint: disable=W0703</span>
-            <span class="n">ERROR</span><span class="p">(</span><span class="s2">&quot;error on closing stream: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">exc</span><span class="p">))</span>
-
-        <span class="k">try</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">skt</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span> <span class="c1"># pylint: disable=W0703</span>
-            <span class="n">ERROR</span><span class="p">(</span><span class="s2">&quot;error on closing socket: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">exc</span><span class="p">))</span>
-
-        <span class="n">ERROR</span><span class="p">(</span><span class="s2">&quot;re-redirect&quot;</span><span class="p">)</span>
-        <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">old_stdout</span>
-        <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">old_stderr</span>
-        <span class="n">sys</span><span class="o">.</span><span class="n">stdin</span>  <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">old_stdin</span>
-        <span class="n">ERROR</span><span class="p">(</span><span class="s2">&quot;close connection ...&quot;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">set_continue</span><span class="p">()</span>
-        <span class="n">ERROR</span><span class="p">(</span><span class="s2">&quot;connection </span><span class="si">%s</span><span class="s2">:</span><span class="si">%s</span><span class="s2"> closed&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">remote</span><span class="p">)</span></div>
-
-<div class="viewcode-block" id="RemotePdb.do_continue"><a class="viewcode-back" href="../../fspath-api/fspath.debug.html#fspath.debug.RemotePdb.do_continue">[docs]</a>    <span class="k">def</span> <span class="nf">do_continue</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">arg</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Stop all operation on ``continue``.&quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">shutdown</span><span class="p">()</span>
-        <span class="k">return</span> <span class="mi">1</span></div>
-
-    <span class="n">do_EOF</span> <span class="o">=</span> <span class="n">do_quit</span> <span class="o">=</span> <span class="n">do_exit</span> <span class="o">=</span> <span class="n">do_c</span> <span class="o">=</span> <span class="n">do_cont</span> <span class="o">=</span> <span class="n">do_continue</span></div>
-
-
-<span class="c1"># ==============================================================================</span>
-<div class="viewcode-block" id="trace"><a class="viewcode-back" href="../../fspath-api/fspath.debug.html#fspath.debug.trace">[docs]</a><span class="k">def</span> <span class="nf">trace</span><span class="p">(</span><span class="n">frame</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="c1"># ==============================================================================</span>
-
-    <span class="sa">u</span><span class="sd">&quot;&quot;&quot;A breakpoint starting a ``Pdb`` session.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">frame</span> <span class="o">=</span> <span class="n">frame</span> <span class="ow">or</span> <span class="n">inspect</span><span class="o">.</span><span class="n">currentframe</span><span class="p">()</span><span class="o">.</span><span class="n">f_back</span>
-    <span class="n">Pdb</span><span class="p">()</span><span class="o">.</span><span class="n">set_trace</span><span class="p">(</span><span class="n">frame</span><span class="o">=</span><span class="n">frame</span><span class="p">)</span></div>
-
-<span class="c1"># ==============================================================================</span>
-<div class="viewcode-block" id="rtrace"><a class="viewcode-back" href="../../fspath-api/fspath.debug.html#fspath.debug.rtrace">[docs]</a><span class="k">def</span> <span class="nf">rtrace</span><span class="p">(</span><span class="n">port</span><span class="o">=</span><span class="mi">4444</span><span class="p">,</span> <span class="n">addr</span><span class="o">=</span><span class="s2">&quot;127.0.0.1&quot;</span><span class="p">,</span> <span class="n">frame</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="c1"># ==============================================================================</span>
-
-    <span class="sa">u</span><span class="sd">&quot;&quot;&quot;A breakpoint, starting a ``RemotePdb`` session. Default port ist 4444</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">frame</span> <span class="o">=</span> <span class="n">frame</span> <span class="ow">or</span> <span class="n">inspect</span><span class="o">.</span><span class="n">currentframe</span><span class="p">()</span><span class="o">.</span><span class="n">f_back</span>
-    <span class="n">RemotePdb</span><span class="p">(</span><span class="n">port</span><span class="p">,</span> <span class="n">addr</span><span class="p">)</span><span class="o">.</span><span class="n">set_trace</span><span class="p">(</span><span class="n">frame</span><span class="o">=</span><span class="n">frame</span><span class="p">)</span></div>
-
-
-<span class="c1"># ==============================================================================</span>
-<span class="k">class</span> <span class="nc">DumpTelnet</span><span class="p">(</span><span class="n">Telnet</span><span class="p">):</span>
-<span class="c1"># ==============================================================================</span>
-
-    <span class="sa">u</span><span class="sd">&quot;&quot;&quot;Inheritance fixing ``telnetlib.Telnet`` where it fails.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="nf">listener</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Helper for mt_interact() -- this executes in the other thread.&quot;&quot;&quot;</span>
-        <span class="k">while</span> <span class="mi">1</span><span class="p">:</span>
-            <span class="k">try</span><span class="p">:</span>
-                <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">read_eager</span><span class="p">()</span>
-            <span class="k">except</span> <span class="ne">EOFError</span><span class="p">:</span>
-                <span class="n">six</span><span class="o">.</span><span class="n">print_</span><span class="p">(</span><span class="s1">&#39;*** Connection closed by remote host ***&#39;</span><span class="p">)</span>
-                <span class="k">return</span>
-            <span class="k">if</span> <span class="n">data</span><span class="p">:</span>
-                <span class="k">if</span> <span class="n">six</span><span class="o">.</span><span class="n">PY3</span><span class="p">:</span>
-                    <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;ascii&#39;</span><span class="p">))</span>
-                <span class="k">else</span><span class="p">:</span>
-                    <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
-            <span class="c1"># without sleep cpu usage is 100%</span>
-            <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.01</span><span class="p">)</span>
-
-<span class="c1"># ==============================================================================</span>
-<span class="k">def</span> <span class="nf">rtrace_client</span><span class="p">(</span><span class="n">port</span><span class="o">=</span><span class="mi">4444</span><span class="p">,</span> <span class="n">addr</span><span class="o">=</span><span class="s2">&quot;127.0.0.1&quot;</span><span class="p">,</span> <span class="n">polltime</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="c1"># ==============================================================================</span>
-    <span class="sa">u</span><span class="sd">&quot;&quot;&quot;Set breakpoint for remote debugging&quot;&quot;&quot;</span>
-    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="n">t</span> <span class="o">=</span> <span class="n">DumpTelnet</span><span class="p">(</span><span class="n">addr</span><span class="p">,</span> <span class="n">port</span><span class="p">)</span>
-            <span class="n">t</span><span class="o">.</span><span class="n">interact</span><span class="p">()</span>
-            <span class="n">t</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span> <span class="c1"># pylint: disable=broad-except</span>
-            <span class="k">pass</span>
-        <span class="k">if</span> <span class="n">polltime</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">break</span>
-        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">polltime</span><span class="p">)</span>
-
-
-<span class="c1"># def _test():</span>
-<span class="c1">#     x = 12</span>
-<span class="c1">#     rtrace()</span>
-<span class="c1">#     x = 47</span>
-<span class="c1">#     #RemoteConsole.run(4444)</span>
-<span class="c1">#     #Console.run()</span>
+<span></span>#!/usr/bin/env python
+# -*- coding: utf-8; mode: python -*-
+# pylint: disable=invalid-name, logging-not-lazy
+
+&quot;&quot;&quot;
+Small collection for debugging and introspection purpose.
+&quot;&quot;&quot;
+
+# ==============================================================================
+#  imports ...
+# ==============================================================================
+
+import sys
+import socket
+import pdb
+import inspect
+import linecache
+import time
+import logging
+
+from code   import InteractiveConsole
+from codeop import CommandCompiler
+from telnetlib import Telnet
+import six
+
+__all__ = [&#39;Console&#39;, &#39;RemoteConsole&#39;, &#39;RemotePdb&#39;, &#39;rtrace&#39;, &#39;trace&#39;]
+
+logger = logging.getLogger(&#39;fspath.debug&#39;)
+ERROR  = logger.error
+
+# ==============================================================================
+def descrFrame(frame, arround=3):
+# ==============================================================================
+    u&quot;&quot;&quot;get description of the code frame&quot;&quot;&quot;
+    fName  = frame.f_code.co_filename
+    lineNo = frame.f_lineno
+    lines = []
+    for c in range(lineNo - arround, lineNo + arround):
+        if c &gt; 0:
+            prefix = &quot;%-04s|&quot; % c
+            if c == lineNo:
+                prefix = &quot;----&gt;&quot;
+            line = linecache.getline(fName, c, frame.f_globals)
+            if line != &#39;&#39;:
+                lines.append(prefix + line)
+            else:
+                if lines:
+                    lines[-1] = lines[-1] + &quot;&lt;EOF&gt;\n&quot;
+                break
+    retVal = (
+        &quot;&quot;.join(lines)
+        + &quot;file: %s:%s\n&quot; % (fName, lineNo)
+        )
+    return retVal
+
+# ==============================================================================
+<div class="viewcode-block" id="Console"><a class="viewcode-back" href="../../fspath-api/fspath.debug.html#fspath.debug.Console">[docs]</a>class Console(InteractiveConsole):
+# ==============================================================================
+
+    u&quot;&quot;&quot;A simple interactive console.
+    &quot;&quot;&quot;
+
+    EOF = None
+
+    # pylint: disable=super-init-not-called
+    def __init__(self, local_ns=None, global_ns=None, filename=&quot;&lt;console&gt;&quot;):
+        if local_ns is None:
+            local_ns = {&quot;__name__&quot;: &quot;__console__&quot;, &quot;__doc__&quot;: None}
+
+        if global_ns is None:
+            global_ns = {}
+
+        self.local_ns  = local_ns
+        self.global_ns = global_ns
+        self.compile   = CommandCompiler()
+        self.filename = filename
+        self.resetbuffer()
+
+<div class="viewcode-block" id="Console.raw_input"><a class="viewcode-back" href="../../fspath-api/fspath.debug.html#fspath.debug.Console.raw_input">[docs]</a>    def raw_input(self, prompt=&quot;&quot;):
+        if self.EOF is None:
+            return six.moves.input(prompt)
+        sys.stdout.write(prompt)
+        sys.stdout.flush()
+        line = sys.stdin.readline()
+        ERROR(repr(line))
+        if line.strip() == self.EOF:
+            raise EOFError
+        return line</div>
+
+<div class="viewcode-block" id="Console.write"><a class="viewcode-back" href="../../fspath-api/fspath.debug.html#fspath.debug.Console.write">[docs]</a>    def write(self, data):
+        sys.stdout.write(data)
+        sys.stdout.flush()</div>
+
+<div class="viewcode-block" id="Console.runcode"><a class="viewcode-back" href="../../fspath-api/fspath.debug.html#fspath.debug.Console.runcode">[docs]</a>    def runcode(self, code):
+        try:
+            exec(code, self.global_ns, self.local_ns) # pylint: disable=W0122
+        except SystemExit:   # pylint: disable=try-except-raise
+            raise
+        except Exception:    # pylint: disable=W0703
+            self.showtraceback()</div>
+
+<div class="viewcode-block" id="Console.run"><a class="viewcode-back" href="../../fspath-api/fspath.debug.html#fspath.debug.Console.run">[docs]</a>    @classmethod
+    def run(cls, local_ns=None, global_ns=None
+            , banner=None, filename=&quot;&lt;console&gt;&quot;
+            , frame=None, EOF=None): # pylint: disable=C0103
+        u&quot;&quot;&quot;Start console
+
+        Without setting explicit namespaces (``local_ns``, ``global_ns``),
+        the namespaces from the current code-frame are uused.
+
+        .. code-block:: python
+
+          def foo(arg1):
+              ...
+              Console.run()
+
+        &quot;&quot;&quot;
+        frame = frame or inspect.currentframe().f_back
+        if banner is None:
+            banner = &quot;console ...\n%s&quot; % descrFrame(frame)
+        if local_ns is None:
+            local_ns = frame.f_locals
+        if global_ns is None:
+            global_ns = frame.f_globals
+        #inspect.currentframe().f_back
+        console = cls(local_ns, global_ns, filename)
+        if EOF:
+            banner += &quot;\nExit console with %r&quot; % EOF
+            console.EOF = EOF # pylint: disable=C0103
+        console.interact(banner=banner)</div></div>
+
+# ==============================================================================
+<div class="viewcode-block" id="RemoteConsole"><a class="viewcode-back" href="../../fspath-api/fspath.debug.html#fspath.debug.RemoteConsole">[docs]</a>class RemoteConsole(Console):
+# ==============================================================================
+
+    u&quot;&quot;&quot;A simple remote console.
+
+    Works just like the ``Console`` except the console can be reached from a
+    remote (terminal session).
+    &quot;&quot;&quot;
+
+    EOF = &#39;EOF&#39;
+
+<div class="viewcode-block" id="RemoteConsole.interact"><a class="viewcode-back" href="../../fspath-api/fspath.debug.html#fspath.debug.RemoteConsole.interact">[docs]</a>    def interact(self, port, addr=&quot;127.0.0.1&quot;, banner=None): # pylint: disable=arguments-differ
+
+        old_stdout = sys.stdout
+        old_stderr = sys.stderr
+        old_stdin  = sys.stdin
+
+        skt = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        skt.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, True)
+        skt.bind((addr, port))
+        skt.listen(1)
+        ERROR(&quot;accept connection %s:%s&quot; % (addr, port))
+        (conn, remote) = skt.accept()
+        ERROR(&quot;got connection from %s:%s&quot; % remote)
+        rwStream = conn.makefile(&#39;rw&#39;, 0)
+        ERROR(&quot;redirect&quot;)
+        sys.stderr = sys.stdout = sys.stdin = rwStream
+
+        try:
+            Console.interact(self, banner)
+        except Exception as exc:  # pylint: disable=W0703
+            ERROR(str(exc))
+
+        try:
+            rwStream.close()
+        except Exception as exc:  # pylint: disable=W0703
+            ERROR(&quot;error on closing stream: &quot; + str(exc))
+
+        try:
+            skt.close()
+        except Exception as exc:  # pylint: disable=W0703
+            ERROR(&quot;error on closing socket: &quot; + str(exc))
+
+        #ERROR(&quot;re-redirect&quot;)
+        sys.stdout = old_stdout
+        sys.stderr = old_stderr
+        sys.stdin  = old_stdin
+        ERROR(&quot;close connection ...&quot;)
+        ERROR(&quot;connection %s:%s closed&quot; % remote)</div>
+
+<div class="viewcode-block" id="RemoteConsole.run"><a class="viewcode-back" href="../../fspath-api/fspath.debug.html#fspath.debug.RemoteConsole.run">[docs]</a>    @classmethod
+    def run(cls, port, local_ns=None, global_ns=None  # pylint: disable=arguments-differ
+            , banner=None, filename=&quot;&lt;console&gt;&quot;
+            , frame=None, EOF=None):
+        u&quot;&quot;&quot;Starts a remote console
+
+        The first argument is needed, it is the port number for the remote
+        connection.
+
+        .. code-block:: python
+
+          def foo(arg1):
+              ...
+              RemoteConsole.run(4444) # terminal on port 4444
+
+        The string &#39;EOF&#39; ends the remote session.
+
+        &quot;&quot;&quot;
+        frame = frame or inspect.currentframe().f_back
+        if banner is None:
+            banner = &quot;console ...\n%s&quot; % descrFrame(frame)
+        if EOF:
+            banner += &quot;\nExit console with %r&quot; % EOF
+        if local_ns is None:
+            local_ns = frame.f_locals
+        if global_ns is None:
+            global_ns = frame.f_globals
+        #inspect.currentframe().f_back
+        console = cls(local_ns, global_ns, filename)
+        if EOF:
+            banner += &quot;\nExit console with %r&quot; % EOF
+            console.EOF = EOF
+        console.interact(port, banner=banner)</div></div>
+
+
+# ==============================================================================
+class Pdb(pdb.Pdb):  # pylint: disable=R0904
+# ==============================================================================
+
+    # pylint: disable=no-self-use, missing-docstring
+    u&quot;&quot;&quot;Abstraction Layer for PDB&quot;&quot;&quot;
+    def do_src(self, arg):
+        if not arg:
+            arg = 3
+        six.print_(descrFrame(self.curframe, int(arg)))
+
+    def help_src(self):
+        six.print_(&quot;&quot;&quot;show
+Show source around current command (frame)
+&quot;&quot;&quot;)
+
+    def do_console(self, arg):  # pylint: disable=W0613
+        Console.run(frame=self.curframe, EOF=&#39;EOF&#39;)
+
+    def help_console(self):
+        six.print_(&quot;&quot;&quot;console
+run an interactive console in the current frame.
+&quot;&quot;&quot;)
+
+
+# ==============================================================================
+<div class="viewcode-block" id="RemotePdb"><a class="viewcode-back" href="../../fspath-api/fspath.debug.html#fspath.debug.RemotePdb">[docs]</a>class RemotePdb(Pdb): # pylint: disable=R0904
+# ==============================================================================
+    u&quot;&quot;&quot;Simple remote PDB&quot;&quot;&quot;
+
+    # pylint: disable=no-self-use, missing-docstring
+    # pylint: disable=super-init-not-called
+    def __init__(self, port, addr=&quot;127.0.0.1&quot;):
+        &quot;&quot;&quot;Initialize the socket and initialize pdb.&quot;&quot;&quot;
+
+        self.old_stdout = sys.stdout
+        self.old_stderr = sys.stderr
+        self.old_stdin  = sys.stdin
+
+        self.skt = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        self.skt.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, True)
+        self.skt.bind((addr, port))
+        self.skt.listen(1)
+        ERROR(&quot;accept connection %s:%s&quot; % (addr, port))
+        (conn, self.remote) = self.skt.accept()
+        ERROR(&quot;got connection from %s:%s&quot; % self.remote)
+        self.rwStream = conn.makefile(&#39;rw&#39;, 0)
+        sys.stderr = sys.stdout = sys.stdin = self.rwStream
+        Pdb.__init__(self, completekey=&#39;tab&#39;)
+        ERROR(&quot;pdb inited&quot;)
+
+<div class="viewcode-block" id="RemotePdb.shutdown"><a class="viewcode-back" href="../../fspath-api/fspath.debug.html#fspath.debug.RemotePdb.shutdown">[docs]</a>    def shutdown(self):
+        u&quot;&quot;&quot;shutdown PDB&#39;s&#39; REPL&quot;&quot;&quot;
+        try:
+            self.rwStream.close()
+        except Exception as exc: # pylint: disable=W0703
+            ERROR(&quot;error on closing stream: &quot; + str(exc))
+
+        try:
+            self.skt.close()
+        except Exception as exc: # pylint: disable=W0703
+            ERROR(&quot;error on closing socket: &quot; + str(exc))
+
+        ERROR(&quot;re-redirect&quot;)
+        sys.stdout = self.old_stdout
+        sys.stderr = self.old_stderr
+        sys.stdin  = self.old_stdin
+        ERROR(&quot;close connection ...&quot;)
+        self.set_continue()
+        ERROR(&quot;connection %s:%s closed&quot; % self.remote)</div>
+
+<div class="viewcode-block" id="RemotePdb.do_continue"><a class="viewcode-back" href="../../fspath-api/fspath.debug.html#fspath.debug.RemotePdb.do_continue">[docs]</a>    def do_continue(self, arg):
+        &quot;&quot;&quot;Stop all operation on ``continue``.&quot;&quot;&quot;
+        self.shutdown()
+        return 1</div>
+
+    do_EOF = do_quit = do_exit = do_c = do_cont = do_continue</div>
+
+
+# ==============================================================================
+<div class="viewcode-block" id="trace"><a class="viewcode-back" href="../../fspath-api/fspath.debug.html#fspath.debug.trace">[docs]</a>def trace(frame=None):
+# ==============================================================================
+
+    u&quot;&quot;&quot;A breakpoint starting a ``Pdb`` session.
+    &quot;&quot;&quot;
+    frame = frame or inspect.currentframe().f_back
+    Pdb().set_trace(frame=frame)</div>
+
+# ==============================================================================
+<div class="viewcode-block" id="rtrace"><a class="viewcode-back" href="../../fspath-api/fspath.debug.html#fspath.debug.rtrace">[docs]</a>def rtrace(port=4444, addr=&quot;127.0.0.1&quot;, frame=None):
+# ==============================================================================
+
+    u&quot;&quot;&quot;A breakpoint, starting a ``RemotePdb`` session. Default port ist 4444
+    &quot;&quot;&quot;
+    frame = frame or inspect.currentframe().f_back
+    RemotePdb(port, addr).set_trace(frame=frame)</div>
+
+
+# ==============================================================================
+class DumpTelnet(Telnet):
+# ==============================================================================
+
+    u&quot;&quot;&quot;Inheritance fixing ``telnetlib.Telnet`` where it fails.
+    &quot;&quot;&quot;
+    def listener(self):
+        &quot;&quot;&quot;Helper for mt_interact() -- this executes in the other thread.&quot;&quot;&quot;
+        while 1:
+            try:
+                data = self.read_eager()
+            except EOFError:
+                six.print_(&#39;*** Connection closed by remote host ***&#39;)
+                return
+            if data:
+                if six.PY3:
+                    sys.stdout.write(data.decode(&#39;ascii&#39;))
+                else:
+                    sys.stdout.write(data)
+            else:
+                sys.stdout.flush()
+            # without sleep cpu usage is 100%
+            time.sleep(0.01)
+
+# ==============================================================================
+def rtrace_client(port=4444, addr=&quot;127.0.0.1&quot;, polltime=None):
+# ==============================================================================
+    u&quot;&quot;&quot;Set breakpoint for remote debugging&quot;&quot;&quot;
+    while True:
+        try:
+            t = DumpTelnet(addr, port)
+            t.interact()
+            t.close()
+        except Exception: # pylint: disable=broad-except
+            pass
+        if polltime is None:
+            break
+        time.sleep(polltime)
+
+
+# def _test():
+#     x = 12
+#     rtrace()
+#     x = 47
+#     #RemoteConsole.run(4444)
+#     #Console.run()
 </pre></div>
 
-           </div>
-           
+            <div class="clearer"></div>
           </div>
-          <footer>
-  
-
-  <hr/>
-
-  <div role="contentinfo">
-    <p>
-        &copy; Copyright 2019 Markus Heiser
-
-    </p>
-  </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
-
-</footer>
-
         </div>
       </div>
-
-    </section>
-
-  </div>
-  
-
-
-  <script type="text/javascript">
-      jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
-      });
-  </script>
-
-  
+  <span id="sidebar-top"></span>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
   
     
-   
+            <p class="logo"><a href="../../index.html">
+              <img class="logo" src="../../_static/darmarIT_logo_128.png" alt="Logo"/>
+            </a></p>
+  
+<h3>Navigation</h3>
+<ul>
+  <li><a href="../../index.html">Overview</a>
+    <ul>
+      <li><a href="../index.html">Module code</a>
+        
+          
+          </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script><div id="ethical-ad-placement"></div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2023 Markus Heiser.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.1.3.
+    </div>
+  <script src="../../_static/version_warning_offset.js"></script>
 
-</body>
+  </body>
 </html>

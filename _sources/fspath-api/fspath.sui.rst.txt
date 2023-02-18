@@ -2,6 +2,6 @@ fspath.sui module
 =================
 
 .. automodule:: fspath.sui
-    :members:
-    :undoc-members:
-    :show-inheritance:
+   :members:
+   :undoc-members:
+   :show-inheritance:

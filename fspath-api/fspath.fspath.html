@@ -1,192 +1,62 @@
 
-
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
-<head>
-  <meta charset="utf-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <title>fspath.fspath module &mdash; FSPath 20190323 documentation</title>
-  
 
-  
-  
-  
-  
-
-  
-  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
-  
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script type="text/javascript" src="../_static/language_data.js"></script>
-    
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
-
-    
-
-  
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>fspath.fspath module &#8212; FSPath 20190323 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="fspath.helper module" href="fspath.helper.html" />
     <link rel="prev" title="fspath.debug module" href="fspath.debug.html" /> 
-</head>
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="fspath.helper.html" title="fspath.helper module"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="fspath.debug.html" title="fspath.debug module"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">FSPath 20190323 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="fspath.html" accesskey="U">fspath package</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">fspath.fspath module</a></li> 
+      </ul>
+    </div>  
 
-<body class="wy-body-for-nav">
-
-   
-  <div class="wy-grid-for-nav">
-    
-    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
-      <div class="wy-side-scroll">
-        <div class="wy-side-nav-search" >
-          
-
-          
-            <a href="../index.html" class="icon icon-home"> FSPath
-          
-
-          
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
             
-            <img src="../_static/darmarIT_logo_128.png" class="logo" alt="Logo"/>
-          
-          </a>
-
-          
-            
-            
-              <div class="version">
-                20190323
-              </div>
-            
-          
-
-          
-<div role="search">
-  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
-    <input type="hidden" name="check_keywords" value="yes" />
-    <input type="hidden" name="area" value="default" />
-  </form>
-</div>
-
-          
-        </div>
-
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
-              <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="fspath.html">fspath package</a><ul class="current">
-<li class="toctree-l2 current"><a class="reference internal" href="fspath.html#submodules">Submodules</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="fspath.cli.html">fspath.cli module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="fspath.compat.html">fspath.compat module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="fspath.console.html">fspath.console module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="fspath.debug.html">fspath.debug module</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">fspath.fspath module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="fspath.helper.html">fspath.helper module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="fspath.main.html">fspath.main module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="fspath.os_env.html">fspath.os_env module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="fspath.progressbar.html">fspath.progressbar module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="fspath.sui.html">fspath.sui module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="fspath.win.html">fspath.win module</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="fspath.html#module-fspath">Module contents</a></li>
-</ul>
-</li>
-</ul>
-
-            
-          
-        </div>
-      </div>
-    </nav>
-
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
-          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../index.html">FSPath</a>
-        
-      </nav>
-
-
-      <div class="wy-nav-content">
-        
-        <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
-  <ul class="wy-breadcrumbs">
-    
-      <li><a href="../index.html">Docs</a> &raquo;</li>
-        
-          <li><a href="fspath.html">fspath package</a> &raquo;</li>
-        
-      <li>fspath.fspath module</li>
-    
-    
-      <li class="wy-breadcrumbs-aside">
-        
-            
-            <a href="../_sources/fspath-api/fspath.fspath.rst.txt" rel="nofollow"> View page source</a>
-          
-        
-      </li>
-    
-  </ul>
-
-  
-  <hr/>
-</div>
-          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
-           <div itemprop="articleBody">
-            
-  <div class="section" id="module-fspath.fspath">
-<span id="fspath-fspath-module"></span><h1>fspath.fspath module<a class="headerlink" href="#module-fspath.fspath" title="Permalink to this headline">¶</a></h1>
+  <section id="module-fspath.fspath">
+<span id="fspath-fspath-module"></span><h1>fspath.fspath module<a class="headerlink" href="#module-fspath.fspath" title="Permalink to this heading">¶</a></h1>
 <p>semantic path names and much more</p>
-<dl class="class">
-<dt id="fspath.fspath.FSPath">
-<em class="property">class </em><code class="descclassname">fspath.fspath.</code><code class="descname">FSPath</code><a class="reference internal" href="../_modules/fspath/fspath.html#FSPath"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fspath.fspath.FSPath" title="Permalink to this definition">¶</a></dt>
+<dl class="py class">
+<dt class="sig sig-object py" id="fspath.fspath.FSPath">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">fspath.fspath.</span></span><span class="sig-name descname"><span class="pre">FSPath</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pathname</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fspath/fspath.html#FSPath"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fspath.fspath.FSPath" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></p>
 <blockquote>
 <div><p>A path name to a file or folder.</p>
 <p>Handling path names more comfortable, e.g.:</p>
 <ul class="simple">
-<li>concatenate path names with the division operator <code class="docutils literal notranslate"><span class="pre">/</span></code></li>
-<li>call functions like <em>mkdir</em> on path names</li>
-<li>get properties like <em>EXISTS</em></li>
+<li><p>concatenate path names with the division operator <code class="docutils literal notranslate"><span class="pre">/</span></code></p></li>
+<li><p>call functions like <em>mkdir</em> on path names</p></li>
+<li><p>get properties like <em>EXISTS</em></p></li>
 </ul>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">fspath</span> <span class="kn">import</span> <span class="n">FSPath</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tmp</span> <span class="o">=</span> <span class="n">FSPath</span><span class="p">(</span><span class="s1">&#39;~/tmp&#39;</span><span class="p">)</span>
@@ -201,7 +71,7 @@
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="p">[(</span><span class="n">tmp</span><span class="o">/</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">makedirs</span><span class="p">()</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="s1">&#39;bar&#39;</span><span class="p">)]</span>
 <span class="go">True, True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">tmp</span><span class="o">.</span><span class="n">listdir</span><span class="p">():</span>
-<span class="gp">... </span>    <span class="k">print</span><span class="p">(</span><span class="n">tmp</span> <span class="o">/</span> <span class="n">n</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="n">tmp</span> <span class="o">/</span> <span class="n">n</span><span class="p">)</span>
 <span class="gp">...</span>
 <span class="go">/home/user/tmp/foo</span>
 <span class="go">/home/user/tmp/bar</span>
@@ -215,7 +85,7 @@
 </div></blockquote>
 <p><code class="docutils literal notranslate"><span class="pre">download</span></code> – super easy download + segmentation + nice ticker</p>
 <blockquote>
-<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">arch</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">chunksize</span><span class="o">=</span><span class="mi">1024</span><span class="p">,</span> <span class="n">ticker</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">arch</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">chunksize</span><span class="o">=</span><span class="mi">1024</span><span class="p">,</span> <span class="n">ticker</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="go">/home/user/tmp/foo/fspath.zip: [87.9 KB][===============    ]  83%</span>
 </pre></div>
 </div>
@@ -232,139 +102,139 @@
 </div>
 <p>For more examples see our <a class="reference external" href="../slides/index.html">slide-show</a>.</p>
 </div></blockquote>
-<dl class="attribute">
-<dt id="fspath.fspath.FSPath.ABSPATH">
-<code class="descname">ABSPATH</code><a class="headerlink" href="#fspath.fspath.FSPath.ABSPATH" title="Permalink to this definition">¶</a></dt>
+<dl class="py property">
+<dt class="sig sig-object py" id="fspath.fspath.FSPath.ABSPATH">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ABSPATH</span></span><a class="headerlink" href="#fspath.fspath.FSPath.ABSPATH" title="Permalink to this definition">¶</a></dt>
 <dd><p>The absolute pathname</p>
 <p>E.g: <code class="docutils literal notranslate"><span class="pre">../to/../to/folder/filename.ext</span></code> –&gt; <code class="docutils literal notranslate"><span class="pre">/path/to/folder/filename.ext</span></code></p>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="fspath.fspath.FSPath.ATIME">
-<code class="descname">ATIME</code><a class="headerlink" href="#fspath.fspath.FSPath.ATIME" title="Permalink to this definition">¶</a></dt>
+<dl class="py property">
+<dt class="sig sig-object py" id="fspath.fspath.FSPath.ATIME">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ATIME</span></span><a class="headerlink" href="#fspath.fspath.FSPath.ATIME" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the last access time, reported by os.stat().</p>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="fspath.fspath.FSPath.BASENAME">
-<code class="descname">BASENAME</code><a class="headerlink" href="#fspath.fspath.FSPath.BASENAME" title="Permalink to this definition">¶</a></dt>
+<dl class="py property">
+<dt class="sig sig-object py" id="fspath.fspath.FSPath.BASENAME">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">BASENAME</span></span><a class="headerlink" href="#fspath.fspath.FSPath.BASENAME" title="Permalink to this definition">¶</a></dt>
 <dd><p>The path name with suffix, but without the folder name.</p>
 <p>E.g.: <code class="docutils literal notranslate"><span class="pre">/path/to/folder/filename.ext</span></code> –&gt; <code class="docutils literal notranslate"><span class="pre">filename.ext</span></code></p>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="fspath.fspath.FSPath.CTIME">
-<code class="descname">CTIME</code><a class="headerlink" href="#fspath.fspath.FSPath.CTIME" title="Permalink to this definition">¶</a></dt>
+<dl class="py property">
+<dt class="sig sig-object py" id="fspath.fspath.FSPath.CTIME">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">CTIME</span></span><a class="headerlink" href="#fspath.fspath.FSPath.CTIME" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the metadata change time, reported by os.stat().</p>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="fspath.fspath.FSPath.DIRNAME">
-<code class="descname">DIRNAME</code><a class="headerlink" href="#fspath.fspath.FSPath.DIRNAME" title="Permalink to this definition">¶</a></dt>
+<dl class="py property">
+<dt class="sig sig-object py" id="fspath.fspath.FSPath.DIRNAME">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DIRNAME</span></span><a class="headerlink" href="#fspath.fspath.FSPath.DIRNAME" title="Permalink to this definition">¶</a></dt>
 <dd><p>The path name of the folder, where the file is located</p>
 <p>E.g.: <code class="docutils literal notranslate"><span class="pre">/path/to/folder/filename.ext</span></code> –&gt; <code class="docutils literal notranslate"><span class="pre">/path/to/folder</span></code></p>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="fspath.fspath.FSPath.EXECUTABLE">
-<code class="descname">EXECUTABLE</code><a class="headerlink" href="#fspath.fspath.FSPath.EXECUTABLE" title="Permalink to this definition">¶</a></dt>
+<dl class="py property">
+<dt class="sig sig-object py" id="fspath.fspath.FSPath.EXECUTABLE">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">EXECUTABLE</span></span><a class="headerlink" href="#fspath.fspath.FSPath.EXECUTABLE" title="Permalink to this definition">¶</a></dt>
 <dd><p>True if file is executable</p>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="fspath.fspath.FSPath.EXISTS">
-<code class="descname">EXISTS</code><a class="headerlink" href="#fspath.fspath.FSPath.EXISTS" title="Permalink to this definition">¶</a></dt>
+<dl class="py property">
+<dt class="sig sig-object py" id="fspath.fspath.FSPath.EXISTS">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">EXISTS</span></span><a class="headerlink" href="#fspath.fspath.FSPath.EXISTS" title="Permalink to this definition">¶</a></dt>
 <dd><p>True if file/pathname exist</p>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="fspath.fspath.FSPath.EXPANDUSER">
-<code class="descname">EXPANDUSER</code><a class="headerlink" href="#fspath.fspath.FSPath.EXPANDUSER" title="Permalink to this definition">¶</a></dt>
+<dl class="py property">
+<dt class="sig sig-object py" id="fspath.fspath.FSPath.EXPANDUSER">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">EXPANDUSER</span></span><a class="headerlink" href="#fspath.fspath.FSPath.EXPANDUSER" title="Permalink to this definition">¶</a></dt>
 <dd><p>Path with an initial component of ~ or ~user replaced by that user’s home.</p>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="fspath.fspath.FSPath.EXPANDVARS">
-<code class="descname">EXPANDVARS</code><a class="headerlink" href="#fspath.fspath.FSPath.EXPANDVARS" title="Permalink to this definition">¶</a></dt>
+<dl class="py property">
+<dt class="sig sig-object py" id="fspath.fspath.FSPath.EXPANDVARS">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">EXPANDVARS</span></span><a class="headerlink" href="#fspath.fspath.FSPath.EXPANDVARS" title="Permalink to this definition">¶</a></dt>
 <dd><p>Path with environment variables expanded.</p>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="fspath.fspath.FSPath.FILENAME">
-<code class="descname">FILENAME</code><a class="headerlink" href="#fspath.fspath.FSPath.FILENAME" title="Permalink to this definition">¶</a></dt>
+<dl class="py property">
+<dt class="sig sig-object py" id="fspath.fspath.FSPath.FILENAME">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">FILENAME</span></span><a class="headerlink" href="#fspath.fspath.FSPath.FILENAME" title="Permalink to this definition">¶</a></dt>
 <dd><p>The path name without folder and suffix.</p>
 <p>E.g.: <code class="docutils literal notranslate"><span class="pre">/path/to/folder/filename.ext</span></code> –&gt; <code class="docutils literal notranslate"><span class="pre">filename</span></code></p>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="fspath.fspath.FSPath.ISABSPATH">
-<code class="descname">ISABSPATH</code><a class="headerlink" href="#fspath.fspath.FSPath.ISABSPATH" title="Permalink to this definition">¶</a></dt>
+<dl class="py property">
+<dt class="sig sig-object py" id="fspath.fspath.FSPath.ISABSPATH">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ISABSPATH</span></span><a class="headerlink" href="#fspath.fspath.FSPath.ISABSPATH" title="Permalink to this definition">¶</a></dt>
 <dd><p>True if path is absolute</p>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="fspath.fspath.FSPath.ISDIR">
-<code class="descname">ISDIR</code><a class="headerlink" href="#fspath.fspath.FSPath.ISDIR" title="Permalink to this definition">¶</a></dt>
+<dl class="py property">
+<dt class="sig sig-object py" id="fspath.fspath.FSPath.ISDIR">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ISDIR</span></span><a class="headerlink" href="#fspath.fspath.FSPath.ISDIR" title="Permalink to this definition">¶</a></dt>
 <dd><p>True if path is a folder</p>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="fspath.fspath.FSPath.ISFILE">
-<code class="descname">ISFILE</code><a class="headerlink" href="#fspath.fspath.FSPath.ISFILE" title="Permalink to this definition">¶</a></dt>
+<dl class="py property">
+<dt class="sig sig-object py" id="fspath.fspath.FSPath.ISFILE">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ISFILE</span></span><a class="headerlink" href="#fspath.fspath.FSPath.ISFILE" title="Permalink to this definition">¶</a></dt>
 <dd><p>True if path is a file</p>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="fspath.fspath.FSPath.ISLINK">
-<code class="descname">ISLINK</code><a class="headerlink" href="#fspath.fspath.FSPath.ISLINK" title="Permalink to this definition">¶</a></dt>
+<dl class="py property">
+<dt class="sig sig-object py" id="fspath.fspath.FSPath.ISLINK">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ISLINK</span></span><a class="headerlink" href="#fspath.fspath.FSPath.ISLINK" title="Permalink to this definition">¶</a></dt>
 <dd><p>True if path is a symbolic link</p>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="fspath.fspath.FSPath.ISMOUNT">
-<code class="descname">ISMOUNT</code><a class="headerlink" href="#fspath.fspath.FSPath.ISMOUNT" title="Permalink to this definition">¶</a></dt>
+<dl class="py property">
+<dt class="sig sig-object py" id="fspath.fspath.FSPath.ISMOUNT">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ISMOUNT</span></span><a class="headerlink" href="#fspath.fspath.FSPath.ISMOUNT" title="Permalink to this definition">¶</a></dt>
 <dd><p>True if path is a mountpoint</p>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="fspath.fspath.FSPath.ISTAR">
-<code class="descname">ISTAR</code><a class="headerlink" href="#fspath.fspath.FSPath.ISTAR" title="Permalink to this definition">¶</a></dt>
+<dl class="py property">
+<dt class="sig sig-object py" id="fspath.fspath.FSPath.ISTAR">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ISTAR</span></span><a class="headerlink" href="#fspath.fspath.FSPath.ISTAR" title="Permalink to this definition">¶</a></dt>
 <dd><p>True if path is a TAR archive file</p>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="fspath.fspath.FSPath.ISZIP">
-<code class="descname">ISZIP</code><a class="headerlink" href="#fspath.fspath.FSPath.ISZIP" title="Permalink to this definition">¶</a></dt>
+<dl class="py property">
+<dt class="sig sig-object py" id="fspath.fspath.FSPath.ISZIP">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ISZIP</span></span><a class="headerlink" href="#fspath.fspath.FSPath.ISZIP" title="Permalink to this definition">¶</a></dt>
 <dd><p>True if path is a ZIP file</p>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="fspath.fspath.FSPath.MTIME">
-<code class="descname">MTIME</code><a class="headerlink" href="#fspath.fspath.FSPath.MTIME" title="Permalink to this definition">¶</a></dt>
+<dl class="py property">
+<dt class="sig sig-object py" id="fspath.fspath.FSPath.MTIME">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MTIME</span></span><a class="headerlink" href="#fspath.fspath.FSPath.MTIME" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the last modification time, reported by os.stat().</p>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="fspath.fspath.FSPath.NTPATH">
-<code class="descname">NTPATH</code><a class="headerlink" href="#fspath.fspath.FSPath.NTPATH" title="Permalink to this definition">¶</a></dt>
+<dl class="py property">
+<dt class="sig sig-object py" id="fspath.fspath.FSPath.NTPATH">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">NTPATH</span></span><a class="headerlink" href="#fspath.fspath.FSPath.NTPATH" title="Permalink to this definition">¶</a></dt>
 <dd><p>The path name in the Windows (NT) notation.</p>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="fspath.fspath.FSPath.OS">
-<code class="descname">OS</code><em class="property"> = {'altsep': None, 'curdir': '.', 'defpath': ':/bin:/usr/bin', 'devnull': '/dev/null', 'extsep': '.', 'linesep': '\n', 'pathsep': ':', 'sep': '/'}</em><a class="headerlink" href="#fspath.fspath.FSPath.OS" title="Permalink to this definition">¶</a></dt>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="fspath.fspath.FSPath.OS">
+<span class="sig-name descname"><span class="pre">OS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'altsep':</span> <span class="pre">None,</span> <span class="pre">'curdir':</span> <span class="pre">'.',</span> <span class="pre">'defpath':</span> <span class="pre">'/bin:/usr/bin',</span> <span class="pre">'devnull':</span> <span class="pre">'/dev/null',</span> <span class="pre">'extsep':</span> <span class="pre">'.',</span> <span class="pre">'linesep':</span> <span class="pre">'\n',</span> <span class="pre">'pathsep':</span> <span class="pre">':',</span> <span class="pre">'sep':</span> <span class="pre">'/'}</span></em><a class="headerlink" href="#fspath.fspath.FSPath.OS" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
-<dt id="fspath.fspath.FSPath.POSIXPATH">
-<code class="descname">POSIXPATH</code><a class="headerlink" href="#fspath.fspath.FSPath.POSIXPATH" title="Permalink to this definition">¶</a></dt>
+<dl class="py property">
+<dt class="sig sig-object py" id="fspath.fspath.FSPath.POSIXPATH">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">POSIXPATH</span></span><a class="headerlink" href="#fspath.fspath.FSPath.POSIXPATH" title="Permalink to this definition">¶</a></dt>
 <dd><p>The path name in <em>POSIX</em> notation.</p>
 <p>Helpfull if you are on MS-Windows and need the POSIX name.</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="fspath.fspath.FSPath.Popen">
-<code class="descname">Popen</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fspath/fspath.html#FSPath.Popen"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fspath.fspath.FSPath.Popen" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="fspath.fspath.FSPath.Popen">
+<span class="sig-name descname"><span class="pre">Popen</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fspath/fspath.html#FSPath.Popen"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fspath.fspath.FSPath.Popen" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get a <code class="docutils literal notranslate"><span class="pre">subprocess.Popen</span></code> object (<code class="docutils literal notranslate"><span class="pre">proc</span></code>).</p>
 <p>The path name of the self-object is the programm to call. The program
 arguments are given py <code class="docutils literal notranslate"><span class="pre">*args</span></code> and the <code class="docutils literal notranslate"><span class="pre">*kwargs</span></code> are passed to the
@@ -375,287 +245,279 @@ true by default.</p>
 <span class="n">proc</span> <span class="o">=</span> <span class="n">FSPath</span><span class="p">(</span><span class="s2">&quot;arp&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">Popen</span><span class="p">(</span><span class="s2">&quot;-a&quot;</span><span class="p">,)</span>
 <span class="n">stdout</span><span class="p">,</span> <span class="n">stderr</span> <span class="o">=</span> <span class="n">proc</span><span class="o">.</span><span class="n">communicate</span><span class="p">()</span>
 <span class="n">retVal</span> <span class="o">=</span> <span class="n">proc</span><span class="o">.</span><span class="n">returncode</span>
-<span class="k">print</span><span class="p">(</span><span class="s2">&quot;stdout: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">stdout</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="s2">&quot;stderr: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">stderr</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="s2">&quot;exit code = </span><span class="si">%d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">retVal</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;stdout: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">stdout</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;stderr: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">stderr</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;exit code = </span><span class="si">%d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">retVal</span><span class="p">)</span>
 </pre></div>
 </div>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="fspath.fspath.FSPath.READABLE">
-<code class="descname">READABLE</code><a class="headerlink" href="#fspath.fspath.FSPath.READABLE" title="Permalink to this definition">¶</a></dt>
+<dl class="py property">
+<dt class="sig sig-object py" id="fspath.fspath.FSPath.READABLE">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">READABLE</span></span><a class="headerlink" href="#fspath.fspath.FSPath.READABLE" title="Permalink to this definition">¶</a></dt>
 <dd><p>True if file/path is readable</p>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="fspath.fspath.FSPath.REALPATH">
-<code class="descname">REALPATH</code><a class="headerlink" href="#fspath.fspath.FSPath.REALPATH" title="Permalink to this definition">¶</a></dt>
+<dl class="py property">
+<dt class="sig sig-object py" id="fspath.fspath.FSPath.REALPATH">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">REALPATH</span></span><a class="headerlink" href="#fspath.fspath.FSPath.REALPATH" title="Permalink to this definition">¶</a></dt>
 <dd><p>The real pathname without symbolic links.</p>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="fspath.fspath.FSPath.SIZE">
-<code class="descname">SIZE</code><a class="headerlink" href="#fspath.fspath.FSPath.SIZE" title="Permalink to this definition">¶</a></dt>
+<dl class="py property">
+<dt class="sig sig-object py" id="fspath.fspath.FSPath.SIZE">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">SIZE</span></span><a class="headerlink" href="#fspath.fspath.FSPath.SIZE" title="Permalink to this definition">¶</a></dt>
 <dd><p>Size in bytes</p>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="fspath.fspath.FSPath.SKIPSUFFIX">
-<code class="descname">SKIPSUFFIX</code><a class="headerlink" href="#fspath.fspath.FSPath.SKIPSUFFIX" title="Permalink to this definition">¶</a></dt>
+<dl class="py property">
+<dt class="sig sig-object py" id="fspath.fspath.FSPath.SKIPSUFFIX">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">SKIPSUFFIX</span></span><a class="headerlink" href="#fspath.fspath.FSPath.SKIPSUFFIX" title="Permalink to this definition">¶</a></dt>
 <dd><p>The complete file name without suffix.</p>
 <p>E.g.: <code class="docutils literal notranslate"><span class="pre">/path/to/folder/filename.ext</span></code> –&gt; <code class="docutils literal notranslate"><span class="pre">/path/to/folder/filename</span></code></p>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="fspath.fspath.FSPath.SUFFIX">
-<code class="descname">SUFFIX</code><a class="headerlink" href="#fspath.fspath.FSPath.SUFFIX" title="Permalink to this definition">¶</a></dt>
+<dl class="py property">
+<dt class="sig sig-object py" id="fspath.fspath.FSPath.SUFFIX">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">SUFFIX</span></span><a class="headerlink" href="#fspath.fspath.FSPath.SUFFIX" title="Permalink to this definition">¶</a></dt>
 <dd><p>The filename suffix</p>
 <p>E.g.: <code class="docutils literal notranslate"><span class="pre">/path/to/folder/filename.ext</span></code> –&gt; <code class="docutils literal notranslate"><span class="pre">.ext</span></code></p>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="fspath.fspath.FSPath.VALUE">
-<code class="descname">VALUE</code><a class="headerlink" href="#fspath.fspath.FSPath.VALUE" title="Permalink to this definition">¶</a></dt>
+<dl class="py property">
+<dt class="sig sig-object py" id="fspath.fspath.FSPath.VALUE">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">VALUE</span></span><a class="headerlink" href="#fspath.fspath.FSPath.VALUE" title="Permalink to this definition">¶</a></dt>
 <dd><p>string of the path name</p>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="fspath.fspath.FSPath.WRITEABLE">
-<code class="descname">WRITEABLE</code><a class="headerlink" href="#fspath.fspath.FSPath.WRITEABLE" title="Permalink to this definition">¶</a></dt>
+<dl class="py property">
+<dt class="sig sig-object py" id="fspath.fspath.FSPath.WRITEABLE">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">WRITEABLE</span></span><a class="headerlink" href="#fspath.fspath.FSPath.WRITEABLE" title="Permalink to this definition">¶</a></dt>
 <dd><p>True if file/path is writeable</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="fspath.fspath.FSPath.chdir">
-<code class="descname">chdir</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fspath/fspath.html#FSPath.chdir"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fspath.fspath.FSPath.chdir" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="fspath.fspath.FSPath.chdir">
+<span class="sig-name descname"><span class="pre">chdir</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fspath/fspath.html#FSPath.chdir"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fspath.fspath.FSPath.chdir" title="Permalink to this definition">¶</a></dt>
 <dd><p>change the current working directory to <em>self</em>.</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="fspath.fspath.FSPath.copyfile">
-<code class="descname">copyfile</code><span class="sig-paren">(</span><em>dest</em>, <em>preserve=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fspath/fspath.html#FSPath.copyfile"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fspath.fspath.FSPath.copyfile" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="fspath.fspath.FSPath.copyfile">
+<span class="sig-name descname"><span class="pre">copyfile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dest</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">preserve</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fspath/fspath.html#FSPath.copyfile"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fspath.fspath.FSPath.copyfile" title="Permalink to this definition">¶</a></dt>
 <dd><p>Copy the file src to the file or directory dest.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Dest str:</th><td class="field-body">The destination may be a directory</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Preserve bool:</th><td class="field-body">copies permission bits</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Dest str<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The destination may be a directory</p>
+</dd>
+<dt class="field-even">Preserve bool<span class="colon">:</span></dt>
+<dd class="field-even"><p>copies permission bits</p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="method">
-<dt id="fspath.fspath.FSPath.copytree">
-<code class="descname">copytree</code><span class="sig-paren">(</span><em>dest</em>, <em>symlinks=False</em>, <em>ignore=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fspath/fspath.html#FSPath.copytree"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fspath.fspath.FSPath.copytree" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="fspath.fspath.FSPath.copytree">
+<span class="sig-name descname"><span class="pre">copytree</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dest</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">symlinks</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ignore</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fspath/fspath.html#FSPath.copytree"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fspath.fspath.FSPath.copytree" title="Permalink to this definition">¶</a></dt>
 <dd><p>Recursively copy the entire directory tree</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="fspath.fspath.FSPath.delete">
-<code class="descname">delete</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fspath/fspath.html#FSPath.delete"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fspath.fspath.FSPath.delete" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="fspath.fspath.FSPath.delete">
+<span class="sig-name descname"><span class="pre">delete</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fspath/fspath.html#FSPath.delete"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fspath.fspath.FSPath.delete" title="Permalink to this definition">¶</a></dt>
 <dd><p>remove file/folder</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="fspath.fspath.FSPath.download">
-<code class="descname">download</code><span class="sig-paren">(</span><em>url</em>, <em>chunksize=1048576</em>, <em>ticker=False</em>, <em>pipe=&lt;_io.TextIOWrapper name='&lt;stdout&gt;' mode='w' encoding='UTF-8'&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fspath/fspath.html#FSPath.download"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fspath.fspath.FSPath.download" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="fspath.fspath.FSPath.download">
+<span class="sig-name descname"><span class="pre">download</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chunksize=1048576</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ticker=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pipe=&lt;_io.TextIOWrapper</span> <span class="pre">name='&lt;stdout&gt;'</span> <span class="pre">mode='w'</span> <span class="pre">encoding='utf-8'&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fspath/fspath.html#FSPath.download"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fspath.fspath.FSPath.download" title="Permalink to this definition">¶</a></dt>
 <dd><p>Download URL into file</p>
 <p>The default chunksize is 1048576 Bytes, with ticker=True an progress-bar
 is prompted.</p>
 <p>E.g. to download FSPath’s README.rst with a progressbar on stdout:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://raw.githubusercontent.com/return42/fspath/master/README.rst&quot;</span>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>url = &quot;https://raw.githubusercontent.com/return42/fspath/master/README.rst&quot;
 
-<span class="n">readme</span> <span class="o">=</span> <span class="n">FSPath</span><span class="p">(</span><span class="s2">&quot;README.rst&quot;</span><span class="p">)</span>
-<span class="n">readme</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">ticker</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+readme = FSPath(&quot;README.rst&quot;)
+readme.download(url, ticker=True)
 </pre></div>
 </div>
 </dd></dl>
 
-<dl class="method">
-<dt id="fspath.fspath.FSPath.extract">
-<code class="descname">extract</code><span class="sig-paren">(</span><em>folder='.'</em>, <em>pwd=None</em>, <em>ticker=False</em>, <em>pipe=&lt;_io.TextIOWrapper name='&lt;stdout&gt;' mode='w' encoding='UTF-8'&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fspath/fspath.html#FSPath.extract"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fspath.fspath.FSPath.extract" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="fspath.fspath.FSPath.extract">
+<span class="sig-name descname"><span class="pre">extract</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">folder='.'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pwd=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ticker=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pipe=&lt;_io.TextIOWrapper</span> <span class="pre">name='&lt;stdout&gt;'</span> <span class="pre">mode='w'</span> <span class="pre">encoding='utf-8'&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fspath/fspath.html#FSPath.extract"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fspath.fspath.FSPath.extract" title="Permalink to this definition">¶</a></dt>
 <dd><p>Extract TAR or ZIP archive to ‘folder’</p>
 <p>Uses <code class="docutils literal notranslate"><span class="pre">extractall</span></code> from <code class="xref py py-class docutils literal notranslate"><span class="pre">tarfile.TarFile</span></code> and
 <code class="xref py py-class docutils literal notranslate"><span class="pre">zipfile.Zipfile</span></code> to extract into <code class="docutils literal notranslate"><span class="pre">folder</span></code>.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Folder str:</th><td class="field-body">folder to extract into</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Pwd str:</th><td class="field-body">password for crypted (only ZIP)</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">members in an iterable form (list or just iterator)</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Folder str<span class="colon">:</span></dt>
+<dd class="field-odd"><p>folder to extract into</p>
+</dd>
+<dt class="field-even">Pwd str<span class="colon">:</span></dt>
+<dd class="field-even"><p>password for crypted (only ZIP)</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>members in an iterable form (list or just iterator)</p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="method">
-<dt id="fspath.fspath.FSPath.filesize">
-<code class="descname">filesize</code><span class="sig-paren">(</span><em>precision=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fspath/fspath.html#FSPath.filesize"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fspath.fspath.FSPath.filesize" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="fspath.fspath.FSPath.filesize">
+<span class="sig-name descname"><span class="pre">filesize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">precision</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fspath/fspath.html#FSPath.filesize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fspath.fspath.FSPath.filesize" title="Permalink to this definition">¶</a></dt>
 <dd><p>Filesize in bytes or with precision</p>
 </dd></dl>
 
-<dl class="classmethod">
-<dt id="fspath.fspath.FSPath.getCWD">
-<em class="property">classmethod </em><code class="descname">getCWD</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fspath/fspath.html#FSPath.getCWD"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fspath.fspath.FSPath.getCWD" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="fspath.fspath.FSPath.getCWD">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">getCWD</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fspath/fspath.html#FSPath.getCWD"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fspath.fspath.FSPath.getCWD" title="Permalink to this definition">¶</a></dt>
 <dd><p>Current working directory.</p>
 </dd></dl>
 
-<dl class="classmethod">
-<dt id="fspath.fspath.FSPath.getHOME">
-<em class="property">classmethod </em><code class="descname">getHOME</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fspath/fspath.html#FSPath.getHOME"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fspath.fspath.FSPath.getHOME" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="fspath.fspath.FSPath.getHOME">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">getHOME</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fspath/fspath.html#FSPath.getHOME"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fspath.fspath.FSPath.getHOME" title="Permalink to this definition">¶</a></dt>
 <dd><p>User’s home folder.</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="fspath.fspath.FSPath.glob">
-<code class="descname">glob</code><span class="sig-paren">(</span><em>pattern</em>, <em>relpath=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fspath/fspath.html#FSPath.glob"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fspath.fspath.FSPath.glob" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="fspath.fspath.FSPath.glob">
+<span class="sig-name descname"><span class="pre">glob</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pattern</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">relpath</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fspath/fspath.html#FSPath.glob"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fspath.fspath.FSPath.glob" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return an iterator which yields the paths matching a pathname pattern.</p>
 <p>The pattern may contain simple shell-style wildcards a la
 fnmatch. However, unlike fnmatch, filenames starting with a dot are
 special cases that are not matched by ‘*’ and ‘?’  patterns.</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="fspath.fspath.FSPath.listdir">
-<code class="descname">listdir</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fspath/fspath.html#FSPath.listdir"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fspath.fspath.FSPath.listdir" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="fspath.fspath.FSPath.listdir">
+<span class="sig-name descname"><span class="pre">listdir</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fspath/fspath.html#FSPath.listdir"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fspath.fspath.FSPath.listdir" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return a iterator which yields the names of the files in the directory.</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="fspath.fspath.FSPath.makedirs">
-<code class="descname">makedirs</code><span class="sig-paren">(</span><em>mode=509</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fspath/fspath.html#FSPath.makedirs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fspath.fspath.FSPath.makedirs" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="fspath.fspath.FSPath.makedirs">
+<span class="sig-name descname"><span class="pre">makedirs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">509</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fspath/fspath.html#FSPath.makedirs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fspath.fspath.FSPath.makedirs" title="Permalink to this definition">¶</a></dt>
 <dd><p>Recursive directory creation, default mode is 0o775 (octal).</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>mode</strong> (<em>int</em>) – file permissons</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">created (True) already exists (True),</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><strong>Exception</strong> – in case of errors (permissons, etc.)</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>mode</strong> (<em>int</em>) – file permissons</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>created (True) already exists (True),</p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>Exception</strong> – in case of errors (permissons, etc.)</p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="method">
-<dt id="fspath.fspath.FSPath.move">
-<code class="descname">move</code><span class="sig-paren">(</span><em>dest</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fspath/fspath.html#FSPath.move"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fspath.fspath.FSPath.move" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="fspath.fspath.FSPath.move">
+<span class="sig-name descname"><span class="pre">move</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dest</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fspath/fspath.html#FSPath.move"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fspath.fspath.FSPath.move" title="Permalink to this definition">¶</a></dt>
 <dd><p>Move path to another location (dest)</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="fspath.fspath.FSPath.openBinaryFile">
-<code class="descname">openBinaryFile</code><span class="sig-paren">(</span><em>mode='rb'</em>, <em>errors='strict'</em>, <em>buffering=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fspath/fspath.html#FSPath.openBinaryFile"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fspath.fspath.FSPath.openBinaryFile" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="fspath.fspath.FSPath.openBinaryFile">
+<span class="sig-name descname"><span class="pre">openBinaryFile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'rb'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">errors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'strict'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">buffering</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fspath/fspath.html#FSPath.openBinaryFile"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fspath.fspath.FSPath.openBinaryFile" title="Permalink to this definition">¶</a></dt>
 <dd><p>Open file as binary file.</p>
 <p>wraps <a class="reference external" href="https://docs.python.org/library/io.html#io.open">io.open</a>:</p>
 <ul class="simple">
-<li>except argument <code class="docutils literal notranslate"><span class="pre">closefd</span></code> (meaningless when using filenames)</li>
-<li>except argument <code class="docutils literal notranslate"><span class="pre">encoding</span></code> (meaningless since <em>binary</em>)</li>
-<li>except argument <code class="docutils literal notranslate"><span class="pre">newline</span></code> (meaningless since <em>binary</em>)</li>
-<li><code class="docutils literal notranslate"><span class="pre">mode='rb'</span></code> is default</li>
+<li><p>except argument <code class="docutils literal notranslate"><span class="pre">closefd</span></code> (meaningless when using filenames)</p></li>
+<li><p>except argument <code class="docutils literal notranslate"><span class="pre">encoding</span></code> (meaningless since <em>binary</em>)</p></li>
+<li><p>except argument <code class="docutils literal notranslate"><span class="pre">newline</span></code> (meaningless since <em>binary</em>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mode='rb'</span></code> is default</p></li>
 </ul>
 </dd></dl>
 
-<dl class="method">
-<dt id="fspath.fspath.FSPath.openTextFile">
-<code class="descname">openTextFile</code><span class="sig-paren">(</span><em>mode='rt'</em>, <em>encoding='utf-8'</em>, <em>errors='strict'</em>, <em>buffering=1</em>, <em>newline=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fspath/fspath.html#FSPath.openTextFile"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fspath.fspath.FSPath.openTextFile" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="fspath.fspath.FSPath.openTextFile">
+<span class="sig-name descname"><span class="pre">openTextFile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'rt'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoding</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'utf-8'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">errors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'strict'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">buffering</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">newline</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fspath/fspath.html#FSPath.openTextFile"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fspath.fspath.FSPath.openTextFile" title="Permalink to this definition">¶</a></dt>
 <dd><p>Open file as text file.</p>
 <p>wraps <a class="reference external" href="https://docs.python.org/library/io.html#io.open">io.open</a>:</p>
 <ul class="simple">
-<li>except argument <code class="docutils literal notranslate"><span class="pre">closefd</span></code> (meaningless when using filenames)</li>
-<li><code class="docutils literal notranslate"><span class="pre">encoding='utf-8'</span></code> is default</li>
-<li><code class="docutils literal notranslate"><span class="pre">mode='rt'</span></code> is default</li>
-<li><code class="docutils literal notranslate"><span class="pre">buffering=1</span></code> is default (selects line buffering)</li>
+<li><p>except argument <code class="docutils literal notranslate"><span class="pre">closefd</span></code> (meaningless when using filenames)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">encoding='utf-8'</span></code> is default</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mode='rt'</span></code> is default</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">buffering=1</span></code> is default (selects line buffering)</p></li>
 </ul>
 </dd></dl>
 
-<dl class="method">
-<dt id="fspath.fspath.FSPath.reMatchFind">
-<code class="descname">reMatchFind</code><span class="sig-paren">(</span><em>name</em>, <em>use_files=True</em>, <em>use_dirs=True</em>, <em>followlinks=False</em>, <em>relpath=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fspath/fspath.html#FSPath.reMatchFind"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fspath.fspath.FSPath.reMatchFind" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="fspath.fspath.FSPath.reMatchFind">
+<span class="sig-name descname"><span class="pre">reMatchFind</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_files</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_dirs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">followlinks</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">relpath</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fspath/fspath.html#FSPath.reMatchFind"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fspath.fspath.FSPath.reMatchFind" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns iterator which yields matching path names</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>use_files</strong> – iterator includes names of files</li>
-<li><strong>use_dirs</strong> – iterator includes names of folders</li>
-<li><strong>followlinks</strong> – follow symbolic links</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>use_files</strong> – iterator includes names of files</p></li>
+<li><p><strong>use_dirs</strong> – iterator includes names of folders</p></li>
+<li><p><strong>followlinks</strong> – follow symbolic links</p></li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 <p>To find all C and header files use:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">folder</span><span class="o">.</span><span class="n">reMatchFind</span><span class="p">(</span><span class="s2">&quot;*\.[ch]&quot;</span><span class="p">)</span>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>folder.reMatchFind(&quot;*\.[ch]&quot;)
 </pre></div>
 </div>
 <p>To find the first C or header file use:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">next</span><span class="p">(</span><span class="n">myFolder</span><span class="o">.</span><span class="n">reMatchFind</span><span class="p">(</span><span class="s2">&quot;*\.[ch]&quot;</span><span class="p">),</span> <span class="kc">None</span><span class="p">)</span>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>next(myFolder.reMatchFind(&quot;*\.[ch]&quot;), None)
 </pre></div>
 </div>
 </dd></dl>
 
-<dl class="method">
-<dt id="fspath.fspath.FSPath.readFile">
-<code class="descname">readFile</code><span class="sig-paren">(</span><em>encoding='utf-8'</em>, <em>errors='strict'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fspath/fspath.html#FSPath.readFile"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fspath.fspath.FSPath.readFile" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="fspath.fspath.FSPath.readFile">
+<span class="sig-name descname"><span class="pre">readFile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">encoding</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'utf-8'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">errors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'strict'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fspath/fspath.html#FSPath.readFile"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fspath.fspath.FSPath.readFile" title="Permalink to this definition">¶</a></dt>
 <dd><p>read entire file</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="fspath.fspath.FSPath.relpath">
-<code class="descname">relpath</code><span class="sig-paren">(</span><em>start</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fspath/fspath.html#FSPath.relpath"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fspath.fspath.FSPath.relpath" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="fspath.fspath.FSPath.relpath">
+<span class="sig-name descname"><span class="pre">relpath</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fspath/fspath.html#FSPath.relpath"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fspath.fspath.FSPath.relpath" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return a relative version of a path</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="fspath.fspath.FSPath.rmfile">
-<code class="descname">rmfile</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fspath/fspath.html#FSPath.rmfile"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fspath.fspath.FSPath.rmfile" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="fspath.fspath.FSPath.rmfile">
+<span class="sig-name descname"><span class="pre">rmfile</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fspath/fspath.html#FSPath.rmfile"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fspath.fspath.FSPath.rmfile" title="Permalink to this definition">¶</a></dt>
 <dd><p>remove file</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="fspath.fspath.FSPath.rmtree">
-<code class="descname">rmtree</code><span class="sig-paren">(</span><em>ignore_errors=False</em>, <em>onerror=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fspath/fspath.html#FSPath.rmtree"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fspath.fspath.FSPath.rmtree" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="fspath.fspath.FSPath.rmtree">
+<span class="sig-name descname"><span class="pre">rmtree</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ignore_errors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">onerror</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fspath/fspath.html#FSPath.rmtree"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fspath.fspath.FSPath.rmtree" title="Permalink to this definition">¶</a></dt>
 <dd><p>remove tree</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="fspath.fspath.FSPath.splitpath">
-<code class="descname">splitpath</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fspath/fspath.html#FSPath.splitpath"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fspath.fspath.FSPath.splitpath" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="fspath.fspath.FSPath.splitpath">
+<span class="sig-name descname"><span class="pre">splitpath</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fspath/fspath.html#FSPath.splitpath"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fspath.fspath.FSPath.splitpath" title="Permalink to this definition">¶</a></dt>
 <dd><p>Split a pathname.</p>
 <p>Return tuple (head, tail) where tail is everything after the final
 slash.  Either part may be empty.</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="fspath.fspath.FSPath.startFile">
-<code class="descname">startFile</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fspath/fspath.html#FSPath.startFile"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fspath.fspath.FSPath.startFile" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="fspath.fspath.FSPath.startFile">
+<span class="sig-name descname"><span class="pre">startFile</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fspath/fspath.html#FSPath.startFile"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fspath.fspath.FSPath.startFile" title="Permalink to this definition">¶</a></dt>
 <dd><p>Start a file with its associated application.</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="fspath.fspath.FSPath.suffix">
-<code class="descname">suffix</code><span class="sig-paren">(</span><em>new_suffix</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fspath/fspath.html#FSPath.suffix"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fspath.fspath.FSPath.suffix" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="fspath.fspath.FSPath.suffix">
+<span class="sig-name descname"><span class="pre">suffix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new_suffix</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fspath/fspath.html#FSPath.suffix"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fspath.fspath.FSPath.suffix" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return path name with <code class="docutils literal notranslate"><span class="pre">new_suffix</span></code></p>
 </dd></dl>
 
-<dl class="method">
-<dt id="fspath.fspath.FSPath.walk">
-<code class="descname">walk</code><span class="sig-paren">(</span><em>topdown=True</em>, <em>onerror=None</em>, <em>followlinks=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fspath/fspath.html#FSPath.walk"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fspath.fspath.FSPath.walk" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="fspath.fspath.FSPath.walk">
+<span class="sig-name descname"><span class="pre">walk</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">topdown</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">onerror</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">followlinks</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fspath/fspath.html#FSPath.walk"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fspath.fspath.FSPath.walk" title="Permalink to this definition">¶</a></dt>
 <dd><p>Directory tree generator.</p>
 <p>For each directory in the directory tree rooted at top (including top
 itself, but excluding ‘.’ and ‘..’), yields a 3-tuple:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">folder</span><span class="p">,</span> <span class="n">dirnames</span><span class="p">,</span> <span class="n">filenames</span>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>folder, dirnames, filenames
 </pre></div>
 </div>
 <p>dirnames is a list of the names of the subdirectories in dirpath
@@ -668,8 +530,8 @@ dirpath, do <code class="docutils literal notranslate"><span class="pre">folder<
 systems that support them.  In order to get this functionality, set the
 optional argument ‘followlinks’ to true.</p>
 <div class="admonition caution">
-<p class="first admonition-title">Caution</p>
-<p class="last">If you pass a relative pathname for top, don’t change the current
+<p class="admonition-title">Caution</p>
+<p>If you pass a relative pathname for top, don’t change the current
 working directory between resumptions of walk.  walk never changes
 the current directory, and assumes that the client doesn’t either.</p>
 </div>
@@ -678,71 +540,134 @@ the current directory, and assumes that the client doesn’t either.</p>
 
 </dd></dl>
 
-<dl class="function">
-<dt id="fspath.fspath.callEXE">
-<code class="descclassname">fspath.fspath.</code><code class="descname">callEXE</code><span class="sig-paren">(</span><em>cmd</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fspath/fspath.html#callEXE"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fspath.fspath.callEXE" title="Permalink to this definition">¶</a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="fspath.fspath.callEXE">
+<span class="sig-prename descclassname"><span class="pre">fspath.fspath.</span></span><span class="sig-name descname"><span class="pre">callEXE</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cmd</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fspath/fspath.html#callEXE"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fspath.fspath.callEXE" title="Permalink to this definition">¶</a></dt>
 <dd><p>Synchronous command call <code class="docutils literal notranslate"><span class="pre">cmd</span></code> with arguments <code class="docutils literal notranslate"><span class="pre">*args</span></code> .</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">*kwargs</span></code> are passed to the <code class="docutils literal notranslate"><span class="pre">subprocess.Popen</span></code> constructor. The
 return value is a three-digit tuple <code class="docutils literal notranslate"><span class="pre">(stdout,</span> <span class="pre">stderr,</span> <span class="pre">rc)</span></code>.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">fspath</span> <span class="kn">import</span> <span class="n">callEXE</span>
 <span class="n">out</span><span class="p">,</span> <span class="n">err</span><span class="p">,</span> <span class="n">rc</span> <span class="o">=</span> <span class="n">callEXE</span><span class="p">(</span><span class="s2">&quot;arp&quot;</span><span class="p">,</span> <span class="s2">&quot;-a&quot;</span><span class="p">)</span>
 
-<span class="k">print</span><span class="p">(</span><span class="s2">&quot;stdout: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">out</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="s2">&quot;stderr: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">err</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="s2">&quot;exit code = </span><span class="si">%d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">rc</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;stdout: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">out</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;stderr: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">err</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;exit code = </span><span class="si">%d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">rc</span><span class="p">)</span>
 </pre></div>
 </div>
 </dd></dl>
 
-</div>
+</section>
 
 
-           </div>
-           
+            <div class="clearer"></div>
           </div>
-          <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="fspath.helper.html" class="btn btn-neutral float-right" title="fspath.helper module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="fspath.debug.html" class="btn btn-neutral float-left" title="fspath.debug module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
-    </div>
-  
-
-  <hr/>
-
-  <div role="contentinfo">
-    <p>
-        &copy; Copyright 2019 Markus Heiser
-
-    </p>
-  </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
-
-</footer>
-
         </div>
       </div>
-
-    </section>
-
-  </div>
-  
-
-
-  <script type="text/javascript">
-      jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
-      });
-  </script>
-
-  
+  <span id="sidebar-top"></span>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
   
     
-   
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/darmarIT_logo_128.png" alt="Logo"/>
+            </a></p>
+  
 
-</body>
+  <h3>Contents</h3>
+  <ul>
+<li><a class="reference internal" href="#">fspath.fspath module</a><ul>
+<li><a class="reference internal" href="#fspath.fspath.FSPath"><code class="docutils literal notranslate"><span class="pre">FSPath</span></code></a><ul>
+<li><a class="reference internal" href="#fspath.fspath.FSPath.ABSPATH"><code class="docutils literal notranslate"><span class="pre">FSPath.ABSPATH</span></code></a></li>
+<li><a class="reference internal" href="#fspath.fspath.FSPath.ATIME"><code class="docutils literal notranslate"><span class="pre">FSPath.ATIME</span></code></a></li>
+<li><a class="reference internal" href="#fspath.fspath.FSPath.BASENAME"><code class="docutils literal notranslate"><span class="pre">FSPath.BASENAME</span></code></a></li>
+<li><a class="reference internal" href="#fspath.fspath.FSPath.CTIME"><code class="docutils literal notranslate"><span class="pre">FSPath.CTIME</span></code></a></li>
+<li><a class="reference internal" href="#fspath.fspath.FSPath.DIRNAME"><code class="docutils literal notranslate"><span class="pre">FSPath.DIRNAME</span></code></a></li>
+<li><a class="reference internal" href="#fspath.fspath.FSPath.EXECUTABLE"><code class="docutils literal notranslate"><span class="pre">FSPath.EXECUTABLE</span></code></a></li>
+<li><a class="reference internal" href="#fspath.fspath.FSPath.EXISTS"><code class="docutils literal notranslate"><span class="pre">FSPath.EXISTS</span></code></a></li>
+<li><a class="reference internal" href="#fspath.fspath.FSPath.EXPANDUSER"><code class="docutils literal notranslate"><span class="pre">FSPath.EXPANDUSER</span></code></a></li>
+<li><a class="reference internal" href="#fspath.fspath.FSPath.EXPANDVARS"><code class="docutils literal notranslate"><span class="pre">FSPath.EXPANDVARS</span></code></a></li>
+<li><a class="reference internal" href="#fspath.fspath.FSPath.FILENAME"><code class="docutils literal notranslate"><span class="pre">FSPath.FILENAME</span></code></a></li>
+<li><a class="reference internal" href="#fspath.fspath.FSPath.ISABSPATH"><code class="docutils literal notranslate"><span class="pre">FSPath.ISABSPATH</span></code></a></li>
+<li><a class="reference internal" href="#fspath.fspath.FSPath.ISDIR"><code class="docutils literal notranslate"><span class="pre">FSPath.ISDIR</span></code></a></li>
+<li><a class="reference internal" href="#fspath.fspath.FSPath.ISFILE"><code class="docutils literal notranslate"><span class="pre">FSPath.ISFILE</span></code></a></li>
+<li><a class="reference internal" href="#fspath.fspath.FSPath.ISLINK"><code class="docutils literal notranslate"><span class="pre">FSPath.ISLINK</span></code></a></li>
+<li><a class="reference internal" href="#fspath.fspath.FSPath.ISMOUNT"><code class="docutils literal notranslate"><span class="pre">FSPath.ISMOUNT</span></code></a></li>
+<li><a class="reference internal" href="#fspath.fspath.FSPath.ISTAR"><code class="docutils literal notranslate"><span class="pre">FSPath.ISTAR</span></code></a></li>
+<li><a class="reference internal" href="#fspath.fspath.FSPath.ISZIP"><code class="docutils literal notranslate"><span class="pre">FSPath.ISZIP</span></code></a></li>
+<li><a class="reference internal" href="#fspath.fspath.FSPath.MTIME"><code class="docutils literal notranslate"><span class="pre">FSPath.MTIME</span></code></a></li>
+<li><a class="reference internal" href="#fspath.fspath.FSPath.NTPATH"><code class="docutils literal notranslate"><span class="pre">FSPath.NTPATH</span></code></a></li>
+<li><a class="reference internal" href="#fspath.fspath.FSPath.OS"><code class="docutils literal notranslate"><span class="pre">FSPath.OS</span></code></a></li>
+<li><a class="reference internal" href="#fspath.fspath.FSPath.POSIXPATH"><code class="docutils literal notranslate"><span class="pre">FSPath.POSIXPATH</span></code></a></li>
+<li><a class="reference internal" href="#fspath.fspath.FSPath.Popen"><code class="docutils literal notranslate"><span class="pre">FSPath.Popen()</span></code></a></li>
+<li><a class="reference internal" href="#fspath.fspath.FSPath.READABLE"><code class="docutils literal notranslate"><span class="pre">FSPath.READABLE</span></code></a></li>
+<li><a class="reference internal" href="#fspath.fspath.FSPath.REALPATH"><code class="docutils literal notranslate"><span class="pre">FSPath.REALPATH</span></code></a></li>
+<li><a class="reference internal" href="#fspath.fspath.FSPath.SIZE"><code class="docutils literal notranslate"><span class="pre">FSPath.SIZE</span></code></a></li>
+<li><a class="reference internal" href="#fspath.fspath.FSPath.SKIPSUFFIX"><code class="docutils literal notranslate"><span class="pre">FSPath.SKIPSUFFIX</span></code></a></li>
+<li><a class="reference internal" href="#fspath.fspath.FSPath.SUFFIX"><code class="docutils literal notranslate"><span class="pre">FSPath.SUFFIX</span></code></a></li>
+<li><a class="reference internal" href="#fspath.fspath.FSPath.VALUE"><code class="docutils literal notranslate"><span class="pre">FSPath.VALUE</span></code></a></li>
+<li><a class="reference internal" href="#fspath.fspath.FSPath.WRITEABLE"><code class="docutils literal notranslate"><span class="pre">FSPath.WRITEABLE</span></code></a></li>
+<li><a class="reference internal" href="#fspath.fspath.FSPath.chdir"><code class="docutils literal notranslate"><span class="pre">FSPath.chdir()</span></code></a></li>
+<li><a class="reference internal" href="#fspath.fspath.FSPath.copyfile"><code class="docutils literal notranslate"><span class="pre">FSPath.copyfile()</span></code></a></li>
+<li><a class="reference internal" href="#fspath.fspath.FSPath.copytree"><code class="docutils literal notranslate"><span class="pre">FSPath.copytree()</span></code></a></li>
+<li><a class="reference internal" href="#fspath.fspath.FSPath.delete"><code class="docutils literal notranslate"><span class="pre">FSPath.delete()</span></code></a></li>
+<li><a class="reference internal" href="#fspath.fspath.FSPath.download"><code class="docutils literal notranslate"><span class="pre">FSPath.download()</span></code></a></li>
+<li><a class="reference internal" href="#fspath.fspath.FSPath.extract"><code class="docutils literal notranslate"><span class="pre">FSPath.extract()</span></code></a></li>
+<li><a class="reference internal" href="#fspath.fspath.FSPath.filesize"><code class="docutils literal notranslate"><span class="pre">FSPath.filesize()</span></code></a></li>
+<li><a class="reference internal" href="#fspath.fspath.FSPath.getCWD"><code class="docutils literal notranslate"><span class="pre">FSPath.getCWD()</span></code></a></li>
+<li><a class="reference internal" href="#fspath.fspath.FSPath.getHOME"><code class="docutils literal notranslate"><span class="pre">FSPath.getHOME()</span></code></a></li>
+<li><a class="reference internal" href="#fspath.fspath.FSPath.glob"><code class="docutils literal notranslate"><span class="pre">FSPath.glob()</span></code></a></li>
+<li><a class="reference internal" href="#fspath.fspath.FSPath.listdir"><code class="docutils literal notranslate"><span class="pre">FSPath.listdir()</span></code></a></li>
+<li><a class="reference internal" href="#fspath.fspath.FSPath.makedirs"><code class="docutils literal notranslate"><span class="pre">FSPath.makedirs()</span></code></a></li>
+<li><a class="reference internal" href="#fspath.fspath.FSPath.move"><code class="docutils literal notranslate"><span class="pre">FSPath.move()</span></code></a></li>
+<li><a class="reference internal" href="#fspath.fspath.FSPath.openBinaryFile"><code class="docutils literal notranslate"><span class="pre">FSPath.openBinaryFile()</span></code></a></li>
+<li><a class="reference internal" href="#fspath.fspath.FSPath.openTextFile"><code class="docutils literal notranslate"><span class="pre">FSPath.openTextFile()</span></code></a></li>
+<li><a class="reference internal" href="#fspath.fspath.FSPath.reMatchFind"><code class="docutils literal notranslate"><span class="pre">FSPath.reMatchFind()</span></code></a></li>
+<li><a class="reference internal" href="#fspath.fspath.FSPath.readFile"><code class="docutils literal notranslate"><span class="pre">FSPath.readFile()</span></code></a></li>
+<li><a class="reference internal" href="#fspath.fspath.FSPath.relpath"><code class="docutils literal notranslate"><span class="pre">FSPath.relpath()</span></code></a></li>
+<li><a class="reference internal" href="#fspath.fspath.FSPath.rmfile"><code class="docutils literal notranslate"><span class="pre">FSPath.rmfile()</span></code></a></li>
+<li><a class="reference internal" href="#fspath.fspath.FSPath.rmtree"><code class="docutils literal notranslate"><span class="pre">FSPath.rmtree()</span></code></a></li>
+<li><a class="reference internal" href="#fspath.fspath.FSPath.splitpath"><code class="docutils literal notranslate"><span class="pre">FSPath.splitpath()</span></code></a></li>
+<li><a class="reference internal" href="#fspath.fspath.FSPath.startFile"><code class="docutils literal notranslate"><span class="pre">FSPath.startFile()</span></code></a></li>
+<li><a class="reference internal" href="#fspath.fspath.FSPath.suffix"><code class="docutils literal notranslate"><span class="pre">FSPath.suffix()</span></code></a></li>
+<li><a class="reference internal" href="#fspath.fspath.FSPath.walk"><code class="docutils literal notranslate"><span class="pre">FSPath.walk()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#fspath.fspath.callEXE"><code class="docutils literal notranslate"><span class="pre">callEXE()</span></code></a></li>
+</ul>
+</li>
+</ul>
+<h3>Navigation</h3>
+<ul>
+  <li><a href="../index.html">Overview</a>
+    <ul>
+      <li><a href="fspath.html">fspath package</a>
+        <ul>
+          <li>Previous: <a href="fspath.debug.html" title="previous chapter">fspath.debug module</a>
+          <li>Next: <a href="fspath.helper.html" title="next chapter">fspath.helper module</a></ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script><div id="ethical-ad-placement"></div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2023 Markus Heiser.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.1.3.
+    </div>
+  <script src="../_static/version_warning_offset.js"></script>
+
+  </body>
 </html>

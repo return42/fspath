@@ -1,321 +1,214 @@
 
-
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
-<head>
-  <meta charset="utf-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <title>fspath.main &mdash; FSPath 20190323 documentation</title>
-  
 
-  
-  
-  
-  
-
-  
-  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
-  
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../../_static/jquery.js"></script>
-        <script type="text/javascript" src="../../_static/underscore.js"></script>
-        <script type="text/javascript" src="../../_static/doctools.js"></script>
-        <script type="text/javascript" src="../../_static/language_data.js"></script>
-    
-    <script type="text/javascript" src="../../_static/js/theme.js"></script>
-
-    
-
-  
-  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/theme_overrides.css" type="text/css" />
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>fspath.main &#8212; FSPath 20190323 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
-</head>
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">FSPath 20190323 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">fspath.main</a></li> 
+      </ul>
+    </div>  
 
-<body class="wy-body-for-nav">
-
-   
-  <div class="wy-grid-for-nav">
-    
-    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
-      <div class="wy-side-scroll">
-        <div class="wy-side-nav-search" >
-          
-
-          
-            <a href="../../index.html" class="icon icon-home"> FSPath
-          
-
-          
-            
-            <img src="../../_static/darmarIT_logo_128.png" class="logo" alt="Logo"/>
-          
-          </a>
-
-          
-            
-            
-              <div class="version">
-                20190323
-              </div>
-            
-          
-
-          
-<div role="search">
-  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
-    <input type="hidden" name="check_keywords" value="yes" />
-    <input type="hidden" name="area" value="default" />
-  </form>
-</div>
-
-          
-        </div>
-
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
-              <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../fspath-api/fspath.html">fspath package</a></li>
-</ul>
-
-            
-          
-        </div>
-      </div>
-    </nav>
-
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
-          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../index.html">FSPath</a>
-        
-      </nav>
-
-
-      <div class="wy-nav-content">
-        
-        <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
-  <ul class="wy-breadcrumbs">
-    
-      <li><a href="../../index.html">Docs</a> &raquo;</li>
-        
-          <li><a href="../index.html">Module code</a> &raquo;</li>
-        
-      <li>fspath.main</li>
-    
-    
-      <li class="wy-breadcrumbs-aside">
-        
-      </li>
-    
-  </ul>
-
-  
-  <hr/>
-</div>
-          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
-           <div itemprop="articleBody">
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
             
   <h1>Source code for fspath.main</h1><div class="highlight"><pre>
-<span></span><span class="c1"># -*- coding: utf-8; mode: python -*-</span>
+<span></span># -*- coding: utf-8; mode: python -*-
 
-<span class="sa">u</span><span class="sd">&quot;&quot;&quot;fspath -- main entry point for commandline interfaces&quot;&quot;&quot;</span>
+u&quot;&quot;&quot;fspath -- main entry point for commandline interfaces&quot;&quot;&quot;
 
-<span class="kn">import</span> <span class="nn">sys</span>
+import sys
 
-<span class="kn">from</span> <span class="nn">.cli</span> <span class="k">import</span> <span class="n">CLI</span>
-<span class="kn">from</span> <span class="nn">.fspath</span> <span class="k">import</span> <span class="n">FSPath</span>
+from .cli import CLI
+from .fspath import FSPath
 
 
-<span class="k">def</span> <span class="nf">_cli_download_url</span><span class="p">(</span><span class="n">cli</span><span class="p">):</span>
-    <span class="sa">u</span><span class="sd">&quot;&quot;&quot;Download from &#39;url&#39; into file &#39;fname&#39;&quot;&quot;&quot;</span>
+def _cli_download_url(cli):
+    u&quot;&quot;&quot;Download from &#39;url&#39; into file &#39;fname&#39;&quot;&quot;&quot;
 
-    <span class="n">verbose</span> <span class="o">=</span> <span class="kc">False</span>
-    <span class="k">try</span><span class="p">:</span>
-        <span class="n">verbose</span> <span class="o">=</span> <span class="n">cli</span><span class="o">.</span><span class="n">OUT</span><span class="o">.</span><span class="n">isatty</span><span class="p">()</span>
-    <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
-        <span class="k">pass</span>
-    <span class="n">verbose</span> <span class="o">=</span> <span class="p">(</span><span class="n">verbose</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">cli</span><span class="o">.</span><span class="n">quiet</span><span class="p">)</span>
+    verbose = False
+    try:
+        verbose = cli.OUT.isatty()
+    except AttributeError:
+        pass
+    verbose = (verbose and not cli.quiet)
 
-    <span class="k">if</span> <span class="n">cli</span><span class="o">.</span><span class="n">fname</span><span class="o">.</span><span class="n">EXISTS</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="n">cli</span><span class="o">.</span><span class="n">Error</span><span class="p">(</span><span class="mi">42</span><span class="p">,</span> <span class="s2">&quot;file </span><span class="si">%s</span><span class="s2"> already exists&quot;</span> <span class="o">%</span> <span class="n">cli</span><span class="o">.</span><span class="n">fname</span><span class="p">)</span>
+    if cli.fname.EXISTS:
+        raise cli.Error(42, &quot;file %s already exists&quot; % cli.fname)
 
-    <span class="n">cli</span><span class="o">.</span><span class="n">fname</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="n">cli</span><span class="o">.</span><span class="n">url</span><span class="p">,</span> <span class="n">chunksize</span><span class="o">=</span><span class="n">cli</span><span class="o">.</span><span class="n">chunksize</span><span class="p">,</span> <span class="n">ticker</span><span class="o">=</span><span class="n">verbose</span><span class="p">,</span> <span class="n">pipe</span><span class="o">=</span><span class="n">cli</span><span class="o">.</span><span class="n">OUT</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
-        <span class="n">cli</span><span class="o">.</span><span class="n">OUT</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;download of &#39;</span><span class="si">%s</span><span class="s2">&#39; succeed</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">cli</span><span class="o">.</span><span class="n">fname</span><span class="p">)</span>
+    cli.fname.download(cli.url, chunksize=cli.chunksize, ticker=verbose, pipe=cli.OUT)
+    if verbose:
+        cli.OUT.write(&quot;download of &#39;%s&#39; succeed\n&quot; % cli.fname)
 
-<span class="k">def</span> <span class="nf">_cli_find_file</span><span class="p">(</span><span class="n">cli</span><span class="p">):</span>
-    <span class="sa">u</span><span class="sd">&quot;&quot;&quot;list file names matching regular expression</span>
+def _cli_find_file(cli):
+    u&quot;&quot;&quot;list file names matching regular expression
 
-<span class="sd">    To find e.g. all &#39;.py&#39; files in current folder use::</span>
+    To find e.g. all &#39;.py&#39; files in current folder use::
 
-<span class="sd">        fspath find &quot;.*\\.py$&quot;  .</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">for</span> <span class="n">match</span> <span class="ow">in</span> <span class="n">cli</span><span class="o">.</span><span class="n">folder</span><span class="o">.</span><span class="n">reMatchFind</span><span class="p">(</span>
-            <span class="n">cli</span><span class="o">.</span><span class="n">regexpr</span><span class="p">,</span> <span class="n">use_dirs</span><span class="o">=</span><span class="p">(</span><span class="ow">not</span> <span class="n">cli</span><span class="o">.</span><span class="n">nodirs</span><span class="p">),</span> <span class="n">use_files</span><span class="o">=</span><span class="p">(</span><span class="ow">not</span> <span class="n">cli</span><span class="o">.</span><span class="n">nofiles</span><span class="p">)):</span>
-        <span class="n">cli</span><span class="o">.</span><span class="n">OUT</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">match</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+        fspath find &quot;.*\\.py$&quot;  .
+    &quot;&quot;&quot;
+    for match in cli.folder.reMatchFind(
+            cli.regexpr, use_dirs=(not cli.nodirs), use_files=(not cli.nofiles)):
+        cli.OUT.write(match + &quot;\n&quot;)
 
-<span class="k">def</span> <span class="nf">_cli_extract</span><span class="p">(</span><span class="n">cli</span><span class="p">):</span>
-    <span class="sa">u</span><span class="sd">&quot;&quot;&quot;extract TAR or ZIP file&quot;&quot;&quot;</span>
-    <span class="n">verbose</span> <span class="o">=</span> <span class="kc">False</span>
-    <span class="k">try</span><span class="p">:</span>
-        <span class="n">verbose</span> <span class="o">=</span> <span class="n">cli</span><span class="o">.</span><span class="n">OUT</span><span class="o">.</span><span class="n">isatty</span><span class="p">()</span>
-    <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
-        <span class="k">pass</span>
-    <span class="n">verbose</span> <span class="o">=</span> <span class="p">(</span><span class="n">verbose</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">cli</span><span class="o">.</span><span class="n">quiet</span><span class="p">)</span>
-    <span class="n">cli</span><span class="o">.</span><span class="n">archive</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="n">cli</span><span class="o">.</span><span class="n">folder</span><span class="p">,</span> <span class="n">ticker</span><span class="o">=</span><span class="n">verbose</span><span class="p">)</span>
+def _cli_extract(cli):
+    u&quot;&quot;&quot;extract TAR or ZIP file&quot;&quot;&quot;
+    verbose = False
+    try:
+        verbose = cli.OUT.isatty()
+    except AttributeError:
+        pass
+    verbose = (verbose and not cli.quiet)
+    cli.archive.extract(cli.folder, ticker=verbose)
 
-<span class="c1"># ==============================================================================</span>
-<div class="viewcode-block" id="main"><a class="viewcode-back" href="../../fspath-api/fspath.main.html#fspath.main.main">[docs]</a><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
-<span class="c1"># ==============================================================================</span>
+# ==============================================================================
+<div class="viewcode-block" id="main"><a class="viewcode-back" href="../../fspath-api/fspath.main.html#fspath.main.main">[docs]</a>def main():
+# ==============================================================================
 
-    <span class="sa">u</span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Tools from the fspath library</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">cli</span> <span class="o">=</span> <span class="n">CLI</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="n">main</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">)</span>
+    u&quot;&quot;&quot;
+    Tools from the fspath library
+    &quot;&quot;&quot;
+    cli = CLI(description=main.__doc__)
 
-    <span class="kn">from</span> <span class="nn">.win</span> <span class="k">import</span> <span class="n">_cli_py2exe</span>
-    <span class="n">py2exe</span> <span class="o">=</span> <span class="n">cli</span><span class="o">.</span><span class="n">addCMDParser</span><span class="p">(</span><span class="n">_cli_py2exe</span><span class="p">,</span> <span class="n">cmdName</span><span class="o">=</span><span class="s1">&#39;py2exe&#39;</span><span class="p">)</span>
-    <span class="n">py2exe</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
-        <span class="s2">&quot;script&quot;</span>
-        <span class="p">,</span> <span class="nb">type</span> <span class="o">=</span> <span class="n">FSPath</span>
-        <span class="p">,</span> <span class="n">help</span> <span class="o">=</span> <span class="s2">&quot;pathname of the script to wrap&quot;</span><span class="p">)</span>
-    <span class="n">py2exe</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
-        <span class="s2">&quot;--shebang&quot;</span>
-        <span class="p">,</span> <span class="nb">type</span> <span class="o">=</span> <span class="nb">str</span>
-        <span class="p">,</span> <span class="n">default</span> <span class="o">=</span> <span class="s2">&quot;#!python.exe&quot;</span>
-        <span class="p">,</span> <span class="n">help</span> <span class="o">=</span> <span class="s2">&quot;shebang line&quot;</span><span class="p">)</span>
+    from .win import _cli_py2exe
+    py2exe = cli.addCMDParser(_cli_py2exe, cmdName=&#39;py2exe&#39;)
+    py2exe.add_argument(
+        &quot;script&quot;
+        , type = FSPath
+        , help = &quot;pathname of the script to wrap&quot;)
+    py2exe.add_argument(
+        &quot;--shebang&quot;
+        , type = str
+        , default = &quot;#!python.exe&quot;
+        , help = &quot;shebang line&quot;)
 
-    <span class="n">download</span> <span class="o">=</span> <span class="n">cli</span><span class="o">.</span><span class="n">addCMDParser</span><span class="p">(</span><span class="n">_cli_download_url</span><span class="p">,</span> <span class="n">cmdName</span><span class="o">=</span><span class="s1">&#39;download&#39;</span><span class="p">)</span>
-    <span class="n">download</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
-        <span class="s2">&quot;fname&quot;</span>
-        <span class="p">,</span> <span class="nb">type</span> <span class="o">=</span> <span class="n">FSPath</span>
-        <span class="p">,</span> <span class="n">help</span> <span class="o">=</span> <span class="s2">&quot;name of the file&quot;</span><span class="p">)</span>
-    <span class="n">download</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
-        <span class="s2">&quot;url&quot;</span>
-        <span class="p">,</span> <span class="nb">type</span> <span class="o">=</span> <span class="nb">str</span>
-        <span class="p">,</span> <span class="n">help</span> <span class="o">=</span> <span class="s2">&quot;url of the content to download&quot;</span><span class="p">)</span>
+    download = cli.addCMDParser(_cli_download_url, cmdName=&#39;download&#39;)
+    download.add_argument(
+        &quot;fname&quot;
+        , type = FSPath
+        , help = &quot;name of the file&quot;)
+    download.add_argument(
+        &quot;url&quot;
+        , type = str
+        , help = &quot;url of the content to download&quot;)
 
-    <span class="n">download</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
-        <span class="s2">&quot;--chunksize&quot;</span>
-        <span class="p">,</span> <span class="nb">type</span>  <span class="o">=</span> <span class="nb">int</span>
-        <span class="p">,</span> <span class="n">default</span> <span class="o">=</span> <span class="mi">1048576</span>
-        <span class="p">,</span> <span class="n">help</span> <span class="o">=</span> <span class="s2">&quot;download chunk size&quot;</span><span class="p">)</span>
+    download.add_argument(
+        &quot;--chunksize&quot;
+        , type  = int
+        , default = 1048576
+        , help = &quot;download chunk size&quot;)
 
-    <span class="n">download</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
-        <span class="s2">&quot;-q&quot;</span><span class="p">,</span> <span class="s2">&quot;--quiet&quot;</span>
-        <span class="p">,</span> <span class="n">action</span> <span class="o">=</span> <span class="s1">&#39;store_true&#39;</span>
-        <span class="p">,</span> <span class="n">help</span>   <span class="o">=</span> <span class="s2">&quot;be quiet, no progressbar etc.&quot;</span><span class="p">)</span>
+    download.add_argument(
+        &quot;-q&quot;, &quot;--quiet&quot;
+        , action = &#39;store_true&#39;
+        , help   = &quot;be quiet, no progressbar etc.&quot;)
 
-    <span class="n">find</span> <span class="o">=</span> <span class="n">cli</span><span class="o">.</span><span class="n">addCMDParser</span><span class="p">(</span><span class="n">_cli_find_file</span><span class="p">,</span> <span class="n">cmdName</span><span class="o">=</span><span class="s1">&#39;find&#39;</span><span class="p">)</span>
-    <span class="n">find</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
-        <span class="s2">&quot;--nofiles&quot;</span>
-        <span class="p">,</span> <span class="n">action</span> <span class="o">=</span> <span class="s1">&#39;store_true&#39;</span>
-        <span class="p">,</span> <span class="n">help</span> <span class="o">=</span> <span class="s2">&quot;do not list file names&quot;</span><span class="p">)</span>
-    <span class="n">find</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
-        <span class="s2">&quot;--nodirs&quot;</span>
-        <span class="p">,</span> <span class="n">action</span> <span class="o">=</span> <span class="s1">&#39;store_true&#39;</span>
-        <span class="p">,</span> <span class="n">help</span> <span class="o">=</span> <span class="s2">&quot;do not list folder names&quot;</span><span class="p">)</span>
-    <span class="n">find</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
-        <span class="s2">&quot;regexpr&quot;</span>
-        <span class="p">,</span> <span class="nb">type</span> <span class="o">=</span> <span class="nb">str</span>
-        <span class="p">,</span> <span class="n">help</span> <span class="o">=</span> <span class="s2">&quot;regular expression&quot;</span><span class="p">)</span>
-    <span class="n">find</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
-        <span class="s2">&quot;folder&quot;</span>
-        <span class="p">,</span> <span class="nb">type</span> <span class="o">=</span> <span class="n">FSPath</span>
-        <span class="p">,</span> <span class="n">nargs</span> <span class="o">=</span> <span class="s2">&quot;?&quot;</span>
-        <span class="p">,</span> <span class="n">default</span> <span class="o">=</span> <span class="n">FSPath</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)</span>
-        <span class="p">,</span> <span class="n">help</span> <span class="o">=</span> <span class="s2">&quot;top folder&quot;</span><span class="p">)</span>
+    find = cli.addCMDParser(_cli_find_file, cmdName=&#39;find&#39;)
+    find.add_argument(
+        &quot;--nofiles&quot;
+        , action = &#39;store_true&#39;
+        , help = &quot;do not list file names&quot;)
+    find.add_argument(
+        &quot;--nodirs&quot;
+        , action = &#39;store_true&#39;
+        , help = &quot;do not list folder names&quot;)
+    find.add_argument(
+        &quot;regexpr&quot;
+        , type = str
+        , help = &quot;regular expression&quot;)
+    find.add_argument(
+        &quot;folder&quot;
+        , type = FSPath
+        , nargs = &quot;?&quot;
+        , default = FSPath(&quot;.&quot;)
+        , help = &quot;top folder&quot;)
 
-    <span class="n">extract</span> <span class="o">=</span> <span class="n">cli</span><span class="o">.</span><span class="n">addCMDParser</span><span class="p">(</span><span class="n">_cli_extract</span><span class="p">,</span> <span class="n">cmdName</span><span class="o">=</span><span class="s1">&#39;extract&#39;</span><span class="p">)</span>
-    <span class="n">extract</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
-        <span class="s2">&quot;archive&quot;</span>
-        <span class="p">,</span> <span class="nb">type</span> <span class="o">=</span> <span class="n">FSPath</span>
-        <span class="p">,</span> <span class="n">help</span> <span class="o">=</span> <span class="s2">&quot;file name of the TAR or ZIP archive&quot;</span><span class="p">)</span>
-    <span class="n">extract</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
-        <span class="s2">&quot;folder&quot;</span>
-        <span class="p">,</span> <span class="nb">type</span> <span class="o">=</span> <span class="n">FSPath</span>
-        <span class="p">,</span> <span class="n">nargs</span> <span class="o">=</span> <span class="s2">&quot;?&quot;</span>
-        <span class="p">,</span> <span class="n">default</span> <span class="o">=</span> <span class="n">FSPath</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)</span>
-        <span class="p">,</span> <span class="n">help</span> <span class="o">=</span> <span class="s2">&quot;extract into this folder&quot;</span><span class="p">)</span>
+    extract = cli.addCMDParser(_cli_extract, cmdName=&#39;extract&#39;)
+    extract.add_argument(
+        &quot;archive&quot;
+        , type = FSPath
+        , help = &quot;file name of the TAR or ZIP archive&quot;)
+    extract.add_argument(
+        &quot;folder&quot;
+        , type = FSPath
+        , nargs = &quot;?&quot;
+        , default = FSPath(&quot;.&quot;)
+        , help = &quot;extract into this folder&quot;)
 
-    <span class="n">cli</span><span class="p">()</span></div>
+    cli()</div>
 
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
-    <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="n">main</span><span class="p">())</span>
+if __name__ == &#39;__main__&#39;:
+    sys.exit(main())
 </pre></div>
 
-           </div>
-           
+            <div class="clearer"></div>
           </div>
-          <footer>
-  
-
-  <hr/>
-
-  <div role="contentinfo">
-    <p>
-        &copy; Copyright 2019 Markus Heiser
-
-    </p>
-  </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
-
-</footer>
-
         </div>
       </div>
-
-    </section>
-
-  </div>
-  
-
-
-  <script type="text/javascript">
-      jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
-      });
-  </script>
-
-  
+  <span id="sidebar-top"></span>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
   
     
-   
+            <p class="logo"><a href="../../index.html">
+              <img class="logo" src="../../_static/darmarIT_logo_128.png" alt="Logo"/>
+            </a></p>
+  
+<h3>Navigation</h3>
+<ul>
+  <li><a href="../../index.html">Overview</a>
+    <ul>
+      <li><a href="../index.html">Module code</a>
+        
+          
+          </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script><div id="ethical-ad-placement"></div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2023 Markus Heiser.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.1.3.
+    </div>
+  <script src="../../_static/version_warning_offset.js"></script>
 
-</body>
+  </body>
 </html>

@@ -5,6 +5,7 @@ Submodules
 ----------
 
 .. toctree::
+   :maxdepth: 1
 
    fspath.cli
    fspath.compat
@@ -22,6 +23,6 @@ Module contents
 ---------------
 
 .. automodule:: fspath
-    :members:
-    :undoc-members:
-    :show-inheritance:
+   :members:
+   :undoc-members:
+   :show-inheritance:

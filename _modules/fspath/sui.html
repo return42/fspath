@@ -1,719 +1,612 @@
 
-
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
-<head>
-  <meta charset="utf-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <title>fspath.sui &mdash; FSPath 20190323 documentation</title>
-  
 
-  
-  
-  
-  
-
-  
-  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
-  
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../../_static/jquery.js"></script>
-        <script type="text/javascript" src="../../_static/underscore.js"></script>
-        <script type="text/javascript" src="../../_static/doctools.js"></script>
-        <script type="text/javascript" src="../../_static/language_data.js"></script>
-    
-    <script type="text/javascript" src="../../_static/js/theme.js"></script>
-
-    
-
-  
-  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/theme_overrides.css" type="text/css" />
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>fspath.sui &#8212; FSPath 20190323 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
-</head>
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">FSPath 20190323 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">fspath.sui</a></li> 
+      </ul>
+    </div>  
 
-<body class="wy-body-for-nav">
-
-   
-  <div class="wy-grid-for-nav">
-    
-    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
-      <div class="wy-side-scroll">
-        <div class="wy-side-nav-search" >
-          
-
-          
-            <a href="../../index.html" class="icon icon-home"> FSPath
-          
-
-          
-            
-            <img src="../../_static/darmarIT_logo_128.png" class="logo" alt="Logo"/>
-          
-          </a>
-
-          
-            
-            
-              <div class="version">
-                20190323
-              </div>
-            
-          
-
-          
-<div role="search">
-  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
-    <input type="hidden" name="check_keywords" value="yes" />
-    <input type="hidden" name="area" value="default" />
-  </form>
-</div>
-
-          
-        </div>
-
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
-              <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../fspath-api/fspath.html">fspath package</a></li>
-</ul>
-
-            
-          
-        </div>
-      </div>
-    </nav>
-
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
-          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../index.html">FSPath</a>
-        
-      </nav>
-
-
-      <div class="wy-nav-content">
-        
-        <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
-  <ul class="wy-breadcrumbs">
-    
-      <li><a href="../../index.html">Docs</a> &raquo;</li>
-        
-          <li><a href="../index.html">Module code</a> &raquo;</li>
-        
-      <li>fspath.sui</li>
-    
-    
-      <li class="wy-breadcrumbs-aside">
-        
-      </li>
-    
-  </ul>
-
-  
-  <hr/>
-</div>
-          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
-           <div itemprop="articleBody">
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
             
   <h1>Source code for fspath.sui</h1><div class="highlight"><pre>
-<span></span><span class="c1"># -*- mode: python; coding: utf-8 -*-</span>
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Simple user interface via terminal (win &amp; \*nix)</span>
-
-<span class="sd">This module is in a very early stage, don&#39;t use it!</span>
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="c1"># pylint: disable=invalid-name, bad-continuation, wrong-import-position</span>
-
-<span class="c1"># ==============================================================================</span>
-<span class="c1"># imports</span>
-<span class="c1"># ==============================================================================</span>
-
-<span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">sys</span>
-<span class="kn">import</span> <span class="nn">re</span>
-<span class="kn">import</span> <span class="nn">time</span>
-
-<span class="kn">from</span> <span class="nn">glob</span> <span class="k">import</span> <span class="n">glob</span>
-<span class="kn">from</span> <span class="nn">textwrap</span> <span class="k">import</span> <span class="n">fill</span>
-
-<span class="kn">import</span> <span class="nn">six</span>
-
-<span class="kn">from</span> <span class="nn">.fspath</span> <span class="k">import</span> <span class="n">FSPath</span>
-<span class="kn">from</span> <span class="nn">.console</span> <span class="k">import</span> <span class="n">CONSOLE_TYPE</span><span class="p">,</span> <span class="n">consoleDimension</span><span class="p">,</span> <span class="n">KEY</span>
-
-<span class="k">if</span> <span class="n">CONSOLE_TYPE</span> <span class="o">==</span> <span class="s1">&#39;tty&#39;</span><span class="p">:</span>
-    <span class="kn">import</span> <span class="nn">tty</span>     <span class="c1"># pylint: disable=E0401</span>
-    <span class="kn">import</span> <span class="nn">termios</span> <span class="c1"># pylint: disable=E0401</span>
-
-<span class="k">if</span> <span class="n">CONSOLE_TYPE</span> <span class="o">==</span> <span class="s1">&#39;cmd&#39;</span><span class="p">:</span>
-    <span class="kn">import</span> <span class="nn">msvcrt</span>  <span class="c1"># pylint: disable=E0401</span>
-
-<span class="c1"># shortcuts for output:</span>
-<span class="n">WRITE_DELETE</span>    <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\x08</span><span class="s1"> </span><span class="se">\x08</span><span class="s1">&#39;</span>
-<span class="n">WRITE_BACKSPACE</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\x08</span><span class="s1">&#39;</span>
-
-<span class="c1"># ==============================================================================</span>
-<div class="viewcode-block" id="SimpleUserInterface"><a class="viewcode-back" href="../../fspath-api/fspath.sui.html#fspath.sui.SimpleUserInterface">[docs]</a><span class="k">class</span> <span class="nc">SimpleUserInterface</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-<span class="c1"># ==============================================================================</span>
-
-    <span class="sd">&quot;&quot;&quot;Simple console based user interface (win &amp; \*nix)&quot;&quot;&quot;</span>
-
-    <span class="n">ui_out</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span>
-    <span class="n">ui_in</span>  <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">stdin</span>
-
-    <span class="n">rst_indent</span> <span class="o">=</span> <span class="s1">&#39;    &#39;</span>
-    <span class="n">rst_levels</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;part&#39;</span> <span class="p">:</span> <span class="s1">&#39;=&#39;</span><span class="p">,</span> <span class="s1">&#39;chapter&#39;</span> <span class="p">:</span> <span class="s1">&#39;=&#39;</span><span class="p">,</span> <span class="s1">&#39;section&#39;</span> <span class="p">:</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="s1">&#39;subsection&#39;</span> <span class="p">:</span> <span class="s1">&#39;~&#39;</span><span class="p">}</span>
-
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cli</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">cli</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">cli</span>    <span class="o">=</span> <span class="n">cli</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">ui_out</span> <span class="o">=</span> <span class="n">cli</span><span class="o">.</span><span class="n">OUT</span>
-
-    <span class="k">if</span> <span class="n">CONSOLE_TYPE</span> <span class="o">==</span> <span class="s1">&#39;tty&#39;</span><span class="p">:</span>
-        <span class="kn">import</span> <span class="nn">tty</span>     <span class="c1"># pylint: disable=E0401</span>
-        <span class="kn">import</span> <span class="nn">termios</span> <span class="c1"># pylint: disable=E0401</span>
-        <span class="nd">@classmethod</span>
-        <span class="k">def</span> <span class="nf">getchr</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
-            <span class="s2">&quot;Get a single unicode character on Linux &amp; Unix.&quot;</span>
-            <span class="n">f</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">ui_in</span><span class="o">.</span><span class="n">fileno</span><span class="p">()</span>
-            <span class="n">m</span> <span class="o">=</span> <span class="n">termios</span><span class="o">.</span><span class="n">tcgetattr</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
-            <span class="k">try</span><span class="p">:</span>
-                <span class="n">tty</span><span class="o">.</span><span class="n">setraw</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
-                <span class="c1">#ch = codecs.getreader(cls.ui_in.encoding)(cls.ui_in).read(1)</span>
-                <span class="n">ch</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">ui_in</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-                <span class="k">if</span> <span class="n">ch</span> <span class="o">==</span> <span class="n">KEY</span><span class="o">.</span><span class="n">CTRL_C</span><span class="p">:</span>
-                    <span class="k">raise</span> <span class="ne">KeyboardInterrupt</span>
-            <span class="k">finally</span><span class="p">:</span>
-                <span class="n">termios</span><span class="o">.</span><span class="n">tcsetattr</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">termios</span><span class="o">.</span><span class="n">TCSADRAIN</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span>
-            <span class="k">return</span> <span class="n">ch</span>
-
-        <span class="nd">@classmethod</span>
-        <span class="k">def</span> <span class="nf">readkey</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
-            <span class="sa">u</span><span class="sd">&quot;&quot;&quot;read keystroke&quot;&quot;&quot;</span>
-            <span class="n">c1</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">getchr</span><span class="p">()</span>
-            <span class="k">if</span> <span class="nb">ord</span><span class="p">(</span><span class="n">c1</span><span class="p">)</span> <span class="o">!=</span> <span class="mh">0x1b</span><span class="p">:</span>
-                <span class="k">return</span> <span class="n">c1</span>
-            <span class="n">c2</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">getchr</span><span class="p">()</span>
-            <span class="k">if</span> <span class="nb">ord</span><span class="p">(</span><span class="n">c2</span><span class="p">)</span> <span class="o">!=</span> <span class="mh">0x5b</span><span class="p">:</span>
-                <span class="k">return</span> <span class="n">c1</span> <span class="o">+</span> <span class="n">c2</span>
-            <span class="n">c3</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">getchr</span><span class="p">()</span>
-            <span class="k">if</span> <span class="nb">ord</span><span class="p">(</span><span class="n">c3</span><span class="p">)</span> <span class="o">!=</span> <span class="mh">0x33</span><span class="p">:</span>
-                <span class="k">return</span> <span class="n">c1</span> <span class="o">+</span> <span class="n">c2</span> <span class="o">+</span> <span class="n">c3</span>
-            <span class="n">c4</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">getchr</span><span class="p">()</span>
-            <span class="k">return</span> <span class="n">c1</span> <span class="o">+</span> <span class="n">c2</span> <span class="o">+</span> <span class="n">c3</span> <span class="o">+</span> <span class="n">c4</span>
-
-
-    <span class="k">elif</span> <span class="n">CONSOLE_TYPE</span> <span class="o">==</span> <span class="s1">&#39;cmd&#39;</span><span class="p">:</span>
-        <span class="kn">import</span> <span class="nn">msvcrt</span>   <span class="c1"># pylint: disable=E0401</span>
-<div class="viewcode-block" id="SimpleUserInterface.getchr"><a class="viewcode-back" href="../../fspath-api/fspath.sui.html#fspath.sui.SimpleUserInterface.getchr">[docs]</a>        <span class="nd">@classmethod</span>
-        <span class="k">def</span> <span class="nf">getchr</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
-            <span class="s2">&quot;Get a single unicode character on Windows.&quot;</span>
-            <span class="n">ch</span> <span class="o">=</span> <span class="n">msvcrt</span><span class="o">.</span><span class="n">getwch</span><span class="p">()</span>
-            <span class="k">if</span> <span class="n">ch</span> <span class="o">==</span> <span class="n">KEY</span><span class="o">.</span><span class="n">CTRL_C</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">KeyboardInterrupt</span>
-            <span class="k">return</span> <span class="n">ch</span></div>
-
-<div class="viewcode-block" id="SimpleUserInterface.readkey"><a class="viewcode-back" href="../../fspath-api/fspath.sui.html#fspath.sui.SimpleUserInterface.readkey">[docs]</a>        <span class="nd">@classmethod</span>
-        <span class="k">def</span> <span class="nf">readkey</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
-            <span class="sa">u</span><span class="sd">&quot;&quot;&quot;read keystroke&quot;&quot;&quot;</span>
-            <span class="n">c1</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">getchr</span><span class="p">()</span>
-            <span class="k">if</span> <span class="n">c1</span> <span class="ow">not</span> <span class="ow">in</span> <span class="sa">u</span><span class="s1">&#39;</span><span class="se">\x00\xe0</span><span class="s1">&#39;</span><span class="p">:</span>
-                <span class="k">return</span> <span class="n">c1</span>
-            <span class="n">c2</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">getchr</span><span class="p">()</span>
-            <span class="nb">print</span><span class="p">(</span><span class="nb">hex</span><span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="n">c1</span><span class="p">))</span> <span class="o">+</span> <span class="nb">hex</span><span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="n">c1</span><span class="p">)))</span>
-            <span class="k">return</span> <span class="n">c1</span> <span class="o">+</span> <span class="n">c2</span></div>
-
-<div class="viewcode-block" id="SimpleUserInterface.get_input"><a class="viewcode-back" href="../../fspath-api/fspath.sui.html#fspath.sui.SimpleUserInterface.get_input">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">get_input</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">count</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">echo</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">valid_chars</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">stop_char</span><span class="o">=</span><span class="n">KEY</span><span class="o">.</span><span class="n">LF</span><span class="p">):</span>
-        <span class="sa">u</span><span class="sd">&quot;&quot;&quot;read input from UI&quot;&quot;&quot;</span>
-        <span class="n">valid_chars</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">valid_chars</span><span class="p">)</span>
-        <span class="n">ret_val</span> <span class="o">=</span> <span class="sa">u</span><span class="s2">&quot;&quot;</span>
-        <span class="n">c</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="k">while</span> <span class="n">count</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">count</span> <span class="o">&gt;</span> <span class="n">c</span><span class="p">:</span>
-            <span class="n">is_valid</span> <span class="o">=</span> <span class="kc">False</span>
-            <span class="k">while</span> <span class="ow">not</span> <span class="n">is_valid</span><span class="p">:</span>
-                <span class="n">ch</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">readkey</span><span class="p">()</span>
-                <span class="k">if</span> <span class="n">ch</span> <span class="o">==</span> <span class="n">KEY</span><span class="o">.</span><span class="n">BACKSPACE</span><span class="p">:</span>
-                    <span class="n">is_valid</span> <span class="o">=</span> <span class="kc">True</span>
-                <span class="k">elif</span> <span class="n">ch</span> <span class="o">==</span> <span class="n">stop_char</span><span class="p">:</span>
-                    <span class="n">is_valid</span> <span class="o">=</span> <span class="kc">True</span>
-                <span class="k">elif</span> <span class="n">valid_chars</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-                    <span class="n">is_valid</span> <span class="o">=</span> <span class="kc">True</span>
-                    <span class="n">c</span> <span class="o">+=</span> <span class="mi">1</span>
-                <span class="k">elif</span> <span class="nb">bool</span><span class="p">(</span><span class="n">valid_chars</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">ch</span><span class="p">)):</span>
-                    <span class="n">is_valid</span> <span class="o">=</span> <span class="kc">True</span>
-                    <span class="n">c</span> <span class="o">+=</span> <span class="mi">1</span>
-
-            <span class="k">if</span> <span class="n">ch</span> <span class="o">==</span> <span class="n">stop_char</span><span class="p">:</span>
-                <span class="k">break</span>
-            <span class="k">if</span> <span class="n">ch</span> <span class="o">==</span> <span class="n">KEY</span><span class="o">.</span><span class="n">BACKSPACE</span><span class="p">:</span>
-                <span class="k">if</span> <span class="n">c</span><span class="p">:</span>
-                    <span class="n">c</span> <span class="o">-=</span> <span class="mi">1</span>
-                    <span class="n">ret_val</span> <span class="o">=</span> <span class="n">ret_val</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-                    <span class="k">if</span> <span class="n">echo</span><span class="p">:</span>
-                        <span class="bp">cls</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">WRITE_DELETE</span><span class="p">)</span>
-                <span class="k">continue</span>
-            <span class="n">ret_val</span> <span class="o">+=</span> <span class="n">ch</span>
-            <span class="k">if</span> <span class="n">echo</span><span class="p">:</span>
-                <span class="bp">cls</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">ch</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">ret_val</span></div>
-
-<div class="viewcode-block" id="SimpleUserInterface.write"><a class="viewcode-back" href="../../fspath-api/fspath.sui.html#fspath.sui.SimpleUserInterface.write">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">write</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">msg</span><span class="p">):</span>
-        <span class="sa">u</span><span class="sd">&quot;&quot;&quot;write to UI&quot;&quot;&quot;</span>
-        <span class="c1">#cls.ui_out.write(msg.decode(cls.ui_out.encoding))</span>
-        <span class="bp">cls</span><span class="o">.</span><span class="n">ui_out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
-        <span class="bp">cls</span><span class="o">.</span><span class="n">ui_out</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span></div>
-
-<div class="viewcode-block" id="SimpleUserInterface.echo"><a class="viewcode-back" href="../../fspath-api/fspath.sui.html#fspath.sui.SimpleUserInterface.echo">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">echo</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">msg</span><span class="p">):</span>
-        <span class="sa">u</span><span class="sd">&quot;&quot;&quot;write line to UI&quot;&quot;&quot;</span>
-        <span class="bp">cls</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">msg</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span></div>
-
-<div class="viewcode-block" id="SimpleUserInterface.rst_title"><a class="viewcode-back" href="../../fspath-api/fspath.sui.html#fspath.sui.SimpleUserInterface.rst_title">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">rst_title</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="s1">&#39;chapter&#39;</span><span class="p">):</span>
-        <span class="sa">u</span><span class="sd">&quot;&quot;&quot;write reST formated title to UI</span>
-
-<span class="sd">        :param str title: section&#39;s title</span>
-<span class="sd">        :param str level: section&#39;s structural level [part,chapter,section,subsection]</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">markup</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">rst_levels</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">level</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">markup</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;unknown section level &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span> <span class="o">%</span> <span class="n">level</span><span class="p">)</span>
-        <span class="n">title</span>  <span class="o">=</span> <span class="n">title</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
-        <span class="n">markup</span> <span class="o">=</span> <span class="n">markup</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">level</span> <span class="o">==</span> <span class="s1">&#39;part&#39;</span><span class="p">:</span>
-            <span class="bp">cls</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">u</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="n">markup</span><span class="p">)</span>
-        <span class="bp">cls</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">u</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="n">title</span><span class="p">)</span>
-        <span class="bp">cls</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">u</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="n">markup</span> <span class="o">+</span> <span class="sa">u</span><span class="s1">&#39;</span><span class="se">\n\n</span><span class="s1">&#39;</span><span class="p">)</span></div>
-
-<div class="viewcode-block" id="SimpleUserInterface.rst_p"><a class="viewcode-back" href="../../fspath-api/fspath.sui.html#fspath.sui.SimpleUserInterface.rst_p">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">rst_p</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
-        <span class="sa">u</span><span class="sd">&quot;&quot;&quot;write reST formated paragraph to UI</span>
-
-<span class="sd">        :param int level: indentaion level</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">text</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\s+&#39;</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
-        <span class="n">p</span> <span class="o">=</span> <span class="n">fill</span><span class="p">(</span><span class="n">text</span>
-                 <span class="p">,</span> <span class="n">width</span>                <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_get_usable_line_size</span><span class="p">()</span>
-                 <span class="p">,</span> <span class="n">initial_indent</span>       <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">rst_indent</span> <span class="o">*</span> <span class="n">level</span>
-                 <span class="p">,</span> <span class="n">subsequent_indent</span>    <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">rst_indent</span> <span class="o">*</span> <span class="n">level</span>
-                 <span class="p">,</span> <span class="n">fix_sentence_endings</span> <span class="o">=</span> <span class="kc">True</span> <span class="p">)</span>
-        <span class="bp">cls</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">rst_indent</span> <span class="o">*</span> <span class="n">level</span> <span class="o">+</span> <span class="n">p</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="o">+</span> <span class="sa">u</span><span class="s1">&#39;</span><span class="se">\n\n</span><span class="s1">&#39;</span><span class="p">)</span></div>
-
-<div class="viewcode-block" id="SimpleUserInterface.rst_table"><a class="viewcode-back" href="../../fspath-api/fspath.sui.html#fspath.sui.SimpleUserInterface.rst_table">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">rst_table</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">rows</span><span class="p">,</span> <span class="o">*</span><span class="n">fmt</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="sa">u</span><span class="sd">&quot;&quot;&quot;write reST formated table to UI</span>
-
-<span class="sd">        Uses :py:class:`ASCIITableFormatter` for output. The argument ``*fmt``</span>
-<span class="sd">        is a list of tuple.</span>
-
-<span class="sd">        :param list rows: iterable type of dictionaries with the col/value</span>
-<span class="sd">        :param list \*fmt: iterable type of tuples to format the table</span>
-<span class="sd">        :param int level: indentaion level</span>
-
-<span class="sd">        .. code-block:: python</span>
-
-<span class="sd">           SUI.rst_table(</span>
-<span class="sd">               test_rows</span>
-<span class="sd">               # &lt;col-title&gt;, &lt;format sting&gt;, &lt;attribute name&gt;</span>
-<span class="sd">               , (&quot;Foo&quot;,      &quot;%-12s&quot;,        &quot;foo&quot;)</span>
-<span class="sd">               , (&quot;Bar&quot;,      &quot;%-30s&quot;,        &quot;bar&quot;))</span>
-
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">level</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;level&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="c1"># tribute to py2 keyword-arguments</span>
-        <span class="n">table</span> <span class="o">=</span> <span class="n">ASCIITableFormatter</span><span class="p">(</span><span class="o">*</span><span class="n">fmt</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">table</span><span class="p">(</span><span class="n">rows</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">):</span>
-            <span class="k">if</span> <span class="n">line</span><span class="p">:</span>
-                <span class="bp">cls</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;    &#39;</span> <span class="o">*</span> <span class="n">level</span><span class="p">)</span>
-            <span class="bp">cls</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">line</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
-        <span class="bp">cls</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n\n</span><span class="s1">&#39;</span><span class="p">)</span></div>
-
-    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">_get_usable_line_size</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
-        <span class="n">l</span> <span class="o">=</span> <span class="n">consoleDimension</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span>
-        <span class="k">if</span> <span class="n">CONSOLE_TYPE</span> <span class="o">==</span> <span class="s1">&#39;cmd&#39;</span><span class="p">:</span>
-            <span class="c1"># Since Win-CMD adds a newline if the last column is filled with a</span>
-            <span class="c1"># character it is recomended to use one column less.</span>
-            <span class="n">l</span> <span class="o">-=</span> <span class="mi">1</span>
-        <span class="k">return</span> <span class="n">l</span>
-
-<div class="viewcode-block" id="SimpleUserInterface.fill_line"><a class="viewcode-back" href="../../fspath-api/fspath.sui.html#fspath.sui.SimpleUserInterface.fill_line">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">fill_line</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">fill_char</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">):</span>
-        <span class="sa">u</span><span class="sd">&quot;&quot;&quot;console, fill line with ``fill_char`` (default &#39; &#39;)&quot;&quot;&quot;</span>
-        <span class="n">line_size</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_get_usable_line_size</span><span class="p">()</span>
-        <span class="bp">cls</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">KEY</span><span class="o">.</span><span class="n">LF</span><span class="p">)</span>
-        <span class="bp">cls</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">fill_char</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">line_size</span><span class="p">)</span>
-        <span class="bp">cls</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">KEY</span><span class="o">.</span><span class="n">LF</span><span class="p">)</span></div>
-
-<div class="viewcode-block" id="SimpleUserInterface.wait_key"><a class="viewcode-back" href="../../fspath-api/fspath.sui.html#fspath.sui.SimpleUserInterface.wait_key">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">wait_key</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
-        <span class="sa">u</span><span class="sd">&quot;&quot;&quot;wait until key pressed&quot;&quot;&quot;</span>
-        <span class="n">msg</span> <span class="o">=</span> <span class="s1">&#39;** press any [KEY] to continue **&#39;</span>
-        <span class="n">_len</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
-        <span class="bp">cls</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
-        <span class="n">_i</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">get_input</span><span class="p">(</span><span class="n">count</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">echo</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-        <span class="bp">cls</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">WRITE_DELETE</span> <span class="o">*</span> <span class="n">_len</span><span class="p">)</span></div>
-
-<div class="viewcode-block" id="SimpleUserInterface.ask_choice"><a class="viewcode-back" href="../../fspath-api/fspath.sui.html#fspath.sui.SimpleUserInterface.ask_choice">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">ask_choice</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="n">choices</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
-        <span class="sa">u</span><span class="sd">&quot;&quot;&quot;Take a choice from a list via UI&quot;&quot;&quot;</span>
-
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">choices</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span>
-            <span class="bp">cls</span><span class="o">.</span><span class="n">echo</span><span class="p">(</span><span class="sa">u</span><span class="s2">&quot;</span><span class="si">%2d</span><span class="s2">. </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">i</span><span class="p">)</span>
-        <span class="n">i</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="k">while</span> <span class="n">i</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">cls</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> [</span><span class="si">%s</span><span class="s2">] &quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">default</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
-            <span class="n">c</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">choices</span><span class="p">)</span>
-            <span class="n">u</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">get_input</span><span class="p">(</span><span class="n">count</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">c</span><span class="p">)),</span> <span class="n">valid_chars</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;\d&#39;</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">u</span> <span class="o">==</span> <span class="sa">u</span><span class="s1">&#39;&#39;</span><span class="p">:</span>
-                <span class="n">i</span> <span class="o">=</span> <span class="n">default</span>
-                <span class="bp">cls</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
-            <span class="k">try</span><span class="p">:</span>
-                <span class="n">i</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">u</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
-                <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="n">c</span><span class="p">:</span>
-                    <span class="n">i</span> <span class="o">=</span> <span class="kc">None</span>
-                    <span class="bp">cls</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39; &lt;-- &#39;</span><span class="p">)</span>
-                    <span class="bp">cls</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;ERROR: invalid choice.&#39;</span><span class="p">)</span>
-                    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-                    <span class="bp">cls</span><span class="o">.</span><span class="n">fill_line</span><span class="p">()</span>
-            <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
-                <span class="k">pass</span>
-        <span class="bp">cls</span><span class="o">.</span><span class="n">echo</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">choices</span><span class="p">[</span><span class="n">i</span><span class="p">]</span></div>
-
-<div class="viewcode-block" id="SimpleUserInterface.ask_fspath"><a class="viewcode-back" href="../../fspath-api/fspath.sui.html#fspath.sui.SimpleUserInterface.ask_fspath">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">ask_fspath</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">msg</span><span class="o">=</span><span class="s2">&quot;enter path name: &quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sa">u</span><span class="sd">&quot;&quot;&quot;Ask for path name with [TAB] completion&quot;&quot;&quot;</span>
-        <span class="c1"># pylint: disable=too-many-branches</span>
-        <span class="k">if</span> <span class="n">default</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">default</span> <span class="o">=</span> <span class="n">FSPath</span><span class="o">.</span><span class="n">getCWD</span><span class="p">()</span><span class="o">.</span><span class="n">VALUE</span>
-        <span class="n">in_fspath</span> <span class="o">=</span> <span class="n">default</span>
-        <span class="n">stop_char</span> <span class="o">=</span> <span class="n">KEY</span><span class="o">.</span><span class="n">LF</span>
-
-        <span class="n">prompt</span> <span class="o">=</span> <span class="n">_PathMinibuffer</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="bp">cls</span><span class="p">)</span>
-        <span class="n">prompt</span><span class="p">(</span><span class="n">default</span><span class="p">)</span>
-
-        <span class="k">while</span> <span class="mi">1</span><span class="p">:</span> <span class="c1"># pylint: disable=too-many-nested-blocks</span>
-            <span class="n">ch</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">readkey</span><span class="p">()</span>
-            <span class="k">if</span> <span class="n">ch</span> <span class="o">==</span> <span class="n">stop_char</span><span class="p">:</span>
-                <span class="k">break</span>
-            <span class="k">elif</span> <span class="n">ch</span> <span class="o">==</span> <span class="n">KEY</span><span class="o">.</span><span class="n">BACKSPACE</span><span class="p">:</span>
-                <span class="k">if</span> <span class="n">in_fspath</span><span class="p">:</span>
-                    <span class="n">in_fspath</span> <span class="o">=</span> <span class="n">in_fspath</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-                    <span class="n">prompt</span><span class="p">(</span><span class="n">in_fspath</span><span class="p">)</span>
-
-            <span class="k">elif</span> <span class="n">ch</span> <span class="o">==</span> <span class="n">KEY</span><span class="o">.</span><span class="n">TAB</span><span class="p">:</span>
-                <span class="n">compl</span> <span class="o">=</span> <span class="p">[</span><span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;^&quot;</span> <span class="o">+</span> <span class="n">re</span><span class="o">.</span><span class="n">escape</span><span class="p">(</span><span class="n">in_fspath</span><span class="p">),</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">count</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-                         <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">glob</span><span class="p">(</span><span class="n">in_fspath</span> <span class="o">+</span> <span class="s1">&#39;.*&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="n">glob</span><span class="p">(</span><span class="n">in_fspath</span> <span class="o">+</span> <span class="s1">&#39;*&#39;</span><span class="p">)]</span>
-                <span class="k">if</span> <span class="ow">not</span> <span class="n">compl</span><span class="p">:</span>
-                    <span class="k">pass</span>
-                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">compl</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-                    <span class="n">new</span> <span class="o">=</span> <span class="n">in_fspath</span> <span class="o">+</span> <span class="n">compl</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-                    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">new</span><span class="p">)</span> <span class="ow">and</span> <span class="n">new</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="n">os</span><span class="o">.</span><span class="n">sep</span><span class="p">:</span>
-                        <span class="n">new</span> <span class="o">+=</span> <span class="n">os</span><span class="o">.</span><span class="n">sep</span>
-                    <span class="n">in_fspath</span> <span class="o">=</span> <span class="n">new</span>
-                    <span class="n">prompt</span><span class="p">(</span><span class="n">in_fspath</span><span class="p">)</span>
-                <span class="k">else</span><span class="p">:</span>
-                    <span class="n">new</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">commonprefix</span><span class="p">(</span><span class="n">compl</span><span class="p">)</span>
-                    <span class="k">if</span> <span class="n">new</span><span class="p">:</span>
-                        <span class="n">in_fspath</span> <span class="o">+=</span> <span class="n">new</span>
-                        <span class="n">prompt</span><span class="p">(</span><span class="n">in_fspath</span><span class="p">)</span>
-                    <span class="k">else</span><span class="p">:</span>
-                        <span class="n">info</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
-                        <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">compl</span><span class="p">:</span>
-                            <span class="k">if</span> <span class="n">p</span><span class="p">:</span>
-                                <span class="n">info</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-                        <span class="k">if</span> <span class="n">info</span><span class="p">:</span>
-                            <span class="n">info</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">info</span><span class="p">)</span>
-                            <span class="n">info</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="n">six</span><span class="o">.</span><span class="n">text_type</span><span class="o">.</span><span class="n">lower</span><span class="p">)</span>
-                            <span class="n">info</span> <span class="o">=</span> <span class="s2">&quot;  [&quot;</span> <span class="o">+</span> <span class="s2">&quot;|&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">info</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;]&quot;</span>
-                            <span class="n">prompt</span><span class="p">(</span><span class="n">in_fspath</span><span class="p">,</span> <span class="n">info</span><span class="p">)</span>
-
-            <span class="k">elif</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ch</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>
-                  <span class="ow">and</span> <span class="p">(</span><span class="n">ch</span> <span class="o">==</span> <span class="n">KEY</span><span class="o">.</span><span class="n">SPACE</span>
-                       <span class="ow">or</span> <span class="n">ch</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">KEY</span><span class="o">.</span><span class="n">values</span><span class="p">())):</span>
-                <span class="n">in_fspath</span> <span class="o">+=</span> <span class="n">ch</span>
-                <span class="n">prompt</span><span class="p">(</span><span class="n">in_fspath</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">FSPath</span><span class="p">(</span><span class="n">in_fspath</span><span class="p">)</span><span class="o">.</span><span class="n">ABSPATH</span></div>
-
-<div class="viewcode-block" id="SimpleUserInterface.ask"><a class="viewcode-back" href="../../fspath-api/fspath.sui.html#fspath.sui.SimpleUserInterface.ask">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">ask</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">count</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">echo</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">valid_chars</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">stop_char</span><span class="o">=</span><span class="n">KEY</span><span class="o">.</span><span class="n">LF</span><span class="p">):</span>
-        <span class="sa">u</span><span class="sd">&quot;&quot;&quot;Ask via UI&quot;&quot;&quot;</span>
-        <span class="bp">cls</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> &quot;</span> <span class="o">%</span> <span class="n">msg</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">default</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">cls</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;[</span><span class="si">%s</span><span class="s2">] &quot;</span> <span class="o">%</span> <span class="n">default</span><span class="p">)</span>
-        <span class="n">answer</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">get_input</span><span class="p">(</span><span class="n">count</span><span class="o">=</span><span class="n">count</span><span class="p">,</span> <span class="n">echo</span><span class="o">=</span><span class="n">echo</span><span class="p">,</span> <span class="n">valid_chars</span><span class="o">=</span><span class="n">valid_chars</span><span class="p">,</span>
-                               <span class="n">stop_char</span><span class="o">=</span><span class="n">stop_char</span><span class="p">)</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">answer</span><span class="p">:</span>
-            <span class="n">answer</span> <span class="o">=</span> <span class="n">default</span>
-            <span class="bp">cls</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">default</span><span class="p">))</span>
-        <span class="bp">cls</span><span class="o">.</span><span class="n">echo</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">answer</span></div>
-
-    <span class="n">YES</span> <span class="o">=</span> <span class="kc">True</span>
-    <span class="n">NO</span>  <span class="o">=</span> <span class="kc">False</span>
-
-<div class="viewcode-block" id="SimpleUserInterface.ask_yes_no"><a class="viewcode-back" href="../../fspath-api/fspath.sui.html#fspath.sui.SimpleUserInterface.ask_yes_no">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">ask_yes_no</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">):</span>
-        <span class="sa">u</span><span class="sd">&quot;&quot;&quot;Ask Yes/No [YN] via UI</span>
-
-<span class="sd">        Returns ``True`` for *Yes* and ``False`` for *No*</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="n">default</span> <span class="ow">not</span> <span class="ow">in</span> <span class="s1">&#39;yn&#39;</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;unknown value for default, use &quot;n&quot; or &quot;y&quot;&#39;</span><span class="p">)</span>
-        <span class="bp">cls</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1"> </span><span class="si">%s</span><span class="s1"> &#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;y&#39;</span><span class="p">:</span><span class="s1">&#39;[Y/n]&#39;</span><span class="p">,</span> <span class="s1">&#39;n&#39;</span><span class="p">:</span><span class="s1">&#39;[y/N]&#39;</span><span class="p">}[</span><span class="n">default</span><span class="p">]))</span>
-        <span class="n">answer</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">get_input</span><span class="p">(</span><span class="n">count</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">echo</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>  <span class="n">valid_chars</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;[YNyn]&#39;</span><span class="p">)</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">answer</span><span class="p">:</span>
-            <span class="n">answer</span> <span class="o">=</span> <span class="n">default</span>
-            <span class="bp">cls</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">default</span><span class="p">))</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">answer</span> <span class="o">=</span> <span class="n">answer</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
-        <span class="bp">cls</span><span class="o">.</span><span class="n">echo</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
-        <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;y&#39;</span> <span class="p">:</span> <span class="bp">cls</span><span class="o">.</span><span class="n">YES</span><span class="p">,</span> <span class="s1">&#39;n&#39;</span> <span class="p">:</span> <span class="bp">cls</span><span class="o">.</span><span class="n">NO</span><span class="p">}[</span><span class="n">answer</span><span class="p">]</span></div></div>
-
-
-<span class="n">SUI</span> <span class="o">=</span> <span class="n">SimpleUserInterface</span><span class="p">()</span>
-
-<span class="k">class</span> <span class="nc">_PathMinibuffer</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="c1"># pylint: disable=too-few-public-methods</span>
-
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="n">sui</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">sui</span> <span class="o">=</span> <span class="n">sui</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">init_flag</span> <span class="o">=</span> <span class="kc">False</span>
-        <span class="k">if</span> <span class="n">msg</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">prefix</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">msg</span> <span class="o">=</span> <span class="n">msg</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">msg</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">prefix</span> <span class="o">=</span> <span class="n">msg</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-
-    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_path</span><span class="p">,</span> <span class="n">info</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">info</span><span class="p">:</span>
-            <span class="n">info</span> <span class="o">=</span> <span class="s2">&quot; </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">info</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">init_flag</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">sui</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">msg</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">init_flag</span> <span class="o">=</span> <span class="kc">True</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">sui</span><span class="o">.</span><span class="n">fill_line</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">sui</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">prefix</span> <span class="o">+</span> <span class="n">new_path</span> <span class="o">+</span> <span class="n">info</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">sui</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">WRITE_BACKSPACE</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">info</span><span class="p">))</span>
-
-<span class="c1"># ==============================================================================</span>
-<div class="viewcode-block" id="ASCIITableFormatter"><a class="viewcode-back" href="../../fspath-api/fspath.sui.html#fspath.sui.ASCIITableFormatter">[docs]</a><span class="k">class</span> <span class="nc">ASCIITableFormatter</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-<span class="c1"># ==============================================================================</span>
-
-    <span class="sd">&quot;&quot;&quot;Simple ASCII table formatter</span>
-
-<span class="sd">    .. code-block:: python</span>
-
-<span class="sd">       rows = [  {&#39;foo&#39;: &#39;foo row 1&#39;, &#39;bar&#39;: &#39;bar row 1&#39;}</span>
-<span class="sd">                 , {&#39;foo&#39;: &#39;foo row 2&#39;, &#39;bar&#39;: &#39;bar row 2&#39;} ]</span>
-
-<span class="sd">       table = ASCIITableFormatter(</span>
-<span class="sd">           # &lt;col-title&gt;, &lt;format sting&gt;, &lt;attribute name&gt;</span>
-<span class="sd">           (&quot;Foo&quot;,   &quot;%-12s&quot;, &quot;foo&quot;)</span>
-<span class="sd">           , (&quot;Bar&quot;, &quot;%-30s&quot;, &quot;bar&quot;))</span>
-<span class="sd">       SUI.echo(table(rows))</span>
-
-<span class="sd">    .. code-block:: rst</span>
-
-<span class="sd">       ============ ==============================</span>
-<span class="sd">       Foo          Bar</span>
-<span class="sd">       ============ ==============================</span>
-<span class="sd">       foo row 1    bar row 1</span>
-<span class="sd">       foo row 2    bar row 2</span>
-<span class="sd">       ============ ==============================</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-
-    <span class="n">table_start</span><span class="p">,</span>     <span class="n">table_end</span>    <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>   <span class="s2">&quot;&quot;</span>
-    <span class="n">head_start</span><span class="p">,</span>      <span class="n">head_end</span>     <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span>
-    <span class="n">col_head_start</span><span class="p">,</span>  <span class="n">col_head_end</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>   <span class="s2">&quot; &quot;</span>
-    <span class="n">row_start</span><span class="p">,</span>       <span class="n">row_end</span>      <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span>
-    <span class="n">col_start</span><span class="p">,</span>       <span class="n">col_end</span>      <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>   <span class="s2">&quot; &quot;</span>
-    <span class="n">sep_start</span><span class="p">,</span>       <span class="n">sep_end</span>      <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>   <span class="s2">&quot; &quot;</span>
-    <span class="n">sep_line</span> <span class="o">=</span> <span class="s2">&quot;=&quot;</span>
-
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">cols</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">coldef</span> <span class="o">=</span> <span class="n">cols</span>
-
-<div class="viewcode-block" id="ASCIITableFormatter.get_value"><a class="viewcode-back" href="../../fspath-api/fspath.sui.html#fspath.sui.ASCIITableFormatter.get_value">[docs]</a>    <span class="k">def</span> <span class="nf">get_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">,</span> <span class="n">row</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;?&#39;</span><span class="p">):</span>  <span class="c1"># pylint: disable=no-self-use</span>
-        <span class="sa">u</span><span class="sd">&quot;&quot;&quot;get value from col (attr) and row&quot;&quot;&quot;</span>
-        <span class="n">val</span> <span class="o">=</span> <span class="n">default</span>
-        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="s2">&quot;__getitem__&quot;</span><span class="p">):</span>
-            <span class="n">val</span> <span class="o">=</span> <span class="n">row</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">attr</span><span class="p">,</span> <span class="n">default</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">val</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="n">attr</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">val</span></div>
-
-<div class="viewcode-block" id="ASCIITableFormatter.escape"><a class="viewcode-back" href="../../fspath-api/fspath.sui.html#fspath.sui.ASCIITableFormatter.escape">[docs]</a>    <span class="k">def</span> <span class="nf">escape</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span> <span class="c1"># pylint: disable=no-self-use</span>
-        <span class="sa">u</span><span class="sd">&quot;&quot;&quot;escape value&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">value</span></div>
-
-    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rows</span><span class="p">):</span>
-        <span class="n">out</span> <span class="o">=</span> <span class="sa">u</span><span class="s2">&quot;&quot;</span>
-        <span class="n">out</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">table_start</span>
-
-        <span class="n">sep</span> <span class="o">=</span> <span class="sa">u</span><span class="s1">&#39;&#39;</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">sep_line</span><span class="p">:</span>
-            <span class="n">sep</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">head_start</span>
-            <span class="k">for</span> <span class="n">headline</span><span class="p">,</span> <span class="n">fmt</span><span class="p">,</span> <span class="n">attr</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">coldef</span><span class="p">:</span>
-                <span class="n">sep</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sep_start</span>
-                <span class="n">sep</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sep_line</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">fmt</span> <span class="o">%</span> <span class="mi">1</span><span class="p">)</span>
-                <span class="n">sep</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sep_end</span>
-            <span class="n">sep</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">head_end</span>
-
-        <span class="c1"># head-top separator line</span>
-        <span class="n">out</span> <span class="o">+=</span> <span class="n">sep</span>
-
-        <span class="c1"># headline</span>
-        <span class="n">out</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">head_start</span>
-        <span class="k">for</span> <span class="n">headline</span><span class="p">,</span> <span class="n">fmt</span><span class="p">,</span> <span class="n">attr</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">coldef</span><span class="p">:</span>
-            <span class="n">out</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">col_head_start</span>
-            <span class="n">out</span> <span class="o">+=</span> <span class="n">headline</span><span class="o">.</span><span class="n">ljust</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">fmt</span> <span class="o">%</span> <span class="mi">1</span><span class="p">))</span>
-            <span class="n">out</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">col_head_end</span>
-        <span class="n">out</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">head_end</span>
-
-        <span class="c1"># head-bottom separator line</span>
-        <span class="n">out</span> <span class="o">+=</span> <span class="n">sep</span>
-
-        <span class="c1"># render rows</span>
-        <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">rows</span><span class="p">:</span>
-            <span class="n">out</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">row_start</span>
-            <span class="k">for</span> <span class="n">headline</span><span class="p">,</span> <span class="n">fmt</span><span class="p">,</span> <span class="n">attr</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">coldef</span><span class="p">:</span>
-                <span class="n">out</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">col_start</span>
-                <span class="n">val</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_value</span><span class="p">(</span><span class="n">attr</span><span class="p">,</span> <span class="n">row</span><span class="p">)</span>
-                <span class="n">val</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">escape</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
-                <span class="n">out</span> <span class="o">+=</span> <span class="n">fmt</span> <span class="o">%</span> <span class="n">val</span>
-                <span class="n">out</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">col_end</span>
-            <span class="n">out</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">row_end</span>
-
-        <span class="c1"># bottom separator</span>
-        <span class="n">out</span> <span class="o">+=</span> <span class="n">sep</span>
-
-        <span class="n">out</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">table_end</span>
-        <span class="k">return</span> <span class="n">out</span></div>
-
-<span class="c1"># ==============================================================================</span>
-<div class="viewcode-block" id="HTMLTableFormatter"><a class="viewcode-back" href="../../fspath-api/fspath.sui.html#fspath.sui.HTMLTableFormatter">[docs]</a><span class="k">class</span> <span class="nc">HTMLTableFormatter</span><span class="p">(</span><span class="n">ASCIITableFormatter</span><span class="p">):</span>
-<span class="c1"># ==============================================================================</span>
-
-    <span class="sd">&quot;&quot;&quot;Simple HTML table formatter</span>
-
-<span class="sd">    .. code-block:: python</span>
-
-<span class="sd">       rows = [  {&#39;foo&#39;: &#39;foo &lt;row 1&gt;&#39;, &#39;bar&#39;: &#39;bar &lt;row 1&gt;&#39;}</span>
-<span class="sd">                 , {&#39;foo&#39;: &#39;foo &lt;row 2&gt;&#39;, &#39;bar&#39;: &#39;bar &lt;row 2&gt;&#39;} ]</span>
-
-<span class="sd">       table = HTMLTableFormatter((&quot;Foo&quot;, &quot;%s&quot;, &quot;foo&quot;)</span>
-<span class="sd">                                , (&quot;Bar&quot;, &quot;%s&quot;, &quot;bar&quot;))</span>
-<span class="sd">       SUI.echo(table(rows))</span>
-
-<span class="sd">    .. code-block:: html</span>
-
-<span class="sd">       &lt;table&gt;</span>
-<span class="sd">         &lt;tr class=&#39;heading&#39;&gt;</span>
-<span class="sd">           &lt;th&gt;Foo&lt;/th&gt;</span>
-<span class="sd">           &lt;th&gt;Bar&lt;/th&gt;</span>
-<span class="sd">         &lt;/tr&gt;</span>
-<span class="sd">         &lt;tr&gt;</span>
-<span class="sd">           &lt;td&gt;foo &amp;lt;row 1&amp;gt;&lt;/td&gt;</span>
-<span class="sd">           &lt;td&gt;bar &amp;lt;row 1&amp;gt;&lt;/td&gt;</span>
-<span class="sd">         &lt;/tr&gt;</span>
-<span class="sd">         &lt;tr&gt;</span>
-<span class="sd">           &lt;td&gt;foo &amp;lt;row 2&amp;gt;&lt;/td&gt;</span>
-<span class="sd">           &lt;td&gt;bar &amp;lt;row 2&amp;gt;&lt;/td&gt;</span>
-<span class="sd">         &lt;/tr&gt;</span>
-<span class="sd">       &lt;/table&gt;</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-
-    <span class="n">table_start</span><span class="p">,</span> <span class="n">table_end</span>        <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&lt;table&gt;&quot;</span><span class="p">,</span>                <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&lt;/table&gt;&quot;</span>
-    <span class="n">head_start</span><span class="p">,</span>  <span class="n">head_end</span>         <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">  &lt;tr class=&#39;heading&#39;&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">  &lt;/tr&gt;&quot;</span>
-    <span class="n">col_head_start</span><span class="p">,</span>  <span class="n">col_head_end</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">    &lt;th&gt;&quot;</span><span class="p">,</span>               <span class="s2">&quot;&lt;/th&gt;&quot;</span>
-    <span class="n">row_start</span><span class="p">,</span>   <span class="n">row_end</span>          <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">  &lt;tr&gt;&quot;</span><span class="p">,</span>                 <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">  &lt;/tr&gt;&quot;</span>
-    <span class="n">col_start</span><span class="p">,</span>   <span class="n">col_end</span>          <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">    &lt;td&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;/td&gt;&quot;</span>
-    <span class="n">sep_line</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="n">ESCAPE</span> <span class="o">=</span> <span class="s2">&quot;&lt;!--(set_escape)--&gt;HTML&lt;!--(end)--&gt;</span><span class="se">\n</span><span class="s2">#!&quot;</span>
-
-<div class="viewcode-block" id="HTMLTableFormatter.escape"><a class="viewcode-back" href="../../fspath-api/fspath.sui.html#fspath.sui.HTMLTableFormatter.escape">[docs]</a>    <span class="k">def</span> <span class="nf">escape</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
-        <span class="n">value</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;&amp;&quot;</span><span class="p">,</span> <span class="s2">&quot;&amp;amp;&quot;</span><span class="p">)</span> <span class="c1"># Must be done first!</span>
-        <span class="n">value</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;&lt;&quot;</span><span class="p">,</span> <span class="s2">&quot;&amp;lt;&quot;</span><span class="p">)</span>
-        <span class="n">value</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;&amp;gt;&quot;</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">value</span></div></div>
+<span></span># -*- mode: python; coding: utf-8 -*-
+&quot;&quot;&quot;
+Simple user interface via terminal (win &amp; \*nix)
+
+This module is in a very early stage, don&#39;t use it!
+&quot;&quot;&quot;
+# pylint: disable=invalid-name, bad-continuation, wrong-import-position
+
+# ==============================================================================
+# imports
+# ==============================================================================
+
+import os
+import sys
+import re
+import time
+
+from glob import glob
+from textwrap import fill
+
+import six
+
+from .fspath import FSPath
+from .console import CONSOLE_TYPE, consoleDimension, KEY
+
+if CONSOLE_TYPE == &#39;tty&#39;:
+    import tty     # pylint: disable=E0401
+    import termios # pylint: disable=E0401
+
+if CONSOLE_TYPE == &#39;cmd&#39;:
+    import msvcrt  # pylint: disable=E0401
+
+# shortcuts for output:
+WRITE_DELETE    = &#39;\x08 \x08&#39;
+WRITE_BACKSPACE = &#39;\x08&#39;
+
+# ==============================================================================
+<div class="viewcode-block" id="SimpleUserInterface"><a class="viewcode-back" href="../../fspath-api/fspath.sui.html#fspath.sui.SimpleUserInterface">[docs]</a>class SimpleUserInterface(object):
+# ==============================================================================
+
+    &quot;&quot;&quot;Simple console based user interface (win &amp; \*nix)&quot;&quot;&quot;
+
+    ui_out = sys.stdout
+    ui_in  = sys.stdin
+
+    rst_indent = &#39;    &#39;
+    rst_levels = {&#39;part&#39; : &#39;=&#39;, &#39;chapter&#39; : &#39;=&#39;, &#39;section&#39; : &#39;-&#39;, &#39;subsection&#39; : &#39;~&#39;}
+
+    def __init__(self, cli=None):
+        if cli is not None:
+            self.cli    = cli
+            self.ui_out = cli.OUT
+
+    if CONSOLE_TYPE == &#39;tty&#39;:
+        import tty     # pylint: disable=E0401
+        import termios # pylint: disable=E0401
+        @classmethod
+        def getchr(cls):
+            &quot;Get a single unicode character on Linux &amp; Unix.&quot;
+            f = cls.ui_in.fileno()
+            m = termios.tcgetattr(f)
+            try:
+                tty.setraw(f)
+                #ch = codecs.getreader(cls.ui_in.encoding)(cls.ui_in).read(1)
+                ch = cls.ui_in.read(1)
+                if ch == KEY.CTRL_C:
+                    raise KeyboardInterrupt
+            finally:
+                termios.tcsetattr(f, termios.TCSADRAIN, m)
+            return ch
+
+        @classmethod
+        def readkey(cls):
+            u&quot;&quot;&quot;read keystroke&quot;&quot;&quot;
+            c1 = cls.getchr()
+            if ord(c1) != 0x1b:
+                return c1
+            c2 = cls.getchr()
+            if ord(c2) != 0x5b:
+                return c1 + c2
+            c3 = cls.getchr()
+            if ord(c3) != 0x33:
+                return c1 + c2 + c3
+            c4 = cls.getchr()
+            return c1 + c2 + c3 + c4
+
+
+    elif CONSOLE_TYPE == &#39;cmd&#39;:
+        import msvcrt   # pylint: disable=E0401
+<div class="viewcode-block" id="SimpleUserInterface.getchr"><a class="viewcode-back" href="../../fspath-api/fspath.sui.html#fspath.sui.SimpleUserInterface.getchr">[docs]</a>        @classmethod
+        def getchr(cls):
+            &quot;Get a single unicode character on Windows.&quot;
+            ch = msvcrt.getwch()
+            if ch == KEY.CTRL_C:
+                raise KeyboardInterrupt
+            return ch</div>
+
+<div class="viewcode-block" id="SimpleUserInterface.readkey"><a class="viewcode-back" href="../../fspath-api/fspath.sui.html#fspath.sui.SimpleUserInterface.readkey">[docs]</a>        @classmethod
+        def readkey(cls):
+            u&quot;&quot;&quot;read keystroke&quot;&quot;&quot;
+            c1 = cls.getchr()
+            if c1 not in u&#39;\x00\xe0&#39;:
+                return c1
+            c2 = cls.getchr()
+            print(hex(ord(c1)) + hex(ord(c1)))
+            return c1 + c2</div>
+
+<div class="viewcode-block" id="SimpleUserInterface.get_input"><a class="viewcode-back" href="../../fspath-api/fspath.sui.html#fspath.sui.SimpleUserInterface.get_input">[docs]</a>    @classmethod
+    def get_input(cls, count=None, echo=True, valid_chars=r&#39;.&#39;, stop_char=KEY.LF):
+        u&quot;&quot;&quot;read input from UI&quot;&quot;&quot;
+        valid_chars = re.compile(valid_chars)
+        ret_val = u&quot;&quot;
+        c = 0
+        while count is None or count &gt; c:
+            is_valid = False
+            while not is_valid:
+                ch = cls.readkey()
+                if ch == KEY.BACKSPACE:
+                    is_valid = True
+                elif ch == stop_char:
+                    is_valid = True
+                elif valid_chars is None:
+                    is_valid = True
+                    c += 1
+                elif bool(valid_chars.match(ch)):
+                    is_valid = True
+                    c += 1
+
+            if ch == stop_char:
+                break
+            if ch == KEY.BACKSPACE:
+                if c:
+                    c -= 1
+                    ret_val = ret_val[:-1]
+                    if echo:
+                        cls.write(WRITE_DELETE)
+                continue
+            ret_val += ch
+            if echo:
+                cls.write(ch)
+        return ret_val</div>
+
+<div class="viewcode-block" id="SimpleUserInterface.write"><a class="viewcode-back" href="../../fspath-api/fspath.sui.html#fspath.sui.SimpleUserInterface.write">[docs]</a>    @classmethod
+    def write(cls, msg):
+        u&quot;&quot;&quot;write to UI&quot;&quot;&quot;
+        #cls.ui_out.write(msg.decode(cls.ui_out.encoding))
+        cls.ui_out.write(msg)
+        cls.ui_out.flush()</div>
+
+<div class="viewcode-block" id="SimpleUserInterface.echo"><a class="viewcode-back" href="../../fspath-api/fspath.sui.html#fspath.sui.SimpleUserInterface.echo">[docs]</a>    @classmethod
+    def echo(cls, msg):
+        u&quot;&quot;&quot;write line to UI&quot;&quot;&quot;
+        cls.write(msg + &#39;\n&#39;)</div>
+
+<div class="viewcode-block" id="SimpleUserInterface.rst_title"><a class="viewcode-back" href="../../fspath-api/fspath.sui.html#fspath.sui.SimpleUserInterface.rst_title">[docs]</a>    @classmethod
+    def rst_title(cls, title, level=&#39;chapter&#39;):
+        u&quot;&quot;&quot;write reST formated title to UI
+
+        :param str title: section&#39;s title
+        :param str level: section&#39;s structural level [part,chapter,section,subsection]
+        &quot;&quot;&quot;
+        markup = cls.rst_levels.get(level, None)
+        if markup is None:
+            raise ValueError(&quot;unknown section level &#39;%s&#39;&quot; % level)
+        title  = title.strip()
+        markup = markup * len(title)
+        if level == &#39;part&#39;:
+            cls.write(u&#39;\n&#39; + markup)
+        cls.write(u&#39;\n&#39; + title)
+        cls.write(u&#39;\n&#39; + markup + u&#39;\n\n&#39;)</div>
+
+<div class="viewcode-block" id="SimpleUserInterface.rst_p"><a class="viewcode-back" href="../../fspath-api/fspath.sui.html#fspath.sui.SimpleUserInterface.rst_p">[docs]</a>    @classmethod
+    def rst_p(cls, text, level=0):
+        u&quot;&quot;&quot;write reST formated paragraph to UI
+
+        :param int level: indentaion level
+        &quot;&quot;&quot;
+        text = re.sub(r&#39;\s+&#39;, &#39; &#39;, text).strip()
+        p = fill(text
+                 , width                = cls._get_usable_line_size()
+                 , initial_indent       = cls.rst_indent * level
+                 , subsequent_indent    = cls.rst_indent * level
+                 , fix_sentence_endings = True )
+        cls.write(cls.rst_indent * level + p.strip() + u&#39;\n\n&#39;)</div>
+
+<div class="viewcode-block" id="SimpleUserInterface.rst_table"><a class="viewcode-back" href="../../fspath-api/fspath.sui.html#fspath.sui.SimpleUserInterface.rst_table">[docs]</a>    @classmethod
+    def rst_table(cls, rows, *fmt, **kwargs):
+        u&quot;&quot;&quot;write reST formated table to UI
+
+        Uses :py:class:`ASCIITableFormatter` for output. The argument ``*fmt``
+        is a list of tuple.
+
+        :param list rows: iterable type of dictionaries with the col/value
+        :param list \*fmt: iterable type of tuples to format the table
+        :param int level: indentaion level
+
+        .. code-block:: python
+
+           SUI.rst_table(
+               test_rows
+               # &lt;col-title&gt;, &lt;format sting&gt;, &lt;attribute name&gt;
+               , (&quot;Foo&quot;,      &quot;%-12s&quot;,        &quot;foo&quot;)
+               , (&quot;Bar&quot;,      &quot;%-30s&quot;,        &quot;bar&quot;))
+
+        &quot;&quot;&quot;
+        level = kwargs.get(&#39;level&#39;, 0) # tribute to py2 keyword-arguments
+        table = ASCIITableFormatter(*fmt)
+        for line in table(rows).strip().split(&#39;\n&#39;):
+            if line:
+                cls.write(&#39;    &#39; * level)
+            cls.write(line + &#39;\n&#39;)
+        cls.write(&#39;\n\n&#39;)</div>
+
+    @classmethod
+    def _get_usable_line_size(cls):
+        l = consoleDimension()[1]
+        if CONSOLE_TYPE == &#39;cmd&#39;:
+            # Since Win-CMD adds a newline if the last column is filled with a
+            # character it is recomended to use one column less.
+            l -= 1
+        return l
+
+<div class="viewcode-block" id="SimpleUserInterface.fill_line"><a class="viewcode-back" href="../../fspath-api/fspath.sui.html#fspath.sui.SimpleUserInterface.fill_line">[docs]</a>    @classmethod
+    def fill_line(cls, fill_char=&#39; &#39;):
+        u&quot;&quot;&quot;console, fill line with ``fill_char`` (default &#39; &#39;)&quot;&quot;&quot;
+        line_size = cls._get_usable_line_size()
+        cls.write(KEY.LF)
+        cls.write(fill_char[0] * line_size)
+        cls.write(KEY.LF)</div>
+
+<div class="viewcode-block" id="SimpleUserInterface.wait_key"><a class="viewcode-back" href="../../fspath-api/fspath.sui.html#fspath.sui.SimpleUserInterface.wait_key">[docs]</a>    @classmethod
+    def wait_key(cls):
+        u&quot;&quot;&quot;wait until key pressed&quot;&quot;&quot;
+        msg = &#39;** press any [KEY] to continue **&#39;
+        _len = len(msg)
+        cls.write(msg)
+        _i = cls.get_input(count=1, echo=False)
+        cls.write(WRITE_DELETE * _len)</div>
+
+<div class="viewcode-block" id="SimpleUserInterface.ask_choice"><a class="viewcode-back" href="../../fspath-api/fspath.sui.html#fspath.sui.SimpleUserInterface.ask_choice">[docs]</a>    @classmethod
+    def ask_choice(cls, msg, choices, default=0):
+        u&quot;&quot;&quot;Take a choice from a list via UI&quot;&quot;&quot;
+
+        for i in enumerate(choices, 1):
+            cls.echo(u&quot;%2d. %s&quot; % i)
+        i = None
+        while i is None:
+            cls.write(&quot;%s [%s] &quot; % (msg, default+1))
+            c = len(choices)
+            u = cls.get_input(count=len(str(c)), valid_chars=r&#39;\d&#39;)
+            if u == u&#39;&#39;:
+                i = default
+                cls.write(str(i+1))
+            try:
+                i = int(u) - 1
+                if i &lt; 0 or i &gt;= c:
+                    i = None
+                    cls.write(&#39; &lt;-- &#39;)
+                    cls.write(&#39;ERROR: invalid choice.&#39;)
+                    time.sleep(1)
+                    cls.fill_line()
+            except ValueError:
+                pass
+        cls.echo(&#39;&#39;)
+        return choices[i]</div>
+
+<div class="viewcode-block" id="SimpleUserInterface.ask_fspath"><a class="viewcode-back" href="../../fspath-api/fspath.sui.html#fspath.sui.SimpleUserInterface.ask_fspath">[docs]</a>    @classmethod
+    def ask_fspath(cls, msg=&quot;enter path name: &quot;, default=None):
+        u&quot;&quot;&quot;Ask for path name with [TAB] completion&quot;&quot;&quot;
+        # pylint: disable=too-many-branches
+        if default is None:
+            default = FSPath.getCWD().VALUE
+        in_fspath = default
+        stop_char = KEY.LF
+
+        prompt = _PathMinibuffer(msg, cls)
+        prompt(default)
+
+        while 1: # pylint: disable=too-many-nested-blocks
+            ch = cls.readkey()
+            if ch == stop_char:
+                break
+            elif ch == KEY.BACKSPACE:
+                if in_fspath:
+                    in_fspath = in_fspath[:-1]
+                    prompt(in_fspath)
+
+            elif ch == KEY.TAB:
+                compl = [re.sub(r&quot;^&quot; + re.escape(in_fspath), &#39;&#39;, p, count=1)
+                         for p in glob(in_fspath + &#39;.*&#39;) + glob(in_fspath + &#39;*&#39;)]
+                if not compl:
+                    pass
+                if len(compl) == 1:
+                    new = in_fspath + compl[0]
+                    if os.path.isdir(new) and new[-1] != os.sep:
+                        new += os.sep
+                    in_fspath = new
+                    prompt(in_fspath)
+                else:
+                    new = os.path.commonprefix(compl)
+                    if new:
+                        in_fspath += new
+                        prompt(in_fspath)
+                    else:
+                        info = set()
+                        for p in compl:
+                            if p:
+                                info.add(p[0])
+                        if info:
+                            info = list(info)
+                            info.sort(key=six.text_type.lower)
+                            info = &quot;  [&quot; + &quot;|&quot;.join(info) + &quot;]&quot;
+                            prompt(in_fspath, info)
+
+            elif (len(ch) == 1
+                  and (ch == KEY.SPACE
+                       or ch not in KEY.values())):
+                in_fspath += ch
+                prompt(in_fspath)
+        return FSPath(in_fspath).ABSPATH</div>
+
+<div class="viewcode-block" id="SimpleUserInterface.ask"><a class="viewcode-back" href="../../fspath-api/fspath.sui.html#fspath.sui.SimpleUserInterface.ask">[docs]</a>    @classmethod
+    def ask(cls, msg, default=None, count=None, echo=True, valid_chars=r&#39;.&#39;, stop_char=KEY.LF):
+        u&quot;&quot;&quot;Ask via UI&quot;&quot;&quot;
+        cls.write(&quot;%s &quot; % msg)
+        if default is not None:
+            cls.write(&quot;[%s] &quot; % default)
+        answer = cls.get_input(count=count, echo=echo, valid_chars=valid_chars,
+                               stop_char=stop_char)
+        if not answer:
+            answer = default
+            cls.write(str(default))
+        cls.echo(&#39;&#39;)
+        return answer</div>
+
+    YES = True
+    NO  = False
+
+<div class="viewcode-block" id="SimpleUserInterface.ask_yes_no"><a class="viewcode-back" href="../../fspath-api/fspath.sui.html#fspath.sui.SimpleUserInterface.ask_yes_no">[docs]</a>    @classmethod
+    def ask_yes_no(cls, msg, default=&#39;y&#39;):
+        u&quot;&quot;&quot;Ask Yes/No [YN] via UI
+
+        Returns ``True`` for *Yes* and ``False`` for *No*
+        &quot;&quot;&quot;
+        if default not in &#39;yn&#39;:
+            raise ValueError(&#39;unknown value for default, use &quot;n&quot; or &quot;y&quot;&#39;)
+        cls.write(&#39;%s %s &#39; % (msg, {&#39;y&#39;:&#39;[Y/n]&#39;, &#39;n&#39;:&#39;[y/N]&#39;}[default]))
+        answer = cls.get_input(count=1, echo=True,  valid_chars=r&#39;[YNyn]&#39;)
+        if not answer:
+            answer = default
+            cls.write(str(default))
+        else:
+            answer = answer.lower()
+        cls.echo(&#39;&#39;)
+        return {&#39;y&#39; : cls.YES, &#39;n&#39; : cls.NO}[answer]</div></div>
+
+
+SUI = SimpleUserInterface()
+
+class _PathMinibuffer(object):
+    # pylint: disable=too-few-public-methods
+
+    def __init__(self, msg, sui):
+        self.sui = sui
+        self.init_flag = False
+        if msg[-1] == &quot;\n&quot;:
+            self.prefix = &quot;&quot;
+        else:
+            msg = msg.splitlines()
+            self.msg = &quot;\n&quot;.join(msg[:-1]) + &quot;\n&quot;
+            self.prefix = msg[-1]
+
+    def __call__(self, new_path, info=&quot;&quot;):
+        if info:
+            info = &quot; %s&quot; % info
+        if not self.init_flag:
+            self.sui.write(self.msg)
+            self.init_flag = True
+
+        self.sui.fill_line(&quot; &quot;)
+        self.sui.write(self.prefix + new_path + info)
+        self.sui.write(WRITE_BACKSPACE * len(info))
+
+# ==============================================================================
+<div class="viewcode-block" id="ASCIITableFormatter"><a class="viewcode-back" href="../../fspath-api/fspath.sui.html#fspath.sui.ASCIITableFormatter">[docs]</a>class ASCIITableFormatter(object):
+# ==============================================================================
+
+    &quot;&quot;&quot;Simple ASCII table formatter
+
+    .. code-block:: python
+
+       rows = [  {&#39;foo&#39;: &#39;foo row 1&#39;, &#39;bar&#39;: &#39;bar row 1&#39;}
+                 , {&#39;foo&#39;: &#39;foo row 2&#39;, &#39;bar&#39;: &#39;bar row 2&#39;} ]
+
+       table = ASCIITableFormatter(
+           # &lt;col-title&gt;, &lt;format sting&gt;, &lt;attribute name&gt;
+           (&quot;Foo&quot;,   &quot;%-12s&quot;, &quot;foo&quot;)
+           , (&quot;Bar&quot;, &quot;%-30s&quot;, &quot;bar&quot;))
+       SUI.echo(table(rows))
+
+    .. code-block:: rst
+
+       ============ ==============================
+       Foo          Bar
+       ============ ==============================
+       foo row 1    bar row 1
+       foo row 2    bar row 2
+       ============ ==============================
+    &quot;&quot;&quot;
+
+    table_start,     table_end    = &quot;&quot;,   &quot;&quot;
+    head_start,      head_end     = &quot;\n&quot;, &quot;&quot;
+    col_head_start,  col_head_end = &quot;&quot;,   &quot; &quot;
+    row_start,       row_end      = &quot;\n&quot;, &quot;&quot;
+    col_start,       col_end      = &quot;&quot;,   &quot; &quot;
+    sep_start,       sep_end      = &quot;&quot;,   &quot; &quot;
+    sep_line = &quot;=&quot;
+
+    def __init__(self, *cols):
+        self.coldef = cols
+
+<div class="viewcode-block" id="ASCIITableFormatter.get_value"><a class="viewcode-back" href="../../fspath-api/fspath.sui.html#fspath.sui.ASCIITableFormatter.get_value">[docs]</a>    def get_value(self, attr, row, default=&#39;?&#39;):  # pylint: disable=no-self-use
+        u&quot;&quot;&quot;get value from col (attr) and row&quot;&quot;&quot;
+        val = default
+        if hasattr(row, &quot;__getitem__&quot;):
+            val = row.get(attr, default)
+        else:
+            val = getattr(row, attr, None)
+        return val</div>
+
+<div class="viewcode-block" id="ASCIITableFormatter.escape"><a class="viewcode-back" href="../../fspath-api/fspath.sui.html#fspath.sui.ASCIITableFormatter.escape">[docs]</a>    def escape(self, value): # pylint: disable=no-self-use
+        u&quot;&quot;&quot;escape value&quot;&quot;&quot;
+        return value</div>
+
+    def __call__(self, rows):
+        out = u&quot;&quot;
+        out += self.table_start
+
+        sep = u&#39;&#39;
+        if self.sep_line:
+            sep += self.head_start
+            for headline, fmt, attr in self.coldef:
+                sep += self.sep_start
+                sep += self.sep_line * len(fmt % 1)
+                sep += self.sep_end
+            sep += self.head_end
+
+        # head-top separator line
+        out += sep
+
+        # headline
+        out += self.head_start
+        for headline, fmt, attr in self.coldef:
+            out += self.col_head_start
+            out += headline.ljust(len(fmt % 1))
+            out += self.col_head_end
+        out += self.head_end
+
+        # head-bottom separator line
+        out += sep
+
+        # render rows
+        for row in rows:
+            out += self.row_start
+            for headline, fmt, attr in self.coldef:
+                out += self.col_start
+                val = self.get_value(attr, row)
+                val = self.escape(val)
+                out += fmt % val
+                out += self.col_end
+            out += self.row_end
+
+        # bottom separator
+        out += sep
+
+        out += self.table_end
+        return out</div>
+
+# ==============================================================================
+<div class="viewcode-block" id="HTMLTableFormatter"><a class="viewcode-back" href="../../fspath-api/fspath.sui.html#fspath.sui.HTMLTableFormatter">[docs]</a>class HTMLTableFormatter(ASCIITableFormatter):
+# ==============================================================================
+
+    &quot;&quot;&quot;Simple HTML table formatter
+
+    .. code-block:: python
+
+       rows = [  {&#39;foo&#39;: &#39;foo &lt;row 1&gt;&#39;, &#39;bar&#39;: &#39;bar &lt;row 1&gt;&#39;}
+                 , {&#39;foo&#39;: &#39;foo &lt;row 2&gt;&#39;, &#39;bar&#39;: &#39;bar &lt;row 2&gt;&#39;} ]
+
+       table = HTMLTableFormatter((&quot;Foo&quot;, &quot;%s&quot;, &quot;foo&quot;)
+                                , (&quot;Bar&quot;, &quot;%s&quot;, &quot;bar&quot;))
+       SUI.echo(table(rows))
+
+    .. code-block:: html
+
+       &lt;table&gt;
+         &lt;tr class=&#39;heading&#39;&gt;
+           &lt;th&gt;Foo&lt;/th&gt;
+           &lt;th&gt;Bar&lt;/th&gt;
+         &lt;/tr&gt;
+         &lt;tr&gt;
+           &lt;td&gt;foo &amp;lt;row 1&amp;gt;&lt;/td&gt;
+           &lt;td&gt;bar &amp;lt;row 1&amp;gt;&lt;/td&gt;
+         &lt;/tr&gt;
+         &lt;tr&gt;
+           &lt;td&gt;foo &amp;lt;row 2&amp;gt;&lt;/td&gt;
+           &lt;td&gt;bar &amp;lt;row 2&amp;gt;&lt;/td&gt;
+         &lt;/tr&gt;
+       &lt;/table&gt;
+    &quot;&quot;&quot;
+
+    table_start, table_end        = &quot;\n&lt;table&gt;&quot;,                &quot;\n&lt;/table&gt;&quot;
+    head_start,  head_end         = &quot;\n  &lt;tr class=&#39;heading&#39;&gt;&quot;, &quot;\n  &lt;/tr&gt;&quot;
+    col_head_start,  col_head_end = &quot;\n    &lt;th&gt;&quot;,               &quot;&lt;/th&gt;&quot;
+    row_start,   row_end          = &quot;\n  &lt;tr&gt;&quot;,                 &quot;\n  &lt;/tr&gt;&quot;
+    col_start,   col_end          = &quot;\n    &lt;td&gt;&quot;, &quot;&lt;/td&gt;&quot;
+    sep_line = None
+    ESCAPE = &quot;&lt;!--(set_escape)--&gt;HTML&lt;!--(end)--&gt;\n#!&quot;
+
+<div class="viewcode-block" id="HTMLTableFormatter.escape"><a class="viewcode-back" href="../../fspath-api/fspath.sui.html#fspath.sui.HTMLTableFormatter.escape">[docs]</a>    def escape(self, value):
+        value = value.replace(&quot;&amp;&quot;, &quot;&amp;amp;&quot;) # Must be done first!
+        value = value.replace(&quot;&lt;&quot;, &quot;&amp;lt;&quot;)
+        value = value.replace(&quot;&gt;&quot;, &quot;&amp;gt;&quot;)
+        return value</div></div>
 </pre></div>
 
-           </div>
-           
+            <div class="clearer"></div>
           </div>
-          <footer>
-  
-
-  <hr/>
-
-  <div role="contentinfo">
-    <p>
-        &copy; Copyright 2019 Markus Heiser
-
-    </p>
-  </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
-
-</footer>
-
         </div>
       </div>
-
-    </section>
-
-  </div>
-  
-
-
-  <script type="text/javascript">
-      jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
-      });
-  </script>
-
-  
+  <span id="sidebar-top"></span>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
   
     
-   
+            <p class="logo"><a href="../../index.html">
+              <img class="logo" src="../../_static/darmarIT_logo_128.png" alt="Logo"/>
+            </a></p>
+  
+<h3>Navigation</h3>
+<ul>
+  <li><a href="../../index.html">Overview</a>
+    <ul>
+      <li><a href="../index.html">Module code</a>
+        
+          
+          </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script><div id="ethical-ad-placement"></div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2023 Markus Heiser.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.1.3.
+    </div>
+  <script src="../../_static/version_warning_offset.js"></script>
 
-</body>
+  </body>
 </html>

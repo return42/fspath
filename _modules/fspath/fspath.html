@@ -1,913 +1,806 @@
 
-
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
-<head>
-  <meta charset="utf-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <title>fspath.fspath &mdash; FSPath 20190323 documentation</title>
-  
 
-  
-  
-  
-  
-
-  
-  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
-  
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../../_static/jquery.js"></script>
-        <script type="text/javascript" src="../../_static/underscore.js"></script>
-        <script type="text/javascript" src="../../_static/doctools.js"></script>
-        <script type="text/javascript" src="../../_static/language_data.js"></script>
-    
-    <script type="text/javascript" src="../../_static/js/theme.js"></script>
-
-    
-
-  
-  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/theme_overrides.css" type="text/css" />
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>fspath.fspath &#8212; FSPath 20190323 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
-</head>
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">FSPath 20190323 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">fspath.fspath</a></li> 
+      </ul>
+    </div>  
 
-<body class="wy-body-for-nav">
-
-   
-  <div class="wy-grid-for-nav">
-    
-    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
-      <div class="wy-side-scroll">
-        <div class="wy-side-nav-search" >
-          
-
-          
-            <a href="../../index.html" class="icon icon-home"> FSPath
-          
-
-          
-            
-            <img src="../../_static/darmarIT_logo_128.png" class="logo" alt="Logo"/>
-          
-          </a>
-
-          
-            
-            
-              <div class="version">
-                20190323
-              </div>
-            
-          
-
-          
-<div role="search">
-  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
-    <input type="hidden" name="check_keywords" value="yes" />
-    <input type="hidden" name="area" value="default" />
-  </form>
-</div>
-
-          
-        </div>
-
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
-              <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../fspath-api/fspath.html">fspath package</a></li>
-</ul>
-
-            
-          
-        </div>
-      </div>
-    </nav>
-
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
-          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../index.html">FSPath</a>
-        
-      </nav>
-
-
-      <div class="wy-nav-content">
-        
-        <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
-  <ul class="wy-breadcrumbs">
-    
-      <li><a href="../../index.html">Docs</a> &raquo;</li>
-        
-          <li><a href="../index.html">Module code</a> &raquo;</li>
-        
-      <li>fspath.fspath</li>
-    
-    
-      <li class="wy-breadcrumbs-aside">
-        
-      </li>
-    
-  </ul>
-
-  
-  <hr/>
-</div>
-          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
-           <div itemprop="articleBody">
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
             
   <h1>Source code for fspath.fspath</h1><div class="highlight"><pre>
-<span></span><span class="c1"># -*- coding: utf-8; mode: python -*-</span>
-<span class="sa">u</span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">semantic path names and much more</span>
-<span class="sd">&quot;&quot;&quot;</span>
+<span></span># -*- coding: utf-8; mode: python -*-
+u&quot;&quot;&quot;
+semantic path names and much more
+&quot;&quot;&quot;
 
-<span class="c1"># pylint: disable=invalid-name, bad-continuation</span>
+# pylint: disable=invalid-name, bad-continuation
 
-<span class="c1"># ==============================================================================</span>
-<span class="c1"># imports</span>
-<span class="c1"># ==============================================================================</span>
+# ==============================================================================
+# imports
+# ==============================================================================
 
-<span class="kn">import</span> <span class="nn">sys</span>
-<span class="kn">import</span> <span class="nn">io</span>
-<span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">from</span> <span class="nn">os</span> <span class="k">import</span> <span class="n">path</span>
-<span class="kn">import</span> <span class="nn">platform</span>
-<span class="kn">import</span> <span class="nn">re</span>
-<span class="kn">import</span> <span class="nn">shutil</span>
-<span class="kn">import</span> <span class="nn">subprocess</span>
-<span class="kn">from</span> <span class="nn">glob</span> <span class="k">import</span> <span class="n">iglob</span>
-<span class="kn">from</span> <span class="nn">contextlib</span> <span class="k">import</span> <span class="n">closing</span>
-<span class="kn">import</span> <span class="nn">zipfile</span>
-<span class="kn">import</span> <span class="nn">tarfile</span>
+import sys
+import io
+import os
+from os import path
+import platform
+import re
+import shutil
+import subprocess
+from glob import iglob
+from contextlib import closing
+import zipfile
+import tarfile
 
-<span class="kn">import</span> <span class="nn">six</span>
-<span class="kn">from</span> <span class="nn">six.moves.urllib.request</span> <span class="k">import</span> <span class="n">urlopen</span> <span class="c1"># pylint: disable=E0401</span>
+import six
+from six.moves.urllib.request import urlopen # pylint: disable=E0401
 
-<span class="kn">from</span> <span class="nn">.progressbar</span> <span class="k">import</span> <span class="n">progressbar</span><span class="p">,</span> <span class="n">humanizeBytes</span>
-<span class="kn">from</span> <span class="nn">.helper</span> <span class="k">import</span> <span class="n">Options</span>
+from .progressbar import progressbar, humanizeBytes
+from .helper import Options
 
-<span class="c1"># ==============================================================================</span>
-<div class="viewcode-block" id="FSPath"><a class="viewcode-back" href="../../fspath-api/fspath.fspath.html#fspath.fspath.FSPath">[docs]</a><span class="k">class</span> <span class="nc">FSPath</span><span class="p">(</span><span class="n">six</span><span class="o">.</span><span class="n">text_type</span><span class="p">):</span>  <span class="c1"># pylint: disable=too-many-public-methods</span>
-<span class="c1"># ==============================================================================</span>
+# ==============================================================================
+<div class="viewcode-block" id="FSPath"><a class="viewcode-back" href="../../fspath-api/fspath.fspath.html#fspath.fspath.FSPath">[docs]</a>class FSPath(six.text_type):  # pylint: disable=too-many-public-methods
+# ==============================================================================
 
-    <span class="sa">u</span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    A path name to a file or folder.</span>
+    u&quot;&quot;&quot;
+    A path name to a file or folder.
 
-<span class="sd">    Handling path names more comfortable, e.g.:</span>
+    Handling path names more comfortable, e.g.:
 
-<span class="sd">    * concatenate path names with the division operator ``/``</span>
-<span class="sd">    * call functions like *mkdir* on path names</span>
-<span class="sd">    * get properties like *EXISTS*</span>
+    * concatenate path names with the division operator ``/``
+    * call functions like *mkdir* on path names
+    * get properties like *EXISTS*
 
-<span class="sd">    .. code-block:: python</span>
+    .. code-block:: python
 
-<span class="sd">      &gt;&gt;&gt; from fspath import FSPath</span>
-<span class="sd">      &gt;&gt;&gt; tmp = FSPath(&#39;~/tmp&#39;)</span>
-<span class="sd">      &gt;&gt;&gt; tmp</span>
-<span class="sd">      &#39;/home/user/tmp&#39;</span>
-<span class="sd">      &gt;&gt;&gt; tmp.EXISTS</span>
-<span class="sd">      False</span>
+      &gt;&gt;&gt; from fspath import FSPath
+      &gt;&gt;&gt; tmp = FSPath(&#39;~/tmp&#39;)
+      &gt;&gt;&gt; tmp
+      &#39;/home/user/tmp&#39;
+      &gt;&gt;&gt; tmp.EXISTS
+      False
 
-<span class="sd">    no additional import, no juggling with ``os.join(...)``</span>
-
-<span class="sd">    simply slash ``/`` and ``foo.&lt;method&gt;`` calls</span>
+    no additional import, no juggling with ``os.join(...)``
+
+    simply slash ``/`` and ``foo.&lt;method&gt;`` calls
 
-<span class="sd">    .. code-block:: python</span>
-
-<span class="sd">      &gt;&gt;&gt; [(tmp/x).makedirs() for x in (&#39;foo&#39;, &#39;bar&#39;)]</span>
-<span class="sd">      True, True</span>
-<span class="sd">      &gt;&gt;&gt; for n in tmp.listdir():</span>
-<span class="sd">      ...     print(tmp / n)</span>
-<span class="sd">      ...</span>
-<span class="sd">      /home/user/tmp/foo</span>
-<span class="sd">      /home/user/tmp/bar</span>
-
-<span class="sd">    downloads &amp; archives</span>
-
-<span class="sd">    .. code-block:: python</span>
-
-<span class="sd">      &gt;&gt;&gt; arch = foo / &#39;fspath.zip&#39;</span>
-<span class="sd">      &gt;&gt;&gt; url = &#39;https://github.com/return42/fspath/archive/master.zip&#39;</span>
-
-<span class="sd">   ``download`` -- super easy download + segmentation + nice ticker</span>
-
-<span class="sd">    .. code-block:: python</span>
-
-<span class="sd">      &gt;&gt;&gt; arch.download(url, chunksize=1024, ticker=True)</span>
-<span class="sd">      /home/user/tmp/foo/fspath.zip: [87.9 KB][===============    ]  83%</span>
-
-<span class="sd">   ``FSPath.extract`` -- extract in one step, no matter ZIP or TAR</span>
-
-<span class="sd">    .. code-block:: python</span>
-
-<span class="sd">      &gt;&gt;&gt; arch.ISTAR, arch.ISZIP</span>
-<span class="sd">      (False, True)</span>
-<span class="sd">      &gt;&gt;&gt; arch.extract(foo)</span>
-<span class="sd">      [&#39;fspath-master/&#39;, &#39;fspath-master/.gitignore&#39;</span>
-<span class="sd">      , &#39;fspath-master/MAINFEST.in&#39;, &#39;fspath-master/Makefile&#39;</span>
-<span class="sd">      , &#39;fspath-master/README.rst&#39;,  ... ]</span>
-
-<span class="sd">    For more examples see our `slide-show &lt;../slides/index.html&gt;`_.</span>
-
-<span class="sd">    &quot;&quot;&quot;</span>
-
-    <span class="n">OS</span> <span class="o">=</span> <span class="n">Options</span><span class="p">(</span>
-        <span class="n">sep</span>       <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">sep</span>     <span class="c1"># https://docs.python.org/3/library/os.html#os.sep</span>
-        <span class="p">,</span> <span class="n">curdir</span>  <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">curdir</span>  <span class="c1"># https://docs.python.org/3/library/os.html#os.curdir</span>
-        <span class="p">,</span> <span class="n">altsep</span>  <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">altsep</span>  <span class="c1"># https://docs.python.org/3/library/os.html#os.altsep</span>
-        <span class="p">,</span> <span class="n">extsep</span>  <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">extsep</span>  <span class="c1"># https://docs.python.org/3/library/os.html#os.extsep</span>
-        <span class="p">,</span> <span class="n">pathsep</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">pathsep</span> <span class="c1"># https://docs.python.org/3/library/os.html#os.pathsep</span>
-        <span class="p">,</span> <span class="n">defpath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">defpath</span> <span class="c1"># https://docs.python.org/3/library/os.html#os.defpath</span>
-        <span class="p">,</span> <span class="n">linesep</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">linesep</span> <span class="c1"># https://docs.python.org/3/library/os.html#os.linesep</span>
-        <span class="p">,</span> <span class="n">devnull</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">devnull</span> <span class="c1"># https://docs.python.org/3/library/os.html#os.devnull</span>
-    <span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">pathname</span><span class="p">):</span>
-        <span class="sa">u</span><span class="sd">&quot;&quot;&quot;Constructor of a path name object.</span>
-
-<span class="sd">        Regardless of how the encoding of the file system is, the ``pathname``</span>
-<span class="sd">        is converted to unicode. The conversion of byte strings is based the</span>
-<span class="sd">        default encodings.</span>
-
-<span class="sd">        To issue &quot;File-system Encoding&quot; See also:</span>
-
-<span class="sd">        * https://docs.python.org/3.5/howto/unicode.html#unicode-filenames</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">pathname</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">normpath</span><span class="p">(</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="n">six</span><span class="o">.</span><span class="n">text_type</span><span class="p">(</span><span class="n">pathname</span><span class="p">)))</span>
-        <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">FSPath</span><span class="p">,</span> <span class="bp">cls</span><span class="p">)</span><span class="o">.</span><span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">pathname</span><span class="p">)</span>
-
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">VALUE</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sa">u</span><span class="sd">&quot;&quot;&quot;string of the path name&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">six</span><span class="o">.</span><span class="n">text_type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
-
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">EXISTS</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sa">u</span><span class="sd">&quot;&quot;&quot;True if file/pathname exist&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
-
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">SIZE</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sa">u</span><span class="sd">&quot;&quot;&quot;Size in bytes&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">path</span><span class="o">.</span><span class="n">getsize</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
-
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">READABLE</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sa">u</span><span class="sd">&quot;&quot;&quot;True if file/path is readable&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">access</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">R_OK</span><span class="p">)</span>
-
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">WRITEABLE</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sa">u</span><span class="sd">&quot;&quot;&quot;True if file/path is writeable&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">access</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">W_OK</span><span class="p">)</span>
-
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">EXECUTABLE</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sa">u</span><span class="sd">&quot;&quot;&quot;True if file is executable&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">access</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">X_OK</span><span class="p">)</span>
-
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">ISDIR</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sa">u</span><span class="sd">&quot;&quot;&quot;True if path is a folder&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
-
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">ISFILE</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sa">u</span><span class="sd">&quot;&quot;&quot;True if path is a file&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
-
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">ISABSPATH</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sa">u</span><span class="sd">&quot;&quot;&quot;True if path is absolute&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">path</span><span class="o">.</span><span class="n">isabs</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
-
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">ISLINK</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sa">u</span><span class="sd">&quot;&quot;&quot;True if path is a symbolic link&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">path</span><span class="o">.</span><span class="n">islink</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
-
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">ISMOUNT</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sa">u</span><span class="sd">&quot;&quot;&quot;True if path is a mountpoint&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">path</span><span class="o">.</span><span class="n">ismount</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
-
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">MTIME</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Return the last modification time, reported by os.stat().&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">stat</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">st_mtime</span>
-
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">ATIME</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Return the last access time, reported by os.stat().&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">stat</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">st_atime</span>
-
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">CTIME</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Return the metadata change time, reported by os.stat().&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">stat</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">st_ctime</span>
-
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">ISZIP</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sa">u</span><span class="sd">&quot;&quot;&quot;True if path is a ZIP file&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">zipfile</span><span class="o">.</span><span class="n">is_zipfile</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
-
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">ISTAR</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sa">u</span><span class="sd">&quot;&quot;&quot;True if path is a TAR archive file&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">tarfile</span><span class="o">.</span><span class="n">is_tarfile</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
-
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">DIRNAME</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sa">u</span><span class="sd">&quot;&quot;&quot;The path name of the folder, where the file is located</span>
-
-<span class="sd">        E.g.: ``/path/to/folder/filename.ext`` --&gt; ``/path/to/folder``</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">(</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span>
-
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">BASENAME</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sa">u</span><span class="sd">&quot;&quot;&quot;The path name with suffix, but without the folder name.</span>
-
-<span class="sd">        E.g.: ``/path/to/folder/filename.ext`` --&gt; ``filename.ext``</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">(</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span>
-
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">FILENAME</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sa">u</span><span class="sd">&quot;&quot;&quot;The path name without folder and suffix.</span>
-
-<span class="sd">        E.g.: ``/path/to/folder/filename.ext`` --&gt; ``filename``</span>
-
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">(</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="bp">self</span><span class="p">))[</span><span class="mi">0</span><span class="p">])</span>
-
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">SUFFIX</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sa">u</span><span class="sd">&quot;&quot;&quot;The filename suffix</span>
-
-<span class="sd">        E.g.: ``/path/to/folder/filename.ext`` --&gt; ``.ext``</span>
-
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">(</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="bp">self</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span>
-
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">SKIPSUFFIX</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sa">u</span><span class="sd">&quot;&quot;&quot;The complete file name without suffix.</span>
-
-<span class="sd">        E.g.: ``/path/to/folder/filename.ext`` --&gt; ``/path/to/folder/filename``</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">(</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="bp">self</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
-
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">ABSPATH</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sa">u</span><span class="sd">&quot;&quot;&quot;The absolute pathname</span>
-
-<span class="sd">        E.g: ``../to/../to/folder/filename.ext`` --&gt; ``/path/to/folder/filename.ext``</span>
-
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">(</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span>
-
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">REALPATH</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sa">u</span><span class="sd">&quot;&quot;&quot;The real pathname without symbolic links.&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">(</span><span class="n">path</span><span class="o">.</span><span class="n">realpath</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span>
-
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">POSIXPATH</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sa">u</span><span class="sd">&quot;&quot;&quot;The path name in *POSIX* notation.</span>
-
-<span class="sd">        Helpfull if you are on MS-Windows and need the POSIX name.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">sep</span> <span class="o">==</span> <span class="s2">&quot;/&quot;</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">six</span><span class="o">.</span><span class="n">text_type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">p</span> <span class="o">=</span> <span class="n">six</span><span class="o">.</span><span class="n">text_type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;:&quot;</span><span class="p">:</span>
-                <span class="n">p</span> <span class="o">=</span> <span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="n">p</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;:&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-            <span class="k">return</span> <span class="n">p</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">sep</span><span class="p">,</span> <span class="s2">&quot;/&quot;</span><span class="p">)</span>
-
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">NTPATH</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sa">u</span><span class="sd">&quot;&quot;&quot;The path name in the Windows (NT) notation.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">retVal</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">sep</span> <span class="o">==</span> <span class="s2">&quot;</span><span class="se">\\</span><span class="s2">&quot;</span><span class="p">:</span>
-            <span class="n">retVal</span> <span class="o">=</span> <span class="n">six</span><span class="o">.</span><span class="n">text_type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">retVal</span> <span class="o">=</span> <span class="n">six</span><span class="o">.</span><span class="n">text_type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">sep</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\\</span><span class="s2">&quot;</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">retVal</span>
-
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">EXPANDVARS</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sa">u</span><span class="sd">&quot;&quot;&quot;Path with environment variables expanded.&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">(</span><span class="n">path</span><span class="o">.</span><span class="n">expandvars</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span>
-
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">EXPANDUSER</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sa">u</span><span class="sd">&quot;&quot;&quot;Path with an initial component of ~ or ~user replaced by that user&#39;s home.&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">(</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span>
-
-<div class="viewcode-block" id="FSPath.getHOME"><a class="viewcode-back" href="../../fspath-api/fspath.fspath.html#fspath.fspath.FSPath.getHOME">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">getHOME</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
-        <span class="sa">u</span><span class="sd">&quot;&quot;&quot;User&#39;s home folder.&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s2">&quot;~&quot;</span><span class="p">))</span></div>
-
-<div class="viewcode-block" id="FSPath.getCWD"><a class="viewcode-back" href="../../fspath-api/fspath.fspath.html#fspath.fspath.FSPath.getCWD">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">getCWD</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
-        <span class="sa">u</span><span class="sd">&quot;&quot;&quot;Current working directory.&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">())</span></div>
-
-<div class="viewcode-block" id="FSPath.chdir"><a class="viewcode-back" href="../../fspath-api/fspath.fspath.html#fspath.fspath.FSPath.chdir">[docs]</a>    <span class="k">def</span> <span class="nf">chdir</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sa">u</span><span class="sd">&quot;&quot;&quot;change the current working directory to *self*.&quot;&quot;&quot;</span>
-        <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
-
-<div class="viewcode-block" id="FSPath.makedirs"><a class="viewcode-back" href="../../fspath-api/fspath.fspath.html#fspath.fspath.FSPath.makedirs">[docs]</a>    <span class="k">def</span> <span class="nf">makedirs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="mo">0o775</span><span class="p">):</span>
-        <span class="sa">u</span><span class="sd">&quot;&quot;&quot;Recursive directory creation, default mode is 0o775 (octal).</span>
-
-<span class="sd">        :param int mode: file permissons</span>
-<span class="sd">        :return: created (True) already exists (True),</span>
-<span class="sd">        :raises Exception: in case of errors (permissons, etc.)</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">retVal</span> <span class="o">=</span> <span class="kc">False</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">ISDIR</span><span class="p">:</span>
-            <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mode</span><span class="p">)</span>
-            <span class="n">retVal</span> <span class="o">=</span> <span class="kc">True</span>
-        <span class="k">return</span> <span class="n">retVal</span></div>
-
-    <span class="k">def</span> <span class="nf">__div__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pathname</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">VALUE</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">sep</span> <span class="o">+</span> <span class="n">six</span><span class="o">.</span><span class="n">text_type</span><span class="p">(</span><span class="n">pathname</span><span class="p">))</span>
-    <span class="fm">__truediv__</span> <span class="o">=</span> <span class="n">__div__</span>
-
-    <span class="k">def</span> <span class="nf">__rdiv__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pathname</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">(</span><span class="n">six</span><span class="o">.</span><span class="n">text_type</span><span class="p">(</span><span class="n">pathname</span><span class="p">)</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">sep</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">VALUE</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">VALUE</span> <span class="o">+</span> <span class="n">six</span><span class="o">.</span><span class="n">text_type</span><span class="p">(</span><span class="n">other</span><span class="p">))</span>
-
-    <span class="k">def</span> <span class="nf">__radd__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">(</span><span class="n">six</span><span class="o">.</span><span class="n">text_type</span><span class="p">(</span><span class="n">other</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">VALUE</span><span class="p">)</span>
-
-<div class="viewcode-block" id="FSPath.relpath"><a class="viewcode-back" href="../../fspath-api/fspath.fspath.html#fspath.fspath.FSPath.relpath">[docs]</a>    <span class="k">def</span> <span class="nf">relpath</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">start</span><span class="p">):</span>
-        <span class="sa">u</span><span class="sd">&quot;&quot;&quot;Return a relative version of a path&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">(</span><span class="n">path</span><span class="o">.</span><span class="n">relpath</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">start</span><span class="p">))</span></div>
-
-<div class="viewcode-block" id="FSPath.splitpath"><a class="viewcode-back" href="../../fspath-api/fspath.fspath.html#fspath.fspath.FSPath.splitpath">[docs]</a>    <span class="k">def</span> <span class="nf">splitpath</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sa">u</span><span class="sd">&quot;&quot;&quot;Split a pathname.</span>
-
-<span class="sd">        Return tuple (head, tail) where tail is everything after the final</span>
-<span class="sd">        slash.  Either part may be empty.&quot;&quot;&quot;</span>
-        <span class="n">head</span><span class="p">,</span> <span class="n">tail</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
-        <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">(</span><span class="n">head</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">(</span><span class="n">tail</span><span class="p">))</span></div>
-
-<div class="viewcode-block" id="FSPath.listdir"><a class="viewcode-back" href="../../fspath-api/fspath.fspath.html#fspath.fspath.FSPath.listdir">[docs]</a>    <span class="k">def</span> <span class="nf">listdir</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sa">u</span><span class="sd">&quot;&quot;&quot;Return a iterator which yields the names of the files in the directory.&quot;&quot;&quot;</span>
-        <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-            <span class="k">yield</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">(</span><span class="n">name</span><span class="p">)</span></div>
-
-<div class="viewcode-block" id="FSPath.glob"><a class="viewcode-back" href="../../fspath-api/fspath.fspath.html#fspath.fspath.FSPath.glob">[docs]</a>    <span class="k">def</span> <span class="nf">glob</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pattern</span><span class="p">,</span> <span class="n">relpath</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-        <span class="sa">u</span><span class="sd">&quot;&quot;&quot;Return an iterator which yields the paths matching a pathname pattern.</span>
-
-<span class="sd">        The pattern may contain simple shell-style wildcards a la</span>
-<span class="sd">        fnmatch. However, unlike fnmatch, filenames starting with a dot are</span>
-<span class="sd">        special cases that are not matched by &#39;*&#39; and &#39;?&#39;  patterns.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span>  <span class="n">iglob</span><span class="p">(</span><span class="bp">self</span> <span class="o">/</span> <span class="n">pattern</span><span class="p">):</span>
-            <span class="n">obj</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">relpath</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
-                <span class="n">obj</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">relpath</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
-            <span class="k">yield</span> <span class="n">obj</span></div>
-
-<div class="viewcode-block" id="FSPath.walk"><a class="viewcode-back" href="../../fspath-api/fspath.fspath.html#fspath.fspath.FSPath.walk">[docs]</a>    <span class="k">def</span> <span class="nf">walk</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">topdown</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">onerror</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">followlinks</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-        <span class="sa">u</span><span class="sd">&quot;&quot;&quot;Directory tree generator.</span>
-
-<span class="sd">        For each directory in the directory tree rooted at top (including top</span>
-<span class="sd">        itself, but excluding &#39;.&#39; and &#39;..&#39;), yields a 3-tuple::</span>
-
-<span class="sd">            folder, dirnames, filenames</span>
-
-<span class="sd">        dirnames is a list of the names of the subdirectories in dirpath</span>
-<span class="sd">        (excluding &#39;.&#39; and &#39;..&#39;).  filenames is a list of the names of the</span>
-<span class="sd">        non-directory files in dirpath.</span>
-
-<span class="sd">        Note that the names in the lists are just names, with no path components.</span>
-<span class="sd">        To get a full path (which begins with top) to a file or directory in</span>
-<span class="sd">        dirpath, do ``folder / name``.</span>
-
-<span class="sd">        By default, os.walk does not follow symbolic links to subdirectories on</span>
-<span class="sd">        systems that support them.  In order to get this functionality, set the</span>
-<span class="sd">        optional argument &#39;followlinks&#39; to true.</span>
-
-<span class="sd">        .. caution::</span>
-
-<span class="sd">           If you pass a relative pathname for top, don&#39;t change the current</span>
-<span class="sd">           working directory between resumptions of walk.  walk never changes</span>
-<span class="sd">           the current directory, and assumes that the client doesn&#39;t either.</span>
-
-<span class="sd">        For more details see ``os.walk``&quot;&quot;&quot;</span>
-
-        <span class="c1"># argh those fu.. idiots from python impleted fspath in 3.4 which no</span>
-        <span class="c1"># longer supports string-like objects (inheritance of str) in os.walk.</span>
-        <span class="c1"># So we have to typecast str(self).</span>
-
-        <span class="k">for</span> <span class="n">dirpath</span><span class="p">,</span> <span class="n">dirnames</span><span class="p">,</span> <span class="n">filenames</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">walk</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="p">),</span> <span class="n">topdown</span><span class="p">,</span> <span class="n">onerror</span><span class="p">,</span> <span class="n">followlinks</span><span class="p">):</span>
-            <span class="n">dirs</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">dirnames</span><span class="p">]</span>
-
-            <span class="k">yield</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">(</span><span class="n">dirpath</span><span class="p">)</span>
-                   <span class="p">,</span> <span class="n">dirs</span>
-                   <span class="p">,</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">filenames</span><span class="p">])</span>
-
-            <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">dirnames</span><span class="p">):</span>
-                <span class="k">if</span> <span class="n">name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">dirs</span><span class="p">:</span>
-                    <span class="n">dirnames</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">name</span><span class="p">)</span></div>
-
-
-<div class="viewcode-block" id="FSPath.reMatchFind"><a class="viewcode-back" href="../../fspath-api/fspath.fspath.html#fspath.fspath.FSPath.reMatchFind">[docs]</a>    <span class="k">def</span> <span class="nf">reMatchFind</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">use_files</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">use_dirs</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">followlinks</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">relpath</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-        <span class="sa">u</span><span class="sd">&quot;&quot;&quot;Returns iterator which yields matching path names</span>
-
-<span class="sd">        :param use_files:   iterator includes names of files</span>
-<span class="sd">        :param use_dirs:    iterator includes names of folders</span>
-<span class="sd">        :param followlinks: follow symbolic links</span>
-
-<span class="sd">        To find all C and header files use::</span>
-
-<span class="sd">            folder.reMatchFind(&quot;*\\.[ch]&quot;)</span>
-
-<span class="sd">        To find the first C or header file use::</span>
-
-<span class="sd">            next(myFolder.reMatchFind(&quot;*\\.[ch]&quot;), None)</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-
-        <span class="n">name_re</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">folder</span><span class="p">,</span> <span class="n">dirnames</span><span class="p">,</span> <span class="n">filenames</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">walk</span><span class="p">(</span><span class="n">followlinks</span><span class="o">=</span><span class="n">followlinks</span><span class="p">):</span>
-            <span class="k">if</span> <span class="n">use_dirs</span><span class="p">:</span>
-                <span class="k">for</span> <span class="n">d_name</span> <span class="ow">in</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">dirnames</span> <span class="k">if</span> <span class="n">name_re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">x</span><span class="p">)]:</span>
-                    <span class="n">obj</span> <span class="o">=</span> <span class="n">folder</span> <span class="o">/</span> <span class="n">d_name</span>
-                    <span class="k">if</span> <span class="n">relpath</span><span class="p">:</span>
-                        <span class="n">obj</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">relpath</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
-                    <span class="k">yield</span> <span class="n">obj</span>
-            <span class="k">if</span> <span class="n">use_files</span><span class="p">:</span>
-                <span class="k">for</span> <span class="n">f_name</span> <span class="ow">in</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">filenames</span> <span class="k">if</span> <span class="n">name_re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">x</span><span class="p">)]:</span>
-                    <span class="n">obj</span> <span class="o">=</span> <span class="n">folder</span> <span class="o">/</span> <span class="n">f_name</span>
-                    <span class="k">if</span> <span class="n">relpath</span><span class="p">:</span>
-                        <span class="n">obj</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">relpath</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
-                    <span class="k">yield</span> <span class="n">obj</span></div>
-
-<div class="viewcode-block" id="FSPath.suffix"><a class="viewcode-back" href="../../fspath-api/fspath.fspath.html#fspath.fspath.FSPath.suffix">[docs]</a>    <span class="k">def</span> <span class="nf">suffix</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_suffix</span><span class="p">):</span>
-        <span class="sa">u</span><span class="sd">&quot;&quot;&quot;Return path name with ``new_suffix``&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">SKIPSUFFIX</span> <span class="o">+</span> <span class="n">new_suffix</span><span class="p">)</span></div>
-
-<div class="viewcode-block" id="FSPath.copyfile"><a class="viewcode-back" href="../../fspath-api/fspath.fspath.html#fspath.fspath.FSPath.copyfile">[docs]</a>    <span class="k">def</span> <span class="nf">copyfile</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dest</span><span class="p">,</span> <span class="n">preserve</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-        <span class="sa">u</span><span class="sd">&quot;&quot;&quot;Copy the file src to the file or directory dest.</span>
-
-<span class="sd">        :dest str: The destination may be a directory</span>
-<span class="sd">        :preserve bool: copies permission bits</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="n">preserve</span><span class="p">:</span>
-            <span class="n">shutil</span><span class="o">.</span><span class="n">copy2</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dest</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">shutil</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dest</span><span class="p">)</span></div>
-
-<div class="viewcode-block" id="FSPath.copytree"><a class="viewcode-back" href="../../fspath-api/fspath.fspath.html#fspath.fspath.FSPath.copytree">[docs]</a>    <span class="k">def</span> <span class="nf">copytree</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dest</span><span class="p">,</span> <span class="n">symlinks</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">ignore</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sa">u</span><span class="sd">&quot;&quot;&quot;Recursively copy the entire directory tree&quot;&quot;&quot;</span>
-        <span class="n">shutil</span><span class="o">.</span><span class="n">copytree</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dest</span><span class="p">,</span> <span class="n">symlinks</span><span class="p">,</span> <span class="n">ignore</span><span class="p">)</span></div>
-
-<div class="viewcode-block" id="FSPath.move"><a class="viewcode-back" href="../../fspath-api/fspath.fspath.html#fspath.fspath.FSPath.move">[docs]</a>    <span class="k">def</span> <span class="nf">move</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dest</span><span class="p">):</span>
-        <span class="sa">u</span><span class="sd">&quot;&quot;&quot;Move path to another location (dest)&quot;&quot;&quot;</span>
-        <span class="n">shutil</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dest</span><span class="p">)</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">(</span><span class="n">dest</span><span class="p">)</span></div>
-
-<div class="viewcode-block" id="FSPath.delete"><a class="viewcode-back" href="../../fspath-api/fspath.fspath.html#fspath.fspath.FSPath.delete">[docs]</a>    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sa">u</span><span class="sd">&quot;&quot;&quot;remove file/folder&quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">ISDIR</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">rmtree</span><span class="p">()</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">rmfile</span><span class="p">()</span></div>
-
-<div class="viewcode-block" id="FSPath.rmtree"><a class="viewcode-back" href="../../fspath-api/fspath.fspath.html#fspath.fspath.FSPath.rmtree">[docs]</a>    <span class="k">def</span> <span class="nf">rmtree</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ignore_errors</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">onerror</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sa">u</span><span class="sd">&quot;&quot;&quot;remove tree&quot;&quot;&quot;</span>
-        <span class="n">shutil</span><span class="o">.</span><span class="n">rmtree</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ignore_errors</span><span class="p">,</span> <span class="n">onerror</span><span class="p">)</span></div>
-
-<div class="viewcode-block" id="FSPath.rmfile"><a class="viewcode-back" href="../../fspath-api/fspath.fspath.html#fspath.fspath.FSPath.rmfile">[docs]</a>    <span class="k">def</span> <span class="nf">rmfile</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sa">u</span><span class="sd">&quot;&quot;&quot;remove file&quot;&quot;&quot;</span>
-        <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
-
-<div class="viewcode-block" id="FSPath.filesize"><a class="viewcode-back" href="../../fspath-api/fspath.fspath.html#fspath.fspath.FSPath.filesize">[docs]</a>    <span class="k">def</span> <span class="nf">filesize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">precision</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sa">u</span><span class="sd">&quot;&quot;&quot;Filesize in bytes or with precision&quot;&quot;&quot;</span>
-        <span class="n">size</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">getsize</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">precision</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">size</span> <span class="o">=</span> <span class="n">humanizeBytes</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">precision</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">size</span></div>
-
-<div class="viewcode-block" id="FSPath.openTextFile"><a class="viewcode-back" href="../../fspath-api/fspath.fspath.html#fspath.fspath.FSPath.openTextFile">[docs]</a>    <span class="k">def</span> <span class="nf">openTextFile</span><span class="p">(</span><span class="bp">self</span>
-                     <span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;rt&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span>
-                     <span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;strict&#39;</span><span class="p">,</span> <span class="n">buffering</span><span class="o">=</span><span class="mi">1</span>
-                     <span class="p">,</span> <span class="n">newline</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sa">u</span><span class="sd">&quot;&quot;&quot;Open file as text file.</span>
-
-<span class="sd">        wraps `io.open &lt;https://docs.python.org/library/io.html#io.open&gt;`_:</span>
-
-<span class="sd">        * except argument ``closefd`` (meaningless when using filenames)</span>
-<span class="sd">        * ``encoding=&#39;utf-8&#39;`` is default</span>
-<span class="sd">        * ``mode=&#39;rt&#39;`` is default</span>
-<span class="sd">        * ``buffering=1`` is default (selects line buffering)</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">io</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="bp">self</span>
-                       <span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="n">mode</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="n">encoding</span>
-                       <span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="n">errors</span><span class="p">,</span> <span class="n">buffering</span><span class="o">=</span><span class="n">buffering</span>
-                       <span class="p">,</span> <span class="n">newline</span><span class="o">=</span><span class="n">newline</span><span class="p">)</span></div>
-
-<div class="viewcode-block" id="FSPath.openBinaryFile"><a class="viewcode-back" href="../../fspath-api/fspath.fspath.html#fspath.fspath.FSPath.openBinaryFile">[docs]</a>    <span class="k">def</span> <span class="nf">openBinaryFile</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;rb&#39;</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;strict&#39;</span><span class="p">,</span> <span class="n">buffering</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sa">u</span><span class="sd">&quot;&quot;&quot;Open file as binary file.</span>
-
-<span class="sd">        wraps `io.open &lt;https://docs.python.org/library/io.html#io.open&gt;`_:</span>
-
-<span class="sd">        * except argument ``closefd`` (meaningless when using filenames)</span>
-<span class="sd">        * except argument ``encoding`` (meaningless since *binary*)</span>
-<span class="sd">        * except argument ``newline`` (meaningless since *binary*)</span>
-<span class="sd">        * ``mode=&#39;rb&#39;`` is default</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">io</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="n">mode</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="n">errors</span><span class="p">,</span> <span class="n">buffering</span><span class="o">=</span><span class="n">buffering</span><span class="p">)</span></div>
-
-<div class="viewcode-block" id="FSPath.startFile"><a class="viewcode-back" href="../../fspath-api/fspath.fspath.html#fspath.fspath.FSPath.startFile">[docs]</a>    <span class="k">def</span> <span class="nf">startFile</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Start a file with its associated application.&quot;&quot;&quot;</span>
-        <span class="n">system</span>  <span class="o">=</span> <span class="n">platform</span><span class="o">.</span><span class="n">system</span><span class="p">()</span>
-        <span class="k">if</span> <span class="n">system</span> <span class="o">==</span> <span class="s1">&#39;Windows&#39;</span><span class="p">:</span>
-            <span class="n">os</span><span class="o">.</span><span class="n">startfile</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="c1"># pylint: disable=no-member</span>
-            <span class="k">return</span>
-        <span class="n">cmd</span> <span class="o">=</span> <span class="s1">&#39;xdg-open&#39;</span>
-        <span class="k">if</span> <span class="n">system</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;FreeBSD&#39;</span><span class="p">,</span> <span class="s1">&#39;Darwin&#39;</span><span class="p">):</span>
-            <span class="n">cmd</span> <span class="o">=</span> <span class="s1">&#39;open&#39;</span>
-
-        <span class="kn">from</span> <span class="nn">._which</span> <span class="k">import</span> <span class="n">which</span>
-        <span class="n">cmd</span> <span class="o">=</span> <span class="n">which</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="n">findall</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">cmd</span><span class="p">:</span>
-            <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="n">cmd</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="p">)</span></div>
-
-<div class="viewcode-block" id="FSPath.readFile"><a class="viewcode-back" href="../../fspath-api/fspath.fspath.html#fspath.fspath.FSPath.readFile">[docs]</a>    <span class="k">def</span> <span class="nf">readFile</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;strict&#39;</span><span class="p">):</span>
-        <span class="sa">u</span><span class="sd">&quot;&quot;&quot;read entire file&quot;&quot;&quot;</span>
-        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">openTextFile</span><span class="p">(</span><span class="n">encoding</span><span class="o">=</span><span class="n">encoding</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="n">errors</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span></div>
-
-<div class="viewcode-block" id="FSPath.extract"><a class="viewcode-back" href="../../fspath-api/fspath.fspath.html#fspath.fspath.FSPath.extract">[docs]</a>    <span class="k">def</span> <span class="nf">extract</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">folder</span><span class="o">=</span><span class="s2">&quot;.&quot;</span><span class="p">,</span> <span class="n">pwd</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ticker</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">pipe</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">):</span>
-        <span class="sa">u</span><span class="sd">&quot;&quot;&quot;Extract TAR or ZIP archive to &#39;folder&#39;</span>
-
-<span class="sd">        Uses ``extractall`` from :py:class:`tarfile.TarFile` and</span>
-<span class="sd">        :py:class:`zipfile.Zipfile` to extract into ``folder``.</span>
-
-<span class="sd">        :folder str: folder to extract into</span>
-<span class="sd">        :pwd str: password for crypted (only ZIP)</span>
-<span class="sd">        :return: members in an iterable form (list or just iterator)</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-
-        <span class="k">class</span> <span class="nc">ArchiveMember</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span> <span class="c1"># pylint: disable=missing-docstring, too-few-public-methods</span>
-            <span class="sa">u</span><span class="sd">&quot;&quot;&quot;wrapper for an archive member (tar or zip members)&quot;&quot;&quot;</span>
-            <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">member</span><span class="p">,</span> <span class="n">archive</span><span class="p">):</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">ISTAR</span>       <span class="o">=</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">archive</span><span class="p">,</span> <span class="n">tarfile</span><span class="o">.</span><span class="n">TarFile</span><span class="p">)</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">ISZIP</span>       <span class="o">=</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">archive</span><span class="p">,</span> <span class="n">zipfile</span><span class="o">.</span><span class="n">ZipFile</span><span class="p">)</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">archive</span>     <span class="o">=</span> <span class="n">archive</span>
-                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">ISTAR</span><span class="p">:</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">member</span>  <span class="o">=</span> <span class="n">member</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">name</span>    <span class="o">=</span> <span class="n">FSPath</span><span class="p">(</span><span class="n">member</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">size</span>    <span class="o">=</span> <span class="n">member</span><span class="o">.</span><span class="n">size</span>
-                <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">ISZIP</span><span class="p">:</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">member</span>  <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">archive</span><span class="o">.</span><span class="n">getinfo</span><span class="p">(</span><span class="n">member</span><span class="p">)</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">name</span>    <span class="o">=</span> <span class="n">FSPath</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">member</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">size</span>    <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">member</span><span class="o">.</span><span class="n">file_size</span>
-
-            <span class="k">def</span> <span class="nf">extract</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">folder</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">pwd</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-                <span class="sa">u</span><span class="sd">&quot;&quot;&quot;wrapped extract member function&quot;&quot;&quot;</span>
-                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">ISTAR</span><span class="p">:</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">archive</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">member</span><span class="p">,</span> <span class="n">folder</span> <span class="ow">or</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
-                <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">ISZIP</span><span class="p">:</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">archive</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">member</span><span class="p">,</span> <span class="n">folder</span> <span class="ow">or</span> <span class="kc">None</span><span class="p">,</span> <span class="n">pwd</span><span class="p">)</span>
-                <span class="k">else</span><span class="p">:</span>
-                    <span class="k">raise</span> <span class="n">tarfile</span><span class="o">.</span><span class="n">ExtractError</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> archive type is unknown&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">member</span><span class="p">)</span>
-
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">ISTAR</span><span class="p">:</span>
-            <span class="n">arc</span> <span class="o">=</span> <span class="n">tarfile</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;r:*&#39;</span><span class="p">)</span>
-            <span class="n">am</span>  <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">arc</span><span class="o">.</span><span class="n">getmembers</span><span class="p">())</span>
-            <span class="n">mx</span>  <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">am</span><span class="p">)</span>
-        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">ISZIP</span><span class="p">:</span>
-            <span class="n">arc</span> <span class="o">=</span> <span class="n">zipfile</span><span class="o">.</span><span class="n">ZipFile</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
-            <span class="n">am</span>  <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">arc</span><span class="o">.</span><span class="n">namelist</span><span class="p">())</span>
-            <span class="n">mx</span>  <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">am</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">tarfile</span><span class="o">.</span><span class="n">ExtractError</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> archive type is unknown&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="p">)</span>
-
-        <span class="k">if</span> <span class="n">ticker</span> <span class="ow">and</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">ticker</span><span class="p">,</span> <span class="nb">bool</span><span class="p">):</span>
-            <span class="n">tick_func</span> <span class="o">=</span> <span class="n">ticker</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">def</span> <span class="nf">tick_func</span><span class="p">(</span><span class="n">member</span><span class="p">,</span> <span class="n">counter</span><span class="p">,</span> <span class="n">max_count</span><span class="p">):</span>
-                <span class="sa">u</span><span class="sd">&quot;&quot;&quot;extract&#39;s default ticker&quot;&quot;&quot;</span>
-                <span class="n">n</span> <span class="o">=</span> <span class="n">member</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">BASENAME</span>
-                <span class="n">progressbar</span><span class="p">(</span><span class="n">counter</span><span class="p">,</span> <span class="n">max_count</span>
-                            <span class="p">,</span> <span class="n">prompt</span> <span class="o">=</span> <span class="s2">&quot;extract: </span><span class="si">%-20s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">n</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">20</span> <span class="k">else</span> <span class="n">n</span> <span class="o">+</span> <span class="s2">&quot;..&quot;</span><span class="p">)</span>
-                            <span class="p">,</span> <span class="n">pipe</span>   <span class="o">=</span> <span class="n">pipe</span><span class="p">)</span>
-
-        <span class="n">folder</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">(</span><span class="n">folder</span><span class="p">)</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">folder</span><span class="o">.</span><span class="n">EXISTS</span><span class="p">:</span>
-            <span class="n">folder</span><span class="o">.</span><span class="n">makedirs</span><span class="p">()</span>
-
-        <span class="n">members</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">for</span> <span class="n">c</span><span class="p">,</span> <span class="n">m</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">am</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
-            <span class="n">m</span> <span class="o">=</span> <span class="n">ArchiveMember</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">arc</span><span class="p">)</span>
-            <span class="n">members</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">ticker</span><span class="p">:</span>
-                <span class="n">tick_func</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">mx</span><span class="p">)</span>
-            <span class="n">m</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="n">folder</span><span class="p">,</span> <span class="n">pwd</span><span class="p">)</span>
-
-        <span class="k">if</span> <span class="n">ticker</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">ticker</span><span class="p">,</span> <span class="nb">bool</span><span class="p">):</span>
-            <span class="n">pipe</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
-
-        <span class="k">return</span> <span class="n">members</span></div>
-
-
-<div class="viewcode-block" id="FSPath.Popen"><a class="viewcode-back" href="../../fspath-api/fspath.fspath.html#fspath.fspath.FSPath.Popen">[docs]</a>    <span class="k">def</span> <span class="nf">Popen</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>  <span class="c1"># pylint: disable=invalid-name</span>
-        <span class="sa">u</span><span class="sd">&quot;&quot;&quot;Get a ``subprocess.Popen`` object (``proc``).</span>
-
-<span class="sd">        The path name of the self-object is the programm to call. The program</span>
-<span class="sd">        arguments are given py ``*args`` and the ``*kwargs`` are passed to the</span>
-<span class="sd">        ``subprocess.Popen`` constructor. The ``universal_newlines=True`` is</span>
-<span class="sd">        true by default.</span>
-
-<span class="sd">        see https://docs.python.org/3/library/subprocess.html#popen-constructor</span>
-
-<span class="sd">        .. code-block:: python</span>
-
-<span class="sd">           from fspath import FSPath</span>
-<span class="sd">           proc = FSPath(&quot;arp&quot;).Popen(&quot;-a&quot;,)</span>
-<span class="sd">           stdout, stderr = proc.communicate()</span>
-<span class="sd">           retVal = proc.returncode</span>
-<span class="sd">           print(&quot;stdout: %s&quot; % stdout)</span>
-<span class="sd">           print(&quot;stderr: %s&quot; % stderr)</span>
-<span class="sd">           print(&quot;exit code = %d&quot; % retVal)</span>
-
-<span class="sd">        &quot;&quot;&quot;</span>
-
-        <span class="n">defaults</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="s1">&#39;stdout&#39;</span>               <span class="p">:</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span>
-            <span class="p">,</span> <span class="s1">&#39;stderr&#39;</span>             <span class="p">:</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span>
-            <span class="p">,</span> <span class="s1">&#39;stdin&#39;</span>              <span class="p">:</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span>
-            <span class="p">,</span> <span class="s1">&#39;universal_newlines&#39;</span> <span class="p">:</span> <span class="kc">True</span>
-            <span class="p">}</span>
-        <span class="n">defaults</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">([</span><span class="bp">self</span><span class="p">,]</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="n">args</span><span class="p">),</span> <span class="o">**</span><span class="n">defaults</span><span class="p">)</span></div>
-
-<div class="viewcode-block" id="FSPath.download"><a class="viewcode-back" href="../../fspath-api/fspath.fspath.html#fspath.fspath.FSPath.download">[docs]</a>    <span class="k">def</span> <span class="nf">download</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">chunksize</span><span class="o">=</span><span class="mi">1048576</span><span class="p">,</span> <span class="n">ticker</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">pipe</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">):</span>
-        <span class="sa">u</span><span class="sd">&quot;&quot;&quot;Download URL into file</span>
-
-<span class="sd">        The default chunksize is 1048576 Bytes, with ticker=True an progress-bar</span>
-<span class="sd">        is prompted.</span>
-
-<span class="sd">        E.g. to download FSPath&#39;s README.rst with a progressbar on stdout::</span>
-
-<span class="sd">            url = &quot;https://raw.githubusercontent.com/return42/fspath/master/README.rst&quot;</span>
-
-<span class="sd">            readme = FSPath(&quot;README.rst&quot;)</span>
-<span class="sd">            readme.download(url, ticker=True)</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-
-        <span class="k">if</span> <span class="n">ticker</span> <span class="ow">and</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">ticker</span><span class="p">,</span> <span class="nb">bool</span><span class="p">):</span>
-            <span class="n">tick_func</span> <span class="o">=</span> <span class="n">ticker</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">def</span> <span class="nf">tick_func</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="n">down_bytes</span><span class="p">,</span> <span class="n">max_bytes</span><span class="p">):</span>
-                <span class="sa">u</span><span class="sd">&quot;&quot;&quot;download&#39;s default ticker&quot;&quot;&quot;</span>
-                <span class="n">progressbar</span><span class="p">(</span><span class="n">down_bytes</span><span class="p">,</span> <span class="n">max_bytes</span>
-                            <span class="p">,</span> <span class="n">prompt</span> <span class="o">=</span> <span class="s2">&quot;download: </span><span class="si">%s</span><span class="s2">[</span><span class="si">%s</span><span class="s2">]&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">fname</span><span class="o">.</span><span class="n">BASENAME</span><span class="p">,</span> <span class="n">humanizeBytes</span><span class="p">(</span><span class="n">max_bytes</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
-                            <span class="p">,</span> <span class="n">pipe</span>   <span class="o">=</span> <span class="n">pipe</span><span class="p">)</span>
-
-        <span class="k">with</span> <span class="n">closing</span><span class="p">(</span><span class="n">urlopen</span><span class="p">(</span><span class="n">url</span><span class="p">))</span> <span class="k">as</span> <span class="n">d</span><span class="p">:</span>
-            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-                <span class="c1"># pylint: disable=no-member</span>
-                <span class="n">max_bytes</span>  <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;Content-Length&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
-                <span class="n">down_bytes</span> <span class="o">=</span> <span class="mi">0</span>
-                <span class="k">if</span> <span class="n">chunksize</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-                    <span class="n">chunksize</span> <span class="o">=</span> <span class="n">max_bytes</span> <span class="o">//</span> <span class="mi">100</span>
-                <span class="k">while</span> <span class="mi">1</span><span class="p">:</span>
-                    <span class="n">x</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">chunksize</span><span class="p">)</span>
-                    <span class="k">if</span> <span class="ow">not</span> <span class="nb">bool</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)):</span>
-                        <span class="k">break</span>
-                    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-                    <span class="n">down_bytes</span> <span class="o">+=</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-                    <span class="k">if</span> <span class="n">ticker</span><span class="p">:</span>
-                        <span class="n">tick_func</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">down_bytes</span><span class="p">,</span> <span class="n">max_bytes</span><span class="p">)</span>
-                <span class="k">if</span> <span class="n">ticker</span><span class="p">:</span>
-                    <span class="n">pipe</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span></div></div>
-
-
-<span class="c1"># ==============================================================================</span>
-<div class="viewcode-block" id="callEXE"><a class="viewcode-back" href="../../fspath-api/fspath.fspath.html#fspath.fspath.callEXE">[docs]</a><span class="k">def</span> <span class="nf">callEXE</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-<span class="c1"># ==============================================================================</span>
-
-    <span class="sa">u</span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Synchronous command call ``cmd`` with arguments ``*args`` .</span>
-
-<span class="sd">    The ``*kwargs`` are passed to the ``subprocess.Popen`` constructor. The</span>
-<span class="sd">    return value is a three-digit tuple ``(stdout, stderr, rc)``.</span>
-
-<span class="sd">    .. code-block:: python</span>
-
-<span class="sd">       from fspath import callEXE</span>
-<span class="sd">       out, err, rc = callEXE(&quot;arp&quot;, &quot;-a&quot;)</span>
-
-<span class="sd">       print(&quot;stdout: %s&quot; % out)</span>
-<span class="sd">       print(&quot;stderr: %s&quot; % err)</span>
-<span class="sd">       print(&quot;exit code = %d&quot; % rc)</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="kn">from</span> <span class="nn">._which</span> <span class="k">import</span> <span class="n">which</span>
-    <span class="n">exe</span> <span class="o">=</span> <span class="n">which</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="n">findall</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">exe</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">IOError</span><span class="p">(</span><span class="s1">&#39;command &quot;</span><span class="si">%s</span><span class="s1">&quot; not availble!&#39;</span> <span class="o">%</span> <span class="n">cmd</span><span class="p">)</span>
-    <span class="n">proc</span> <span class="o">=</span> <span class="n">exe</span><span class="o">.</span><span class="n">Popen</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-    <span class="n">stdout</span><span class="p">,</span> <span class="n">stderr</span> <span class="o">=</span> <span class="n">proc</span><span class="o">.</span><span class="n">communicate</span><span class="p">()</span>
-    <span class="n">retVal</span> <span class="o">=</span> <span class="n">proc</span><span class="o">.</span><span class="n">returncode</span>
-    <span class="k">return</span> <span class="p">(</span><span class="n">stdout</span><span class="p">,</span> <span class="n">stderr</span><span class="p">,</span> <span class="n">retVal</span><span class="p">)</span></div>
-
-
-<span class="c1"># ==============================================================================</span>
-<span class="k">class</span> <span class="nc">DevNull</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span> <span class="c1"># pylint: disable=too-few-public-methods</span>
-<span class="c1"># ==============================================================================</span>
-
-    <span class="sd">&quot;&quot;&quot;A dev/null file descriptor.&quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="nf">write</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="sa">u</span><span class="sd">&quot;&quot;&quot;writer which writes nothing&quot;&quot;&quot;</span>
-        <span class="k">pass</span>
-
-<span class="n">DevNull</span> <span class="o">=</span> <span class="n">DevNull</span><span class="p">()</span> <span class="c1"># pylint: disable=invalid-name</span>
+    .. code-block:: python
+
+      &gt;&gt;&gt; [(tmp/x).makedirs() for x in (&#39;foo&#39;, &#39;bar&#39;)]
+      True, True
+      &gt;&gt;&gt; for n in tmp.listdir():
+      ...     print(tmp / n)
+      ...
+      /home/user/tmp/foo
+      /home/user/tmp/bar
+
+    downloads &amp; archives
+
+    .. code-block:: python
+
+      &gt;&gt;&gt; arch = foo / &#39;fspath.zip&#39;
+      &gt;&gt;&gt; url = &#39;https://github.com/return42/fspath/archive/master.zip&#39;
+
+   ``download`` -- super easy download + segmentation + nice ticker
+
+    .. code-block:: python
+
+      &gt;&gt;&gt; arch.download(url, chunksize=1024, ticker=True)
+      /home/user/tmp/foo/fspath.zip: [87.9 KB][===============    ]  83%
+
+   ``FSPath.extract`` -- extract in one step, no matter ZIP or TAR
+
+    .. code-block:: python
+
+      &gt;&gt;&gt; arch.ISTAR, arch.ISZIP
+      (False, True)
+      &gt;&gt;&gt; arch.extract(foo)
+      [&#39;fspath-master/&#39;, &#39;fspath-master/.gitignore&#39;
+      , &#39;fspath-master/MAINFEST.in&#39;, &#39;fspath-master/Makefile&#39;
+      , &#39;fspath-master/README.rst&#39;,  ... ]
+
+    For more examples see our `slide-show &lt;../slides/index.html&gt;`_.
+
+    &quot;&quot;&quot;
+
+    OS = Options(
+        sep       = os.sep     # https://docs.python.org/3/library/os.html#os.sep
+        , curdir  = os.curdir  # https://docs.python.org/3/library/os.html#os.curdir
+        , altsep  = os.altsep  # https://docs.python.org/3/library/os.html#os.altsep
+        , extsep  = os.extsep  # https://docs.python.org/3/library/os.html#os.extsep
+        , pathsep = os.pathsep # https://docs.python.org/3/library/os.html#os.pathsep
+        , defpath = os.defpath # https://docs.python.org/3/library/os.html#os.defpath
+        , linesep = os.linesep # https://docs.python.org/3/library/os.html#os.linesep
+        , devnull = os.devnull # https://docs.python.org/3/library/os.html#os.devnull
+    )
+
+    def __new__(cls, pathname):
+        u&quot;&quot;&quot;Constructor of a path name object.
+
+        Regardless of how the encoding of the file system is, the ``pathname``
+        is converted to unicode. The conversion of byte strings is based the
+        default encodings.
+
+        To issue &quot;File-system Encoding&quot; See also:
+
+        * https://docs.python.org/3.5/howto/unicode.html#unicode-filenames
+        &quot;&quot;&quot;
+        pathname = path.normpath(path.expanduser(six.text_type(pathname)))
+        return super(FSPath, cls).__new__(cls, pathname)
+
+    @property
+    def VALUE(self):
+        u&quot;&quot;&quot;string of the path name&quot;&quot;&quot;
+        return six.text_type(self)
+
+    @property
+    def EXISTS(self):
+        u&quot;&quot;&quot;True if file/pathname exist&quot;&quot;&quot;
+        return path.exists(self)
+
+    @property
+    def SIZE(self):
+        u&quot;&quot;&quot;Size in bytes&quot;&quot;&quot;
+        return path.getsize(self)
+
+    @property
+    def READABLE(self):
+        u&quot;&quot;&quot;True if file/path is readable&quot;&quot;&quot;
+        return os.access(self, os.R_OK)
+
+    @property
+    def WRITEABLE(self):
+        u&quot;&quot;&quot;True if file/path is writeable&quot;&quot;&quot;
+        return os.access(self, os.W_OK)
+
+    @property
+    def EXECUTABLE(self):
+        u&quot;&quot;&quot;True if file is executable&quot;&quot;&quot;
+        return os.access(self, os.X_OK)
+
+    @property
+    def ISDIR(self):
+        u&quot;&quot;&quot;True if path is a folder&quot;&quot;&quot;
+        return path.isdir(self)
+
+    @property
+    def ISFILE(self):
+        u&quot;&quot;&quot;True if path is a file&quot;&quot;&quot;
+        return path.isfile(self)
+
+    @property
+    def ISABSPATH(self):
+        u&quot;&quot;&quot;True if path is absolute&quot;&quot;&quot;
+        return path.isabs(self)
+
+    @property
+    def ISLINK(self):
+        u&quot;&quot;&quot;True if path is a symbolic link&quot;&quot;&quot;
+        return path.islink(self)
+
+    @property
+    def ISMOUNT(self):
+        u&quot;&quot;&quot;True if path is a mountpoint&quot;&quot;&quot;
+        return path.ismount(self)
+
+    @property
+    def MTIME(self):
+        &quot;&quot;&quot;Return the last modification time, reported by os.stat().&quot;&quot;&quot;
+        return os.stat(self).st_mtime
+
+    @property
+    def ATIME(self):
+        &quot;&quot;&quot;Return the last access time, reported by os.stat().&quot;&quot;&quot;
+        return os.stat(self).st_atime
+
+    @property
+    def CTIME(self):
+        &quot;&quot;&quot;Return the metadata change time, reported by os.stat().&quot;&quot;&quot;
+        return os.stat(self).st_ctime
+
+    @property
+    def ISZIP(self):
+        u&quot;&quot;&quot;True if path is a ZIP file&quot;&quot;&quot;
+        return zipfile.is_zipfile(self)
+
+    @property
+    def ISTAR(self):
+        u&quot;&quot;&quot;True if path is a TAR archive file&quot;&quot;&quot;
+        return tarfile.is_tarfile(self)
+
+    @property
+    def DIRNAME(self):
+        u&quot;&quot;&quot;The path name of the folder, where the file is located
+
+        E.g.: ``/path/to/folder/filename.ext`` --&gt; ``/path/to/folder``
+        &quot;&quot;&quot;
+        return self.__class__(path.dirname(self))
+
+    @property
+    def BASENAME(self):
+        u&quot;&quot;&quot;The path name with suffix, but without the folder name.
+
+        E.g.: ``/path/to/folder/filename.ext`` --&gt; ``filename.ext``
+        &quot;&quot;&quot;
+        return self.__class__(path.basename(self))
+
+    @property
+    def FILENAME(self):
+        u&quot;&quot;&quot;The path name without folder and suffix.
+
+        E.g.: ``/path/to/folder/filename.ext`` --&gt; ``filename``
+
+        &quot;&quot;&quot;
+        return self.__class__(path.splitext(path.basename(self))[0])
+
+    @property
+    def SUFFIX(self):
+        u&quot;&quot;&quot;The filename suffix
+
+        E.g.: ``/path/to/folder/filename.ext`` --&gt; ``.ext``
+
+        &quot;&quot;&quot;
+        return self.__class__(path.splitext(self)[1])
+
+    @property
+    def SKIPSUFFIX(self):
+        u&quot;&quot;&quot;The complete file name without suffix.
+
+        E.g.: ``/path/to/folder/filename.ext`` --&gt; ``/path/to/folder/filename``
+        &quot;&quot;&quot;
+        return self.__class__(path.splitext(self)[0])
+
+    @property
+    def ABSPATH(self):
+        u&quot;&quot;&quot;The absolute pathname
+
+        E.g: ``../to/../to/folder/filename.ext`` --&gt; ``/path/to/folder/filename.ext``
+
+        &quot;&quot;&quot;
+        return self.__class__(path.abspath(self))
+
+    @property
+    def REALPATH(self):
+        u&quot;&quot;&quot;The real pathname without symbolic links.&quot;&quot;&quot;
+        return self.__class__(path.realpath(self))
+
+    @property
+    def POSIXPATH(self):
+        u&quot;&quot;&quot;The path name in *POSIX* notation.
+
+        Helpfull if you are on MS-Windows and need the POSIX name.
+        &quot;&quot;&quot;
+        if os.sep == &quot;/&quot;:
+            return six.text_type(self)
+        else:
+            p = six.text_type(self)
+            if p[1] == &quot;:&quot;:
+                p = &quot;/&quot; + p.replace(&quot;:&quot;, &quot;&quot;, 1)
+            return p.replace(os.sep, &quot;/&quot;)
+
+    @property
+    def NTPATH(self):
+        u&quot;&quot;&quot;The path name in the Windows (NT) notation.
+        &quot;&quot;&quot;
+        retVal = None
+        if os.sep == &quot;\\&quot;:
+            retVal = six.text_type(self)
+        else:
+            retVal = six.text_type(self).replace(os.sep, &quot;\\&quot;)
+        return retVal
+
+    @property
+    def EXPANDVARS(self):
+        u&quot;&quot;&quot;Path with environment variables expanded.&quot;&quot;&quot;
+        return self.__class__(path.expandvars(self))
+
+    @property
+    def EXPANDUSER(self):
+        u&quot;&quot;&quot;Path with an initial component of ~ or ~user replaced by that user&#39;s home.&quot;&quot;&quot;
+        return self.__class__(path.expanduser(self))
+
+<div class="viewcode-block" id="FSPath.getHOME"><a class="viewcode-back" href="../../fspath-api/fspath.fspath.html#fspath.fspath.FSPath.getHOME">[docs]</a>    @classmethod
+    def getHOME(cls):
+        u&quot;&quot;&quot;User&#39;s home folder.&quot;&quot;&quot;
+        return cls(path.expanduser(&quot;~&quot;))</div>
+
+<div class="viewcode-block" id="FSPath.getCWD"><a class="viewcode-back" href="../../fspath-api/fspath.fspath.html#fspath.fspath.FSPath.getCWD">[docs]</a>    @classmethod
+    def getCWD(cls):
+        u&quot;&quot;&quot;Current working directory.&quot;&quot;&quot;
+        return cls(os.getcwd())</div>
+
+<div class="viewcode-block" id="FSPath.chdir"><a class="viewcode-back" href="../../fspath-api/fspath.fspath.html#fspath.fspath.FSPath.chdir">[docs]</a>    def chdir(self):
+        u&quot;&quot;&quot;change the current working directory to *self*.&quot;&quot;&quot;
+        os.chdir(self)</div>
+
+<div class="viewcode-block" id="FSPath.makedirs"><a class="viewcode-back" href="../../fspath-api/fspath.fspath.html#fspath.fspath.FSPath.makedirs">[docs]</a>    def makedirs(self, mode=0o775):
+        u&quot;&quot;&quot;Recursive directory creation, default mode is 0o775 (octal).
+
+        :param int mode: file permissons
+        :return: created (True) already exists (True),
+        :raises Exception: in case of errors (permissons, etc.)
+        &quot;&quot;&quot;
+        retVal = False
+        if not self.ISDIR:
+            os.makedirs(self, mode)
+            retVal = True
+        return retVal</div>
+
+    def __div__(self, pathname):
+        return self.__class__(self.VALUE + os.sep + six.text_type(pathname))
+    __truediv__ = __div__
+
+    def __rdiv__(self, pathname):
+        return self.__class__(six.text_type(pathname) + os.sep + self.VALUE)
+
+    def __add__(self, other):
+        return self.__class__(self.VALUE + six.text_type(other))
+
+    def __radd__(self, other):
+        return self.__class__(six.text_type(other) + self.VALUE)
+
+<div class="viewcode-block" id="FSPath.relpath"><a class="viewcode-back" href="../../fspath-api/fspath.fspath.html#fspath.fspath.FSPath.relpath">[docs]</a>    def relpath(self, start):
+        u&quot;&quot;&quot;Return a relative version of a path&quot;&quot;&quot;
+        return self.__class__(path.relpath(self, start))</div>
+
+<div class="viewcode-block" id="FSPath.splitpath"><a class="viewcode-back" href="../../fspath-api/fspath.fspath.html#fspath.fspath.FSPath.splitpath">[docs]</a>    def splitpath(self):
+        u&quot;&quot;&quot;Split a pathname.
+
+        Return tuple (head, tail) where tail is everything after the final
+        slash.  Either part may be empty.&quot;&quot;&quot;
+        head, tail = path.split(self)
+        return (self.__class__(head), self.__class__(tail))</div>
+
+<div class="viewcode-block" id="FSPath.listdir"><a class="viewcode-back" href="../../fspath-api/fspath.fspath.html#fspath.fspath.FSPath.listdir">[docs]</a>    def listdir(self):
+        u&quot;&quot;&quot;Return a iterator which yields the names of the files in the directory.&quot;&quot;&quot;
+        for name in os.listdir(self):
+            yield self.__class__(name)</div>
+
+<div class="viewcode-block" id="FSPath.glob"><a class="viewcode-back" href="../../fspath-api/fspath.fspath.html#fspath.fspath.FSPath.glob">[docs]</a>    def glob(self, pattern, relpath=False):
+        u&quot;&quot;&quot;Return an iterator which yields the paths matching a pathname pattern.
+
+        The pattern may contain simple shell-style wildcards a la
+        fnmatch. However, unlike fnmatch, filenames starting with a dot are
+        special cases that are not matched by &#39;*&#39; and &#39;?&#39;  patterns.
+        &quot;&quot;&quot;
+        for name in  iglob(self / pattern):
+            obj = self.__class__(name)
+            if relpath is True:
+                obj = obj.relpath(self)
+            yield obj</div>
+
+<div class="viewcode-block" id="FSPath.walk"><a class="viewcode-back" href="../../fspath-api/fspath.fspath.html#fspath.fspath.FSPath.walk">[docs]</a>    def walk(self, topdown=True, onerror=None, followlinks=False):
+        u&quot;&quot;&quot;Directory tree generator.
+
+        For each directory in the directory tree rooted at top (including top
+        itself, but excluding &#39;.&#39; and &#39;..&#39;), yields a 3-tuple::
+
+            folder, dirnames, filenames
+
+        dirnames is a list of the names of the subdirectories in dirpath
+        (excluding &#39;.&#39; and &#39;..&#39;).  filenames is a list of the names of the
+        non-directory files in dirpath.
+
+        Note that the names in the lists are just names, with no path components.
+        To get a full path (which begins with top) to a file or directory in
+        dirpath, do ``folder / name``.
+
+        By default, os.walk does not follow symbolic links to subdirectories on
+        systems that support them.  In order to get this functionality, set the
+        optional argument &#39;followlinks&#39; to true.
+
+        .. caution::
+
+           If you pass a relative pathname for top, don&#39;t change the current
+           working directory between resumptions of walk.  walk never changes
+           the current directory, and assumes that the client doesn&#39;t either.
+
+        For more details see ``os.walk``&quot;&quot;&quot;
+
+        # argh those fu.. idiots from python impleted fspath in 3.4 which no
+        # longer supports string-like objects (inheritance of str) in os.walk.
+        # So we have to typecast str(self).
+
+        for dirpath, dirnames, filenames in os.walk(str(self), topdown, onerror, followlinks):
+            dirs = [self.__class__(x) for x in dirnames]
+
+            yield (self.__class__(dirpath)
+                   , dirs
+                   , [self.__class__(x) for x in filenames])
+
+            for name in list(dirnames):
+                if name not in dirs:
+                    dirnames.remove(name)</div>
+
+
+<div class="viewcode-block" id="FSPath.reMatchFind"><a class="viewcode-back" href="../../fspath-api/fspath.fspath.html#fspath.fspath.FSPath.reMatchFind">[docs]</a>    def reMatchFind(self, name, use_files=True, use_dirs=True, followlinks=False, relpath=False):
+        u&quot;&quot;&quot;Returns iterator which yields matching path names
+
+        :param use_files:   iterator includes names of files
+        :param use_dirs:    iterator includes names of folders
+        :param followlinks: follow symbolic links
+
+        To find all C and header files use::
+
+            folder.reMatchFind(&quot;*\\.[ch]&quot;)
+
+        To find the first C or header file use::
+
+            next(myFolder.reMatchFind(&quot;*\\.[ch]&quot;), None)
+        &quot;&quot;&quot;
+
+        name_re = re.compile(name)
+        for folder, dirnames, filenames in self.walk(followlinks=followlinks):
+            if use_dirs:
+                for d_name in [x for x in dirnames if name_re.match(x)]:
+                    obj = folder / d_name
+                    if relpath:
+                        obj = obj.relpath(self)
+                    yield obj
+            if use_files:
+                for f_name in [x for x in filenames if name_re.match(x)]:
+                    obj = folder / f_name
+                    if relpath:
+                        obj = obj.relpath(self)
+                    yield obj</div>
+
+<div class="viewcode-block" id="FSPath.suffix"><a class="viewcode-back" href="../../fspath-api/fspath.fspath.html#fspath.fspath.FSPath.suffix">[docs]</a>    def suffix(self, new_suffix):
+        u&quot;&quot;&quot;Return path name with ``new_suffix``&quot;&quot;&quot;
+        return self.__class__(self.SKIPSUFFIX + new_suffix)</div>
+
+<div class="viewcode-block" id="FSPath.copyfile"><a class="viewcode-back" href="../../fspath-api/fspath.fspath.html#fspath.fspath.FSPath.copyfile">[docs]</a>    def copyfile(self, dest, preserve=False):
+        u&quot;&quot;&quot;Copy the file src to the file or directory dest.
+
+        :dest str: The destination may be a directory
+        :preserve bool: copies permission bits
+        &quot;&quot;&quot;
+        if preserve:
+            shutil.copy2(self, dest)
+        else:
+            shutil.copy(self, dest)</div>
+
+<div class="viewcode-block" id="FSPath.copytree"><a class="viewcode-back" href="../../fspath-api/fspath.fspath.html#fspath.fspath.FSPath.copytree">[docs]</a>    def copytree(self, dest, symlinks=False, ignore=None):
+        u&quot;&quot;&quot;Recursively copy the entire directory tree&quot;&quot;&quot;
+        shutil.copytree(self, dest, symlinks, ignore)</div>
+
+<div class="viewcode-block" id="FSPath.move"><a class="viewcode-back" href="../../fspath-api/fspath.fspath.html#fspath.fspath.FSPath.move">[docs]</a>    def move(self, dest):
+        u&quot;&quot;&quot;Move path to another location (dest)&quot;&quot;&quot;
+        shutil.move(self, dest)
+        return self.__class__(dest)</div>
+
+<div class="viewcode-block" id="FSPath.delete"><a class="viewcode-back" href="../../fspath-api/fspath.fspath.html#fspath.fspath.FSPath.delete">[docs]</a>    def delete(self):
+        u&quot;&quot;&quot;remove file/folder&quot;&quot;&quot;
+        if self.ISDIR:
+            self.rmtree()
+        else:
+            self.rmfile()</div>
+
+<div class="viewcode-block" id="FSPath.rmtree"><a class="viewcode-back" href="../../fspath-api/fspath.fspath.html#fspath.fspath.FSPath.rmtree">[docs]</a>    def rmtree(self, ignore_errors=False, onerror=None):
+        u&quot;&quot;&quot;remove tree&quot;&quot;&quot;
+        shutil.rmtree(self, ignore_errors, onerror)</div>
+
+<div class="viewcode-block" id="FSPath.rmfile"><a class="viewcode-back" href="../../fspath-api/fspath.fspath.html#fspath.fspath.FSPath.rmfile">[docs]</a>    def rmfile(self):
+        u&quot;&quot;&quot;remove file&quot;&quot;&quot;
+        os.remove(self)</div>
+
+<div class="viewcode-block" id="FSPath.filesize"><a class="viewcode-back" href="../../fspath-api/fspath.fspath.html#fspath.fspath.FSPath.filesize">[docs]</a>    def filesize(self, precision=None):
+        u&quot;&quot;&quot;Filesize in bytes or with precision&quot;&quot;&quot;
+        size = path.getsize(self)
+        if precision is not None:
+            size = humanizeBytes(size, precision)
+        return size</div>
+
+<div class="viewcode-block" id="FSPath.openTextFile"><a class="viewcode-back" href="../../fspath-api/fspath.fspath.html#fspath.fspath.FSPath.openTextFile">[docs]</a>    def openTextFile(self
+                     , mode=&#39;rt&#39;, encoding=&#39;utf-8&#39;
+                     , errors=&#39;strict&#39;, buffering=1
+                     , newline=None):
+        u&quot;&quot;&quot;Open file as text file.
+
+        wraps `io.open &lt;https://docs.python.org/library/io.html#io.open&gt;`_:
+
+        * except argument ``closefd`` (meaningless when using filenames)
+        * ``encoding=&#39;utf-8&#39;`` is default
+        * ``mode=&#39;rt&#39;`` is default
+        * ``buffering=1`` is default (selects line buffering)
+        &quot;&quot;&quot;
+        return io.open(self
+                       , mode=mode, encoding=encoding
+                       , errors=errors, buffering=buffering
+                       , newline=newline)</div>
+
+<div class="viewcode-block" id="FSPath.openBinaryFile"><a class="viewcode-back" href="../../fspath-api/fspath.fspath.html#fspath.fspath.FSPath.openBinaryFile">[docs]</a>    def openBinaryFile(self, mode=&#39;rb&#39;, errors=&#39;strict&#39;, buffering=None):
+        u&quot;&quot;&quot;Open file as binary file.
+
+        wraps `io.open &lt;https://docs.python.org/library/io.html#io.open&gt;`_:
+
+        * except argument ``closefd`` (meaningless when using filenames)
+        * except argument ``encoding`` (meaningless since *binary*)
+        * except argument ``newline`` (meaningless since *binary*)
+        * ``mode=&#39;rb&#39;`` is default
+        &quot;&quot;&quot;
+        return io.open(self, mode=mode, errors=errors, buffering=buffering)</div>
+
+<div class="viewcode-block" id="FSPath.startFile"><a class="viewcode-back" href="../../fspath-api/fspath.fspath.html#fspath.fspath.FSPath.startFile">[docs]</a>    def startFile(self):
+        &quot;&quot;&quot;Start a file with its associated application.&quot;&quot;&quot;
+        system  = platform.system()
+        if system == &#39;Windows&#39;:
+            os.startfile(self) # pylint: disable=no-member
+            return
+        cmd = &#39;xdg-open&#39;
+        if system in (&#39;FreeBSD&#39;, &#39;Darwin&#39;):
+            cmd = &#39;open&#39;
+
+        from ._which import which
+        cmd = which(cmd, findall=False)
+        if cmd:
+            os.system(cmd + &quot; &quot; + self)</div>
+
+<div class="viewcode-block" id="FSPath.readFile"><a class="viewcode-back" href="../../fspath-api/fspath.fspath.html#fspath.fspath.FSPath.readFile">[docs]</a>    def readFile(self, encoding=&#39;utf-8&#39;, errors=&#39;strict&#39;):
+        u&quot;&quot;&quot;read entire file&quot;&quot;&quot;
+        with self.openTextFile(encoding=encoding, errors=errors) as f:
+            return f.read()</div>
+
+<div class="viewcode-block" id="FSPath.extract"><a class="viewcode-back" href="../../fspath-api/fspath.fspath.html#fspath.fspath.FSPath.extract">[docs]</a>    def extract(self, folder=&quot;.&quot;, pwd=None, ticker=False, pipe=sys.stdout):
+        u&quot;&quot;&quot;Extract TAR or ZIP archive to &#39;folder&#39;
+
+        Uses ``extractall`` from :py:class:`tarfile.TarFile` and
+        :py:class:`zipfile.Zipfile` to extract into ``folder``.
+
+        :folder str: folder to extract into
+        :pwd str: password for crypted (only ZIP)
+        :return: members in an iterable form (list or just iterator)
+        &quot;&quot;&quot;
+
+        class ArchiveMember(object): # pylint: disable=missing-docstring, too-few-public-methods
+            u&quot;&quot;&quot;wrapper for an archive member (tar or zip members)&quot;&quot;&quot;
+            def __init__(self, member, archive):
+                self.ISTAR       = isinstance(archive, tarfile.TarFile)
+                self.ISZIP       = isinstance(archive, zipfile.ZipFile)
+                self.archive     = archive
+                if self.ISTAR:
+                    self.member  = member
+                    self.name    = FSPath(member.name)
+                    self.size    = member.size
+                elif self.ISZIP:
+                    self.member  = self.archive.getinfo(member)
+                    self.name    = FSPath(self.member.filename)
+                    self.size    = self.member.file_size
+
+            def extract(self, folder=&quot;&quot;, pwd=None):
+                u&quot;&quot;&quot;wrapped extract member function&quot;&quot;&quot;
+                if self.ISTAR:
+                    self.archive.extract(self.member, folder or &quot;&quot;)
+                elif self.ISZIP:
+                    self.archive.extract(self.member, folder or None, pwd)
+                else:
+                    raise tarfile.ExtractError(&quot;%s archive type is unknown&quot; % self.member)
+
+        if self.ISTAR:
+            arc = tarfile.open(self, &#39;r:*&#39;)
+            am  = list(arc.getmembers())
+            mx  = len(am)
+        elif self.ISZIP:
+            arc = zipfile.ZipFile(self)
+            am  = list(arc.namelist())
+            mx  = len(am)
+        else:
+            raise tarfile.ExtractError(&quot;%s archive type is unknown&quot; % self)
+
+        if ticker and not isinstance(ticker, bool):
+            tick_func = ticker
+        else:
+            def tick_func(member, counter, max_count):
+                u&quot;&quot;&quot;extract&#39;s default ticker&quot;&quot;&quot;
+                n = member.name.BASENAME
+                progressbar(counter, max_count
+                            , prompt = &quot;extract: %-20s&quot; % (n if len(n) &lt; 20 else n + &quot;..&quot;)
+                            , pipe   = pipe)
+
+        folder = self.__class__(folder)
+        if not folder.EXISTS:
+            folder.makedirs()
+
+        members = []
+        for c, m in enumerate(am, start=1):
+            m = ArchiveMember(m, arc)
+            members.append(m)
+            if ticker:
+                tick_func(m, c, mx)
+            m.extract(folder, pwd)
+
+        if ticker and isinstance(ticker, bool):
+            pipe.write(&#39;\n&#39;)
+
+        return members</div>
+
+
+<div class="viewcode-block" id="FSPath.Popen"><a class="viewcode-back" href="../../fspath-api/fspath.fspath.html#fspath.fspath.FSPath.Popen">[docs]</a>    def Popen(self, *args, **kwargs):  # pylint: disable=invalid-name
+        u&quot;&quot;&quot;Get a ``subprocess.Popen`` object (``proc``).
+
+        The path name of the self-object is the programm to call. The program
+        arguments are given py ``*args`` and the ``*kwargs`` are passed to the
+        ``subprocess.Popen`` constructor. The ``universal_newlines=True`` is
+        true by default.
+
+        see https://docs.python.org/3/library/subprocess.html#popen-constructor
+
+        .. code-block:: python
+
+           from fspath import FSPath
+           proc = FSPath(&quot;arp&quot;).Popen(&quot;-a&quot;,)
+           stdout, stderr = proc.communicate()
+           retVal = proc.returncode
+           print(&quot;stdout: %s&quot; % stdout)
+           print(&quot;stderr: %s&quot; % stderr)
+           print(&quot;exit code = %d&quot; % retVal)
+
+        &quot;&quot;&quot;
+
+        defaults = {
+            &#39;stdout&#39;               : subprocess.PIPE
+            , &#39;stderr&#39;             : subprocess.PIPE
+            , &#39;stdin&#39;              : subprocess.PIPE
+            , &#39;universal_newlines&#39; : True
+            }
+        defaults.update(kwargs)
+        return subprocess.Popen([self,] + list(args), **defaults)</div>
+
+<div class="viewcode-block" id="FSPath.download"><a class="viewcode-back" href="../../fspath-api/fspath.fspath.html#fspath.fspath.FSPath.download">[docs]</a>    def download(self, url, chunksize=1048576, ticker=False, pipe=sys.stdout):
+        u&quot;&quot;&quot;Download URL into file
+
+        The default chunksize is 1048576 Bytes, with ticker=True an progress-bar
+        is prompted.
+
+        E.g. to download FSPath&#39;s README.rst with a progressbar on stdout::
+
+            url = &quot;https://raw.githubusercontent.com/return42/fspath/master/README.rst&quot;
+
+            readme = FSPath(&quot;README.rst&quot;)
+            readme.download(url, ticker=True)
+        &quot;&quot;&quot;
+
+        if ticker and not isinstance(ticker, bool):
+            tick_func = ticker
+        else:
+            def tick_func(fname, down_bytes, max_bytes):
+                u&quot;&quot;&quot;download&#39;s default ticker&quot;&quot;&quot;
+                progressbar(down_bytes, max_bytes
+                            , prompt = &quot;download: %s[%s]&quot; % (fname.BASENAME, humanizeBytes(max_bytes, 1))
+                            , pipe   = pipe)
+
+        with closing(urlopen(url)) as d:
+            with open(self, &quot;wb&quot;) as f:
+                # pylint: disable=no-member
+                max_bytes  = int(d.headers.get(&quot;Content-Length&quot;, 0))
+                down_bytes = 0
+                if chunksize is None:
+                    chunksize = max_bytes // 100
+                while 1:
+                    x = d.read(chunksize)
+                    if not bool(len(x)):
+                        break
+                    f.write(x)
+                    down_bytes += len(x)
+                    if ticker:
+                        tick_func(self, down_bytes, max_bytes)
+                if ticker:
+                    pipe.write(&#39;\n&#39;)</div></div>
+
+
+# ==============================================================================
+<div class="viewcode-block" id="callEXE"><a class="viewcode-back" href="../../fspath-api/fspath.fspath.html#fspath.fspath.callEXE">[docs]</a>def callEXE(cmd, *args, **kwargs):
+# ==============================================================================
+
+    u&quot;&quot;&quot;
+    Synchronous command call ``cmd`` with arguments ``*args`` .
+
+    The ``*kwargs`` are passed to the ``subprocess.Popen`` constructor. The
+    return value is a three-digit tuple ``(stdout, stderr, rc)``.
+
+    .. code-block:: python
+
+       from fspath import callEXE
+       out, err, rc = callEXE(&quot;arp&quot;, &quot;-a&quot;)
+
+       print(&quot;stdout: %s&quot; % out)
+       print(&quot;stderr: %s&quot; % err)
+       print(&quot;exit code = %d&quot; % rc)
+    &quot;&quot;&quot;
+    from ._which import which
+    exe = which(cmd, findall=False)
+    if exe is None:
+        raise IOError(&#39;command &quot;%s&quot; not availble!&#39; % cmd)
+    proc = exe.Popen(*args, **kwargs)
+    stdout, stderr = proc.communicate()
+    retVal = proc.returncode
+    return (stdout, stderr, retVal)</div>
+
+
+# ==============================================================================
+class DevNull(object): # pylint: disable=too-few-public-methods
+# ==============================================================================
+
+    &quot;&quot;&quot;A dev/null file descriptor.&quot;&quot;&quot;
+    def write(self, *args, **kwargs):
+        u&quot;&quot;&quot;writer which writes nothing&quot;&quot;&quot;
+        pass
+
+DevNull = DevNull() # pylint: disable=invalid-name
 </pre></div>
 
-           </div>
-           
+            <div class="clearer"></div>
           </div>
-          <footer>
-  
-
-  <hr/>
-
-  <div role="contentinfo">
-    <p>
-        &copy; Copyright 2019 Markus Heiser
-
-    </p>
-  </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
-
-</footer>
-
         </div>
       </div>
-
-    </section>
-
-  </div>
-  
-
-
-  <script type="text/javascript">
-      jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
-      });
-  </script>
-
-  
+  <span id="sidebar-top"></span>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
   
     
-   
+            <p class="logo"><a href="../../index.html">
+              <img class="logo" src="../../_static/darmarIT_logo_128.png" alt="Logo"/>
+            </a></p>
+  
+<h3>Navigation</h3>
+<ul>
+  <li><a href="../../index.html">Overview</a>
+    <ul>
+      <li><a href="../index.html">Module code</a>
+        
+          
+          </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script><div id="ethical-ad-placement"></div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2023 Markus Heiser.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.1.3.
+    </div>
+  <script src="../../_static/version_warning_offset.js"></script>
 
-</body>
+  </body>
 </html>

@@ -1,48 +1,48 @@
 <!DOCTYPE html>
 
-
 <html lang="de">
   <head>
-    <meta charset="UTF-8" />
+    <meta charset="utf-8" />
+    <title>fspath</title>
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>fspath package</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
 
     
-
-    
-<link rel="stylesheet" href="_static/css/reveal.css">
-<link rel="stylesheet" href="_static/css/theme/league.css" id="theme">
+<link rel="stylesheet" href="_static/css/reset.css">
+<link rel="stylesheet" href="_static/css/reveal.min.css">
+<link rel="stylesheet" href="_static/css/theme/dejavu.css" id="theme">
+<!-- Theme used for syntax highlighting of code -->
 <link rel="stylesheet" href="_static/lib/css/zenburn.css">
+
+
+<link rel="stylesheet" href="_static/pygments.css" type="text/css" />
 <link rel="stylesheet" href="_static/revealjs.css" type="text/css" />
 
-<link rel="stylesheet" href="_static/mysettings.css" type="text/css" />
-
-
-    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <!-- Printing and PDF exports -->
     <script>
-        if(window.location.search.match(/print-pdf/gi)) {
-            var link = document.createElement('link');
-            link.rel = 'stylesheet';
-            link.type = 'text/css';
-            link.href = '_static/css/print/pdf.css';
-            document.getElementsByTagName('head')[0].appendChild(link);
-        }
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? '_static/css/print/pdf.css' : '_static/css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
     </script>
+
 
     <!--[if lt IE 9]>
     <script src="_static/lib/js/html5shiv.js"></script>
     <![endif]-->
-      <script type="text/javascript" src="_static/language_data.js"></script>
+      <script type="text/javascript" src="_static/documentation_options.js"></script>
+      <script type="text/javascript" src="_static/sphinx_highlight.js"></script>
   </head>
   <body>
     <div class="reveal">
       <div class="slides">
         
-  <div class="section" id="fspath-package">
-<h1>fspath package<a class="headerlink" href="#fspath-package" title="Permalink to this headline">¶</a></h1>
- <aside id="logo" style="height:8vh; width:8vw; position:absolute; bottom:2vh; left:2vw; ">
+   <aside id="logo" style="height:8vh; width:8vw; position:absolute; bottom:2vh; left:2vw; ">
   <a href="http://www.darmarit.de">
     <img src="_static/darmarIT_logo_512.png">
   </a>
@@ -52,14 +52,16 @@
 <p class="first">semantic path names and much more</p>
 <p><a class="reference external" href="https://github.com/return42/fspath">return42/fspath&#64;GitHub</a></p>
 <small>
-contributed by <a class="reference external" href="http://github.com/return42">return42</a></small>
+<p class="first last">contributed by <a class="reference external" href="http://github.com/return42">return42</a></p>
+</small>
 <aside class="last notes">
-After 10 years juggling with os.path, zipfile &amp; Co. I thought it is time
+<p class="first last">After 10 years juggling with os.path, zipfile &amp; Co. I thought it is time
 to bring back more <em>pythonic</em> to APIs. It is made with the philosophy that
 API’s should be intuitive and their defaults should at least cover 80% of
 what programmer daily needs.  Started with the semantic file system
 pathes, it grows continuous and includes more and more handy stuff for the
-daily python scripting.</aside>
+daily python scripting.</p>
+</aside>
 </section>
 <section>
 <h2>tired in os.path?</h2>
@@ -86,13 +88,13 @@ daily python scripting.</aside>
 <section>
 <h2>Content</h2>
 <ul class="first last simple">
-<li><a class="reference external" href="#/4">semantic path</a></li>
-<li><a class="reference external" href="#/7">be expressive in daily use cases</a></li>
-<li><a class="reference external" href="#/15">file name suffix explained</a></li>
-<li><a class="reference external" href="#/20">the FSPath type</a></li>
-<li><a class="reference external" href="#/22">OS_ENV</a></li>
-<li><a class="reference external" href="#/24">Command Line Interface</a></li>
-<li><a class="reference external" href="#/31">versioning scheme</a></li>
+<li><p><a class="reference external" href="#/4">semantic path</a></p></li>
+<li><p><a class="reference external" href="#/7">be expressive in daily use cases</a></p></li>
+<li><p><a class="reference external" href="#/15">file name suffix explained</a></p></li>
+<li><p><a class="reference external" href="#/20">the FSPath type</a></p></li>
+<li><p><a class="reference external" href="#/22">OS_ENV</a></p></li>
+<li><p><a class="reference external" href="#/24">Command Line Interface</a></p></li>
+<li><p><a class="reference external" href="#/31">versioning scheme</a></p></li>
 </ul>
 </section>
 <section>
@@ -162,8 +164,9 @@ False</code></pre>
 <pre class="python">
 <code data-trim contenteditable>&gt;&gt;&gt; FSPath(&#x27;.&#x27;).startFile()          # opens file-explorer at CWD</code></pre>
 <small class="last">
-M$-Win has nativ support in Python. On Darwin and FreeBSD the <a class="reference external" href="https://www.freebsd.org/cgi/man.cgi?open">open</a> command is used. On other OS
-(e.g. Linux) the <a class="reference external" href="https://portland.freedesktop.org/doc/xdg-open.html">xdg-open</a> is used.</small>
+<p class="first last">M$-Win has nativ support in Python. On Darwin and FreeBSD the <a class="reference external" href="https://www.freebsd.org/cgi/man.cgi?open">open</a> command is used. On other OS
+(e.g. Linux) the <a class="reference external" href="https://portland.freedesktop.org/doc/xdg-open.html">xdg-open</a> is used.</p>
+</small>
 </section>
 <section>
 <h3>be expressive in daily use cases</h3>
@@ -254,15 +257,15 @@ out:&#x27;storage (192.168.1.120) ...&#x27; | err=&#x27;&#x27; | exit code=0</co
 <section>
 <h3>more file & folder methods</h3>
 <ul class="first last simple">
-<li><code class="docutils literal notranslate"><span class="pre">.chdir</span></code> –  change current working dir to <em>self</em></li>
-<li><code class="docutils literal notranslate"><span class="pre">.walk</span></code> – generate filenames of tree (see <a class="reference external" href="https://docs.python.org/3/library/os.html#os.walk">os.walk</a>)</li>
-<li><code class="docutils literal notranslate"><span class="pre">.delete</span></code> – delete! .. no matter if file or folder</li>
-<li><code class="docutils literal notranslate"><span class="pre">.rmtree</span></code> – remove entire folder</li>
-<li><code class="docutils literal notranslate"><span class="pre">.rmfile</span></code> – remove single file</li>
-<li><code class="docutils literal notranslate"><span class="pre">.copyfile</span></code> – copy file (opt. with permission bits)</li>
-<li><code class="docutils literal notranslate"><span class="pre">.copytree</span></code> – recursively copy the entire tree</li>
-<li><code class="docutils literal notranslate"><span class="pre">.filesize</span></code> – Filesize in bytes or with precision</li>
-<li><code class="docutils literal notranslate"><span class="pre">.suffix</span></code> – return path name with <em>new</em> suffix</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.chdir</span></code> –  change current working dir to <em>self</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.walk</span></code> – generate filenames of tree (see <a class="reference external" href="https://docs.python.org/3/library/os.html#os.walk">os.walk</a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.delete</span></code> – delete! .. no matter if file or folder</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.rmtree</span></code> – remove entire folder</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.rmfile</span></code> – remove single file</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.copyfile</span></code> – copy file (opt. with permission bits)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.copytree</span></code> – recursively copy the entire tree</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.filesize</span></code> – Filesize in bytes or with precision</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.suffix</span></code> – return path name with <em>new</em> suffix</p></li>
 </ul>
 </section>
 <section>
@@ -341,26 +344,26 @@ out:&#x27;storage (192.168.1.120) ...&#x27; | err=&#x27;&#x27; | exit code=0</co
 <section>
 <h3>more file & folder properties</h3>
 <ul class="first last simple">
-<li><code class="docutils literal notranslate"><span class="pre">.EXISTS</span></code>      – True if file/path name exist</li>
-<li><code class="docutils literal notranslate"><span class="pre">.SIZE</span></code>        – Size in bytes</li>
-<li><code class="docutils literal notranslate"><span class="pre">.READABLE</span></code>    – True if file/path is readable</li>
-<li><code class="docutils literal notranslate"><span class="pre">.WRITEABLE</span></code>   – True if file/path is writeable</li>
-<li><code class="docutils literal notranslate"><span class="pre">.EXECUTABLE</span></code>  – True if file is executable</li>
-<li><code class="docutils literal notranslate"><span class="pre">.ISDIR</span></code>       – True if path is a folder</li>
-<li><code class="docutils literal notranslate"><span class="pre">.ISFILE</span></code>      – True if path is a file</li>
-<li><code class="docutils literal notranslate"><span class="pre">.ISABSPATH</span></code>   – True if path is absolute</li>
-<li><code class="docutils literal notranslate"><span class="pre">.ISLINK</span></code>      – True if path is a symbolic link</li>
-<li><code class="docutils literal notranslate"><span class="pre">.ISMOUNT</span></code>     – True if path is a mountpoint</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.EXISTS</span></code>      – True if file/path name exist</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.SIZE</span></code>        – Size in bytes</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.READABLE</span></code>    – True if file/path is readable</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.WRITEABLE</span></code>   – True if file/path is writeable</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.EXECUTABLE</span></code>  – True if file is executable</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.ISDIR</span></code>       – True if path is a folder</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.ISFILE</span></code>      – True if path is a file</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.ISABSPATH</span></code>   – True if path is absolute</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.ISLINK</span></code>      – True if path is a symbolic link</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.ISMOUNT</span></code>     – True if path is a mountpoint</p></li>
 </ul>
 </section>
 <section>
 <h3>more file & folder properties</h3>
 <ul class="first last simple">
-<li><code class="docutils literal notranslate"><span class="pre">.MTIME</span></code>       – last modification time</li>
-<li><code class="docutils literal notranslate"><span class="pre">.ATIME</span></code>       – last access time</li>
-<li><code class="docutils literal notranslate"><span class="pre">.CTIME</span></code>       – last change time</li>
-<li><code class="docutils literal notranslate"><span class="pre">.ISZIP</span></code>       – True if path is a ZIP file</li>
-<li><code class="docutils literal notranslate"><span class="pre">.ISTAR</span></code>       – True if path is a TAR archive file</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.MTIME</span></code>       – last modification time</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.ATIME</span></code>       – last access time</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.CTIME</span></code>       – last change time</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.ISZIP</span></code>       – True if path is a ZIP file</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.ISTAR</span></code>       – True if path is a TAR archive file</p></li>
 </ul>
 </section>
 <section>
@@ -556,23 +559,21 @@ is enough.</p>
 <p class="first">This slide show was build with the help of ..</p>
 <small class="last">
 <ul class="first last simple">
-<li><a class="reference external" href="https://github.com/return42/sphinxjp.themes.revealjs">sphinxjp.themes.revealjs</a></li>
-<li><a class="reference external" href="http://lab.hakim.se/reveal-js">REVEAL.JS</a></li>
-<li><a class="reference external" href="http://www.sphinx-doc.org">Sphinx-doc</a></li>
-<li><a class="reference external" href="http://www.sphinx-doc.org/en/stable/rest.html">reST</a></li>
-<li><a class="reference external" href="http://docutils.sourceforge.net/rst.html">docutils</a></li>
+<li><p><a class="reference external" href="https://github.com/return42/sphinxjp.themes.revealjs">sphinxjp.themes.revealjs</a></p></li>
+<li><p><a class="reference external" href="http://lab.hakim.se/reveal-js">REVEAL.JS</a></p></li>
+<li><p><a class="reference external" href="http://www.sphinx-doc.org">Sphinx-doc</a></p></li>
+<li><p><a class="reference external" href="http://www.sphinx-doc.org/en/stable/rest.html">reST</a></p></li>
+<li><p><a class="reference external" href="http://docutils.sourceforge.net/rst.html">docutils</a></p></li>
 </ul>
 </small>
 </section>
-</div>
 
 
       </div>
     </div>
     
-<script src="_static/js/jquery.min.js"></script>
-<script src="_static/lib/js/head.min.js"></script>
-<script src="_static/js/reveal.js"></script>
+<script src="_static/js/jquery.js"></script>
+<script src="_static/js/reveal.min.js"></script>
     <script>
 
       // change DOM for reveal.js
@@ -627,12 +628,12 @@ is enough.</p>
         
 
         dependencies: [
-           { src: '_static/lib/js/classList.js', condition: function() { return !document.body.classList; } },
-           { src: '_static/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-           { src: '_static/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-           { src: '_static/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
-           { src: '_static/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
-           { src: '_static/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+          { src: '_static/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: '_static/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: '_static/plugin/highlight/highlight.js', async: true },
+          { src: '_static/plugin/search/search.js', async: true },
+          { src: '_static/plugin/zoom-js/zoom.js', async: true },
+          { src: '_static/plugin/notes/notes.js', async: true},
         ]
       });
     </script>

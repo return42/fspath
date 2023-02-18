@@ -2,6 +2,6 @@ fspath.win module
 =================
 
 .. automodule:: fspath.win
-    :members:
-    :undoc-members:
-    :show-inheritance:
+   :members:
+   :undoc-members:
+   :show-inheritance:
