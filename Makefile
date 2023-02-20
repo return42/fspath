@@ -1,5 +1,7 @@
 # -*- coding: utf-8; mode: makefile-gmake -*-
 
+all: help-all
+
 include utils/makefile.include
 include utils/makefile.python
 include utils/makefile.sphinx
@@ -10,8 +12,6 @@ PYOBJECTS = fspath
 DOC       = docs
 API_DOC   = $(DOC)/fspath-api
 SLIDES    = docs/slides
-
-all: clean pylint pytest build docs
 
 PHONY += help help-min help-all
 
