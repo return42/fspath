@@ -36,7 +36,9 @@ def progressbar(step, maxSteps, barSize=None, pipe=sys.stdout
     * barSize: char length of the progress-bar
     """
 
-    percent = float(100)/maxSteps*step
+    percent = 0
+    if step and maxSteps:
+        percent = float(100)/maxSteps*step
 
     prompt = "\r" + prompt
     if barSize is None:

@@ -17,8 +17,7 @@ def test_download():
         arch.delete()
     assert not arch.EXISTS
 
-    arch.download(url,
-                  chunksize=1024, ticker=True)
+    arch.download(url, chunksize=1024, ticker=True)
     assert arch.EXISTS
     assert arch.SIZE > MIN_FILESIZE
 
@@ -38,4 +37,3 @@ def test_makedirs():
         foo.delete()
     assert foo.makedirs()
     assert not foo.makedirs()
-    
