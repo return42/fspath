@@ -2,24 +2,37 @@
 # pylint: disable=C
 
 import os
-from os.path import join as ospj
 import io
-import imp
 from setuptools import setup, find_packages
 
 _dir = os.path.abspath(os.path.dirname(__file__))
 
-#sys.path.append(_dir)
+SRC    = os.path.join(_dir, 'fspath')
+README = os.path.join(_dir, 'README.rst')
+DOCS   = os.path.join(_dir, 'docs')
+TESTS  = os.path.join(_dir, 'tests')
 
-SRC    = ospj(_dir, 'fspath')
-README = ospj(_dir, 'README.rst')
-DOCS   = ospj(_dir, 'docs')
-TESTS  = ospj(_dir, 'tests')
+try:
+    # Python 2.7
+    from imp import load_source
+except ImportError:
+    import importlib
+    def load_source(modname, modpath):
+        # https://docs.python.org/3/library/importlib.html#importing-a-source-file-directly
+        spec = importlib.util.spec_from_file_location(modname, modpath)
+        if not spec:
+            raise ValueError("Error loading '%s' module" % modpath)
+        module = importlib.util.module_from_spec(spec)
+        if not spec.loader:
+            raise ValueError("Error loading '%s' module" % modpath)
+        spec.loader.exec_module(module)
+        return module
 
 # import pkginfo without importing 'fspath/__init__.py' which imports
 # third-party dependencies that need to be installed first (e.g. 'six').
 
-PKG = imp.load_source('__pkginfo__', ospj(SRC, '__pkginfo__.py'))
+PKG = load_source('__pkginfo__', os.path.join(SRC, '__pkginfo__.py'))
+
 
 def readFile(fname, m='rt', enc='utf-8', nl=None):
     with io.open(fname, mode=m, encoding=enc, newline=nl) as f:
