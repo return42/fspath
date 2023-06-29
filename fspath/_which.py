@@ -6,7 +6,7 @@ which - locate a command
 
 import sys
 import os
-import fspath
+import fspath  # pylint: disable=cyclic-import
 from .cli import CLI
 
 
@@ -25,7 +25,7 @@ def which(cmd, findall=True):
 
     """
     envpath = os.environ.get('PATH', None) or os.defpath
-    hits = list()
+    hits = []
     cmd  = fspath.FSPath(cmd)
 
     if sys.platform == 'win32':

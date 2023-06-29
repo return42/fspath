@@ -1,6 +1,5 @@
 #!/usr/bin/env python
-# -*- coding: utf-8; mode: python -*-
-# pylint: disable=invalid-name
+# pylint: disable=C
 
 import os
 from os.path import join as ospj

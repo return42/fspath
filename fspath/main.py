@@ -33,6 +33,7 @@ def _cli_find_file(cli):
         fspath find ".*\\.py$"  .
     """
     for match in cli.folder.reMatchFind(
+            # pylint: disable=superfluous-parens
             cli.regexpr, use_dirs=(not cli.nodirs), use_files=(not cli.nofiles)):
         cli.OUT.write(match + "\n")
 
@@ -55,7 +56,7 @@ def main():
     """
     cli = CLI(description=main.__doc__)
 
-    from .win import _cli_py2exe
+    from .win import _cli_py2exe  # pylint: disable=import-outside-toplevel
     py2exe = cli.addCMDParser(_cli_py2exe, cmdName='py2exe')
     py2exe.add_argument(
         "script"

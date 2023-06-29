@@ -7,7 +7,6 @@ Windows stuff
 import os
 import io
 import six
-from .fspath import FSPath
 
 # ==============================================================================
 def wrapScriptExe(script, shebang = u"#!python.exe"):
@@ -30,6 +29,8 @@ def wrapScriptExe(script, shebang = u"#!python.exe"):
 
     """
 
+    # pylint: disable=import-outside-toplevel
+    from .fspath import FSPath
     from pip._vendor.distlib.scripts import ScriptMaker
     from pip._vendor.distlib.compat import ZipFile
 

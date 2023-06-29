@@ -1,5 +1,5 @@
 # -*- mode: python; coding: utf-8 -*-
-# pylint: disable=invalid-name, bad-continuation
+# pylint: disable=invalid-name
 """
 Some *console* stuff
 """
@@ -65,7 +65,7 @@ def consoleDimensionsLinux():
 
 def consoleDimensionsWIN():
     u"""Returns count of (row, columns) from current console"""
-    # pylint: disable=too-many-locals
+    # pylint: disable=too-many-locals, import-outside-toplevel
     from ctypes import windll, create_string_buffer
 
     # stdin handle is -10

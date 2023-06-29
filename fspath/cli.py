@@ -115,6 +115,7 @@ class CLI(object):
         """Add subcommand parser"""
 
         if self.cliSubParsers is None:
+            # pylint: disable=broad-exception-raised
             raise Exception("this command-line has no sub-commands!")
 
         subCmd = self.cliSubParsers.add_parser(
@@ -163,14 +164,14 @@ class CLI(object):
                     _exitCode = 0
                 else:
                     _exitCode = int(_retVal)
-            except Exception as exc: # pylint: disable=W0703
+            except Exception as exc: # pylint: disable=unused-variable, broad-exception-caught
                 pass
 
-        except CLIApplError as exc: # pylint: disable=W0703
+        except CLIApplError as exc: # pylint: disable=unused-variable
             _exitCode  = exc.exitCode
             self.ERR.write(u"ERROR (%s): %s\n" % (exc.exitCode, exc.message))
 
-        except Exception as exc: # pylint: disable=W0703
+        except Exception as exc: # pylint: disable=unused-variable, broad-exception-caught
             if cmd_args.debug:
                 raise
             _exitCode  = 42
@@ -212,7 +213,7 @@ class CLI(object):
         if '_ARGCOMPLETE' not in os.environ:
             return
         try:
-            import argcomplete  # pylint: disable=import-error
+            import argcomplete  # pylint: disable=import-error, import-outside-toplevel
         except ImportError:
             self.ERR.write("TAB-completion, python-argcomplete not installed.")
             sys.exit(1)
@@ -237,7 +238,7 @@ def CONSOLE(arround=5, frame=None):
 
     histfile = os.path.join(os.path.expanduser("~"), ".kernel-doc-history")
     try:
-        import readline, rlcompleter  # pylint: disable=W0612
+        import readline, rlcompleter  # pylint: disable=import-outside-toplevel
         readline.set_completer(rlcompleter.Completer(namespace=ns).complete)
         readline.parse_and_bind("tab: complete")
         readline.set_history_length(1000)
@@ -274,4 +275,3 @@ def DUMMY_CONSOLE(*_x, **_y):
 __builtins__["CONSOLE"] = DUMMY_CONSOLE
 if DEBUG:
     __builtins__["CONSOLE"] = CONSOLE
-

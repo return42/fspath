@@ -46,4 +46,3 @@ def progressbar(step, maxSteps, barSize=None, pipe=sys.stdout
     p_bar = fillchar * int(round(percent / 100 * barSize))
     pipe.write((prompt +  "[%s] %3.0f%%") % (p_bar.ljust(barSize, restchar), percent))
     pipe.flush()
-

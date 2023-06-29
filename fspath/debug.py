@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8; mode: python -*-
-# pylint: disable=invalid-name, logging-not-lazy
+# pylint: disable=invalid-name, logging-not-lazy, arguments-renamed
 
 """
 Small collection for debugging and introspection purpose.
@@ -219,7 +219,7 @@ class RemoteConsole(Console):
 class Pdb(pdb.Pdb):  # pylint: disable=R0904
 # ==============================================================================
 
-    # pylint: disable=no-self-use, missing-docstring
+    # pylint: disable=missing-docstring
     u"""Abstraction Layer for PDB"""
     def do_src(self, arg):
         if not arg:
@@ -245,8 +245,7 @@ class RemotePdb(Pdb): # pylint: disable=R0904
 # ==============================================================================
     u"""Simple remote PDB"""
 
-    # pylint: disable=no-self-use, missing-docstring
-    # pylint: disable=super-init-not-called
+    # pylint: disable=missing-docstring, super-init-not-called
     def __init__(self, port, addr="127.0.0.1"):
         """Initialize the socket and initialize pdb."""
 

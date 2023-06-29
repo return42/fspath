@@ -3,7 +3,7 @@ u"""
 semantic path names and much more
 """
 
-# pylint: disable=invalid-name, bad-continuation
+# pylint: disable=invalid-name
 
 # ==============================================================================
 # imports
@@ -262,11 +262,10 @@ class FSPath(six.text_type):  # pylint: disable=too-many-public-methods
         """
         if os.sep == "/":
             return six.text_type(self)
-        else:
-            p = six.text_type(self)
-            if p[1] == ":":
-                p = "/" + p.replace(":", "", 1)
-            return p.replace(os.sep, "/")
+        p = six.text_type(self)
+        if p[1] == ":":
+            p = "/" + p.replace(":", "", 1)
+        return p.replace(os.sep, "/")
 
     @property
     def NTPATH(self):
@@ -520,7 +519,7 @@ class FSPath(six.text_type):  # pylint: disable=too-many-public-methods
         if system in ('FreeBSD', 'Darwin'):
             cmd = 'open'
 
-        from ._which import which
+        from ._which import which  # pylint: disable=import-outside-toplevel, cyclic-import
         cmd = which(cmd, findall=False)
         if cmd:
             os.system(cmd + " " + self)
@@ -696,7 +695,7 @@ def callEXE(cmd, *args, **kwargs):
        print("stderr: %s" % err)
        print("exit code = %d" % rc)
     """
-    from ._which import which
+    from ._which import which  # pylint: disable=import-outside-toplevel, cyclic-import
     exe = which(cmd, findall=False)
     if exe is None:
         raise IOError('command "%s" not availble!' % cmd)

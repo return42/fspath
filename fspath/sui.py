@@ -4,7 +4,7 @@ Simple user interface via terminal (win & \*nix)
 
 This module is in a very early stage, don't use it!
 """
-# pylint: disable=invalid-name, bad-continuation, wrong-import-position
+# pylint: disable=invalid-name, wrong-import-position
 
 # ==============================================================================
 # imports
@@ -52,8 +52,9 @@ class SimpleUserInterface(object):
             self.ui_out = cli.OUT
 
     if CONSOLE_TYPE == 'tty':
-        import tty     # pylint: disable=E0401
-        import termios # pylint: disable=E0401
+        # pylint: disable=import-outside-toplevel
+        import tty
+        import termios
         @classmethod
         def getchr(cls):
             "Get a single unicode character on Linux & Unix."
@@ -86,7 +87,7 @@ class SimpleUserInterface(object):
 
 
     elif CONSOLE_TYPE == 'cmd':
-        import msvcrt   # pylint: disable=E0401
+        import msvcrt   # pylint: disable=import-outside-toplevel
         @classmethod
         def getchr(cls):
             "Get a single unicode character on Windows."
@@ -280,7 +281,7 @@ class SimpleUserInterface(object):
             ch = cls.readkey()
             if ch == stop_char:
                 break
-            elif ch == KEY.BACKSPACE:
+            if ch == KEY.BACKSPACE:
                 if in_fspath:
                     in_fspath = in_fspath[:-1]
                     prompt(in_fspath)
@@ -419,7 +420,7 @@ class ASCIITableFormatter(object):
     def __init__(self, *cols):
         self.coldef = cols
 
-    def get_value(self, attr, row, default='?'):  # pylint: disable=no-self-use
+    def get_value(self, attr, row, default='?'):
         u"""get value from col (attr) and row"""
         val = default
         if hasattr(row, "__getitem__"):
@@ -428,7 +429,7 @@ class ASCIITableFormatter(object):
             val = getattr(row, attr, None)
         return val
 
-    def escape(self, value): # pylint: disable=no-self-use
+    def escape(self, value):
         u"""escape value"""
         return value
 
